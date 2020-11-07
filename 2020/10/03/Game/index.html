@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="K殿" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    博弈论 |  K殿
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/parak.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Game"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  博弈论
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/03/Game/" class="article-date">
+  <time datetime="2020-10-02T16:00:00.000Z" itemprop="datePublished">2020-10-03</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.6k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">10 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="博弈论"><a href="#博弈论" class="headerlink" title="博弈论"></a>博弈论</h1><center>
+    <font face="Kristen ITC" color="#555555" font-size=100px>Khighness、寻找必败态</font><br>
+</center>
+
+
+
+
+
+<h2 id="1-巴什博弈"><a href="#1-巴什博弈" class="headerlink" title="1. 巴什博弈"></a>1. 巴什博弈</h2><h3 id="1-1-问题"><a href="#1-1-问题" class="headerlink" title="1.1 问题"></a>1.1 问题</h3><blockquote>
+<p>两个顶尖聪明的人在玩游戏，有 n 个石子，每个人每次拿 1~m 个石头，拿掉最后一块石头的人就是获胜者。请问先手与后手谁必胜？</p>
+</blockquote>
+<h3 id="1-2-分析"><a href="#1-2-分析" class="headerlink" title="1.2 分析"></a>1.2 分析</h3><blockquote>
+<p>分类讨论: </p>
+<p>（1）当n ≤ m时，这时先手的人可以一次取走所有的；</p>
+<p>（2）当n = m+1时，这时先手无论取走多少个，后手的人都能取走剩下所有的；</p>
+<p>（3）当n = k ∗ ( m + 1)时，对于每(m + 1)个石子，先手取i个，后手一定能将剩下的(m + 1 − i)个都取走，因此后手必胜；</p>
+<p>（4）当n = k ∗ ( m + 1)  + x ( 0&lt; x&lt; m + 1)时，先手可以先取 x 个，之后的局势就回到了上一种情况，无论后手取多少个，先手都能取走m+1个中剩下的，因此先手必胜。</p>
+</blockquote>
+<h3 id="1-3-结论"><a href="#1-3-结论" class="headerlink" title="1.3 结论"></a>1.3 结论</h3><blockquote>
+<p><strong>当n % m + 1) == 0时，后手必胜，否则先手必胜。</strong></p>
+</blockquote>
+<h3 id="1-4-代码"><a href="#1-4-代码" class="headerlink" title="1.4 代码"></a>1.4 代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BashGame</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ((n % (m + <span class="number">1</span>)) == <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;后手获胜&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;先手获胜&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="2-尼姆博弈"><a href="#2-尼姆博弈" class="headerlink" title="2. 尼姆博弈"></a>2. 尼姆博弈</h2><h3 id="2-1-问题"><a href="#2-1-问题" class="headerlink" title="2.1 问题"></a>2.1 问题</h3><blockquote>
+<p>两个顶尖聪明的人在玩游戏，有 n 堆石子，第 i 堆有 ai 每个人每次能从一堆石子中取任意多个石子但不能不取，不能取的人输。请问先手与后手谁必胜？</p>
+</blockquote>
+<h3 id="2-2-分析"><a href="#2-2-分析" class="headerlink" title="2.2 分析"></a>2.2 分析</h3><blockquote>
+<p>（1）当n = 1时，显然先手取走这一堆就能获胜；</p>
+<p>（2）当n = 2且a1 != a2时，我们假设a1 &gt; a2，先手可以先在第一堆取走a1-a2个，下一次无论后手取走多少个，先手都可以在另一堆取走相同的个数，因此先手必胜；</p>
+<p>（3）当n = 2且a1 == a2时，先手无论取多少个，后手都可以在另一堆取相同的个数，因此后手必胜；</p>
+<p>（4）当n &gt;= 3时，问题变得繁琐起来，先找出规律性的结论。</p>
+</blockquote>
+<h3 id="2-3-结论"><a href="#2-3-结论" class="headerlink" title="2.3 结论"></a>2.3 结论</h3><blockquote>
+<p><strong>当 a1 ^ a2 ^ ··· ^ an =  0 时，后手必胜，否则先手必胜。</strong></p>
+<p><strong>证明：</strong></p>
+<p>假设当前：a1 ^ a2 ^ ··· ^ an =  0，</p>
+<p>先手回合：取走若干个后，</p>
+<p>局势变成：a1 ^ a2 ^ ··· ^ an =  K，</p>
+<p>即：a1 ^ a2 ^ ··· ^ an ^ K = 0。</p>
+<p>假设 K 的最高位1在第 x 位，</p>
+<p>那么必然存在 aj (1 &lt; = j &lt;= n) 的 第 x 位为1，</p>
+<p>后手回合：只要把 aj 变成 aj ^ K，</p>
+<p>就能使得：a1 ^ a2 ^ ··· ^ an =  0。</p>
+<p>由于 aj ^ K 使得第 x 位 为0，无论低位是什么，</p>
+<p>第 x 位变为0后，aj 整个数一定会变小，即：aj ^ K &lt; aj，</p>
+<p>所以后手只需在第 j 堆取走(aj - aj ^ K)个石子即可。</p>
+<p>先手每次取完，后手每次取(aj - aj ^ K)，</p>
+<p>最后的局势一定是：a1 = a2 = ··· = an = 0，</p>
+<p>此时先手无法取了，后手必胜。</p>
+<p>反之，当a1 ^ a2 ^ ··· ^ an = K 时，</p>
+<p>局势反转，先手每次取(aj - aj ^ K)个即可，先手必胜。</p>
+</blockquote>
+<h3 id="2-4-代码"><a href="#2-4-代码" class="headerlink" title="2.4 代码"></a>2.4 代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NimGame</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(<span class="keyword">int</span>[] a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i : a) &#123;</span><br><span class="line">            res ^= i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (res == <span class="number">0</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;后手获胜&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;先手获胜&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-尼姆Plus博弈"><a href="#3-尼姆Plus博弈" class="headerlink" title="3. 尼姆Plus博弈"></a>3. 尼姆Plus博弈</h2><h3 id="3-1-问题"><a href="#3-1-问题" class="headerlink" title="3.1 问题"></a>3.1 问题</h3><blockquote>
+<p>两个顶尖聪明的人在玩游戏，有 n 堆石子，第 i 堆有 ai 个石子，每个人每次能从 1~d 堆石子中取任意多个石子但不能不取，不能取的人输。请问先手与后手谁必胜？</p>
+</blockquote>
+<h3 id="3-2-分析"><a href="#3-2-分析" class="headerlink" title="3.2 分析"></a>3.2 分析</h3><blockquote>
+<p>特么太难了啊，呜呜呜我好菜</p>
+</blockquote>
+<h3 id="3-3-结论"><a href="#3-3-结论" class="headerlink" title="3.3 结论"></a>3.3 结论</h3><blockquote>
+<p><strong>将每堆石子数量用二进制表示，对于二进制的任意一位，如果这一位为1的石子堆数量%(d+1)==0，那么后手必胜，否则先手必胜。</strong></p>
+</blockquote>
+<h3 id="3-4-证明"><a href="#3-4-证明" class="headerlink" title="3.4 证明"></a>3.4 证明</h3><blockquote>
+<p>只需要证明三点：</p>
+<ol>
+<li><p>终止局面为先手必败（显然）</p>
+</li>
+<li><p>任意先手必胜的局面都能转变成先手必败的局面</p>
+</li>
+<li><p>任意先手必败的局面都不能转变成先手必胜的局面</p>
+</li>
+</ol>
+<p><strong>证明</strong></p>
+<p>证明2:</p>
+<p>假设最高位%(d+1) != 0有m堆，那么将这些堆的这一位变成0；</p>
+<p>假设下一位%(d+1) != 0的位有n个，之前m堆中这一位有a个1和b个0。</p>
+<p>（1）如果n &lt;= a，显然将这a中的n个变成0即可；</p>
+<p>（2）如果(d+1) - n &lt;= b，那么只要将b个中的(d+1) - n个变成1即可；</p>
+<p>因为之前最高位是将1变成0，所以这一位即使由0变1，这堆石子也是减少的；</p>
+<p>（3）如果两个都不满足，即a &gt; n &amp;&amp; b &lt; (d + 1 - n)，那么只要将这a堆和m堆之外的(n - a)堆的这一位变成0，</p>
+<p>那么总改变堆数为 a + b + (n - a) = b + n &lt; (d + 1) - n + n = d + 1，</p>
+<p>即将这一位变成%(d+1) = 0需要改变的总堆数要小于(d+1)，</p>
+<p>即可以一次操作完成，然后以此类推就能使每一位都变为%(d+1)=0。</p>
+<p>证明3:</p>
+<p>因为一次最多操作d堆石子，因此不能将(d+1)堆某一位是1的石子堆的这一位都变为0。</p>
+</blockquote>
+<h2 id="4-威佐夫博弈"><a href="#4-威佐夫博弈" class="headerlink" title="4. 威佐夫博弈"></a>4. 威佐夫博弈</h2><h3 id="4-1-问题"><a href="#4-1-问题" class="headerlink" title="4.1 问题"></a>4.1 问题</h3><blockquote>
+<p>两个顶尖聪明的人在玩游戏，有 2 堆石子，每个人每次可以从任意一堆石子中取任意多的石子或者从两堆石子中取同样多的石子，不能取的人输。请问先手与后手谁必胜？</p>
+</blockquote>
+<h3 id="4-1-分析"><a href="#4-1-分析" class="headerlink" title="4.1 分析"></a>4.1 分析</h3><blockquote>
+<p>威佐夫博弈不同于巴什博弈和尼姆博弈，它的特殊之处在于不能将两堆石子分开分析。</p>
+<p><em>下面分析不想看的直接跳过记住结论即可</em></p>
+<p>定义先手必输的局势为奇异局势，前几个奇异局势为: (0, 0), (1, 2), (3, 5), (4, 7), (6,10)……</p>
+<p>假设 (x, y) 为第 k 个奇异局势</p>
+<p>性质：</p>
+<ul>
+<li>x为前 1···k 个奇异局势中没有出现过的最小正整数，y = x + k (打表找规律)</li>
+<li>任何一个自然数都包含在一个且仅有一个奇异局势中</li>
+<li>任何操作都会将奇异局势变为非奇异局势</li>
+<li>非奇异局势可以通过适当操作变为奇异局势</li>
+</ul>
+<p>证明这个结论，只需证明：</p>
+<ol>
+<li>任意自然数都出现过</li>
+<li>任意自然数仅出现一次</li>
+</ol>
+<p>反证法易证。</p>
+</blockquote>
+<img src="/2020/10/03/Game/%E5%A8%81%E4%BD%90%E5%A4%AB%E5%8D%9A%E5%BC%88.jpg" class="" title="XY">
+
+<blockquote>
+<p>我们可以将两堆石子看成是棋盘上一个点的纵横坐标，那么游戏切换：</p>
+<p>棋盘上有一个点，每次每个人只能将棋子往左或者往下移动任意个格子，不能移动的人输。</p>
+<p>将能一步到达(0, 0)的点都染色，那么这些点就是必胜态，再找到横纵坐标之和最小的没被染色的点，</p>
+<p>这个点就是下一个必败态，由此画出上图。</p>
+</blockquote>
+<h3 id="4-1-结论"><a href="#4-1-结论" class="headerlink" title="4.1 结论"></a>4.1 结论</h3><blockquote>
+<p><strong>根据<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%B4%9D%E8%92%82%E5%AE%9A%E7%90%86/2677437?fr=aladdin">Betty定理</a>，第K个局势就是(⌊(1+√5)/2 *k⌋, ⌊(3+√5)/2 *k⌋)，其中(1+√5)/2=1.618是黄金分割系数。</strong></p>
+<p><strong>因此，局势(x, y)满足(y - x)*(1+√5)/2)=x时，先手必败，否则先手必胜。</strong></p>
+</blockquote>
+<h3 id="4-1-代码"><a href="#4-1-代码" class="headerlink" title="4.1 代码"></a>4.1 代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WizovGame</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 保证 a &lt;= b</span></span><br><span class="line">        <span class="keyword">if</span> (a &gt; b) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = b;</span><br><span class="line">            b = a;</span><br><span class="line">            a = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 判断 a == (b - a) * 黄金分割系数 (向上取整)</span></span><br><span class="line">        <span class="keyword">if</span> ( a == (<span class="keyword">int</span>) Math.ceil( (b - a) * (<span class="number">1</span> + Math.sqrt(<span class="number">5.0</span>)) / <span class="number">2</span>) ) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;后手获胜&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;先手获胜&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-斐波那契博弈"><a href="#5-斐波那契博弈" class="headerlink" title="5. 斐波那契博弈"></a>5. 斐波那契博弈</h2><h3 id="5-1-问题"><a href="#5-1-问题" class="headerlink" title="5.1 问题"></a>5.1 问题</h3><blockquote>
+<p>两个顶尖聪明的人在玩游戏，有一堆石子，数量为n，两个人轮流取石子，规则如下：</p>
+<p>（1）先手不能在第一次把所有的石子取完，至少取一颗；</p>
+<p>（2）之后每次可以取的石子数至少为1，至多为对手刚取的石子数的2倍；</p>
+<p>不能取的人输。请问先手与后手谁必胜？</p>
+</blockquote>
+<h3 id="5-2-结论"><a href="#5-2-结论" class="headerlink" title="5.2 结论"></a>5.2 结论</h3><blockquote>
+<p><strong>当n为Fibonacci数的时候，后手必胜，否则先手必胜。</strong></p>
+</blockquote>
+<h3 id="5-3-证明"><a href="#5-3-证明" class="headerlink" title="5.3 证明"></a>5.3 证明</h3><blockquote>
+<p>数学归纳法：</p>
+<p>假设石子数量n = F[i]（斐波那契数列中的第i项{1, 1, 2, 3, 5······}）</p>
+<p>（1）当 i = 2 时，n = 2，显然先手取一个，后手必胜</p>
+<p>（2）当 i &gt; 2 时，假设当 i &lt;= k 时结论成立。</p>
+<p>当i = k + 1时，F[i] = F[k] + F[k-1]，将石子分成两部分来看。</p>
+<p>假设先手第一次取 x 个，后手第一次取 y 个。</p>
+<p>1）如果 x &lt; F[k-1] / 3，因为 n = F[k-1] 时已经证明后手一定能取到 F[k-1] 个中的最后一个，</p>
+<p>所以问题转化成了有 F[k] 个中的最后一个，这个也已经证明后手一定能取到F[k]中的最后一个。</p>
+<p>所以后手必胜。</p>
+<p>2）如果 F[k-1] / 3 &lt;= x &lt;= F[k]时，则F[k-1]中剩余数量小于2x，后手可以直接取完，</p>
+<p>（如果不选择一次性取完，慢慢磨最终也会是所证明的F[k-1]的情况，后手最后取完）</p>
+<p>即后手取了F[k-1]-x个，即y &lt;= 2/3 * F[k-1]。比较 2/3 * F[k-1] 与 1/2 * F[k] 的大小，</p>
+<p>即比较4 * [k-1] 与 3 * F[k] 的大小：</p>
+<p>由于 F[k] 函数递增 且 F[k] = F[k-1] + F[k-2]易知：2 * F[k-2] &lt; F[k] &lt; 2 * F[k-1]，</p>
+<p>因而 3 * F[k] = 3 * F[k-1] + 3 * F[k-2] &gt; 3 * F[k-1] + 3 / 2 * F[k-1] &gt; 4 * F[k-1]。</p>
+<p>也就是说，在后手取完F[k-1]那一堆石子之后，先手不能一次性取完F[k]那一堆石子，</p>
+<p>于是问题最终演变成了F[k]的状况，后手最后取完。</p>
+<p>3）如果 x &gt; F[k-1]，因为F[k] &lt; 2 * F[k-1]，后手可以一次性取完。</p>
+<p>综上三种情况，当 i &lt;= k 时结论成立，那么当 n = k+1 时结论也成立。</p>
+</blockquote>
+<h3 id="5-4-代码"><a href="#5-4-代码" class="headerlink" title="5.4 代码"></a>5.4 代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FibonacciGame</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fibnacci</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 递归计算，慢</span></span><br><span class="line"><span class="comment">//        if (n == 1 || n == 2)</span></span><br><span class="line"><span class="comment">//            return 1;</span></span><br><span class="line"><span class="comment">//        else</span></span><br><span class="line"><span class="comment">//            return fibnacci(n - 1) + fibnacci(n - 2);</span></span><br><span class="line">        <span class="comment">// 公式计算，快</span></span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) Math.floor( ( Math.pow((<span class="number">1</span> + Math.sqrt(<span class="number">5</span>)) / <span class="number">2</span>, n)  - Math.pow((<span class="number">1</span> - Math.sqrt(<span class="number">5</span>)) / <span class="number">2</span>, n) ) / Math.sqrt(<span class="number">5</span>) );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">play</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; fibnacci(i) &lt;= n; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (fibnacci(i+<span class="number">1</span>) == n) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;后手获胜&quot;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;先手获胜&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/10/03/Game/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Game/" rel="tag">Game</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/10/06/Regex/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Regex
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/10/02/Hadoop/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">大数据</div>
+      </a>
+    
+  </nav>
+
+  
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020
+        <i class="ri-heart-fill heart_icon"></i> Khighness
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s4.cnzz.com/z_stat.php?id=1279324689&amp;web_id=1279324689'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/parak.ico" alt="Khighness"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://www.parak.top/contact/">联系</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://findingho.me/">FIND</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>来杯抹茶？</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wepay.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        
+    
+
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+<script src="/js/dz.js"></script>
+
+
+
+    
+  </div>
+</body>
+
+</html>

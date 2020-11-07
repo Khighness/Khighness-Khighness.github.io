@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="K殿" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Regex |  K殿
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/parak.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Regex"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Regex
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/10/06/Regex/" class="article-date">
+  <time datetime="2020-10-05T16:00:00.000Z" itemprop="datePublished">2020-10-06</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Regex/">Regex</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">14 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Regex"><a href="#Regex" class="headerlink" title="Regex"></a>Regex</h1><center>
+    <font face="Kristen ITC" color="#555555" font-size=100px>Khighness</font><br>
+</center>
+
+
+
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><blockquote>
+<p>Regex</p>
+</blockquote>
+<p><strong>正则表达式，Regular Expression</strong></p>
+<blockquote>
+<p>为什么需要正则表达式？</p>
+</blockquote>
+<p><strong>文本的复杂处理</strong></p>
+<blockquote>
+<p>正则表达式的优势和用途？</p>
+</blockquote>
+<ul>
+<li><strong>一种强大而灵活的文本处理工具</strong></li>
+<li><strong>大部分编程语言、数据库、文本编辑器、开发环境都支持正则表达式</strong></li>
+</ul>
+<blockquote>
+<p>正则表达式定义：</p>
+</blockquote>
+<p><strong>一种字符串匹配的模式</strong></p>
+<blockquote>
+<p>开发中使用</p>
+</blockquote>
+<ul>
+<li>分析所要匹配的数据，写出测试用的典型数据</li>
+<li>在工具软件中进行匹配测试</li>
+<li>在程序中调用测试的正则表达式</li>
+</ul>
+<h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h2><h3 id="2-1-标准字符集合"><a href="#2-1-标准字符集合" class="headerlink" title="2.1 标准字符集合"></a>2.1 标准字符集合</h3><ul>
+<li>能够与”多种字符”匹配的表达式</li>
+<li>注意区分大小写，大写是相反的意思</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\d</td>
+<td align="center">任意一个数字，0-9中的任意一个</td>
+</tr>
+<tr>
+<td align="center">\w</td>
+<td align="center">任意一个字母或数字或下划线，也就是A-Z、a-z、0-9、_中任意一个</td>
+</tr>
+<tr>
+<td align="center">\s</td>
+<td align="center">包括空格、制表符、换行符等空白字符的其中一个</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td align="center">小数点可以匹配任意一个字符(除了换行符)， 如果要匹配包括”\n”在内的所有字符，一般用<code>[\s\S]</code></td>
+</tr>
+</tbody></table>
+<p>如果要匹配真正的’.’、’+’、’-‘、’\&#39; ， 就要转义，用<code>\.</code>、<code>\+</code>、<code>\-</code>、<code>\\</code></p>
+<h3 id="2-2-自定义字符集合"><a href="#2-2-自定义字符集合" class="headerlink" title="2.2 自定义字符集合"></a>2.2 自定义字符集合</h3><ul>
+<li>[]方括号匹配方式，能够匹配方括号中任意一个字符</li>
+<li>正则表达式的特殊符号，被包含到中括号中，则失去了特殊意义，除了^、-之外</li>
+<li>标准字符集合，除小数点外，如果被包含于中括号，自定义字符集合被包含该集合<ul>
+<li>[\d.-+]将匹配：数字、小数点、+、-</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">例如</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">[ab5@]</td>
+<td align="center">匹配”a”或”b”或”5”或”@”</td>
+</tr>
+<tr>
+<td align="center">[^abc]</td>
+<td align="center">匹配”a”、”b”、”c”之外的任意一个字符</td>
+</tr>
+<tr>
+<td align="center">[f-k]</td>
+<td align="center">匹配”f”-“k”之间的任意一个字母</td>
+</tr>
+<tr>
+<td align="center">[^A-F0-3]</td>
+<td align="center">匹配”A”-“F”、”0”-“3”之外的任意一个字符</td>
+</tr>
+</tbody></table>
+<h3 id="2-3-量词"><a href="#2-3-量词" class="headerlink" title="2.3 量词"></a>2.3 量词</h3><ul>
+<li>修饰匹配次数的特殊符号</li>
+<li>匹配次数中的贪婪模式(匹配字符越多越好，默认)</li>
+<li>匹配次数中的非贪婪模式(匹配字符越少越好，在修饰匹配次数的特殊符号后再加上一个”?”号)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">量词</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">{n}</td>
+<td align="center">表达式重复n次</td>
+</tr>
+<tr>
+<td align="center">{m,n}</td>
+<td align="center">表达式至少重复m次，最多重复n次</td>
+</tr>
+<tr>
+<td align="center">{m,}</td>
+<td align="center">表达式至少重复m次</td>
+</tr>
+<tr>
+<td align="center">?</td>
+<td align="center">表达式匹配0次或1次，相当于{0,1}</td>
+</tr>
+<tr>
+<td align="center">+</td>
+<td align="center">表达式至少出现1次，相当于{1,}</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">表达式不出现或出现任意次，相当于{0,}</td>
+</tr>
+</tbody></table>
+<p>例如：</p>
+<ul>
+<li><code>[A-Za-z]+</code>可以匹配单词</li>
+</ul>
+<p>例如文本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">6、7、8、9、</span><br><span class="line">1、2、3、4、5、6、7、8、9、</span><br><span class="line">ab a1b a12b a123b a1234b a12345b </span><br></pre></td></tr></table></figure>
+
+<p><code>(\d、)&#123;1,3&#125;</code>的匹配结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">6、7、8、</span><br><span class="line">9、</span><br><span class="line">1、2、3、</span><br><span class="line">4、5、6、</span><br><span class="line">7、8、9、</span><br></pre></td></tr></table></figure>
+
+<p><code>(\d、)&#123;1,3&#125;?</code>的匹配结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">6、</span><br><span class="line">7、</span><br><span class="line">8、</span><br><span class="line">9、</span><br><span class="line">1、</span><br><span class="line">2、</span><br><span class="line">3、</span><br><span class="line">4、</span><br><span class="line">5、</span><br><span class="line">6、</span><br><span class="line">7、</span><br><span class="line">8、</span><br><span class="line">9、</span><br></pre></td></tr></table></figure>
+
+<p><code>a\d?b</code>的匹配结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ab</span><br><span class="line">a1b</span><br></pre></td></tr></table></figure>
+
+<p><code>a\d+b</code>的匹配结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a1b</span><br><span class="line">a12b</span><br><span class="line">a123b</span><br><span class="line">a1234b</span><br><span class="line">a12345b</span><br></pre></td></tr></table></figure>
+
+<p><code>a\d-b</code>的匹配结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ab</span><br><span class="line">a1b</span><br><span class="line">a12b</span><br><span class="line">a123b</span><br><span class="line">a1234b</span><br><span class="line">a12345b</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-4-字符边界"><a href="#2-4-字符边界" class="headerlink" title="2.4 字符边界"></a>2.4 字符边界</h3><table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">^</td>
+<td align="center">与字符串开始的地方匹配</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">与字符串结束的地方匹配</td>
+</tr>
+<tr>
+<td align="center">\b</td>
+<td align="center">匹配一个单词边界</td>
+</tr>
+</tbody></table>
+<p><code>\b</code>匹配这样一个位置：前面的字符和后面的字符不全是\w</p>
+<p>例如文本:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Khighness </span><br><span class="line">Khighness1 Khighness2</span><br><span class="line">3Khighness </span><br><span class="line">4Khighness </span><br><span class="line">Khighness5 Khighness6</span><br><span class="line">7Khighness </span><br><span class="line">8Khighness</span><br></pre></td></tr></table></figure>
+
+<p><code>^K</code>匹配最初的”K”，<code>s$</code>匹配最后的”s”；</p>
+<p><code>Khighness\b</code>匹配第1、3、4、6、7行的”Khighness”；</p>
+<p><code>\bKhighness</code>匹配第1、2、5行的”Khighness”；</p>
+<p><code>\bKhighness\b</code>匹配第1行的”Khighness”。</p>
+<h3 id="2-5-匹配模式"><a href="#2-5-匹配模式" class="headerlink" title="2.5 匹配模式"></a>2.5 匹配模式</h3><ul>
+<li>IGNORECASE-忽略大小写模式<ul>
+<li>匹配时忽略大小写</li>
+<li>默认情况下，正则表达式是要区分大小写的</li>
+</ul>
+</li>
+<li>SINGLELINE-单行模式<ul>
+<li>整个文本看做一个字符串，只有一个开头，一个结尾</li>
+<li>使小数点”.”可以匹配包含换行符(\n)在内的任意字符</li>
+</ul>
+</li>
+<li>MULTILINE-多行模式<ul>
+<li>每行都是一个字符串，都有开头和结尾</li>
+<li>在指定了MULTILINE之后，如果需要仅匹配字符串开始和结束为止，可以使用<code>\A</code>和<code>\Z</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-7-选择符和分组"><a href="#2-7-选择符和分组" class="headerlink" title="2.7 选择符和分组"></a>2.7 选择符和分组</h3><table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">分支结构: |</td>
+<td align="center">左右两边表达式之间“或”关系，匹配左边或者右边</td>
+</tr>
+<tr>
+<td align="center">捕获组: ()</td>
+<td align="center">(1) 在被修饰匹配次数的时候，括号中的表达式可以作为整体被修饰; (2) 取匹配结果的时候，括号中的表达式匹配到的内容可以被单独得到; (3) 每一对括号会分配一个编号，使用()的捕获根据左括号的顺序从1开始自动编号。捕获元素编号为零的第一个捕获是由整个正则表达式模式匹配的文本</td>
+</tr>
+<tr>
+<td align="center">非捕获组: (?:Exception)</td>
+<td align="center">一些表达式中，不得不使用()，但又不需要保存()中子表达式匹配的内容，这时可以用非捕获组来抵消使用()带来的副作用</td>
+</tr>
+</tbody></table>
+<ul>
+<li>反向引用(\num)<ul>
+<li>每一对()会分配一个编号，使用()的捕获模式</li>
+</ul>
+</li>
+</ul>
+<p>例如<code>([a-z]&#123;2&#125;)\1</code>可以匹配类似”abab”、”gogo”、”toto”的字符串</p>
+<h3 id="2-8-预搜索-零宽断言"><a href="#2-8-预搜索-零宽断言" class="headerlink" title="2.8 预搜索(零宽断言)"></a>2.8 预搜索(零宽断言)</h3><ul>
+<li>只进行子表达式的匹配，匹配内容不计入最终的匹配结果，是零宽度</li>
+<li>这个位置应该符合某个条件。判断当前位置的前后字符，是否符合指定的条件，但不匹配前后的字符。是对位置的匹配</li>
+<li>正则表达式匹配过程中，如果子表达式匹配到的是字符内容，而非位置，并被保存到最终的匹配结果中，那么久认为这个子表达式是占有字符的；如果子表达式匹配的仅仅是位置，或者匹配的内容并不保存到最终的匹配结果中，那么就认为这个子表达式是零宽度的。占有字符还是零宽度，是针对匹配的内容屎否保存到最终的匹配结果中而言的。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">(?=exp)</td>
+<td align="center">断言自身出现的位置的后面能匹配表达式exp</td>
+</tr>
+<tr>
+<td align="center">(?&lt;=exp)</td>
+<td align="center">断言自身出现的位置的前面能匹配表达式exp</td>
+</tr>
+<tr>
+<td align="center">(?!exp)</td>
+<td align="center">断言此位置的后面不能匹配表达式exp</td>
+</tr>
+<tr>
+<td align="center">(?&lt;exp)</td>
+<td align="center">断言此位置的前面不能匹配表达式exp</td>
+</tr>
+</tbody></table>
+<p>例如：</p>
+<ul>
+<li><p><code>[A-Za-z]+(?=ing)</code>可以匹配所有以”ing”结尾的单词(匹配结果不包含”ing”，<code>[A-Za-z]+ing</code>的匹配结果包含”ing”)</p>
+</li>
+<li><p><code>(?&lt;=in)[A-Za-z]+</code>可以匹配所有以”in”为前缀的单词(匹配结果不包含”in”，<code>in[A-Za-z]+</code>的匹配结果包含”in”)</p>
+</li>
+</ul>
+<h2 id="3-验证"><a href="#3-验证" class="headerlink" title="3. 验证"></a>3. 验证</h2><h3 id="3-1-电话号码验证"><a href="#3-1-电话号码验证" class="headerlink" title="3.1 电话号码验证"></a>3.1 电话号码验证</h3><blockquote>
+<p>要求</p>
+</blockquote>
+<ul>
+<li>固定电话号码由数字和”-“构成，电话号码为7到8位</li>
+<li>如果固定电话号码中包含有区号，那么区号为三位或四位，首位是0，区号用”-“和其他部分隔开</li>
+<li>移动电话号码为11位，第一位和第二位为”13”、”14”、15”、”17”、18”、”19”</li>
+</ul>
+<blockquote>
+<p>分析：</p>
+</blockquote>
+<ul>
+<li>固定电话号码：<code>0\d&#123;2,3&#125;-\d&#123;7,9&#125;</code></li>
+<li>移动电话号码: <code>1[3|4|5|7|8|9]\d&#123;9&#125;</code></li>
+<li>合起来就是：<code>^0\d&#123;2,3&#125;-\d&#123;7,9&#125;|1[3|4|5|7|8|9]\d&#123;9&#125;$</code></li>
+</ul>
+<h3 id="3-3-电子邮箱验证"><a href="#3-3-电子邮箱验证" class="headerlink" title="3.3 电子邮箱验证"></a>3.3 电子邮箱验证</h3><blockquote>
+<p>要求</p>
+</blockquote>
+<ul>
+<li>电子邮箱格式：名称@域名</li>
+<li>邮箱名称部分：允许汉字、字母、数字、中划线和下划线</li>
+<li>邮箱域名部分：允许字母、数字、英语句号</li>
+</ul>
+<blockquote>
+<p>分析</p>
+</blockquote>
+<ul>
+<li>邮箱名称表达式：<ul>
+<li>汉字<code>[\u4e00-\u9fa5]</code></li>
+<li>字母<code>[A-Za-z]</code></li>
+<li>数字<code>[0-9]</code></li>
+<li>中划线和下划线<code>[-_]</code></li>
+<li>综上得到名称表达式<code>[\u4e00-\u9fa5A-Za-z0-9-_]+</code></li>
+</ul>
+</li>
+<li>邮箱域名表达式：<ul>
+<li>域名的一般规律为[N级域名].[三级域名].[二级域名].[一级域名]，格式类似为<code>**.**.**.**</code></li>
+<li>一级域名只包含字母(如com、top、cn等)，长度为2-4位</li>
+<li><code>**</code>部分可以表示为<code>[A-Za-z0-9-_]+</code></li>
+<li><code>.**</code>部分可以表示为<code>\.[A-Za-z0-9-_]+</code></li>
+<li>零或多个<code>&quot;.**&quot;</code>可以表示为 <code> (\.[A-Za-z0-9-_]+)*</code></li>
+<li>一级域名部分<code>.**</code>可以表示为.<code>\.[a-z]&#123;2,4&#125;</code></li>
+<li>综上得到域名表达式<code>[A-Za-z0-9-_]+(\.[A-Za-z0-9-_]+)*\.[a-z]&#123;2,4&#125;</code></li>
+</ul>
+</li>
+<li>邮箱最终表达式：<ul>
+<li>使用<code>^</code>匹配邮箱最开始的部分，使用<code>$</code>匹配邮箱结束部分以保证邮箱前后不能有其他字符</li>
+<li>由”名称@域名”得到最终表达式：<code>[\u4e00-\u9fa5A-Za-z0-9-_]+@[A-Za-z0-9-_]+(\.[A-Za-z0-9-_]+)*\.[a-z]&#123;2,4&#125;</code></li>
+<li>简写即为：<code>^[\u4e00-\u9fa5-\w]+@[-\w]+(\.[-\w]+)*\.[a-z]&#123;2,4&#125;$</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="4-使用"><a href="#4-使用" class="headerlink" title="4. 使用"></a>4. 使用</h2><p>Java程序中使用正则表达式，相关类位于<code>java.util.regex</code>包下面</p>
+<ul>
+<li>类<code>Pattern</code>:<ul>
+<li>正则表达四的编译表示形式</li>
+<li>建立正则表达式，并启用相应模式：<code>Pattern pattern = Pattern.compile(Regular Expression);</code></li>
+</ul>
+</li>
+<li>类<code>Matcher</code>:<ul>
+<li>通过解释<code>Pattern</code>对<code>character squence</code>执行匹配操作的引擎</li>
+<li>匹配str字符串：<code>Matcher matcher = pattern.matcher(str);</code></li>
+<li>将整个字符串序列与该模式匹配：<code>boolean res1 = matcher.matches();</code></li>
+<li>扫描字符串序列，查找与该模式匹配的下一个子序列：<code>boolean res2 = matcher.find();</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="4-1-基本操作"><a href="#4-1-基本操作" class="headerlink" title="4.1 基本操作"></a>4.1 基本操作</h3><blockquote>
+<p>代码</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> top.parak;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2020/10/7 15:23</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@apiNote</span>: 基本操作</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 正则匹配模式</span></span><br><span class="line">        Pattern pattern = Pattern.compile(<span class="string">&quot;\\w+&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 匹配操作引擎</span></span><br><span class="line">        Matcher matcher = pattern.matcher(<span class="string">&quot;KHighness||ParaK||FlowerK||18236763&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 完整匹配</span></span><br><span class="line">        System.out.println(<span class="string">&quot;----------完整匹配----------&quot;</span>);</span><br><span class="line">        <span class="keyword">boolean</span> res = matcher.matches();</span><br><span class="line">        System.out.println(<span class="string">&quot;匹配结果：&quot;</span> + res + <span class="string">&quot;，匹配字符串：&quot;</span> + (res ? matcher.group() : <span class="string">&quot;NULL&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 每次操作完引擎中的字符串都会到达末尾，需要重新写</span></span><br><span class="line">        matcher = pattern.matcher(<span class="string">&quot;KHighness||ParaK||FlowerK||18236763&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 子串匹配</span></span><br><span class="line">        System.out.println(<span class="string">&quot;----------子串匹配----------&quot;</span>);</span><br><span class="line">        <span class="keyword">boolean</span> res1 = matcher.find();</span><br><span class="line">        System.out.println(<span class="string">&quot;匹配结果：&quot;</span> + res1 + <span class="string">&quot;，匹配字符串：&quot;</span> + (res1 ? matcher.group() : <span class="string">&quot;NULL&quot;</span>));</span><br><span class="line">        <span class="keyword">boolean</span> res2 = matcher.find();</span><br><span class="line">        System.out.println(<span class="string">&quot;匹配结果：&quot;</span> + res2 + <span class="string">&quot;，匹配字符串：&quot;</span> + (res2 ? matcher.group() : <span class="string">&quot;NULL&quot;</span>));</span><br><span class="line">        <span class="keyword">boolean</span> res3 = matcher.find();</span><br><span class="line">        System.out.println(<span class="string">&quot;匹配结果：&quot;</span> + res3 + <span class="string">&quot;，匹配字符串：&quot;</span> + (res3 ? matcher.group() : <span class="string">&quot;NULL&quot;</span>));</span><br><span class="line">        <span class="keyword">boolean</span> res4 = matcher.find();</span><br><span class="line">        System.out.println(<span class="string">&quot;匹配结果：&quot;</span> + res4 + <span class="string">&quot;，匹配字符串：&quot;</span> + (res4 ? matcher.group() : <span class="string">&quot;NULL&quot;</span>));</span><br><span class="line">        <span class="keyword">boolean</span> res5 = matcher.find();</span><br><span class="line">        System.out.println(<span class="string">&quot;匹配结果：&quot;</span> + res5 + <span class="string">&quot;，匹配字符串：&quot;</span> + (res5 ? matcher.group() : <span class="string">&quot;NULL&quot;</span>));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 循环查找</span></span><br><span class="line">        matcher = pattern.matcher(<span class="string">&quot;KHighness||ParaK||FlowerK||18236763&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;----------循环匹配----------&quot;</span>);</span><br><span class="line">        <span class="keyword">while</span> (matcher.find()) &#123;</span><br><span class="line">            System.out.println(matcher.group());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运行</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">----------完整匹配----------</span><br><span class="line">匹配结果：false，匹配字符串：NULL</span><br><span class="line">----------子串匹配----------</span><br><span class="line">匹配结果：true，匹配字符串：KHighness</span><br><span class="line">匹配结果：true，匹配字符串：ParaK</span><br><span class="line">匹配结果：true，匹配字符串：FlowerK</span><br><span class="line">匹配结果：true，匹配字符串：<span class="number">18236763</span></span><br><span class="line">匹配结果：false，匹配字符串：NULL</span><br><span class="line">----------循环匹配----------</span><br><span class="line">KHighness</span><br><span class="line">ParaK</span><br><span class="line">FlowerK</span><br><span class="line"><span class="number">18236763</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-2-分组操作"><a href="#4-2-分组操作" class="headerlink" title="4.2 分组操作"></a>4.2 分组操作</h3><blockquote>
+<p>代码</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> top.parak;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2020/10/7 15:46</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@apiNote</span>: 分组操作</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 正则匹配模式</span></span><br><span class="line">        <span class="comment">// 分组两组匹配：字母和数字</span></span><br><span class="line">        Pattern pattern = Pattern.compile(<span class="string">&quot;([A-Za-z]+)([0-9]+)&quot;</span>);</span><br><span class="line">        <span class="comment">// 匹配操作引擎</span></span><br><span class="line">        Matcher matcher = pattern.matcher(<span class="string">&quot;KHighness18||ParaK23||FlowerK67||KAG63||KAG72&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (matcher.find()) &#123;</span><br><span class="line">            System.out.printf(<span class="string">&quot;-----第%d组-----\n&quot;</span>, index++);</span><br><span class="line">            System.out.println(<span class="string">&quot;group[0]: &quot;</span> + matcher.group(<span class="number">0</span>));</span><br><span class="line">            System.out.println(<span class="string">&quot;group[1]: &quot;</span> + matcher.group(<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运行</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-----第<span class="number">1</span>组-----</span><br><span class="line"><span class="built_in">group</span>[<span class="number">0</span>]: KHighness18</span><br><span class="line"><span class="built_in">group</span>[<span class="number">1</span>]: KHighness</span><br><span class="line">-----第<span class="number">2</span>组-----</span><br><span class="line"><span class="built_in">group</span>[<span class="number">0</span>]: ParaK23</span><br><span class="line"><span class="built_in">group</span>[<span class="number">1</span>]: ParaK</span><br><span class="line">-----第<span class="number">3</span>组-----</span><br><span class="line"><span class="built_in">group</span>[<span class="number">0</span>]: FlowerK67</span><br><span class="line"><span class="built_in">group</span>[<span class="number">1</span>]: FlowerK</span><br><span class="line">-----第<span class="number">4</span>组-----</span><br><span class="line"><span class="built_in">group</span>[<span class="number">0</span>]: KAG63</span><br><span class="line"><span class="built_in">group</span>[<span class="number">1</span>]: KAG</span><br><span class="line">-----第<span class="number">5</span>组-----</span><br><span class="line"><span class="built_in">group</span>[<span class="number">0</span>]: KAG72</span><br><span class="line"><span class="built_in">group</span>[<span class="number">1</span>]: KAG</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-3-替换操作"><a href="#4-3-替换操作" class="headerlink" title="4.3 替换操作"></a>4.3 替换操作</h3><blockquote>
+<p>代码</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> top.parak;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2020/10/7 16:09</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@apiNote</span>: 替换操作</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo3</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 正则匹配模式</span></span><br><span class="line">        Pattern pattern = Pattern.compile(<span class="string">&quot;[0-9]&quot;</span>);</span><br><span class="line">        <span class="comment">// 匹配操作引擎</span></span><br><span class="line">        Matcher matcher = pattern.matcher(<span class="string">&quot;KHighness18||ParaK23||FlowerK67||KAG63||KAG72&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 数字全部替换为##</span></span><br><span class="line">        String newStr = matcher.replaceAll(<span class="string">&quot;#&quot;</span>);</span><br><span class="line">        System.out.println(newStr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运行</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KHighness<span class="comment">##||ParaK##||FlowerK##||KAG##||KAG##</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-4-分割操作"><a href="#4-4-分割操作" class="headerlink" title="4.4 分割操作"></a>4.4 分割操作</h3><blockquote>
+<p>代码</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> top.parak;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2020/10/7 16:12</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@apiNote</span>: 分割操作</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo4</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String str = <span class="string">&quot;K18H23I67G63H72N18E23S67S6372&quot;</span>;</span><br><span class="line">        String[] arr = str.split(<span class="string">&quot;\\d+&quot;</span>); <span class="comment">// 以数字为边界进行切割</span></span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运行</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">K</span>, <span class="type">H</span>, <span class="type">I</span>, <span class="type">G</span>, <span class="type">H</span>, <span class="type">N</span>, <span class="type">E</span>, <span class="type">S</span>, <span class="type">S</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-5-爬取腾讯官网所有的超链接"><a href="#4-5-爬取腾讯官网所有的超链接" class="headerlink" title="4.5 爬取腾讯官网所有的超链接"></a>4.5 爬取腾讯官网所有的超链接</h3><blockquote>
+<p>代码</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> top.parak;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.net.MalformedURLException;</span><br><span class="line"><span class="keyword">import</span> java.net.URL;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.Charset;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Matcher;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2020/10/7 16:24</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@apiNote</span>: 爬取腾讯官网的所有超链接</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSpider</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 通过URL获取html</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> urlStr</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getURLContent</span><span class="params">(String urlStr)</span> </span>&#123;</span><br><span class="line">        StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            URL url = <span class="keyword">new</span> URL(urlStr);</span><br><span class="line">            BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(url.openStream(), Charset.forName(<span class="string">&quot;UTF-8&quot;</span>)));</span><br><span class="line">            String temp = <span class="string">&quot;&quot;</span>;</span><br><span class="line">            <span class="keyword">while</span> ((temp = reader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                stringBuilder.append(temp + <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (MalformedURLException e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            System.out.println(e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stringBuilder.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 将匹配结果装进list</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> destStr</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> regex</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">getMatcherSubs</span><span class="params">(String destStr, String regex)</span> </span>&#123;</span><br><span class="line">        Pattern pattern = Pattern.compile(regex);</span><br><span class="line">        Matcher matcher = pattern.matcher(destStr);</span><br><span class="line">        List&lt;String&gt; result = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line">        <span class="keyword">while</span> (matcher.find()) &#123;</span><br><span class="line">            result.add(matcher.group(<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String url = <span class="string">&quot;https://www.tencent.com/zh-cn&quot;</span>;</span><br><span class="line">        WebSpider spider = <span class="keyword">new</span> WebSpider();</span><br><span class="line">        <span class="comment">// 获取超链接标签a的内容 &lt;a\s\S]+?&lt;/a&gt;</span></span><br><span class="line">        <span class="comment">// 获取href的内容 href=\&quot;(.+?)\&quot;</span></span><br><span class="line">        spider.getMatcherSubs(spider.getURLContent(url), <span class="string">&quot;href=\\\&quot;([\\w\\s./:]+?)\\\&quot;&quot;</span>).stream().forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运行</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/css/base.css</span><br><span class="line">/css/index.css</span><br><span class="line">https://weibo.com/tencent</span><br><span class="line">https://twitter.com/TencentGlobal</span><br><span class="line">https://www.linkedin.com/company/tencent/</span><br><span class="line">https://careers.tencent.com/</span><br><span class="line">https://join.qq.com/</span><br><span class="line">https://spd.tencent.com/portal</span><br><span class="line">https://ipr.tencent.com/</span><br><span class="line">http://beian.miit.gov.cn/</span><br><span class="line">http://beian.miit.gov.cn/</span><br><span class="line">http://beian.miit.gov.cn/</span><br><span class="line">/css/rem.css</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/10/06/Regex/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Regex/" rel="tag">Regex</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/10/08/Redis/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Redis
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/10/03/Game/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">博弈论</div>
+      </a>
+    
+  </nav>
+
+  
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020
+        <i class="ri-heart-fill heart_icon"></i> Khighness
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s4.cnzz.com/z_stat.php?id=1279324689&amp;web_id=1279324689'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/parak.ico" alt="Khighness"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://www.parak.top/contact/">联系</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://findingho.me/">FIND</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>来杯抹茶？</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wepay.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        
+    
+
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+<script src="/js/dz.js"></script>
+
+
+
+    
+  </div>
+</body>
+
+</html>
