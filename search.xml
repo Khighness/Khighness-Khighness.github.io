@@ -323,7 +323,7 @@
     <title>十一月的肖邦</title>
     <url>/2020/03/21/Khighness/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-kcdulzQV" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-sYzvdtBk" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content">逆鳞 - 周杰伦 (Jay Chou)
 词：黄俊郎
 曲：周杰伦
@@ -416,7 +416,7 @@ Wo wo
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-kcdulzQV"),
+            element: document.getElementById("aplayer-sYzvdtBk"),
             narrow: false,
             autoplay: false,
             showlrc: 2,
@@ -548,10 +548,10 @@ Wo wo
     <title>叶惠美</title>
     <url>/2020/10/13/Yehuimei/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-DnZPAJsl" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-fOAorHFb" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/2020/10/13/Yehuimei/以父之名.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/2020/10/13/Yehuimei/懦夫.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/2020/10/13/Yehuimei/晴天.flac","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/2020/10/13/Yehuimei/三年二班.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/2020/10/13/Yehuimei/东风破.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/2020/10/13/Yehuimei/你听得到.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/2020/10/13/Yehuimei/同一种调调.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/2020/10/13/Yehuimei/她的睫毛.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/2020/10/13/Yehuimei/爱情悬崖.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/2020/10/13/Yehuimei/梯田.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/2020/10/13/Yehuimei/双刀.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-DnZPAJsl");
+				  options.element = document.getElementById("aplayer-fOAorHFb");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -2381,7 +2381,7 @@ Wo wo
     <title>红黑树</title>
     <url>/2020/11/07/RBTree/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><center>
-    <font face="Kristen ITC" color="#555555" font-size=100px>☬ Khighness ☬</font><br>
+    <font face="Kristen ITC" color="#555555" font-size=100px>💌 Khighness 💌</font><br>
 </center>
 
 
@@ -2462,7 +2462,7 @@ Wo wo
 
 
 <h2 id="🌀-增删"><a href="#🌀-增删" class="headerlink" title="🌀 增删"></a>🌀 增删</h2><blockquote>
-<p>➕插入</p>
+<p>➕插入结点</p>
 </blockquote>
 <p>新增结点默认为红色，避免破坏黑色完美平衡。</p>
 <p>首先寻找新结点的插入位置，即找到新结点的父亲，然后决定将新结点插入到父亲的左边还是右边。</p>
@@ -2470,7 +2470,9 @@ Wo wo
 
 
 
-<p>==修复操作==</p>
+<blockquote>
+<p>💉插入修复</p>
+</blockquote>
 <p>插入结点为红色，因此只有当父亲结点为红色时才需要修复。</p>
 <p>G-祖父、P-父亲、U-叔叔、C-插入。</p>
 <p>我总结了五种情况以及解决口诀:</p>
@@ -2508,7 +2510,7 @@ Wo wo
 
 
 <blockquote>
-<p>➖删除</p>
+<p>➖删除结点</p>
 </blockquote>
 <p>三种情况，解决方案主要为寻找后裔顶替自己</p>
 <p>CASE 1</p>
@@ -2520,7 +2522,9 @@ Wo wo
 <p>CASE 3:</p>
 <p>Description: 待删结点只有左子或者右子:</p>
 <p>Solution: 替代结点为存在的孩子，然后调整关系</p>
-<p>==修复操作==</p>
+<blockquote>
+<p>💉删除修复</p>
+</blockquote>
 <p>仅删除黑色结点需要修复，删除红色不需要。</p>
 <p>P-父亲、D-删除、B-兄弟、BR-兄弟右子、BL-兄弟左子。</p>
 <ul>

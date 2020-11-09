@@ -102,7 +102,7 @@
     <div class="article-entry" itemprop="articleBody">
        
   <h1 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h1><center>
-    <font face="Kristen ITC" color="#555555" font-size=100px>☬ Khighness ☬</font><br>
+    <font face="Kristen ITC" color="#555555" font-size=100px>💌 Khighness 💌</font><br>
 </center>
 
 
@@ -183,7 +183,7 @@
 
 
 <h2 id="🌀-增删"><a href="#🌀-增删" class="headerlink" title="🌀 增删"></a>🌀 增删</h2><blockquote>
-<p>➕插入</p>
+<p>➕插入结点</p>
 </blockquote>
 <p>新增结点默认为红色，避免破坏黑色完美平衡。</p>
 <p>首先寻找新结点的插入位置，即找到新结点的父亲，然后决定将新结点插入到父亲的左边还是右边。</p>
@@ -191,7 +191,9 @@
 
 
 
-<p>==修复操作==</p>
+<blockquote>
+<p>💉插入修复</p>
+</blockquote>
 <p>插入结点为红色，因此只有当父亲结点为红色时才需要修复。</p>
 <p>G-祖父、P-父亲、U-叔叔、C-插入。</p>
 <p>我总结了五种情况以及解决口诀:</p>
@@ -229,7 +231,7 @@
 
 
 <blockquote>
-<p>➖删除</p>
+<p>➖删除结点</p>
 </blockquote>
 <p>三种情况，解决方案主要为寻找后裔顶替自己</p>
 <p>CASE 1</p>
@@ -241,7 +243,9 @@
 <p>CASE 3:</p>
 <p>Description: 待删结点只有左子或者右子:</p>
 <p>Solution: 替代结点为存在的孩子，然后调整关系</p>
-<p>==修复操作==</p>
+<blockquote>
+<p>💉删除修复</p>
+</blockquote>
 <p>仅删除黑色结点需要修复，删除红色不需要。</p>
 <p>P-父亲、D-删除、B-兄弟、BR-兄弟右子、BL-兄弟左子。</p>
 <ul>
