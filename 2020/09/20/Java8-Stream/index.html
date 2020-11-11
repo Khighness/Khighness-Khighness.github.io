@@ -236,7 +236,8 @@
 
 
 
-<h4 id="3-3-收集操作"><a href="#3-3-收集操作" class="headerlink" title="3.3 收集操作"></a>3.3 收集操作</h4><p> collect：接收一个Collector实例，将流中元素收集成另外一个数据结构。<br>     Collector&lt;T, A, R&gt; 是一个接口，有以下5个抽象方法：<br>       Supplier&lt;A&gt; supplier()：创建一个结果容器A<br>       BiConsumer&lt;A, T&gt; accumulator()：消费型接口，第一个参数为容器A，第二个参数为流中元素T。<br>       BinaryOperator&lt;A&gt; combiner()：函数接口，该参数的作用跟上一个方法(reduce)中的combiner参数一样，将并行流中各                                 个子进程的运行结果(accumulator函数操作后的容器A)进行合并。<br>       Function&lt;A, R&gt; finisher()：函数式接口，参数为：容器A，返回类型为：collect方法最终想要的结果R。<br>       Set&lt;Characteristics&gt; characteristics()：返回一个不可变的Set集合，用来表明该Collector的特征。有以下三个特征：<br>         CONCURRENT：表示此收集器支持并发。（官方文档还有其他描述，暂时没去探索，故不作过多翻译）<br>         UNORDERED：表示该收集操作不会保留流中元素原有的顺序。<br>         IDENTITY_FINISH：表示finisher参数只是标识而已，可忽略。</p>
+<h4 id="3-3-收集操作"><a href="#3-3-收集操作" class="headerlink" title="3.3 收集操作"></a>3.3 收集操作</h4><p> collect：接收一个Collector实例，将流中元素收集成另外一个数据结构。</p>
+<p>Collector&lt;T, A, R&gt; 是一个接口，有以下5个抽象方法：<br>       Supplier&lt;A&gt; supplier()：创建一个结果容器A<br>       BiConsumer&lt;A, T&gt; accumulator()：消费型接口，第一个参数为容器A，第二个参数为流中元素T。<br>       BinaryOperator&lt;A&gt; combiner()：函数接口，该参数的作用跟上一个方法(reduce)中的combiner参数一样，将并行流中各个子进程的运行结果(accumulator函数操作后的容器A)进行合并。<br>       Function&lt;A, R&gt; finisher()：函数式接口，参数为：容器A，返回类型为：collect方法最终想要的结果R。<br>       Set&lt;Characteristics&gt; characteristics()：返回一个不可变的Set集合，用来表明该Collector的特征。有以下三个特征：<br>         CONCURRENT：表示此收集器支持并发。（官方文档还有其他描述，暂时没去探索，故不作过多翻译）<br>         UNORDERED：表示该收集操作不会保留流中元素原有的顺序。<br>         IDENTITY_FINISH：表示finisher参数只是标识而已，可忽略。</p>
  
       <!-- reward -->
       
