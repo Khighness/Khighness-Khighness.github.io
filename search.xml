@@ -467,7 +467,7 @@
     <title>十一月的肖邦</title>
     <url>/2020/03/21/Khighness/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-BxlnLVEr" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-ttloqySq" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content">逆鳞 - 周杰伦 (Jay Chou)
 词：黄俊郎
 曲：周杰伦
@@ -560,7 +560,7 @@ Wo wo
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-BxlnLVEr"),
+            element: document.getElementById("aplayer-ttloqySq"),
             narrow: false,
             autoplay: false,
             showlrc: 2,
@@ -692,10 +692,10 @@ Wo wo
     <title>叶惠美</title>
     <url>/2020/10/13/Yehuimei/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-qfrfgJOa" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-SgjyVLDA" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/2020/10/13/Yehuimei/以父之名.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/2020/10/13/Yehuimei/懦夫.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/2020/10/13/Yehuimei/晴天.flac","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/2020/10/13/Yehuimei/三年二班.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/2020/10/13/Yehuimei/东风破.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/2020/10/13/Yehuimei/你听得到.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/2020/10/13/Yehuimei/同一种调调.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/2020/10/13/Yehuimei/她的睫毛.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/2020/10/13/Yehuimei/爱情悬崖.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/2020/10/13/Yehuimei/梯田.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/2020/10/13/Yehuimei/双刀.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-qfrfgJOa");
+				  options.element = document.getElementById("aplayer-SgjyVLDA");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -1645,7 +1645,7 @@ Wo wo
 
 
 
-<h2 id="📖概述"><a href="#📖概述" class="headerlink" title="📖概述"></a>📖概述</h2><img src="Docker/Docker.png" alt="Khighness" style="border-radius: 50%;" />
+<h2 id="📖概述"><a href="#📖概述" class="headerlink" title="📖概述"></a>📖概述</h2>
 
 <blockquote>
 <p>故事</p>
