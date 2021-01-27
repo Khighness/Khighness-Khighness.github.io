@@ -102,12 +102,12 @@
     <div class="article-entry" itemprop="articleBody">
        
   <h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><center>
-    <font face="Kristen ITC" color="#555555" font-size=100px>💤 Khighness 💤</font><br>
+    <font face="Kristen ITC" color="#555555" size=3>💤 Khighness 💤</font><br>
 </center>
 
 
 
-<h2 id="📖概述"><a href="#📖概述" class="headerlink" title="📖概述"></a>📖概述</h2><img src="Docker/Docker.png" alt="Khighness" style="zoom: 33%;border-radius:50%;" />
+<h2 id="📖概述"><a href="#📖概述" class="headerlink" title="📖概述"></a>📖概述</h2><img src="Docker/Docker.png" alt="Khighness" style="border-radius: 50%;" />
 
 <blockquote>
 <p>故事</p>
@@ -522,7 +522,7 @@
 <blockquote>
 <p>安装MySQL</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下载8.0.20版本的mysql镜像</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker pull mysql:8.0.20</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动mysql服务</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -d 后台运行</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -v 挂载配置和数据</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -e MYSQL_ROOT)PASSWORD 设置密码</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker run --name ksql -d -p 3333:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=KAG1823 mysql:8.0.20</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解决windows的navicat无法连接的问题</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入mysql客户端</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker <span class="built_in">exec</span> -it ksql  bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 登录mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mysql -u root -pKAG1823</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重置密码</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED WITH mysql_native_password BY <span class="string">&#x27;KAG1823&#x27;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下载8.0.20版本的mysql镜像</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker pull mysql:8.0.20</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动mysql服务</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -d 后台运行</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -v 挂载配置和数据</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -e MYSQL_ROOT)PASSWORD 设置密码</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker run --name ksql -d -p 3306:3306 -v /home/mysql/conf:/etc/mysql/conf.d -v /home/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=KAG1823 mysql:8.0.20</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解决windows的navicat无法连接的问题</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 进入mysql客户端</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker <span class="built_in">exec</span> -it ksql  bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 登录mysql</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mysql -u root -pKAG1823</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 重置密码</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED WITH mysql_native_password BY <span class="string">&#x27;KAG1823&#x27;</span>;</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -756,7 +756,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2020
+        2020-2021
         <i class="ri-heart-fill heart_icon"></i> Khighness
       </li>
     </ul>
