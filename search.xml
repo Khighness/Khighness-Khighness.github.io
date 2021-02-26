@@ -173,149 +173,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JWT</title>
-    <url>/2020/11/20/JWT/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h1><center>
-    <font face="Kristen ITC" color="#555555" size=3>💤 Khighness 💤</font><br>
-</center>
-
-<h2 id="📖官方文档"><a href="#📖官方文档" class="headerlink" title="📖官方文档"></a>📖官方文档</h2><blockquote>
-<p>🌐官方文档</p>
-</blockquote>
-<p>👉<a href="https://jwt.io/introduction/">JWT</a></p>
-<blockquote>
-<p>💰JWT概述</p>
-</blockquote>
-<p><strong>JSON Web Token</strong>是一个开放标准（RFC 7519），它定义了一种紧凑且包含的方式，用于在各方之间安全地传输信息作为JSON对象。由于此信息是经过数字签名的，用于在各方面之间安全地传输信息作为JSON对象。由于此信息是经过数字签名地，因此可以被验证和信任。可以使用秘密（或者<strong>HMAC</strong>算法）或使用<strong>RSA</strong>或<strong>ECDSA</strong>的公钥/私钥对对JWT进行签名。</p>
-<p>尽管可以对JWT进行加密以提供双方之间的保密性，但我们将重点关注已签名的令牌。签名的令牌可以验证其中包含的声明的完整性，而加密的令牌则将这些声明隐藏在其他方的面前。当使用公钥/私钥对对令牌进行签名时，签名还证明只有持有私钥的一方才是对其进行签名的一方。</p>
-<blockquote>
-<p>🔱应用场景</p>
-</blockquote>
-<ul>
-<li>授权认证：使用JWT的最常见方案。一旦用户登录，每个后续请求将包括令牌，从而允许用户访问该令牌允许的路由、服务和资源。单点登录是当今广泛使用JWT的一项功能，因为它的开销很小并且可以在不同的域中轻松使用。</li>
-<li>信息交换：JWT是在各方之间安全地传输信息的一种好方法。因为可以对JWT进行签名，例如使用公钥/私钥对。此外。由于签名是使用标头和有效负载计算的，因此还可以验证内容是否遭到篡改。</li>
-</ul>
-<h2 id="🚀认证流程"><a href="#🚀认证流程" class="headerlink" title="🚀认证流程"></a>🚀认证流程</h2><blockquote>
-<p>⛔️session认证</p>
-</blockquote>
-<p>传统方式：用户第一次请求登录时候设置session，此后每次访问携带cookie。</p>
-<p>问题：</p>
-<ul>
-<li>每个用户经过我们的应用认证之后，我们的应用都要在服务端做一次记录，以方便用户下次请求的鉴别，通常而言session都是保存在内存中，而随着用户的增多，服务端的开销会明显增大。</li>
-<li>用户认证之后，服务端做认证记录，如果认证的记录被保存在内存中的话，这意味着用户下次请求还必须要请求在这台服务器上，这样才能拿到授权的资源，这样在分布式的应用上，相应的限制了负载均衡器的能力，这也意味着限制了应用的扩展能力。</li>
-<li>因为是基于cookie来进行用户识别的，cookie如何被截获，用户很容易受到跨站请求伪造的攻击。</li>
-</ul>
-<blockquote>
-<p>🔰JWT认证</p>
-</blockquote>
-<img src="/2020/11/20/JWT/JWT%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B.png" class="" title="JWT认证">
-
-<p>认证流程：</p>
-<p>首先，前端通过web表单将自己的用户名和密码发送到后端的接口，这一过程一般是一个Http POST请求。</p>
-<p>后端核对用户名和密码成功后，将用户的id等其他信息作为JWT payload(负载)，将其与头部分别进行Based64编码拼接后签名，形成一个JWT。形成的JWT就形同xxx.yyy.zzz的字符串。</p>
-<p>后端将JWT字符串作为登陆成功的返回结果返回给前端，前端可以将返回的结果保存在localStorage上，退出登录时前端删除保存的JWT即可。</p>
-<p>前端在每次请求时将JWT放入HTTP Header的Authorization位。（解决XSS和XSRF问题）</p>
-<p>后端检查是否存在，如存在验证JWT的有效性。（签名是否正确，Token是否过期等）</p>
-<p>验证通过后后端使用JWT中包含的用户信息进行其他逻辑操作，并返回相应结果。</p>
-<p>优势：</p>
-<ul>
-<li>简洁，可以通过URL，POST参数或者在HTTP Header发送，因为数据量小，传输速度也很快</li>
-<li>自包含：负载中包含了所有用户所需要的信息，避免了多次查询数据库</li>
-<li>因为Token是JSON加密的形式保存在客户端的，所以JWT是跨语言的，原则上任何web形式都支持</li>
-<li>不需要再服务端保存会话信息，特别适合用于分布式微服务</li>
-</ul>
-<blockquote>
-<p>⛓令牌结构</p>
-</blockquote>
-<p>JSON Web Token以紧凑的形式由三部分组成，三部分由<code>.</code>分隔，即<code>xxxxx.yyyyy.zzzzz</code></p>
-<ul>
-<li><p>标头(Header)  : Base64编码，由令牌类型和签名算法组成</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;alg&quot;</span>: <span class="string">&quot;HS256&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;typ&quot;</span>: <span class="string">&quot;JWT&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>负载(Payload) : Base64编码，用于放置携带信息，不能放敏感信息</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Khighness&quot;</span></span><br><span class="line">    <span class="string">&quot;admin&quot;</span>:<span class="literal">true</span></span><br><span class="line">    <span class="string">&quot;gender&quot;</span>:<span class="string">&quot;male&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>签名(Signature) : 对标头和负载进行签名，防止内容被篡改</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">HMACSHA256(baseUrlEncode(header)) + &quot;.&quot; + base64UrlEncode(payload).secret)</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h2 id="💻JWT-Demo"><a href="#💻JWT-Demo" class="headerlink" title="💻JWT-Demo"></a>💻JWT-Demo</h2><blockquote>
-<p>➕添加依赖</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- JWT --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.auth0<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-jwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jwt.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>📑Java代码</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">generateToken</span><span class="params">()</span>  </span>&#123;</span><br><span class="line">    HashMap&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    Calendar calendar = Calendar.getInstance();</span><br><span class="line">    calendar.add(Calendar.SECOND, <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">    String token = JWT.create()</span><br><span class="line">            .withHeader(map)                                     <span class="comment">// Header</span></span><br><span class="line">            .withClaim(<span class="string">&quot;userID&quot;</span>, <span class="number">1011</span>)              <span class="comment">// Payload</span></span><br><span class="line">            .withClaim(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;KHighness&quot;</span>)</span><br><span class="line">            .withExpiresAt(calendar.getTime())                  <span class="comment">// 指定令牌过期时间: 60S</span></span><br><span class="line">            .sign(Algorithm.HMAC256(<span class="string">&quot;PARAK&quot;</span>));                 <span class="comment">// Signature，设置密钥PARAK</span></span><br><span class="line"></span><br><span class="line">    System.out.println(token);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;验证令牌&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">verifyToken</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC512(<span class="string">&quot;PARAK&quot;</span>)).build();</span><br><span class="line">    String token = <span class="string">&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU5NDU0ODQsInVzZXJJRCI6MTAxMSwidXNlcm5hbWUiOiJLSGlnaG5lc3MifQ.Gvwa3vu_LYogcEPFxKOgFgaH6WnTKoo-UDW977W1GAw&quot;</span>;</span><br><span class="line">    DecodedJWT verify = jwtVerifier.verify(token);</span><br><span class="line">    System.out.println(verify.getClaim(<span class="string">&quot;userID&quot;</span>).asInt());</span><br><span class="line">    System.out.println(verify.getClaim(<span class="string">&quot;username&quot;</span>).asString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>❗️ 常见异常</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th align="center">异常</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">TokenExpiredException</td>
-<td align="center">令牌过期异常</td>
-</tr>
-<tr>
-<td align="center">SignatureVerificationException</td>
-<td align="center">签名不一致异常</td>
-</tr>
-<tr>
-<td align="center">AlgorithmMismatchException</td>
-<td align="center">加密算法不匹配异常</td>
-</tr>
-<tr>
-<td align="center">InvalidClaimException</td>
-<td align="center">失效的负载异常</td>
-</tr>
-</tbody></table>
-<h2 id="🍃整合Springboot"><a href="#🍃整合Springboot" class="headerlink" title="🍃整合Springboot"></a>🍃整合Springboot</h2><blockquote>
-<p>💬说明</p>
-</blockquote>
-<p>用户在第一次登陆的时候，后台生成token返回给前端存储在sessionStorage中，此后每次前端需要调用后端需要认证的接口时都把token取出来携带在http header中。后台设置拦截器，设置需要认证才能访问的接口，每次处理请求时，先从request的http header中取出token进行认证，通过后才进行相关接口处理。</p>
-<blockquote>
-<p>🔧封装工具类</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.auth0.jwt.JWT;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.JWTCreator;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.algorithms.Algorithm;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.interfaces.DecodedJWT;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Project: Springboot-JWT &lt;/P&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Package: top.parak.common &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; FileName: KKJWTUtil &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Description: JWT工具类 &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Created By IntelliJ IDEA &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KKJWTUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;签名的密钥[<span class="doctag">@NAME</span>]&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String secret = <span class="string">&quot;@KHIGHNESS&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;签名的过期时间[A Week]&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> accessTokenExpireTime = <span class="number">604800</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;令牌颁布者身份标识[DOMAIN]&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String issuer = <span class="string">&quot;parak.top&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;生成Token&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> chaims</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">generateToken</span><span class="params">(Map&lt;String, String&gt; chaims)</span> </span>&#123;</span><br><span class="line">        JWTCreator.Builder builder = JWT.create();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 添加负载 */</span></span><br><span class="line">        chaims.forEach((k, v) -&gt; &#123;</span><br><span class="line">            builder.withClaim(k, v);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 设置过期时间 */</span></span><br><span class="line">        Calendar calendar = Calendar.getInstance();</span><br><span class="line">        calendar.add(Calendar.SECOND, accessTokenExpireTime);</span><br><span class="line">        builder.withExpiresAt(calendar.getTime());</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 设置颁发者身份 */</span></span><br><span class="line">        builder.withIssuer(issuer);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 设置加密算法以及密钥 */</span></span><br><span class="line">        String token = builder.sign(Algorithm.HMAC256(secret));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;解析token&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DecodedJWT <span class="title">verifyToken</span><span class="params">(String token)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> JWT.require(Algorithm.HMAC256(secret)).build().verify(token);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>用户控制器</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.alibaba.fastjson.JSON;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.fastjson.JSONObject;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.interfaces.DecodedJWT;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.ObjectUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"><span class="keyword">import</span> top.parak.common.KKCondition;</span><br><span class="line"><span class="keyword">import</span> top.parak.common.KKDataResponse;</span><br><span class="line"><span class="keyword">import</span> top.parak.common.KKJWTUtil;</span><br><span class="line"><span class="keyword">import</span> top.parak.entity.User;</span><br><span class="line"><span class="keyword">import</span> top.parak.service.UserService;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.validation.Valid;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> *     用户控制层</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020-11-19</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@CrossOrigin</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/api/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;用户注册&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> user</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/register&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KKDataResponse <span class="title">register</span><span class="params">(<span class="meta">@Valid</span> <span class="meta">@RequestBody</span> User user)</span> </span>&#123;</span><br><span class="line">        String username = user.getUsername();</span><br><span class="line">        String password = user.getPassword();</span><br><span class="line">        log.info(<span class="string">&quot;用户注册 =&gt; [&#123;&#125;]&quot;</span>, username);</span><br><span class="line">        KKCondition condition = <span class="keyword">new</span> KKCondition();</span><br><span class="line">        condition.setName(username);</span><br><span class="line">        <span class="keyword">if</span> (!ObjectUtils.isEmpty(userService.queryUserInCondition(condition))) &#123;</span><br><span class="line">            log.warn(<span class="string">&quot;用户名&#123;&#125;已被注册，不可重复注册&quot;</span>, username);</span><br><span class="line">            <span class="keyword">return</span> KKDataResponse.errorResponse(<span class="string">&quot;该用户名已被注册，不可重复注册&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> userService.saveUser(username, password) == <span class="number">1</span> ? KKDataResponse.successResponse(<span class="keyword">true</span>) : KKDataResponse.errorResponse(<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;用户登录&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> loginDataJson</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/login&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KKDataResponse <span class="title">login</span><span class="params">(<span class="meta">@RequestBody</span> String loginDataJson)</span> </span>&#123;</span><br><span class="line">        JSONObject loginData = JSON.parseObject(loginDataJson);</span><br><span class="line">        String username = loginData.get(<span class="string">&quot;username&quot;</span>).toString();</span><br><span class="line">        String password = loginData.get(<span class="string">&quot;password&quot;</span>).toString();</span><br><span class="line">        log.info(<span class="string">&quot;用户登录 =&gt; [&#123;&#125;]&quot;</span>, username);</span><br><span class="line">        Map&lt;String, Object&gt; response = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (userService.authenticate(username, password)) &#123;</span><br><span class="line">            response.put(<span class="string">&quot;loginState&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">            <span class="comment">/* 生成令牌 */</span></span><br><span class="line">            Map&lt;String, String&gt; payload = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">            payload.put(<span class="string">&quot;username&quot;</span>, username);</span><br><span class="line">            String token = KKJWTUtil.generateToken(payload);</span><br><span class="line">            response.put(<span class="string">&quot;kktoken&quot;</span>, token);</span><br><span class="line">            <span class="keyword">return</span> KKDataResponse.successResponse(response);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            response.put(<span class="string">&quot;loginState&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">            response.put(<span class="string">&quot;kktoken&quot;</span>, <span class="keyword">null</span>);</span><br><span class="line">            <span class="keyword">return</span> KKDataResponse.errorResponse(response);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/test&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KKDataResponse <span class="title">test</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        String kktoken = (String) request.getHeader(<span class="string">&quot;Authorization&quot;</span>);</span><br><span class="line">        DecodedJWT verify = KKJWTUtil.verifyToken(kktoken);</span><br><span class="line">        String username = verify.getClaim(<span class="string">&quot;username&quot;</span>).asString();</span><br><span class="line">        log.info(<span class="string">&quot;请求用户 =&gt; [&#123;&#125;]&quot;</span>, username);</span><br><span class="line">        <span class="keyword">return</span> KKDataResponse.successResponse(<span class="string">&quot;请求成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>设置拦截器</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.exceptions.AlgorithmMismatchException;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.exceptions.InvalidClaimException;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.exceptions.SignatureVerificationException;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.exceptions.TokenExpiredException;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.interfaces.DecodedJWT;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;</span><br><span class="line"><span class="keyword">import</span> top.parak.common.JwtTokenUtil;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Project: Springboot-JWT &lt;/P&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Package: top.parak.interceptor &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; FileName: JWTInterceptor &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Description: 令牌拦截器 &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Created By IntelliJ IDEA &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JWTInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String kktoken = request.getHeader(<span class="string">&quot;Authorization&quot;</span>);</span><br><span class="line">        Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            log.info(<span class="string">&quot;请求令牌 =&gt; [&#123;&#125;]&quot;</span>, kktoken);</span><br><span class="line">            DecodedJWT decodedJWT = KKJWTUtil.verifyToken(kktoken);</span><br><span class="line">            log.info(<span class="string">&quot;验证结果 =&gt; [&#123;&#125;]&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (TokenExpiredException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;发成异常 =&gt; [&#123;&#125;]&quot;</span>, e.getMessage());</span><br><span class="line">            map.put(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;令牌过期&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SignatureVerificationException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;发成异常 =&gt; [&#123;&#125;]&quot;</span>, e.getMessage());</span><br><span class="line">            map.put(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;签名错误&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (AlgorithmMismatchException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;发成异常 =&gt; [&#123;&#125;]&quot;</span>, e.getMessage());</span><br><span class="line">            map.put(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;加密算法不匹配&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvalidClaimException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;发成异常 =&gt; [&#123;&#125;]&quot;</span>, e.getMessage());</span><br><span class="line">            map.put(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;失效负载&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NullPointerException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;发成异常 =&gt; [&#123;&#125;]&quot;</span>, e.getMessage());</span><br><span class="line">            map.put(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;令牌为空&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;发成异常 =&gt; [&#123;&#125;]&quot;</span>, e.getMessage());</span><br><span class="line">            map.put(<span class="string">&quot;msg&quot;</span>, e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        log.error(<span class="string">&quot;验证结果 =&gt; [&#123;&#125;]&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">        map.put(<span class="string">&quot;state&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">        <span class="comment">/* map转json */</span></span><br><span class="line">        String json = <span class="keyword">new</span> ObjectMapper().writeValueAsString(map);</span><br><span class="line">        response.setContentType(<span class="string">&quot;application/json;charset=UTF-8&quot;</span>);</span><br><span class="line">        PrintWriter writer = response.getWriter();</span><br><span class="line">        writer.println(json);</span><br><span class="line">        writer.close();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>拦截器配置</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.InterceptorRegistry;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurer;</span><br><span class="line"><span class="keyword">import</span> top.parak.intercepter.JWTIntercepter;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Project: Springboot-JWT &lt;/P&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Package: top.parak.config &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; FileName: IntercepterConfig &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Description: &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Created By IntelliJ IDEA &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterceptorConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> JWTInterceptor())</span><br><span class="line">                .addPathPatterns(<span class="string">&quot;/api/**/**&quot;</span>)</span><br><span class="line">                .excludePathPatterns(<span class="string">&quot;/api/user/login&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>JWT</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java8-Stream</title>
     <url>/2020/09/20/Java8-Stream/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Java8-Stream"><a href="#Java8-Stream" class="headerlink" title="Java8-Stream"></a>Java8-Stream</h1><center>
@@ -467,7 +324,7 @@
     <title>十一月的肖邦</title>
     <url>/2020/03/21/Khighness/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-ttloqySq" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-tKHgvDjG" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content">逆鳞 - 周杰伦 (Jay Chou)
 词：黄俊郎
 曲：周杰伦
@@ -560,7 +417,7 @@ Wo wo
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-ttloqySq"),
+            element: document.getElementById("aplayer-tKHgvDjG"),
             narrow: false,
             autoplay: false,
             showlrc: 2,
@@ -689,13 +546,156 @@ Wo wo
       </tags>
   </entry>
   <entry>
+    <title>JWT</title>
+    <url>/2020/11/20/JWT/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h1><center>
+    <font face="Kristen ITC" color="#555555" size=3>💤 Khighness 💤</font><br>
+</center>
+
+<h2 id="📖官方文档"><a href="#📖官方文档" class="headerlink" title="📖官方文档"></a>📖官方文档</h2><blockquote>
+<p>🌐官方文档</p>
+</blockquote>
+<p>👉<a href="https://jwt.io/introduction/">JWT</a></p>
+<blockquote>
+<p>💰JWT概述</p>
+</blockquote>
+<p><strong>JSON Web Token</strong>是一个开放标准（RFC 7519），它定义了一种紧凑且包含的方式，用于在各方之间安全地传输信息作为JSON对象。由于此信息是经过数字签名的，用于在各方面之间安全地传输信息作为JSON对象。由于此信息是经过数字签名地，因此可以被验证和信任。可以使用秘密（或者<strong>HMAC</strong>算法）或使用<strong>RSA</strong>或<strong>ECDSA</strong>的公钥/私钥对对JWT进行签名。</p>
+<p>尽管可以对JWT进行加密以提供双方之间的保密性，但我们将重点关注已签名的令牌。签名的令牌可以验证其中包含的声明的完整性，而加密的令牌则将这些声明隐藏在其他方的面前。当使用公钥/私钥对对令牌进行签名时，签名还证明只有持有私钥的一方才是对其进行签名的一方。</p>
+<blockquote>
+<p>🔱应用场景</p>
+</blockquote>
+<ul>
+<li>授权认证：使用JWT的最常见方案。一旦用户登录，每个后续请求将包括令牌，从而允许用户访问该令牌允许的路由、服务和资源。单点登录是当今广泛使用JWT的一项功能，因为它的开销很小并且可以在不同的域中轻松使用。</li>
+<li>信息交换：JWT是在各方之间安全地传输信息的一种好方法。因为可以对JWT进行签名，例如使用公钥/私钥对。此外。由于签名是使用标头和有效负载计算的，因此还可以验证内容是否遭到篡改。</li>
+</ul>
+<h2 id="🚀认证流程"><a href="#🚀认证流程" class="headerlink" title="🚀认证流程"></a>🚀认证流程</h2><blockquote>
+<p>⛔️session认证</p>
+</blockquote>
+<p>传统方式：用户第一次请求登录时候设置session，此后每次访问携带cookie。</p>
+<p>问题：</p>
+<ul>
+<li>每个用户经过我们的应用认证之后，我们的应用都要在服务端做一次记录，以方便用户下次请求的鉴别，通常而言session都是保存在内存中，而随着用户的增多，服务端的开销会明显增大。</li>
+<li>用户认证之后，服务端做认证记录，如果认证的记录被保存在内存中的话，这意味着用户下次请求还必须要请求在这台服务器上，这样才能拿到授权的资源，这样在分布式的应用上，相应的限制了负载均衡器的能力，这也意味着限制了应用的扩展能力。</li>
+<li>因为是基于cookie来进行用户识别的，cookie如何被截获，用户很容易受到跨站请求伪造的攻击。</li>
+</ul>
+<blockquote>
+<p>🔰JWT认证</p>
+</blockquote>
+<img src="/2020/11/20/JWT/JWT%E8%AE%A4%E8%AF%81%E6%B5%81%E7%A8%8B.png" class="" title="JWT认证">
+
+<p>认证流程：</p>
+<p>首先，前端通过web表单将自己的用户名和密码发送到后端的接口，这一过程一般是一个Http POST请求。</p>
+<p>后端核对用户名和密码成功后，将用户的id等其他信息作为JWT payload(负载)，将其与头部分别进行Based64编码拼接后签名，形成一个JWT。形成的JWT就形同xxx.yyy.zzz的字符串。</p>
+<p>后端将JWT字符串作为登陆成功的返回结果返回给前端，前端可以将返回的结果保存在localStorage上，退出登录时前端删除保存的JWT即可。</p>
+<p>前端在每次请求时将JWT放入HTTP Header的Authorization位。（解决XSS和XSRF问题）</p>
+<p>后端检查是否存在，如存在验证JWT的有效性。（签名是否正确，Token是否过期等）</p>
+<p>验证通过后后端使用JWT中包含的用户信息进行其他逻辑操作，并返回相应结果。</p>
+<p>优势：</p>
+<ul>
+<li>简洁，可以通过URL，POST参数或者在HTTP Header发送，因为数据量小，传输速度也很快</li>
+<li>自包含：负载中包含了所有用户所需要的信息，避免了多次查询数据库</li>
+<li>因为Token是JSON加密的形式保存在客户端的，所以JWT是跨语言的，原则上任何web形式都支持</li>
+<li>不需要再服务端保存会话信息，特别适合用于分布式微服务</li>
+</ul>
+<blockquote>
+<p>⛓令牌结构</p>
+</blockquote>
+<p>JSON Web Token以紧凑的形式由三部分组成，三部分由<code>.</code>分隔，即<code>xxxxx.yyyyy.zzzzz</code></p>
+<ul>
+<li><p>标头(Header)  : Base64编码，由令牌类型和签名算法组成</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;alg&quot;</span>: <span class="string">&quot;HS256&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;typ&quot;</span>: <span class="string">&quot;JWT&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>负载(Payload) : Base64编码，用于放置携带信息，不能放敏感信息</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Khighness&quot;</span></span><br><span class="line">    <span class="string">&quot;admin&quot;</span>:<span class="literal">true</span></span><br><span class="line">    <span class="string">&quot;gender&quot;</span>:<span class="string">&quot;male&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>签名(Signature) : 对标头和负载进行签名，防止内容被篡改</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">HMACSHA256(baseUrlEncode(header)) + &quot;.&quot; + base64UrlEncode(payload).secret)</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="💻JWT-Demo"><a href="#💻JWT-Demo" class="headerlink" title="💻JWT-Demo"></a>💻JWT-Demo</h2><blockquote>
+<p>➕添加依赖</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- JWT --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.auth0<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-jwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jwt.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>📑Java代码</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">generateToken</span><span class="params">()</span>  </span>&#123;</span><br><span class="line">    HashMap&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    Calendar calendar = Calendar.getInstance();</span><br><span class="line">    calendar.add(Calendar.SECOND, <span class="number">60</span>);</span><br><span class="line"></span><br><span class="line">    String token = JWT.create()</span><br><span class="line">            .withHeader(map)                                     <span class="comment">// Header</span></span><br><span class="line">            .withClaim(<span class="string">&quot;userID&quot;</span>, <span class="number">1011</span>)              <span class="comment">// Payload</span></span><br><span class="line">            .withClaim(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;KHighness&quot;</span>)</span><br><span class="line">            .withExpiresAt(calendar.getTime())                  <span class="comment">// 指定令牌过期时间: 60S</span></span><br><span class="line">            .sign(Algorithm.HMAC256(<span class="string">&quot;PARAK&quot;</span>));                 <span class="comment">// Signature，设置密钥PARAK</span></span><br><span class="line"></span><br><span class="line">    System.out.println(token);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;验证令牌&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">verifyToken</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC512(<span class="string">&quot;PARAK&quot;</span>)).build();</span><br><span class="line">    String token = <span class="string">&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDU5NDU0ODQsInVzZXJJRCI6MTAxMSwidXNlcm5hbWUiOiJLSGlnaG5lc3MifQ.Gvwa3vu_LYogcEPFxKOgFgaH6WnTKoo-UDW977W1GAw&quot;</span>;</span><br><span class="line">    DecodedJWT verify = jwtVerifier.verify(token);</span><br><span class="line">    System.out.println(verify.getClaim(<span class="string">&quot;userID&quot;</span>).asInt());</span><br><span class="line">    System.out.println(verify.getClaim(<span class="string">&quot;username&quot;</span>).asString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>❗️ 常见异常</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">异常</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">TokenExpiredException</td>
+<td align="center">令牌过期异常</td>
+</tr>
+<tr>
+<td align="center">SignatureVerificationException</td>
+<td align="center">签名不一致异常</td>
+</tr>
+<tr>
+<td align="center">AlgorithmMismatchException</td>
+<td align="center">加密算法不匹配异常</td>
+</tr>
+<tr>
+<td align="center">InvalidClaimException</td>
+<td align="center">失效的负载异常</td>
+</tr>
+</tbody></table>
+<h2 id="🍃整合Springboot"><a href="#🍃整合Springboot" class="headerlink" title="🍃整合Springboot"></a>🍃整合Springboot</h2><blockquote>
+<p>💬说明</p>
+</blockquote>
+<p>用户在第一次登陆的时候，后台生成token返回给前端存储在sessionStorage中，此后每次前端需要调用后端需要认证的接口时都把token取出来携带在http header中。后台设置拦截器，设置需要认证才能访问的接口，每次处理请求时，先从request的http header中取出token进行认证，通过后才进行相关接口处理。</p>
+<blockquote>
+<p>🔧封装工具类</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.auth0.jwt.JWT;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.JWTCreator;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.algorithms.Algorithm;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.interfaces.DecodedJWT;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Calendar;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Project: Springboot-JWT &lt;/P&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Package: top.parak.common &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; FileName: KKJWTUtil &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Description: JWT工具类 &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Created By IntelliJ IDEA &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KKJWTUtil</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;签名的密钥[<span class="doctag">@NAME</span>]&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String secret = <span class="string">&quot;@KHIGHNESS&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;签名的过期时间[A Week]&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> accessTokenExpireTime = <span class="number">604800</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;令牌颁布者身份标识[DOMAIN]&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String issuer = <span class="string">&quot;parak.top&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;生成Token&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> chaims</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">generateToken</span><span class="params">(Map&lt;String, String&gt; chaims)</span> </span>&#123;</span><br><span class="line">        JWTCreator.Builder builder = JWT.create();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 添加负载 */</span></span><br><span class="line">        chaims.forEach((k, v) -&gt; &#123;</span><br><span class="line">            builder.withClaim(k, v);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 设置过期时间 */</span></span><br><span class="line">        Calendar calendar = Calendar.getInstance();</span><br><span class="line">        calendar.add(Calendar.SECOND, accessTokenExpireTime);</span><br><span class="line">        builder.withExpiresAt(calendar.getTime());</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 设置颁发者身份 */</span></span><br><span class="line">        builder.withIssuer(issuer);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 设置加密算法以及密钥 */</span></span><br><span class="line">        String token = builder.sign(Algorithm.HMAC256(secret));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> token;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;解析token&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> token</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DecodedJWT <span class="title">verifyToken</span><span class="params">(String token)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> JWT.require(Algorithm.HMAC256(secret)).build().verify(token);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>用户控制器</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> com.alibaba.fastjson.JSON;</span><br><span class="line"><span class="keyword">import</span> com.alibaba.fastjson.JSONObject;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.interfaces.DecodedJWT;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.util.ObjectUtils;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"><span class="keyword">import</span> top.parak.common.KKCondition;</span><br><span class="line"><span class="keyword">import</span> top.parak.common.KKDataResponse;</span><br><span class="line"><span class="keyword">import</span> top.parak.common.KKJWTUtil;</span><br><span class="line"><span class="keyword">import</span> top.parak.entity.User;</span><br><span class="line"><span class="keyword">import</span> top.parak.service.UserService;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.validation.Valid;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> *     用户控制层</span></span><br><span class="line"><span class="comment"> * &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020-11-19</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="meta">@CrossOrigin</span></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/api/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;用户注册&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> user</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/register&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KKDataResponse <span class="title">register</span><span class="params">(<span class="meta">@Valid</span> <span class="meta">@RequestBody</span> User user)</span> </span>&#123;</span><br><span class="line">        String username = user.getUsername();</span><br><span class="line">        String password = user.getPassword();</span><br><span class="line">        log.info(<span class="string">&quot;用户注册 =&gt; [&#123;&#125;]&quot;</span>, username);</span><br><span class="line">        KKCondition condition = <span class="keyword">new</span> KKCondition();</span><br><span class="line">        condition.setName(username);</span><br><span class="line">        <span class="keyword">if</span> (!ObjectUtils.isEmpty(userService.queryUserInCondition(condition))) &#123;</span><br><span class="line">            log.warn(<span class="string">&quot;用户名&#123;&#125;已被注册，不可重复注册&quot;</span>, username);</span><br><span class="line">            <span class="keyword">return</span> KKDataResponse.errorResponse(<span class="string">&quot;该用户名已被注册，不可重复注册&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> userService.saveUser(username, password) == <span class="number">1</span> ? KKDataResponse.successResponse(<span class="keyword">true</span>) : KKDataResponse.errorResponse(<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * &lt;p&gt;用户登录&lt;/p&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> loginDataJson</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/login&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KKDataResponse <span class="title">login</span><span class="params">(<span class="meta">@RequestBody</span> String loginDataJson)</span> </span>&#123;</span><br><span class="line">        JSONObject loginData = JSON.parseObject(loginDataJson);</span><br><span class="line">        String username = loginData.get(<span class="string">&quot;username&quot;</span>).toString();</span><br><span class="line">        String password = loginData.get(<span class="string">&quot;password&quot;</span>).toString();</span><br><span class="line">        log.info(<span class="string">&quot;用户登录 =&gt; [&#123;&#125;]&quot;</span>, username);</span><br><span class="line">        Map&lt;String, Object&gt; response = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (userService.authenticate(username, password)) &#123;</span><br><span class="line">            response.put(<span class="string">&quot;loginState&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">            <span class="comment">/* 生成令牌 */</span></span><br><span class="line">            Map&lt;String, String&gt; payload = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">            payload.put(<span class="string">&quot;username&quot;</span>, username);</span><br><span class="line">            String token = KKJWTUtil.generateToken(payload);</span><br><span class="line">            response.put(<span class="string">&quot;kktoken&quot;</span>, token);</span><br><span class="line">            <span class="keyword">return</span> KKDataResponse.successResponse(response);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            response.put(<span class="string">&quot;loginState&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">            response.put(<span class="string">&quot;kktoken&quot;</span>, <span class="keyword">null</span>);</span><br><span class="line">            <span class="keyword">return</span> KKDataResponse.errorResponse(response);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/test&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> KKDataResponse <span class="title">test</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">        String kktoken = (String) request.getHeader(<span class="string">&quot;Authorization&quot;</span>);</span><br><span class="line">        DecodedJWT verify = KKJWTUtil.verifyToken(kktoken);</span><br><span class="line">        String username = verify.getClaim(<span class="string">&quot;username&quot;</span>).asString();</span><br><span class="line">        log.info(<span class="string">&quot;请求用户 =&gt; [&#123;&#125;]&quot;</span>, username);</span><br><span class="line">        <span class="keyword">return</span> KKDataResponse.successResponse(<span class="string">&quot;请求成功&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>设置拦截器</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.exceptions.AlgorithmMismatchException;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.exceptions.InvalidClaimException;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.exceptions.SignatureVerificationException;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.exceptions.TokenExpiredException;</span><br><span class="line"><span class="keyword">import</span> com.auth0.jwt.interfaces.DecodedJWT;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.HandlerInterceptor;</span><br><span class="line"><span class="keyword">import</span> top.parak.common.JwtTokenUtil;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Project: Springboot-JWT &lt;/P&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Package: top.parak.interceptor &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; FileName: JWTInterceptor &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Description: 令牌拦截器 &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Created By IntelliJ IDEA &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JWTInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String kktoken = request.getHeader(<span class="string">&quot;Authorization&quot;</span>);</span><br><span class="line">        Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            log.info(<span class="string">&quot;请求令牌 =&gt; [&#123;&#125;]&quot;</span>, kktoken);</span><br><span class="line">            DecodedJWT decodedJWT = KKJWTUtil.verifyToken(kktoken);</span><br><span class="line">            log.info(<span class="string">&quot;验证结果 =&gt; [&#123;&#125;]&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (TokenExpiredException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;发成异常 =&gt; [&#123;&#125;]&quot;</span>, e.getMessage());</span><br><span class="line">            map.put(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;令牌过期&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SignatureVerificationException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;发成异常 =&gt; [&#123;&#125;]&quot;</span>, e.getMessage());</span><br><span class="line">            map.put(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;签名错误&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (AlgorithmMismatchException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;发成异常 =&gt; [&#123;&#125;]&quot;</span>, e.getMessage());</span><br><span class="line">            map.put(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;加密算法不匹配&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InvalidClaimException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;发成异常 =&gt; [&#123;&#125;]&quot;</span>, e.getMessage());</span><br><span class="line">            map.put(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;失效负载&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NullPointerException e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;发成异常 =&gt; [&#123;&#125;]&quot;</span>, e.getMessage());</span><br><span class="line">            map.put(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;令牌为空&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;发成异常 =&gt; [&#123;&#125;]&quot;</span>, e.getMessage());</span><br><span class="line">            map.put(<span class="string">&quot;msg&quot;</span>, e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        log.error(<span class="string">&quot;验证结果 =&gt; [&#123;&#125;]&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">        map.put(<span class="string">&quot;state&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">        <span class="comment">/* map转json */</span></span><br><span class="line">        String json = <span class="keyword">new</span> ObjectMapper().writeValueAsString(map);</span><br><span class="line">        response.setContentType(<span class="string">&quot;application/json;charset=UTF-8&quot;</span>);</span><br><span class="line">        PrintWriter writer = response.getWriter();</span><br><span class="line">        writer.println(json);</span><br><span class="line">        writer.close();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>拦截器配置</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.InterceptorRegistry;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurer;</span><br><span class="line"><span class="keyword">import</span> top.parak.intercepter.JWTIntercepter;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Project: Springboot-JWT &lt;/P&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Package: top.parak.config &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; FileName: IntercepterConfig &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Description: &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * &lt;p&gt; Created By IntelliJ IDEA &lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2020/11/22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterceptorConfig</span> <span class="keyword">implements</span> <span class="title">WebMvcConfigurer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addInterceptor(<span class="keyword">new</span> JWTInterceptor())</span><br><span class="line">                .addPathPatterns(<span class="string">&quot;/api/**/**&quot;</span>)</span><br><span class="line">                .excludePathPatterns(<span class="string">&quot;/api/user/login&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>JWT</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>叶惠美</title>
     <url>/2020/10/13/Yehuimei/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-SgjyVLDA" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-EPcRsloU" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/2020/10/13/Yehuimei/以父之名.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/2020/10/13/Yehuimei/懦夫.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/2020/10/13/Yehuimei/晴天.flac","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/2020/10/13/Yehuimei/三年二班.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/2020/10/13/Yehuimei/东风破.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/2020/10/13/Yehuimei/你听得到.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/2020/10/13/Yehuimei/同一种调调.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/2020/10/13/Yehuimei/她的睫毛.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/2020/10/13/Yehuimei/爱情悬崖.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/2020/10/13/Yehuimei/梯田.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/2020/10/13/Yehuimei/双刀.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-SgjyVLDA");
+				  options.element = document.getElementById("aplayer-EPcRsloU");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -3595,6 +3595,878 @@ Wo wo
       </categories>
       <tags>
         <tag>RedBlackTree</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring Cloud</title>
+    <url>/2020/11/25/SpringCloud/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="☁️-Spring-Cloud"><a href="#☁️-Spring-Cloud" class="headerlink" title="☁️ Spring Cloud"></a>☁️ Spring Cloud</h1><center>
+    <font face="Kristen ITC" color="#555555" size=3>💤 Khighness 💤</font><br>
+</center>
+
+
+
+<p><img src="https://img.shields.io/badge/java-8-brightgreen" alt="java"><img src="https://img.shields.io/badge/maven-3.6.3-brightgreen" alt="maven"><img src="https://img.shields.io/badge/mysql-8.0.20-brightgreen" alt="mysql"><img src="https://img.shields.io/badge/spring%20boot-2.2.2-brightgreen" alt="spring boot"><img src="https://img.shields.io/badge/spring%20cloud-Hoxton.SR1-brightgreen" alt="spring cloud"><img src="https://img.shields.io/badge/spring%20cloud%20alibaba-2.1.0-brightgreen" alt="spring cloud alibaba"><img src="https://img.shields.io/badge/fastjson-1.2.3-brightgreen" alt="fastjson"></p>
+<p>code: <a href="https://github.com/Khighness/cloud2020">https://github.com/Khighness/cloud2020</a></p>
+<h2 id="💬-微服务序言"><a href="#💬-微服务序言" class="headerlink" title="💬 微服务序言"></a>💬 微服务序言</h2><h3 id="🚀-微服务架构概述"><a href="#🚀-微服务架构概述" class="headerlink" title="🚀 微服务架构概述"></a>🚀 微服务架构概述</h3><p>​        微服务架构时一种架构模式，它提倡将单一应用程序划分成一组小的服务，服务之间互相协调、互相配合，为哟过户提供最终价值。每个服务运行在其独立的进程中，服务与服务间采用轻量级的通信机制互相协作（通常是基于HTTP协议的Restful API）。每个服务都围绕着具体业务进行构建，并且能够别独立的部署到生产环境、类生产环境等。另外，应该尽量避免同一的、集中式的服务管理机制，对具体的一个服务而言，应根据业务上下文，选择合适的语言、工具进行构建。</p>
+<h3 id="📖-Spring-Cloud简介"><a href="#📖-Spring-Cloud简介" class="headerlink" title="📖 Spring Cloud简介"></a>📖 Spring Cloud简介</h3><p>Spring Cloud = 分布式微服务架构的一站式解决方案。</p>
+<blockquote>
+<p>分布式微服务</p>
+</blockquote>
+<ul>
+<li>服务注册与发现</li>
+<li>服务调用</li>
+<li>服务熔断</li>
+<li>负载均衡</li>
+<li>服务降级</li>
+<li>服务消息队列</li>
+<li>配置中心管理</li>
+<li>服务网关</li>
+<li>服务监控</li>
+<li>全链路追踪</li>
+<li>自动化构建部署</li>
+<li>服务定时任务调度操作</li>
+</ul>
+<img src="/2020/11/25/SpringCloud/image-20201125150829563.png" class="" title="image-20201125150829563">
+
+
+
+<blockquote>
+<p>Cloud升级</p>
+</blockquote>
+<img src="/2020/11/25/SpringCloud/CloudUpgrade.jpg" class="" title="CloudUpgrade">
+
+
+
+<h3 id="🏳️‍🌈-版本选型"><a href="#🏳️‍🌈-版本选型" class="headerlink" title="🏳️‍🌈 版本选型"></a>🏳️‍🌈 版本选型</h3><blockquote>
+<p>官网限定：<a href="https://spring.io/projects/spring-cloud">https://spring.io/projects/spring-cloud</a></p>
+</blockquote>
+<p>截止 2020-11-25</p>
+<table>
+<thead>
+<tr>
+<th align="left">Spring Cloud Version</th>
+<th align="left">Spring Boot Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">2020.0.x aka Ilford</td>
+<td align="left">2.4.x</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Hoxton-Release-Notes">Hoxton</a></td>
+<td align="left">2.2.x, 2.3.x (Starting with SR5)</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Greenwich-Release-Notes">Greenwich</a></td>
+<td align="left">2.1.x</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Finchley-Release-Notes">Finchley</a></td>
+<td align="left">2.0.x</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Edgware-Release-Notes">Edgware</a></td>
+<td align="left">1.5.x</td>
+</tr>
+<tr>
+<td align="left"><a href="https://github.com/spring-projects/spring-cloud/wiki/Spring-Cloud-Dalston-Release-Notes">Dalston</a></td>
+<td align="left">1.5.x</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>具体限定：<a href="https://start.spring.io/actuator/info">https://start.spring.io/actuator/info</a></p>
+</blockquote>
+<p>截止 2020-11-25</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&quot;spring-cloud&quot;: &#123;</span><br><span class="line">  &quot;Finchley.M2&quot;: &quot;Spring Boot &gt;=2.0.0.M3 and &lt;2.0.0.M5&quot;,</span><br><span class="line">  &quot;Finchley.M3&quot;: &quot;Spring Boot &gt;=2.0.0.M5 and &lt;=2.0.0.M5&quot;,</span><br><span class="line">  &quot;Finchley.M4&quot;: &quot;Spring Boot &gt;=2.0.0.M6 and &lt;=2.0.0.M6&quot;,</span><br><span class="line">  &quot;Finchley.M5&quot;: &quot;Spring Boot &gt;=2.0.0.M7 and &lt;=2.0.0.M7&quot;,</span><br><span class="line">  &quot;Finchley.M6&quot;: &quot;Spring Boot &gt;=2.0.0.RC1 and &lt;=2.0.0.RC1&quot;,</span><br><span class="line">  &quot;Finchley.M7&quot;: &quot;Spring Boot &gt;=2.0.0.RC2 and &lt;=2.0.0.RC2&quot;,</span><br><span class="line">  &quot;Finchley.M9&quot;: &quot;Spring Boot &gt;=2.0.0.RELEASE and &lt;=2.0.0.RELEASE&quot;,</span><br><span class="line">  &quot;Finchley.RC1&quot;: &quot;Spring Boot &gt;=2.0.1.RELEASE and &lt;2.0.2.RELEASE&quot;,</span><br><span class="line">  &quot;Finchley.RC2&quot;: &quot;Spring Boot &gt;=2.0.2.RELEASE and &lt;2.0.3.RELEASE&quot;,</span><br><span class="line">  &quot;Finchley.SR4&quot;: &quot;Spring Boot &gt;=2.0.3.RELEASE and &lt;2.0.999.BUILD-SNAPSHOT&quot;,</span><br><span class="line">  &quot;Finchley.BUILD-SNAPSHOT&quot;: &quot;Spring Boot &gt;=2.0.999.BUILD-SNAPSHOT and &lt;2.1.0.M3&quot;,</span><br><span class="line">  &quot;Greenwich.M1&quot;: &quot;Spring Boot &gt;=2.1.0.M3 and &lt;2.1.0.RELEASE&quot;,</span><br><span class="line">  &quot;Greenwich.SR6&quot;: &quot;Spring Boot &gt;=2.1.0.RELEASE and &lt;2.1.999.BUILD-SNAPSHOT&quot;,</span><br><span class="line">  &quot;Greenwich.BUILD-SNAPSHOT&quot;: &quot;Spring Boot &gt;=2.1.999.BUILD-SNAPSHOT and &lt;2.2.0.M4&quot;,</span><br><span class="line">  &quot;Hoxton.SR9&quot;: &quot;Spring Boot &gt;=2.2.0.M4 and &lt;2.3.7.BUILD-SNAPSHOT&quot;,</span><br><span class="line">  &quot;Hoxton.BUILD-SNAPSHOT&quot;: &quot;Spring Boot &gt;=2.3.7.BUILD-SNAPSHOT and &lt;2.4.0.M1&quot;,</span><br><span class="line">  &quot;2020.0.0-M3&quot;: &quot;Spring Boot &gt;=2.4.0.M1 and &lt;=2.4.0.M1&quot;,</span><br><span class="line">  &quot;2020.0.0-M4&quot;: &quot;Spring Boot &gt;=2.4.0.M2 and &lt;=2.4.0-M3&quot;,</span><br><span class="line">  &quot;2020.0.0-M5&quot;: &quot;Spring Boot &gt;=2.4.0.M4 and &lt;2.4.1-SNAPSHOT&quot;,</span><br><span class="line">  &quot;2020.0.0-SNAPSHOT&quot;: &quot;Spring Boot &gt;=2.4.1-SNAPSHOT&quot;</span><br><span class="line">&#125;,</span><br><span class="line">&quot;spring-cloud-alibaba&quot;: &#123;</span><br><span class="line">  &quot;2.2.1.RELEASE&quot;: &quot;Spring Boot &gt;=2.2.0.RELEASE and &lt;2.3.0.M1&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>技术选型</p>
+</blockquote>
+<img src="/2020/11/25/SpringCloud/VersionSelect.jpg" class="" title="VersionSelect">
+
+
+
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>top.parak.springcloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>cloud2020<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">developers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">developer</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>KHighness<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">email</span>&gt;</span>parakovo@gmail.com<span class="tag">&lt;/<span class="name">email</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">developer</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">developers</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">modules</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">modules</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Jar Version Management--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">junit.version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">junit.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">log4j.version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">log4j.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">lombok.version</span>&gt;</span>1.18.16<span class="tag">&lt;/<span class="name">lombok.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mysql.version</span>&gt;</span>8.0.20<span class="tag">&lt;/<span class="name">mysql.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">fastjson.version</span>&gt;</span>1.2.75<span class="tag">&lt;/<span class="name">fastjson.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">druid.version</span>&gt;</span>1.2.3<span class="tag">&lt;/<span class="name">druid.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">spring.boot.version</span>&gt;</span>2.2.2.RELEASE<span class="tag">&lt;/<span class="name">spring.boot.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">spring.cloud.version</span>&gt;</span>Hoxton.SR1<span class="tag">&lt;/<span class="name">spring.cloud.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">spring.cloud.alibaba.version</span>&gt;</span>2.1.0.RELEASE<span class="tag">&lt;/<span class="name">spring.cloud.alibaba.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">druid.spring.boot.starter.version</span>&gt;</span>1.2.3<span class="tag">&lt;/<span class="name">druid.spring.boot.starter.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mybatis.spring.boot.starter.version</span>&gt;</span>2.1.1<span class="tag">&lt;/<span class="name">mybatis.spring.boot.starter.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mybatis-plus.boot.starter.version</span>&gt;</span>3.4.1<span class="tag">&lt;/<span class="name">mybatis-plus.boot.starter.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">hutool-all.version</span>&gt;</span>5.5.1<span class="tag">&lt;/<span class="name">hutool-all.version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!-- Spring Boot --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.boot.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!-- Spring Cloud --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.cloud.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!-- Spring Cloud alibaba --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-alibaba-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.cloud.alibaba.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">type</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">type</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>import<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!-- Mysql --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mysql.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!-- Druid--&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;druid.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!-- Mybatis Starter --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mybatis.spring.boot.starter.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!-- Druid Starter --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;druid.spring.boot.starter.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!-- Junit --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;junit.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!-- Lombok --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;lombok.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">&lt;!-- Fastjson --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;fastjson.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">fork</span>&gt;</span>true<span class="tag">&lt;/<span class="name">fork</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">addResources</span>&gt;</span>true<span class="tag">&lt;/<span class="name">addResources</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="💠-服务注册中心"><a href="#💠-服务注册中心" class="headerlink" title="💠 服务注册中心"></a>💠 服务注册中心</h2><h3 id="🌠-Eureka"><a href="#🌠-Eureka" class="headerlink" title="🌠 Eureka"></a>🌠 Eureka</h3><blockquote>
+<p>概述</p>
+</blockquote>
+<p>Github: <a href="https://github.com/Netflix/Eureka">https://github.com/Netflix/Eureka</a></p>
+<p>Spring Cloud Eureka 是 Spring Cloud Netflix 微服务套件的一部分，基于 Netflix Eureka 做了二次封装，主要负责实现微服务架构中的服务治理功能。Spring Cloud Eureka 是一个基于 REST 的服务，并且提供了基于Java的客户端组件，能够非常方便地将服务注册到 Spring Cloud Eureka 中进行统一管理。</p>
+<blockquote>
+<p>服务治理</p>
+</blockquote>
+<p>在传统的RPC远程调用框架中，管理每个服务于服务之间的依赖关系比较复杂，所以需要使用服务治理，管理服务与服务之间的依赖关系，可以实现服务调用、负载均衡、容错等，实现服务发现与注册。</p>
+<blockquote>
+<p>服务注册与发现</p>
+</blockquote>
+<p>Eureka采用了CS的设计架构，Eureka Server作为服务注册功能的服务器，它是服务注册中心，而系统中的其他微服务，使用Eureka的客户端连接到Eureka Server并维持心跳连接。这样系统的维护人员就可以通过Eureka Server来监控系统中各个微服务是否正常运行。</p>
+<p>在服务注册与发现中心，有一个注册中心，当服务器启动的时候，会把自己服务器的信息比如服务地址、通讯地址等以别名方式注册到注册中心上。另一方（消费者|服务提供者），以该别名的方式去注册中心上获取到实际的服务通讯地址，然后再实现本地RPC调用RPC远程调用框架核心设计思想：在于注册中心，因为使用注册中心管理每个服务于服务之间的一个依赖关系（服务治理概念）。在任何RPC远程框架中，都会有一个注册中心（存放服务地址相关信息（接口地址））。</p>
+<blockquote>
+<p>Eureka组件：Eureka Server和Eureka Client</p>
+</blockquote>
+<p>1️⃣ Eureka Server提供服务注册服务</p>
+<p>各个微服务节点通过配置启动后，会在Eureka Server中进行注册，这样Eureka Server中的服务注册表将会存储所有可用服务节点的信息，服务节点的信息可以在界面中直观看到。</p>
+<p>2️⃣ Eureka Client通过注册中心进行访问</p>
+<p>是一个Java客户端，用于简化Eureka Sever的交互，客户端同时也具备一个内置的、使用轮询负载算法的负载均衡器。在应用启动后，将会在Eureka Server发送心跳(默认周期为30S)。如果Eureka Server在多个心跳周期内没有接收到某个节点的心跳，Eureka Server将会从服务注册表中把这个服务节点移除。</p>
+<blockquote>
+<p>Eureka的自我保护模式</p>
+</blockquote>
+<p>1️⃣概述</p>
+<p>默认情况下，如果Eureka Server在一定时间内没有接收到某个微服务实例的心跳，Eureka Server将会注销该实例（默认90秒）。但是当前网络分区故障发生（延时、卡顿、拥挤）时，微服务与Eureka Server之间无法正常通信，以上行为会变得危险——因为微服务本身是健康的，此时本不应该注销这个微服务。Eureka通过“自我保护模式”来解决这个问题————当Eureka节点在短时间内丢失过多客户端时候，那么这个节点就进入自我保护模式。</p>
+<p>2️⃣用途</p>
+<p>保护模式主要用于一组Eureka Client和Eureka Server之间存在网络分区场景下的保护。一旦进入保护模式，Eureka Server将会尝试保护其微服务注册表中的信息，不再删除服务注册表中的数据，也就是不会注销任何微服务。使用自我保护模式，可以让Eureka集群更加的健壮、稳定。</p>
+<p>3️⃣设计哲学</p>
+<p>宁可保护错误的服务注册信息，也不盲目注销任何可能健康的服务实例。</p>
+<p>4️⃣关闭自我保护模式</p>
+<p>Eureka的自我保护模式默认是开启的，关闭需要配置Eureka Server：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">server:</span></span><br><span class="line">    <span class="comment"># 关闭自我保护模式，对没有心跳的微服务直接杀无赦，保证不可用服务及时踢除</span></span><br><span class="line">    <span class="attr">enable-self-preservation:</span> <span class="literal">false</span> </span><br><span class="line">    <span class="comment"># 清理无效节点的时间间隔，默认是60000ms</span></span><br><span class="line">    <span class="attr">eviction-interval-timer-in-ms:</span> <span class="number">2000</span></span><br></pre></td></tr></table></figure>
+
+<p>重启Eureka Server进入Eureka可视化，可以看到这句话：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">THE SELF PRESERVATION MODE IS TURNED OFF. THIS MAY NOT PROTECT INSTANCE EXPIRY IN CASE OF NETWORK/OTHER PROBLEMS.</span><br></pre></td></tr></table></figure>
+
+<p>配置Eureka Client</p>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">eureka</span>:<span class="string"></span></span><br><span class="line">  <span class="attr">instance</span>:<span class="string"></span></span><br><span class="line"><span class="comment">    # Eureka Client向Eureka Server发送心跳的时间间隔/频率，单位为秒(默认是30S)</span></span><br><span class="line"><span class="comment">    # 在这个时间间隔后，Eureka Server没有收到Eureka client的心跳，将剔除服务</span></span><br><span class="line">    <span class="meta">lease-renewal-interval-in-seconds</span>: <span class="string">1</span></span><br><span class="line"><span class="comment">    # Eureka Server在收到最后一次心跳后等待时间上限，单位为秒(默认是90S)</span></span><br><span class="line"><span class="comment">    # 超时将剔除服务</span></span><br><span class="line">    <span class="meta">lease-expiration-duration-in-seconds</span>: <span class="string">2</span></span><br></pre></td></tr></table></figure>
+
+<p>开启微服务并且很快停止，可以看到Eureka Server的日志上1s过期了一个服务，Eureka可视化上注册的服务直接消失</p>
+<blockquote>
+<p>Eureka停更说明</p>
+</blockquote>
+<p>Eureka 2.x停止更新，Eureka 1.x 在开源社区依然活跃。</p>
+<p><a href="https://github.com/Netflix/eureka/wiki">eureka-wiki</a></p>
+<p>The existing open source work on eureka 2.0 is discontinued. The code base and artifacts that were released as part of the existing repository of work on the 2.x branch is considered use at your own risk.</p>
+<p>Eureka 1.x is a core part of Netflix’s service discovery system and is still an active project.</p>
+<h3 id="💤-ZooKeeper"><a href="#💤-ZooKeeper" class="headerlink" title="💤 ZooKeeper"></a>💤 ZooKeeper</h3><blockquote>
+<p>概述</p>
+</blockquote>
+<p>官网: <a href="https://zookeeper.apache.org/">apache-zookeeper</a></p>
+<p>wiki文档: <a href="https://cwiki.apache.org/confluence/display/ZOOKEEPER/Index">wiki-zookeeper</a></p>
+<p>ZooKeeper是用于维护配置信息，命名，提供分布式同步以及提供组服务的集中式服务。</p>
+<blockquote>
+<p>Docker运行Zookeeper</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker pull zookeeper</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker run -d -it -p 2181:2181 --name=zoo zookeeper</span></span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>POM</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- SpringBoot整合Zookeeper客户端 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-zookeeper-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 排除自带的zookeeper3.5.3 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.zookeeper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zookeeper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 添加zookeeper3.4.14 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.zookeeper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>zookeeper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.14<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 排除自带的Slf4j --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="💫-Consul"><a href="#💫-Consul" class="headerlink" title="💫 Consul"></a>💫 Consul</h3><blockquote>
+<p>概述</p>
+</blockquote>
+<p>官网：<a href="https://www.consul.io/docs/intro">Consul</a></p>
+<p>入门文档：<a href="https://www.springcloud.cc/spring-cloud-consul.html">spring-cloud-consul</a></p>
+<p>Consul(Go语言开发)是一种服务网格解决方案，提供具有服务发现，配置和分段功能的全功能控制平面。</p>
+<blockquote>
+<p>Docker运行Consul</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir -p /home/consul/data /home/consul/conf</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker run -d --name=con -p 8500:8500  -v /home/consul/conf/:/consul/conf/                   -v /home/consul/data/:/consul/data/ consul</span></span><br></pre></td></tr></table></figure>
+
+<p>Consul有前端可视化界面，此时输入虚拟机IP:8500即可访问。</p>
+<blockquote>
+<p>POM</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- SpringCloud Consul Server --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-consul-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="🌀-CAP"><a href="#🌀-CAP" class="headerlink" title="🌀 CAP"></a>🌀 CAP</h3><blockquote>
+<p>CAP原则</p>
+</blockquote>
+<p>在一个分布式系统中：</p>
+<ul>
+<li><p>C(Consistency): 一致性(All nodes see the same data at the same time)</p>
+</li>
+<li><p>A(Availability): 可用性(Reads and writes always succeed)</p>
+</li>
+<li><p>P(Partition tolerance): 分区容错性(The system continues to operate despite arbitrary message loss or failure of part of the system)</p>
+</li>
+</ul>
+<p>以上三点只能满足任意两点，不可能三者兼顾。</p>
+<blockquote>
+<p>三个注册中心</p>
+</blockquote>
+<p>现在的分布式微服务架构都必须保证P原则</p>
+<table>
+<thead>
+<tr>
+<th align="center">组件名</th>
+<th align="center">语言</th>
+<th align="center">CAP</th>
+<th align="center">服务健康检查</th>
+<th align="center">对外暴露接口</th>
+<th align="center">Spring Cloud集成</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Eureka</td>
+<td align="center">Java</td>
+<td align="center">AP</td>
+<td align="center">可配支持</td>
+<td align="center">HTTP</td>
+<td align="center">已集成</td>
+</tr>
+<tr>
+<td align="center">Consul</td>
+<td align="center">Go</td>
+<td align="center">CP</td>
+<td align="center">支持</td>
+<td align="center">HTTP/DNS</td>
+<td align="center">已集成</td>
+</tr>
+<tr>
+<td align="center">Zookeeper</td>
+<td align="center">Java</td>
+<td align="center">CP</td>
+<td align="center">支持</td>
+<td align="center">客户端</td>
+<td align="center">已集成</td>
+</tr>
+</tbody></table>
+<h2 id="🔱-服务调用"><a href="#🔱-服务调用" class="headerlink" title="🔱 服务调用"></a>🔱 服务调用</h2><h3 id="🎗Ribbon"><a href="#🎗Ribbon" class="headerlink" title="🎗Ribbon"></a>🎗Ribbon</h3><blockquote>
+<p>说明</p>
+</blockquote>
+<p>wiki文档：<a href="https://github.com/Netflix/ribbon/wiki">wiki-ribbon</a></p>
+<p>Spring Cloud Ribbon是基于Netflix的开源项目，主要功能是提供客户端的软件负载均衡算法和服务调用。</p>
+<p>Ribbon客户端组件提供一系列完善的配置项如连接超时、重试等。简单的说，就是在配置文件中列出Load Balancer（简称LB）后面所有的机器，Ribbon会自动的帮助你基于某种规则（如简单轮询，随机连接等）去连接这些机器。我们很容易使用Ribbon实现自定义的负载均衡算法。</p>
+<blockquote>
+<p>LB</p>
+</blockquote>
+<p>Load Balance，负载均衡，将用户请求平摊到多个服务器上，从而达到系统的HA（高可用）。</p>
+<blockquote>
+<p>核心组件IRule</p>
+</blockquote>
+<img src="/2020/11/25/SpringCloud/image-20201218194608766.png" class="" title="image-20201218194608766">
+
+<p>1️⃣根据特定算法从服务列表中选取一个要访问的服务：</p>
+<ul>
+<li>RoundRobinRule: 轮询(默认)</li>
+<li>RandomRule: 随机</li>
+<li>RetryRule: 先按照RoundRule的策略获取服务，如果服务失败则在指定时间内进行重试，获取可用的服务</li>
+<li>WeightedResponseTimeRule: 对RoundRobinRule的扩展，响应速度越快的实例选择权重越大，越容易被选择</li>
+<li>BestAvaiableRule: 会先过滤掉由于多次访问故障而处于断路器跳闸状态的服务，然后选择一个并发量小的服务</li>
+<li>AvailabilityFilteringRule: 先过滤掉故障实例，再选择并发较小的实例</li>
+<li>ZoneAvoidanceRule: 默认规则，复合判断server所在区域的性能和server的可用性选择服务器</li>
+</ul>
+<p>2️⃣自定义算法的规则（官方文档警告）：</p>
+<p>自定义配置类不能放在@ComponentScan所扫描的当前包以及子包下，否则自定义的这个配置类就会被所有的Ribbon客户端共享，达不到特殊定制化的目的。</p>
+<p>@SpringBootApplication包含三大注解：</p>
+<ul>
+<li><p>@SpringBootConfiguration</p>
+</li>
+<li><p>@EnableAutoConfiguration</p>
+</li>
+<li><p>@ComponentScan</p>
+</li>
+</ul>
+<p>因此，自定义配置类不能与SpringbootApplication主启动类放在一个包下。</p>
+<h3 id="🛑-OpenFeign"><a href="#🛑-OpenFeign" class="headerlink" title="🛑 OpenFeign"></a>🛑 OpenFeign</h3><blockquote>
+<p>概述</p>
+</blockquote>
+<p>Feign是一个声明式WebService客户端，使用Feign能让编写Web Service客户端更加简单。使用方法时定义一个服务接口然后在上面添加注解。Feign也支持可拔插式的编码器和解码器。Spring Cloud对Feign进行了封装，使其支持了Spring MVC标准注解和HttpMessageConverters。Feign可以与Eureka和Ribbon组合使用以支持负载均衡。</p>
+<p>Feign旨在使编写Java Http客户端变得更容易。</p>
+<p>前期使用Ribbon + RestTemplate时，使用RestTemplate对http请求的封装处理，形成了一套模板化的调用方法。但是在实际开发中，由于对服务依赖的调用可能不止一处，往往一个接口会被多处调用，所以通常都会针对每个微服务自行封装一些客户端类来包装这些依赖服务的调用。所以，Feign在此基础上来配置它（以前是Dao接口上标注一个Feign注解即可），即可完成对服务提供方的接口绑定，简化了使用Spring Cloud Ribbon时，自动封装服务调用客户端的开发量。</p>
+<p>Feign集成了Ribbon。</p>
+<p>利用Ribbon维护了Payment的服务列表信息，并且通过轮询实现端的负载均衡，而与Ribbon不同的是，通过Feign不同的是，通过Feign只需要定义服务绑定接口且以声明式的方法，优雅而简单的实现了服务调用。</p>
+<table>
+<thead>
+<tr>
+<th align="center">Feign</th>
+<th align="center">OpenFeign</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Feign是SpringCloud组件中的一个轻量级RESTful的HTTP服务客户端。Feign内置了Ribbon，用来做客户端负载均衡，去调用服务注册中心的服务。Feign的使用方法：使用Feign的注解定义接口，调用这个接口，就可以调用服务注册中心的服务。</td>
+<td align="center">OpenFeign是Spring Cloud在Feign的基础上支持了SpringMVC的注解，如@RequestMapping等等。OpenFeign的@FeignClient可以解析SpringMVC的@RequestMapping注解下的接口，并通过动态代理的方式产生实现类，实现类中做负载均衡并调用其他服务。</td>
+</tr>
+<tr>
+<td align="center"><dependency>     <groupId>org.springframework.cloud</groupId>     <artifactId>spring-cloud-starter-feign</artifactId> </dependency></td>
+<td align="center"><dependency>     <groupId>org.springframework.cloud</groupId>     <artifactId>spring-cloud-starter-openfeign</artifactId> </dependency></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>超时控制</p>
+</blockquote>
+<p>默认Feign客户端只等待1秒钟，但是服务端处理需要超过1秒钟，导致Feign客户端不想等待，直接返回报错。为了避免这样的情况，有时候我们需要设置Feign客户端的超时控制。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置feign客户端超时时间(Openfeign默认支持ribbon)</span></span><br><span class="line"><span class="attr">ribbon:</span></span><br><span class="line">  <span class="comment"># 指的是建立连接所用的时间，适用于网络状况正常的情况下，两端连接所用的时间</span></span><br><span class="line">  <span class="attr">ReadTimeout:</span> <span class="number">5000</span></span><br><span class="line">  <span class="comment"># 指的是建立连接后从服务器读取到可用资源所用的时间</span></span><br><span class="line">  <span class="attr">ConnectTimeout:</span> <span class="number">5000</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="🔰-服务降级"><a href="#🔰-服务降级" class="headerlink" title="🔰 服务降级"></a>🔰 服务降级</h2><p>服务雪崩</p>
+<p>多个微服务之间调用的时候，假设微服务A调用微服务B和微服务C，微服务B和微服务C又调用其他的服务器，这就是所谓的“扇出”。如果扇出的链路上某个微服务的调用响应时间过长或者不可用，对微服务A的调用就会占用越来越多的系统资源，进而引起系统崩溃，所谓的“雪崩效应”。</p>
+<p>对于高流量的应用来说，单一的后端依赖可能会导致所有服务器上的所有资源都在几秒钟内饱和。比失败更糟糕的是，这些应用程序还可能导致服务之间的延迟增加，备份队列，线程和其他资源紧张，导致整个系统发生更多的级联故障。这些都表示需要对故障和延迟进行隔离和管理，以便单个依赖关系的失败，不能取消整个应用程序或系统。</p>
+<p>通常一个模块下的某个实例失败后，这时候这个模块依然还会接收流量，然后这个有问题的模块还调用了其他的模块，这样就会发生级联故障，或者叫雪崩。</p>
+<h3 id="⚡-Hystrix"><a href="#⚡-Hystrix" class="headerlink" title="⚡ Hystrix"></a>⚡ Hystrix</h3><blockquote>
+<p>说明</p>
+</blockquote>
+<p>Github: <a href="https://github.com/Netflix/Hystrix">https://github.com/Netflix/Hystrix</a></p>
+<p>Hystrix不再主动开发，并且当前处于维护模式。</p>
+<p>Hystrix（1.5.18版）足够稳定，可以满足Netflix现有应用程序的需求。</p>
+<blockquote>
+<p>概述</p>
+</blockquote>
+<p>在分布式环境中，不可避免地会有许多服务依赖项中的某些失败。Hystrix是一个库，可通过添加延迟公差和容错逻辑来帮助您控制这些分布式服务之间的交互。Hystrix通过隔离服务之间的访问点，停止服务之间的级联故障并提供后备选项来实现此目的，以提高系统的整体弹性。</p>
+<p>“断路器”本身是一种开关装置，当某个服务单元发生故障之后，通过断路器的故障监控（类似熔断保险丝），向调用方返回一个符合预期的、可处理的备选响应（Fallback），而不是长时间的等待或者抛出调用方无法处理的异常，这样就保证了服务调用方的线程不会被长时间、不必要地占用，从而避免了故障在分布式系统中的蔓延，乃至雪崩。</p>
+<blockquote>
+<p>作用</p>
+</blockquote>
+<ul>
+<li>提供保护并控制延迟和失败，以及通过第三方客户端库访问的依赖项的失败</li>
+<li>停止复杂的分布式系统中的级联故障</li>
+<li>快速失败并快速修复</li>
+<li>回退并在可能的情况下正常降级</li>
+<li>启用实时监视、警报和操作控制</li>
+</ul>
+<blockquote>
+<p>并发场景</p>
+</blockquote>
+<p>1️⃣并发场景及解决要求</p>
+<ul>
+<li>超时导致服务器变慢（转圈）=&gt; 超时不再等待</li>
+<li>出错（宕机或程序运行出错）=&gt; 出错要有兜底</li>
+</ul>
+<p>2️⃣解决方案</p>
+<ul>
+<li>服务提供者超时，服务调用者不能一直卡死等待，必须有服务降级</li>
+<li>服务提供者宕机，服务调用者不能一直卡死等待，必须有服务降级</li>
+<li>服务提供者正常，服务调用者自己出故障或有自我要求（自己的等待时间小于服务时间），</li>
+</ul>
+<blockquote>
+<p>服务降级</p>
+</blockquote>
+<p>1️⃣概念</p>
+<p>当服务器压力剧增的情况下，根据当前业务情况及流量对一些服务和页面有策略的降级，以此释放服务器资源以保证核心任务的正常运行。</p>
+<p>服务器忙，请稍后再试，不让客户端等待并立刻返回一个友好提示。</p>
+<p>2️⃣触发</p>
+<ul>
+<li>程序运行异常</li>
+<li>超时</li>
+<li>服务熔断</li>
+<li>线程池/信号量打满</li>
+</ul>
+<p>3️⃣解决</p>
+<p>降级配置：</p>
+<p>服务提供者设置自身调用超时时间的峰值，峰值内可以正常运行；</p>
+<p>超过了需要有兜底的方法处理，作服务降级fallback。</p>
+<blockquote>
+<p>服务熔断</p>
+</blockquote>
+<p>1️⃣熔断机制</p>
+<p>熔断机制是应对雪崩效应的一种微服务链路保护机制。当扇出链路的某个为副护出错不可用或者相响应时间太长时，会进行服务的降级，进而熔断该节点微服务的调用，快速返回错误的响应信息。</p>
+<p>当扇出链路的某个微服务不可用或者响应时间太长时，会进行服务的降级，进而熔断该节点微服务的调用，快速返回”错误”的响应信息。当检测到该节点微服务响应正常后恢复调用链路。</p>
+<p>2️⃣断路器</p>
+<p>断路器的三个重要参数：</p>
+<ul>
+<li>快照时间窗：断路器确定是否打开需要统计一下请求和错误数据，而统计的时间范围就是快照时间窗，默认为最近的10秒。</li>
+<li>请求总数阈值：在快照时间窗内，必须满足请求总数阈值才有资格熔断。默认为20，意味着在10秒内，如果在hystrix命令的调用次数不足20次，即使所有的请z求都超时或其他原因失败，断路器都不会打开。</li>
+<li>错误百分比阈值：当请求总数在快照时间窗内超过了阈值，比如发生了30次调用，如果在这30次调用中，有15次发生了超时异常，也就是超过50%的错误百分比，在默认设定50%阈值情况下，这时候就会将断路器打开。</li>
+</ul>
+<p>开启或者关闭的条件：</p>
+<ul>
+<li>当满足一定的阈值的时候（默认10秒内超过20哥请求次数）</li>
+<li>当失败率达到一定的时候（默认10秒内超过50%的请求失败）</li>
+<li>到达以上阈值，断路器将会开启</li>
+<li>当开启的时候，所有请求都不会进行转发</li>
+<li>一段时间之后（默认是5秒），这个时候断路器是半开状态，会让其中一个请求进行转发。如果成功，断路器会关闭，若失败，继续开启。重复4和5。</li>
+</ul>
+<p>断路器打开之后：</p>
+<ul>
+<li>再有请求调用的时候，将不会调用主逻辑，而是直接调用降级fallback，通过断路器，实现了自动地发现错误并将降级逻辑切换为主逻辑，减少响应延迟的效果。</li>
+<li>恢复原来的主逻辑：<ul>
+<li>对于这一问题，hystrix也为我们实现了自动恢复功能。</li>
+<li>当断路器打开，对主逻辑进行熔断之后，hystrix会启动一个休眠时间窗，在这个时间窗内，降级逻辑是临时的成为主逻辑，当休眠时间窗到期，断路器将进入半开状态，释放一次请求到原来的主逻辑上，如果此次请求正常返回，那么断路器将继续闭合，主逻辑恢复，如果这次请求依然有问题，断路器继续进入打开状态，休眠时间窗重新计时。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Dashboard监控</p>
+</blockquote>
+<p>Hystrix提供了准实时的调用监控（Hystrix Dashboard），Hystrix会持续地记录所有通过Hystrix发起的请求的执行信息，并以统计报表和图形的形式展示给用户，包括每秒执行多少请求成功、多少失败等。Netflix通过hystrix-metrics-event-stream项目实现了对以上指标的监控。Spring Cloud夜提供了Hystrix Dashboard的整合，对监控内容转换成可视化界面。</p>
+<blockquote>
+<p>POM</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix-dashboard<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>YML</p>
+</blockquote>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">9001</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">cloud-consumer-hystrix-dashboard</span></span><br><span class="line"></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">register-with-eureka:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">fetch-registry:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://eureka7001.com:7001/eureka</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">prefer-ip-address:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Main</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableHystrixDashboard</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HystrixDashboardMain9001Application</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(HystrixDashboardMain9001Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输入<a href="http://localhost:8001/hystrix.stream%E5%8D%B3%E5%8F%AF%E8%BF%9B%E8%A1%8C%E7%9B%91%E6%8E%A7%EF%BC%9A">http://localhost:8001/hystrix.stream即可进行监控：</a></p>
+<img src="/2020/11/25/SpringCloud/image-20210119232242203.png" class="" title="image-20210119232242203">
+
+
+
+<h2 id="🌐服务网关"><a href="#🌐服务网关" class="headerlink" title="🌐服务网关"></a>🌐服务网关</h2><h3 id="🎇Spring-Cloud-Gateway"><a href="#🎇Spring-Cloud-Gateway" class="headerlink" title="🎇Spring Cloud Gateway"></a>🎇Spring Cloud Gateway</h3><blockquote>
+<p>概述</p>
+</blockquote>
+<p>Spring Cloud Gateway时Spring Cloud的一个全新项目，基于Spring 5.0  + Spring Boot 2.0和Project Reactor等技术开发的网关，它旨在为微服务架构提供一种简单有效的统一的API路由管理方式。</p>
+<p>SpringCloud Gateway作为Spring Cloud生态系统中的网关，目标是替代Zuul，在Spring Cloud 2.0以上版本中，没有对新版本的Zuul 2.0以上最新高性能版本进行集成，仍然还是使用的Zuul 1.x非Reactor模式的老版本，而为了提供网关的性能，SpringCloud Gateway是基于WebFlux框架实现的，而WebFlux框架底层则使用了高性能的Reactor模式通信框架Netty。</p>
+<p>Spring Cloud Gateway的目标是提供统一的路由方式且基于Filter链的方式提供了网关基本的功能，例如：安全、监控/指标和限流。</p>
+<blockquote>
+<p>核心概念</p>
+</blockquote>
+<p>1️⃣Route(路由)</p>
+<p>路由是构建网关的基本模块，它由ID、目标URI、一系列的断言和过滤器组成，如果断言为true则匹配该路由。</p>
+<p>2️⃣Predicate(断言)</p>
+<p>参考的是Java8的java.util.function.Predicate。开发人员可以匹配HTTP请求中的所有内容(例如请求头或请求参数)，如果请求与断言相匹配则进行路由。</p>
+<p>3️⃣Filter(过滤)</p>
+<p>指的是Spring框架中Gateway Filter的实例，使用过滤器，可以在请求被路由前或者之后对请求修改。</p>
+<blockquote>
+<p>选型说明</p>
+</blockquote>
+<ul>
+<li>Zuul1.0已经进入维护阶段，Gateway是SpringCloud团队研发的，是亲儿子产品，值得信赖。而且Gateway很多功能Zuul都没有，用起来非常简单便捷。</li>
+<li>Gateway是基于异步阻塞模型上进行开发的，性能方面不需要担心。虽然Netfli早就发布了最新的Zuul2.x，但SpringCloud貌似没有整合计划。而且Netflix相关组件都宣布进入维护期，不知前景如何。</li>
+</ul>
+<blockquote>
+<p>特性</p>
+</blockquote>
+<ul>
+<li>基于Spring Framework 5 、Project Reactor和Spring Boot 2.0进行构建</li>
+<li>动态路由：能够匹配任何请求属性</li>
+<li>可以对路由指定Predicate(断言)和Filter(过滤器)</li>
+<li>集成Hystrix的断路器功能</li>
+<li>集成Spring Cloud服务发现功能</li>
+<li>易于编写的Predicate(断言)和Filter(过滤器)</li>
+<li>请求限流功能</li>
+<li>支持路径重写</li>
+</ul>
+<blockquote>
+<p>SpringCloud Gateway与Zuul的区别</p>
+</blockquote>
+<ul>
+<li>Zuul 1.x是一个基于阻塞I/O的API Gateway。</li>
+<li>Zuul 1.x基于Servlet2.5使用阻塞架构它不支持任何长连接(如Websocket)。Zuul的设计模式和Nginx较像，每次I/O操作都是从工作线程中选择一个执行，请求线程被阻塞到工作线程完成，但是差别是Nginx用C++实现，Zuul用Java实现，而JVM本身会有第一次加载较慢的情况，使得Zuul的性能相对较差。</li>
+<li>Zuul 2.x理念更先进，想基于Netty非阻塞和支持长连接，但SpringCloud目前还没有整合。Zuul 2.x的性能较Zuul 1.x有较大提升。在性能方面，根据官方提供的基准测试，SpringCloud Gateway的RPS(每秒请求数)是Zuul的1.6倍。</li>
+<li>SpringCloud Gateway使用非阻塞API。</li>
+<li>SpringCloud Gateway还支持Websocket，并且与Spring紧密集成拥有更好的开发体验。</li>
+</ul>
+<h2 id="🔨-服务配置"><a href="#🔨-服务配置" class="headerlink" title="🔨 服务配置"></a>🔨 服务配置</h2><h3 id="⚙-Spring-Cloud-Config"><a href="#⚙-Spring-Cloud-Config" class="headerlink" title="⚙ Spring Cloud Config"></a>⚙ Spring Cloud Config</h3><p>📖分布式配置中心</p>
+<blockquote>
+<p>概述</p>
+</blockquote>
+<p>Spring Cloud Config为微服务架构中的微服务提供集中化的外部配置支持，配置服务器为各个不同微服务应用的所有环境提供了一个中心化的外部配置。</p>
+<blockquote>
+<p>使用</p>
+</blockquote>
+<p>Spring Cloud Config分为服务端和客户端两部分</p>
+<ul>
+<li>服务端：分布式配置中心，它是一个独立的微服务应用，用来连接配置服务器并为客户端提供配置信息，加密/解密信息等访问接口。</li>
+<li>客户端：通过指定的配置中心来管理应用资源，以及与业务相关的配置内容，并在启动的时候从配置中心获取和加载配置信息和配置服务器，默认采用git来存储配置信息，这样就有助于对环境配置进行版本管理，并且可以通过git客户端工具来方便的管理和访问配置内容。</li>
+</ul>
+<h3 id="🚌Spring-Cloud-Bus"><a href="#🚌Spring-Cloud-Bus" class="headerlink" title="🚌Spring Cloud Bus"></a>🚌Spring Cloud Bus</h3><p>📖消息总线</p>
+<blockquote>
+<p>概述</p>
+</blockquote>
+<p>在微服务架构的系统中，通过会使用轻量级的消息代理来构建一个共用的消息主题，并让系统中所有微服务实例都连接上来，由于该主题中产生的消息会被所有实例监听和消费，所以称它为消息总线。在总线上的各个实例，都可以方便地广播一些需要让其他连接在该主题上的实例都知道的消息。</p>
+<blockquote>
+<p>原理</p>
+</blockquote>
+<p>ConfigClient实例都监听MQ中同一个topic(默认是SpringCloudBus)。当一个服务刷新数据的时候，它会把这个消息放入到Topic中，这样其他监听同一Topic的服务就能得到通知，然后去更新自身的配置。</p>
+<blockquote>
+<p>Docker运行RabbitMQ</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装运行</span></span><br><span class="line">docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 -v `pwd`/data:/var/lib/rabbitmq -e RABBITMQ_DEFAULT_VHOST=/  -e RABBITMQ_DEFAULT_USER=Khighness -e RABBITMQ_DEFAULT_PASS=KAG1823 rabbitmq</span><br><span class="line"><span class="meta">#</span><span class="bash"> 开启可视化</span></span><br><span class="line">docker exec -it rabbitmq rabbitmq-plugins enable rabbitmq_management</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="🌊Spring-Cloud-Stream"><a href="#🌊Spring-Cloud-Stream" class="headerlink" title="🌊Spring Cloud Stream"></a>🌊Spring Cloud Stream</h3><p>📖消息驱动</p>
+<blockquote>
+<p>概述</p>
+</blockquote>
+<p>Spring Cloud Stream是一个构建消息驱动微服务的框架。</p>
+<p>应用程序通过inputs或者outputs来与Spring Cloud Stream中binder对象交互。</p>
+<p>通过配置来绑定，Spring Cloud Stream的binder对象负责与消息中间件交互。</p>
+<p>通过使用Spring Intergration来连接消息代理中间件以实现消息事件驱动。</p>
+<p>Spring Cloud Stream为一些供应商的消息中间件产品提供了个性化的自动化配置实现，引用了发布/订阅、消费组、分区三个核心概念。</p>
+<p>目前仅支持<strong>RabbitMQ</strong>、<strong>Kafka</strong>。</p>
+<blockquote>
+<p>设计思想</p>
+</blockquote>
+<p>在没有绑定器这个概念的情况下，SpringBoot应用要直接与消息中间件进行信息交互的时候，由于各消息中间件构建的初衷不同，它们的实现细节上会有较大的差异性。</p>
+<p><strong>通过定义绑定器作为中间层，完美地实现了应用程序与消息中间件之间的隔离。</strong></p>
+<p>通过向应用程序暴露统一的Channel通道，使得应用程序不需要再考虑各种不同的消息中间件实现。</p>
+<blockquote>
+<p>绑定器</p>
+</blockquote>
+<img src="/2020/11/25/SpringCloud/Stream.png" class="" title="Stream">
+
+
+
+<blockquote>
+<p>标准流程套路</p>
+</blockquote>
+<ul>
+<li>Binder: 很方便的连接中间件，屏蔽差异</li>
+<li>Channel: 通道，是队列Queue的一种抽象，在消息通讯系统中就是实现存储和转发的媒介，通过Channel对队列进行配置</li>
+<li>Source和Sink: 从Stream发布消息就是输出，接收消息就是输入</li>
+</ul>
+<blockquote>
+<p>编码常用注解</p>
+</blockquote>
+<img src="SpringCloud/image-20210124190703816.png" alt="image-20210124190703816" style="zoom: 80%;" />
+
+<table>
+<thead>
+<tr>
+<th>组成</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Middleware</td>
+<td>中间件，目前只支持RabbitMQ和Kafka</td>
+</tr>
+<tr>
+<td>Binder</td>
+<td>Binder是应用与消息中间件之间的封装，目前实行了Kafka和RabbitMQ的Binder，通过Binder可以很方便的连接中间件，可以动态的改变消息类型(对于Kafka的topic，RabbitMQ的exchange)，这些都可以通过配置文件来实现</td>
+</tr>
+<tr>
+<td>@Input</td>
+<td>注解标识输入通道，通过该输入通道接收到的消息进入应用程序</td>
+</tr>
+<tr>
+<td>@Output</td>
+<td>注解标识输出通道，发布的消息将通过该通道离开应用程序</td>
+</tr>
+<tr>
+<td>@StreamListener</td>
+<td>监听队列，用于消费者的队列的消息接收</td>
+</tr>
+<tr>
+<td>@EnableBinding</td>
+<td>指信道channel和exchange绑定在一起</td>
+</tr>
+</tbody></table>
+<h3 id="📸-Spring-Cloud-Sleuth"><a href="#📸-Spring-Cloud-Sleuth" class="headerlink" title="📸 Spring Cloud Sleuth"></a>📸 Spring Cloud Sleuth</h3><blockquote>
+<p>痛点</p>
+</blockquote>
+<p>在微服务框架中，一个由客户端发起的请求在后端系统中会经过多个不同的服务节点调用来协同产生最后的请求结果，每一个前端请求都会形成一个复杂的分布式服务调用链路，链路中的任何一环出现高延迟或错误都会引起整个请求最后的失败。</p>
+<blockquote>
+<p>zipkin</p>
+</blockquote>
+<ul>
+<li>jar</li>
+</ul>
+<p>下载：<a href="https://dl.bintray.com/openzipkin/maven/io/zipkin/java/zipkin-server/">https://dl.bintray.com/openzipkin/maven/io/zipkin/java/zipkin-server/</a></p>
+<p>运行：<code>java -jar zipkin-server-2.12.9-exec.jar</code></p>
+<ul>
+<li>docker</li>
+</ul>
+<p>下载：<code>docker pull openzipkin/zipkin</code></p>
+<p>运行：<code>docker run -d --restart always -p 9411:9411 --name zipkin openzipkin/zipkin </code></p>
+<h2 id="💥-阿里巴巴"><a href="#💥-阿里巴巴" class="headerlink" title="💥 阿里巴巴"></a>💥 阿里巴巴</h2><h3 id="🔥-Spring-Cloud-Alibaba"><a href="#🔥-Spring-Cloud-Alibaba" class="headerlink" title="🔥  Spring Cloud Alibaba"></a>🔥  Spring Cloud Alibaba</h3><blockquote>
+<p>背景</p>
+</blockquote>
+<p>博客原文：<a href="https://spring.io/blog/2018/12/12/spring-cloud-greenwich-rc1-available-now">spring-cloud-greenwich-rc1-available-now</a></p>
+<p>Spring Cloud Netflix项目进入维护模式</p>
+<p>以下Spring Cloud Netflix模块和相应的启动程序将进入维护模式：</p>
+<ol>
+<li>spring-cloud-netflix-archaius</li>
+<li>spring-cloud-netflix-hystrix-contract</li>
+<li>spring-cloud-netflix-hystrix-dashboard</li>
+<li>spring-cloud-netflix-hystrix-stream</li>
+<li>spring-cloud-netflix-hystrix</li>
+<li>spring-cloud-netflix-ribbon</li>
+<li>spring-cloud-netflix-turbine-stream</li>
+<li>spring-cloud-netflix-turbine</li>
+<li>spring-cloud-netflix-zuul</li>
+</ol>
+<p>这不包括Eureka或并发限制模块。</p>
+<blockquote>
+<p>诞生</p>
+</blockquote>
+<p>2018-10-31，Spring Cloud Alibaba正式入驻了Spring Cloud官方孵化器，并在Maven中央仓库发布了第一个版本。</p>
+<p>官方文档：<a href="https://spring-cloud-alibaba-group.github.io/github-pages/greenwich/spring-cloud-alibaba.html#_introduction">spring-cloud-alibaba</a></p>
+<blockquote>
+<p>功能</p>
+</blockquote>
+<ul>
+<li>服务限流降级：默认支持Servlet、Feign、RestTemplate、Duddo和RocketMQ限流降级功能的接入，可以在运行时通过控制台修改限流降级规则，还支持查看限流降级Metrics监控。</li>
+<li>服务注册与发现：适配Spring Cloud服务注册与发现标准，默认集成了Ribbon的支持。</li>
+<li>分布式配置管理：支持分布式系统中的外部化配置，配置更改时自动刷新。</li>
+<li>消息驱动能力：基于Spring Cloud Stream为微服务应用构建消息驱动能力。</li>
+<li>阿里云对象存储：阿里云提供海量、安全、低成本、高可靠的云存储服务。支持在任何应用、任何时间、任何地点存储和访问任意类型的数据。</li>
+<li>分布式任务调度：提供秒级、精准、高可靠、高可用的定时（基于Cron表达式）任务调度服务，同时提供分布式的任务执行模型，如网格任务。网格任务支持海量子任务均匀分配到所有Worker（schedulex-client）上执行。</li>
+</ul>
+<h3 id="♾️Nacos"><a href="#♾️Nacos" class="headerlink" title="♾️Nacos"></a>♾️Nacos</h3><blockquote>
+<p>概述</p>
+</blockquote>
+<p>一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台，即注册中心和配置中心的组合。</p>
+<p>理解：Nacos = Eureka + Config + Bus</p>
+<p>官网：<a href="http://nacos.io/">nacos</a></p>
+<blockquote>
+<p>Docker运行Nacos</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下载镜像</span></span><br><span class="line">docker pull nacos/nacos-server:1.1.4 </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建配置文件和日志文件目录</span></span><br><span class="line">mkdir -p /opt/nacos/single/init.d /opt/nacos/single/logs </span><br><span class="line">cd /opt/nacos/single/init.d &amp;&amp; touch custom.properties</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> custom.properties文件中填写如下配置</span></span><br><span class="line">server.contextPath=/nacos</span><br><span class="line">server.port=8848</span><br><span class="line">management.endpoints.web.exposure.include=*</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建并启动容器</span></span><br><span class="line">docker run -d -p 8848:8848 -e MODE=standalone \</span><br><span class="line">-v /opt/nacos/single/init.d/custom.properties:/home/nacos/init.d/custom.properties \</span><br><span class="line">-v /opt/nacos/single/logs:/home/nacos/logs \</span><br><span class="line">--restart always \</span><br><span class="line">--name nacos nacos/nacos-server:1.1.4 </span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>界面</p>
+</blockquote>
+<p>打开浏览器输入: <a href="http://ip:8848/nacos%EF%BC%8C%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E5%9D%87%E4%B8%BA%EF%BC%9Anacos">http://ip:8848/nacos，账号密码均为：nacos</a></p>
+<img src="/2020/11/25/SpringCloud/image-20210127232554083.png" class="" title="image-20210127232554083">
+
+
+
+<blockquote>
+<p>架构</p>
+</blockquote>
+<ul>
+<li>基础架构</li>
+</ul>
+<img src="/2020/11/25/SpringCloud/NacosInfrastructure.jpeg" class="" title="NacosInfrastructure">
+
+<ul>
+<li>逻辑架构</li>
+</ul>
+<img src="/2020/11/25/SpringCloud/NacosLogicalArchitecture.png" class="" title="NacosLogicalArchitecture">
+
+<ul>
+<li>全景架构</li>
+</ul>
+<img src="/2020/11/25/SpringCloud/NacosBuildAndDeploy.png" class="" title="NacosBuildAndDeploy">
+
+
+
+<blockquote>
+<p>CAP</p>
+</blockquote>
+<p>nacos支持CP和AP之间的切换：</p>
+<ul>
+<li>如果不需要存储服务级别的信息且服务实例是通过nacos-client注册，并能够保持心跳上报，那么就可以选择AP模式。当前主流的服务如Spring Cloud和Dubbo服务，都适用于AP模式，AP模式为了服务的可能性而减弱了一致性，因此AP模式下只支持注册临时实例。</li>
+<li>如果需要在服务级别编辑或者存储配置信息，那么CP是必须的。K8S和DNS服务器则适用于CP模式。CP模式下支持注册持久化实例，此时则是以Raft协议为集群运行模式，该模式下注册实例之前必须先注册服务，如果服务不存在，则会返回错误。</li>
+</ul>
+<blockquote>
+<p>加载配置</p>
+</blockquote>
+<ul>
+<li><p>DataID方案</p>
+<p>指定<code>spring.profie.active</code>和配置文件的<code>DataID</code>来使不同环境下读取不同的配置</p>
+</li>
+<li><p>Group方案</p>
+<p>指定<code>spring.cloud.nacos.config.group</code>来指定不同分组的配置</p>
+</li>
+<li><p>NameSpace方案</p>
+<p>指定<code>spring.cloud.nacos.config.namespace</code>来指定不同命名空间的配置</p>
+</li>
+</ul>
+<p>总结，NameSpace包含Group，Group包含DataID。</p>
+<blockquote>
+<p>部署模式</p>
+</blockquote>
+<p>Nacos支持三种部署模式：</p>
+<ul>
+<li>单机模式-用于测试和单机使用</li>
+<li>集群模式-用于生产环境，确保高可用</li>
+<li>多集群模式-用于多数据中心场景</li>
+</ul>
+<blockquote>
+<p>持久化</p>
+</blockquote>
+<p>默认Nacos使用嵌入式数据库实现数据的存储。所以，如果启动多个默认配置下的Nacos节点，数据存储是存在一致性问题的。为了解决这个问题，Nacos采用了集中式存储的方式来支持集群化部署，目前只支持MySQL的存储。</p>
+<blockquote>
+<p>使用MySQL</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 创建配置文件和日志文件目录</span></span><br><span class="line">mkdir -p /opt/nacos/single/init.d /opt/nacos/single/logs </span><br><span class="line">cd /opt/nacos/single/init.d &amp;&amp; touch custom.properties</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> custom.properties文件中填写如下配置</span></span><br><span class="line">server.contextPath=/nacos</span><br><span class="line">server.servlet.contextPath=/nacos</span><br><span class="line">server.port=8848</span><br><span class="line">spring.datasource.platform=mysql</span><br><span class="line"></span><br><span class="line">db.num=1</span><br><span class="line">db.url.0=jdbc:mysql://172.17.0.5:3306/nacos_config?characterEncoding=utf8&amp;connectTimeout=1000&amp;socketTimeout=3000&amp;autoReconnect=true</span><br><span class="line">db.user=root</span><br><span class="line">db.password=KAG1823</span><br><span class="line"></span><br><span class="line">nacos.cmdb.dumpTaskInterval=3600</span><br><span class="line">nacos.cmdb.eventTaskInterval=10</span><br><span class="line">nacos.cmdb.labelTaskInterval=300</span><br><span class="line">nacos.cmdb.loadDataAtStart=false</span><br><span class="line"></span><br><span class="line">management.metrics.export.elastic.enabled=false</span><br><span class="line">management.metrics.export.influx.enabled=false</span><br><span class="line">server.tomcat.accesslog.enabled=true</span><br><span class="line">server.tomcat.accesslog.pattern=%h %l %u %t &quot;%r&quot; %s %b %D %&#123;User-Agent&#125;i</span><br><span class="line">nacos.security.ignore.urls=/,/**/*.css,/**/*.js,/**/*.html,/**/*.map,/**/*.svg,/**/*.png,/**/*.ico,/console-fe/public/**,/v1/auth/login,/v1/console/health/**,/v1/cs/**,/v1/ns/**,/v1/cmdb/**,/actuator/**,/v1/console/server/**</span><br><span class="line">nacos.naming.distro.taskDispatchThreadCount=1</span><br><span class="line">nacos.naming.distro.taskDispatchPeriod=200</span><br><span class="line">nacos.naming.distro.batchSyncKeyCount=1000</span><br><span class="line">nacos.naming.distro.initDataRatio=0.9</span><br><span class="line">nacos.naming.distro.syncRetryDelay=5000</span><br><span class="line">nacos.naming.data.warmup=true</span><br><span class="line">nacos.naming.expireInstance=true</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建并启动容器</span></span><br><span class="line">docker run --name nacos -p 8848:8848   \</span><br><span class="line">--privileged=true \</span><br><span class="line">--restart=always \</span><br><span class="line">-e JVM_XMS=256m \</span><br><span class="line">-e JVM_XMX=256m \</span><br><span class="line">-e MODE=standalone \</span><br><span class="line">-e PREFER_HOST_MODE=hostname \</span><br><span class="line">-v /opt/nacos/single/logs:/home/nacos/logs \</span><br><span class="line">-v /opt/nacos/single/init.d/custom.properties:/home/nacos/init.d/custom.properties \</span><br><span class="line">-d nacos/nacos-server:1.3.1</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>集群</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-e MODE=cluster \</span><br><span class="line">-e NACOS_APPLICATION_PORT=8849 \</span><br><span class="line">-e NACOS_SERVERS=192.168.117.155:8849,192.168.117.155:8850,192.168.117.155:8851 \</span><br><span class="line">-e SPRING_DATASOURCE_PLATFORM=mysql \</span><br><span class="line">-e MYSQL_SERVICE_HOST=192.168.117.155 \</span><br><span class="line">-e MYSQL_SERVICE_PORT=3306 \</span><br><span class="line">-e MYSQL_SERVICE_USER=root \</span><br><span class="line">-e MYSQL_SERVICE_PASSWORD=KAG1823 \</span><br><span class="line">-e MYSQL_SERVICE_DB_NAME=nacos_config \</span><br><span class="line">-e NACOS_SERVER_IP=192.168.117.155 \</span><br><span class="line">-p 8849:8849 \</span><br><span class="line">--name nacos8849 \</span><br><span class="line">nacos/nacos-server:1.3.1</span><br><span class="line"> </span><br><span class="line">docker run -d \</span><br><span class="line">-e MODE=cluster \</span><br><span class="line">-e NACOS_APPLICATION_PORT=8850 \</span><br><span class="line">-e NACOS_SERVERS=192.168.117.155:8849,192.168.117.155:8850,192.168.117.155:8851 \</span><br><span class="line">-e SPRING_DATASOURCE_PLATFORM=mysql \</span><br><span class="line">-e MYSQL_SERVICE_HOST=192.168.117.155 \</span><br><span class="line">-e MYSQL_SERVICE_PORT=3306 \</span><br><span class="line">-e MYSQL_SERVICE_USER=root \</span><br><span class="line">-e MYSQL_SERVICE_PASSWORD=KAG1823 \</span><br><span class="line">-e MYSQL_SERVICE_DB_NAME=nacos_config \</span><br><span class="line">-e NACOS_SERVER_IP=192.168.100.132 \</span><br><span class="line">-p 8850:8850 \</span><br><span class="line">--name nacos8850 \</span><br><span class="line">nacos/nacos-server:1.3.1</span><br><span class="line"> </span><br><span class="line">docker run -d \</span><br><span class="line">-e MODE=cluster \</span><br><span class="line">-e NACOS_APPLICATION_PORT=8851 \</span><br><span class="line">-e NACOS_SERVERS=192.168.117.155:8849,192.168.117.155:8850,192.168.117.155:8851 \</span><br><span class="line">-e SPRING_DATASOURCE_PLATFORM=mysql \</span><br><span class="line">-e MYSQL_SERVICE_HOST=192.168.117.155 \</span><br><span class="line">-e MYSQL_SERVICE_PORT=3306 \</span><br><span class="line">-e MYSQL_SERVICE_USER=root \</span><br><span class="line">-e MYSQL_SERVICE_PASSWORD=KAG1823 \</span><br><span class="line">-e MYSQL_SERVICE_DB_NAME=nacos_config \</span><br><span class="line">-e NACOS_SERVER_IP=192.168.100.132 \</span><br><span class="line">-p 8851:8851 \</span><br><span class="line">--name nacos8851 \</span><br><span class="line">nacos/nacos-server:1.3.1</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="🛡️-Sentinel"><a href="#🛡️-Sentinel" class="headerlink" title="🛡️ Sentinel"></a>🛡️ Sentinel</h3><blockquote>
+<p>文档</p>
+</blockquote>
+<p><a href="https://github.com/alibaba/Sentinel/wiki/%E4%BB%8B%E7%BB%8D">https://github.com/alibaba/Sentinel/wiki/%E4%BB%8B%E7%BB%8D</a></p>
+<blockquote>
+<p>概述</p>
+</blockquote>
+<p>随着微服务的流行，服务和服务之间的稳定性变得越来越重要。Sentinel 以流量为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。</p>
+<p>Sentinel 具有以下特征:</p>
+<ul>
+<li><strong>丰富的应用场景</strong>：Sentinel 承接了阿里巴巴近 10 年的双十一大促流量的核心场景，例如秒杀（即突发流量控制在系统容量可以承受的范围）、消息削峰填谷、集群流量控制、实时熔断下游不可用应用等。</li>
+<li><strong>完备的实时监控</strong>：Sentinel 同时提供实时的监控功能。您可以在控制台中看到接入应用的单台机器秒级数据，甚至 500 台以下规模的集群的汇总运行情况。</li>
+<li><strong>广泛的开源生态</strong>：Sentinel 提供开箱即用的与其它开源框架/库的整合模块，例如与 Spring Cloud、Dubbo、gRPC 的整合。您只需要引入相应的依赖并进行简单的配置即可快速地接入 Sentinel。</li>
+<li><strong>完善的 SPI 扩展点</strong>：Sentinel 提供简单易用、完善的 SPI 扩展接口。您可以通过实现扩展接口来快速地定制逻辑。例如定制规则管理、适配动态数据源等。</li>
+</ul>
+<blockquote>
+<p>Docker运行Sentinel</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker pull bladex/sentinel-dashboard</span><br><span class="line">docker run --name sentinel -d -p 8858:8858 -d bladex/sentinel-dashboard</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>流控规则</p>
+</blockquote>
+<p>1️⃣解释说明</p>
+<ul>
+<li>资源名：唯一路径，默认请求路径</li>
+<li>针对来源：Sentinel可以针对调用者进行限流，填写微服务名，默认default</li>
+<li>阈值类型/单机阈值：<ul>
+<li>QPS（每秒钟的请求数量）：当乔勇该API的QPS达到阈值的时候，进行限流</li>
+<li>线程数：当调用该API的线程数达到阈值的时候，进行限流</li>
+</ul>
+</li>
+</ul>
+<p>2️⃣流控模式</p>
+<ul>
+<li>直接：API达到线路条件时，直接限流</li>
+<li>关联：当关联的资源达到阈值时，就限流自己</li>
+<li>链路：只记录指定链路上的流量（指定资源从入口资源进来的流量，如果达到阈值，就进行限流）</li>
+</ul>
+<p>3️⃣流控效果</p>
+<ul>
+<li><p>快速失败：默认的流量控制方式，当QPS超过任意规则的阈值后，新的请求就会被立即拒绝，拒绝方式为抛出<code>FlowException</code>。 [Blocked by Sentinel (flow limiting)]</p>
+</li>
+<li><p>Warm Up(预热/冷启动)：当系统长期处于低水位的情况下，当流量突然增加时，直接把系统拉升到高水位可能瞬间把系统压垮。通过”冷启动”，让通过的流量缓慢增加，在一定时间内逐渐增加到阈值上限，给冷系统一个预热的时间，避免冷系统被压垮。</p>
+<p>[根据codeFactor（冷加载因子，默认3），经过预热时长，才达到设置的QPS阈值]</p>
+</li>
+<li><p>排队等待：匀速排队方式会严格控制请求通过的间隔时间，也即是让请求以均匀的速度通过，对应的是漏桶算法。[设置QPS控制间隔时间，间隔时间=1000ms/QPS，例如QPS=2时每隔500ms才允许下一个请求]</p>
+</li>
+</ul>
+<blockquote>
+<p>降级规则</p>
+</blockquote>
+<p>1️⃣解释说明</p>
+<p>Sentinel熔断降级会在调用链路中某个资源出现不稳定状态时（例如调用超时或异常比例升高），对这个资源的调用进行限制，让请求快速失败，避免影响到其他的资源而导致级联错误。</p>
+<p>当资源降级后，在接下来的降级时间窗口内，对该资源的调用都自动熔断（默认行为是抛出<code>DegradeException</code>）。</p>
+<p>2️⃣熔断策略</p>
+<p>Sentinel 提供以下几种熔断策略：</p>
+<ul>
+<li>慢调用比例 (<code>SLOW_REQUEST_RATIO</code>)：选择以慢调用比例作为阈值，需要设置允许的慢调用 RT（即最大的响应时间），请求的响应时间大于该值则统计为慢调用。当单位统计时长（<code>statIntervalMs</code>）内请求数目大于设置的最小请求数目，并且慢调用的比例大于阈值，则接下来的熔断时长内请求会自动被熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求响应时间小于设置的慢调用 RT 则结束熔断，若大于设置的慢调用 RT 则会再次被熔断。</li>
+<li>异常比例 (<code>ERROR_RATIO</code>)：当单位统计时长（<code>statIntervalMs</code>）内请求数目大于设置的最小请求数目，并且异常的比例大于阈值，则接下来的熔断时长内请求会自动被熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。异常比率的阈值范围是 <code>[0.0, 1.0]</code>，代表 0% - 100%。</li>
+<li>异常数 (<code>ERROR_COUNT</code>)：当单位统计时长内的异常数目超过阈值之后会自动进行熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。</li>
+</ul>
+<blockquote>
+<p>热点规则</p>
+</blockquote>
+<p>1️⃣解释说明</p>
+<p>何为热点？热点即经常访问的数据。很多时候我们希望统计某个热点数据中访问频次最高的 Top K 数据，并对其访问进行限制。比如：</p>
+<ul>
+<li>商品 ID 为参数，统计一段时间内最常购买的商品 ID 并进行限制</li>
+<li>用户 ID 为参数，针对一段时间内频繁访问的用户 ID 进行限制</li>
+</ul>
+<p>热点参数限流会统计传入参数中的热点参数，并根据配置的限流阈值与模式，对包含热点参数的资源调用进行限流。热点参数限流可以看做是一种特殊的流量控制，仅对包含热点参数的资源调用生效。</p>
+<p>Sentinel 利用 LRU 策略统计最近最常访问的热点参数，结合令牌桶算法来进行参数级别的流控。热点参数限流支持集群模式。</p>
+<p>2️⃣参数详情</p>
+<p>热点参数规则（<code>ParamFlowRule</code>）类似于流量控制规则（<code>FlowRule</code>）：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>resource</td>
+<td>资源名，必填</td>
+<td></td>
+</tr>
+<tr>
+<td>count</td>
+<td>限流阈值，必填</td>
+<td></td>
+</tr>
+<tr>
+<td>grade</td>
+<td>限流模式</td>
+<td>QPS 模式</td>
+</tr>
+<tr>
+<td>durationInSec</td>
+<td>统计窗口时间长度（单位为秒），1.6.0 版本开始支持</td>
+<td>1s</td>
+</tr>
+<tr>
+<td>controlBehavior</td>
+<td>流控效果（支持快速失败和匀速排队模式），1.6.0 版本开始支持</td>
+<td>快速失败</td>
+</tr>
+<tr>
+<td>maxQueueingTimeMs</td>
+<td>最大排队等待时长（仅在匀速排队模式生效），1.6.0 版本开始支持</td>
+<td>0ms</td>
+</tr>
+<tr>
+<td>paramIdx</td>
+<td>热点参数的索引，必填，对应 <code>SphU.entry(xxx, args)</code> 中的参数索引位置</td>
+<td></td>
+</tr>
+<tr>
+<td>paramFlowItemList</td>
+<td>参数例外项，可以针对指定的参数值单独设置限流阈值，不受前面 <code>count</code> 阈值的限制。<strong>仅支持基本类型和字符串类型</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>clusterMode</td>
+<td>是否是集群参数流控规则</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td>clusterConfig</td>
+<td>集群流控相关配置</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="🌌-Seata"><a href="#🌌-Seata" class="headerlink" title="🌌 Seata"></a>🌌 Seata</h3><blockquote>
+<p>概述</p>
+</blockquote>
+<p>Seata 是一款开源的分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。Seata 将为用户提供了 AT、TCC、SAGA 和 XA 事务模式，为用户打造一站式的分布式解决方案。</p>
+<blockquote>
+<p>Seata.zip下载</p>
+</blockquote>
+<p><strong>0.9.0</strong></p>
+<ul>
+<li>百度网盘：<a href="https://pan.baidu.com/s/1SYGqlJEpashJlR-Nc8H8lg">https://pan.baidu.com/s/1SYGqlJEpashJlR-Nc8H8lg</a></li>
+<li>提取码：kkkk</li>
+</ul>
+<p><strong>1.4.0</strong></p>
+<ul>
+<li>百度网盘：<a href="https://pan.baidu.com/s/1fpzo0zkfLFa8sJDs-TL9Ew">https://pan.baidu.com/s/1fpzo0zkfLFa8sJDs-TL9Ew</a></li>
+<li>提取码：kkkk</li>
+</ul>
+<blockquote>
+<p>Docker安装Seata</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 获取镜像</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker pull seataio/seata-server:1.4.0</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 运行容器并获取配置</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker run --name seata-server -p 8091:8091 -d seataio/seata-server:1.4.0</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker cp seata-server:/seata-server /usr/<span class="built_in">local</span>/seata-1.4.0</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker stop seata-server &amp;&amp; docker rm seata-server</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改配置文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> file.conf</span></span><br><span class="line">service &#123;</span><br><span class="line">  vgroupMapping.my_test_tx_group = &quot;default&quot;</span><br><span class="line">  disableGlobalTransaction = false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">store &#123;</span><br><span class="line">  mode = &quot;db&quot;</span><br><span class="line">  db &#123;</span><br><span class="line">    datasource = &quot;druid&quot;</span><br><span class="line">    dbType = &quot;mysql&quot;</span><br><span class="line">    driverClassName = &quot;com.mysql.cj.jdbc.Driver&quot;</span><br><span class="line">    url = &quot;jdbc:mysql://172.17.0.5:3306/seata?serverTimezone=GMT%2B8&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&quot;</span><br><span class="line">    user = &quot;root&quot;</span><br><span class="line">    password = &quot;KAG1823&quot;</span><br><span class="line">    minConn = 5</span><br><span class="line">    maxConn = 30</span><br><span class="line">    globalTable = &quot;global_table&quot;</span><br><span class="line">    branchTable = &quot;branch_table&quot;</span><br><span class="line">    lockTable = &quot;lock_table&quot;</span><br><span class="line">    queryLimit = 100</span><br><span class="line">    maxWait = 5000</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> registry.conf</span></span><br><span class="line">registry &#123;</span><br><span class="line">  type = &quot;nacos&quot;</span><br><span class="line">  loadBalance = &quot;RandomLoadBalance&quot;</span><br><span class="line">  loadBalanceVirtualNodes = 10</span><br><span class="line"></span><br><span class="line">  nacos &#123;</span><br><span class="line">    application = &quot;seata-server&quot;</span><br><span class="line">    serverAddr = &quot;172.17.0.6:8848&quot;</span><br><span class="line">    group = &quot;SEATA_GROUP&quot;</span><br><span class="line">    namespace = &quot;&quot;</span><br><span class="line">    cluster = &quot;default&quot;</span><br><span class="line">    username = &quot;nacos&quot;</span><br><span class="line">    password = &quot;nacos&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">config &#123;</span><br><span class="line">  type = &quot;nacos&quot;</span><br><span class="line"></span><br><span class="line">  nacos &#123;</span><br><span class="line">    serverAddr = &quot;172.17.0.6:8848&quot;</span><br><span class="line">    namespace = &quot;&quot;</span><br><span class="line">    group = &quot;SEATA_GROUP&quot;</span><br><span class="line">    username = &quot;nacos&quot;</span><br><span class="line">    password = &quot;nacos&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动Seata</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker run -d \</span></span><br><span class="line">--restart always \</span><br><span class="line">--name seata-server \</span><br><span class="line">-p 8091:8091 \</span><br><span class="line">-v /usr/local/seata-1.4.0:/seata-server \</span><br><span class="line">-e SEATA_PORT=8091 \</span><br><span class="line">seataio/seata-server:1.4.0</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Spring Cloud</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
