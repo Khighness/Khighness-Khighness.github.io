@@ -58,14 +58,64 @@ var _hmt = _hmt || [];
 </script>
 
 
+  <!-- 封面标题闪烁 -->
+  <link rel="stylesheet" href="/css/titleFlash.css">
+  <!-- 浏览器搞笑标题 -->
+<!--  <script type="text/javascript">
+  //
+  var OriginTitle = document.title;
+  var titleTime;
+  document.addEventListener('visibilitychange', function () {
+      if (location.href != "https://www.xxxzhy.com/"){//主页不变
+          if (document.hidden) {
+              //$('[rel="icon"]').attr('href', "/funny.ico");
+              document.title = '/(ㄒoㄒ)/你弄丢了XXXZhy';
+              clearTimeout(titleTime);
+          }else {
+              //$('[rel="icon"]').attr('href', "/favicon.ico");
+              document.title = '(ฅ>ω<*ฅ) 噫又好啦~' + OriginTitle;
+              titleTime = setTimeout(function () {
+                  document.title = OriginTitle;
+              }, 2000);
+          }
+      }
+  });
+  </script> -->
+  <!-- 百度自动推送 -->
+  <script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
 <link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
 </head>
 
 </html>
 
+
 <body>
   <div id="app">
     
+      <canvas class="fireworks"></canvas>
+      <style>
+        .fireworks {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          pointer-events: none;
+        }
+      </style>
+      
       
     <main class="content on">
       <section class="outer">
@@ -388,49 +438,87 @@ var _hmt = _hmt || [];
    
 <!-- valine评论 -->
 <div id="vcomments-box">
-  <div id="vcomments"></div>
+    <div id="vcomments">
+    </div>
 </div>
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
-<script>
-  new Valine({
-    el: "#vcomments",
-    app_id: "Py2eOHzSdrnxKPzKrOJaHJOq-9Nh9j0Va",
-    app_key: "9eQhwuCgyshpYKn4rtEhqt4R",
-    path: window.location.pathname,
-    avatar: "wavatar",
-    placeholder: "come on baby~",
-    recordIP: true,
-  });
-  const infoEle = document.querySelector("#vcomments .info");
-  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
-    infoEle.childNodes.forEach(function (item) {
-      item.parentNode.removeChild(item);
-    });
-  }
-</script>
+<!-- <script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script> -->
+<!-- <script src="//unpkg.com/valine/dist/Valine.min.js"></script> -->
+<script src="/js/Valine.min.js"></script>
+<!-- 评论背景 -->
 <style>
-  #vcomments-box {
-    padding: 5px 30px;
-  }
+    #veditor{min-height: 10rem;
+        background-image: url('/images/comment-bg.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+<!-- Valine配置 -->
+<script>
+    new Valine({
+        el: '#vcomments',
+        enableQQ: true,
+        app_id: 'Py2eOHzSdrnxKPzKrOJaHJOq-9Nh9j0Va',
+        app_key: '9eQhwuCgyshpYKn4rtEhqt4R',
+        path: window.location.pathname,
+        //notify: 'false',
+        //verify: 'false',
+        avatar: 'wavatar',
+        placeholder: 'come on baby~',
+        recordIP: true,
 
-  @media screen and (max-width: 800px) {
-    #vcomments-box {
-      padding: 5px 0px;
+        // 设置Bilibili表情包地址
+        emojiCDN: 'https://cdn.jsdelivr.net/gh/XXXZhy/Blog_Image/valine_emoticon/',
+        // 表情title和图片映射
+        emojiMaps: {
+            "墙角滑稽": "害怕滑稽.gif",
+            "仙女下凡": "仙女下凡.webp",
+            "听歌": "听歌.webp",
+            "嫌弃": "嫌弃.webp",
+            "害羞": "害羞.webp",
+            "彩虹滑稽": "彩虹滑稽.webp",
+            "快走": "快走.webp",
+            "扯脸": "扯脸.webp",
+            "摸脸": "摸脸.webp",
+            "流汗": "流汗.webp",
+            "滑滑板": "滑滑板.webp",
+            "点赞": "点赞.webp",
+            "转圈圈": "转圈圈.webp",
+            // ... 更多表情
+        }
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
     }
-  }
+</script>
 
-  #vcomments-box #vcomments {
-    background-color: #fff;
-  }
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
 
-  .v .vlist .vcard .vh {
-    padding-right: 20px;
-  }
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
 
-  .v .vlist .vcard {
-    padding-left: 10px;
-  }
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
 </style>
 
  
@@ -768,6 +856,11 @@ var _hmt = _hmt || [];
 
 <!-- ClickBoom1 -->
 
+<script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script>
+
+<script src="/js/clickBoom1.js"></script>
+
+
 <!-- ClickBoom2 -->
 
 <!-- CodeCopy -->
@@ -834,12 +927,11 @@ var _hmt = _hmt || [];
 <!-- CanvasBackground -->
 
 
-<script src="/js/dz.js"></script>
-
-
-
     
   </div>
+  <!-- 三角彩带背景 -->
+  <canvas id="evanyou-canvas" style="opacity: 0.3; position: fixed; top: 0px; left: 0px; z-index: -1; width: 100%; height: 100%; pointer-events: none;"></canvas>
+  <script src="/js/evanyou-canvas.js"></script>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/ni-j.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
 
 </html>
