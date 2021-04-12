@@ -33,7 +33,30 @@
   
   
 
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'ParaK', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
   
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?ParaK";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 
 <link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
 <link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
@@ -102,10 +125,10 @@
     <div class="article-entry" itemprop="articleBody">
        
   
-        <div id="aplayer-ewEeQRgN" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-gqKoQMpP" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/2020/10/13/Yehuimei/以父之名.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/2020/10/13/Yehuimei/懦夫.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/2020/10/13/Yehuimei/晴天.flac","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/2020/10/13/Yehuimei/三年二班.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/2020/10/13/Yehuimei/东风破.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/2020/10/13/Yehuimei/你听得到.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/2020/10/13/Yehuimei/同一种调调.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/2020/10/13/Yehuimei/她的睫毛.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/2020/10/13/Yehuimei/爱情悬崖.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/2020/10/13/Yehuimei/梯田.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/2020/10/13/Yehuimei/双刀.ogg","pic":"/2020/10/13/Yehuimei/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-ewEeQRgN");
+				  options.element = document.getElementById("aplayer-gqKoQMpP");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -274,7 +297,55 @@
     
   </nav>
 
-  
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "Py2eOHzSdrnxKPzKrOJaHJOq-9Nh9j0Va",
+    app_key: "9eQhwuCgyshpYKn4rtEhqt4R",
+    path: window.location.pathname,
+    avatar: "wavatar",
+    placeholder: "come on baby~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
      
 </article>
 
@@ -363,15 +434,11 @@
     </li>
     
     <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
       <a class="nav-item-link" target="_blank" rel="noopener" href="http://www.parak.top/contact/">联系</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" target="_blank" rel="noopener" href="http://findingho.me/">FIND</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" target="_blank" rel="noopener" href="http://www.parak.top/time/">TIME</a>
     </li>
     
   </ul>
