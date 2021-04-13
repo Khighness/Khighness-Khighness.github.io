@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-03-26T15:48:12.454Z</updated>
+  <updated>2021-04-13T04:47:47.638Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>MySQL</title>
-    <link href="http://example.com/2021/03/26/MySQL/"/>
-    <id>http://example.com/2021/03/26/MySQL/</id>
-    <published>2021-03-26T02:51:00.000Z</published>
-    <updated>2021-03-26T15:48:12.454Z</updated>
+    <title>Chart</title>
+    <link href="http://example.com/posts/63020/"/>
+    <id>http://example.com/posts/63020/</id>
+    <published>2021-04-13T04:44:46.405Z</published>
+    <updated>2021-04-13T04:47:47.638Z</updated>
     
     
       
@@ -31,6 +31,36 @@
     <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
         
       
+    
+    
+    
+    <category term="share" scheme="http://example.com/categories/share/"/>
+    
+    
+    <category term="chart" scheme="http://example.com/tags/chart/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL</title>
+    <link href="http://example.com/posts/c24675b4/"/>
+    <id>http://example.com/posts/c24675b4/</id>
+    <published>2021-03-26T02:51:00.000Z</published>
+    <updated>2021-04-13T04:26:17.523Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;MySQL&quot;&gt;&lt;a href=&quot;#MySQL&quot; class=&quot;headerlink&quot; title=&quot;MySQL&quot;&gt;&lt;/a&gt;MySQL&lt;/h1&gt;&lt;center&gt;
+    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;💤 Khighness 💤&lt;/font&gt;&lt;br&gt;
+&lt;/center&gt;
+
+
+
+&lt;h2 id=&quot;MySQL概述&quot;&gt;&lt;a href=&quot;#MySQL概述&quot; class=&quot;headerlink&quot; title=&quot;MySQL概述&quot;&gt;&lt;/a&gt;MySQL概述&lt;/h2&gt;&lt;h3 id=&quot;CentOS7安装&quot;&gt;&lt;a href=&quot;#CentOS7安装&quot; class=&quot;headerlink&quot; title=&quot;CentOS7安装&quot;&gt;&lt;/a&gt;CentOS7安装&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;下载RPM安装包&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;下载: &lt;a href=&quot;https://downloads.mysql.com/archives/community/&quot;&gt;mysql download&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;将四个包下载后移动到opt文件夹下&lt;/p&gt;
+&lt;img src=&quot;/posts/c24675b4/image-20210314104200636.png&quot; class=&quot;&quot; title=&quot;s&quot;&gt;</summary>
     
     
     
@@ -43,23 +73,30 @@
   
   <entry>
     <title>Docker</title>
-    <link href="http://example.com/2020/12/02/Docker/"/>
-    <id>http://example.com/2020/12/02/Docker/</id>
+    <link href="http://example.com/posts/f5f9fa9b/"/>
+    <id>http://example.com/posts/f5f9fa9b/</id>
     <published>2020-12-01T16:00:00.000Z</published>
-    <updated>2021-01-27T09:29:58.400Z</updated>
+    <updated>2021-04-13T04:21:27.753Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;Docker&quot;&gt;&lt;a href=&quot;#Docker&quot; class=&quot;headerlink&quot; title=&quot;Docker&quot;&gt;&lt;/a&gt;Docker&lt;/h1&gt;&lt;center&gt;
+    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;💤 Khighness 💤&lt;/font&gt;&lt;br&gt;
+&lt;/center&gt;
+
+
+
+&lt;h2 id=&quot;📖概述&quot;&gt;&lt;a href=&quot;#📖概述&quot; class=&quot;headerlink&quot; title=&quot;📖概述&quot;&gt;&lt;/a&gt;📖概述&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;故事&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;2010年，几个搞 IT 的年轻人，在美国旧金山成立了一家名叫 &lt;code&gt;dotCloud &lt;/code&gt;的公司。&lt;code&gt;dotCloud &lt;/code&gt;的平台即服务（Platform-as-a-Service）提供商。底层技术上，&lt;code&gt;dotCloud&lt;/code&gt; 平台利用了&lt;code&gt;Linux&lt;/code&gt;的 &lt;code&gt;LXC &lt;/code&gt;容器技术。为了方便创建和管理这些容器，&lt;code&gt;dotCloud &lt;/code&gt;基于 Google 公司推出的 &lt;code&gt;Go &lt;/code&gt;语言开发了一套内部工具，之后被命名为 &lt;code&gt;Docker&lt;/code&gt;。&lt;code&gt;Docker &lt;/code&gt;就是这样诞生的。&lt;/p&gt;
+&lt;p&gt;2013年的后端技术领域已经太久没有出现让人振奋的东西了。当然&lt;code&gt;Docker&lt;/code&gt;在发行之后也没用引起行业的关注。在开源之后才爆火。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Docker&lt;/code&gt;定义容器技术标砖使得容器技术的落地变得十分简单，应用可以稳定便携的运行在容器中。&lt;/p&gt;</summary>
     
     
     
-    <category term="Docker" scheme="http://example.com/categories/Docker/"/>
+    <category term="DevOps" scheme="http://example.com/categories/DevOps/"/>
     
     
     <category term="Docker" scheme="http://example.com/tags/Docker/"/>
@@ -68,19 +105,18 @@
   
   <entry>
     <title>负距离</title>
-    <link href="http://example.com/2020/11/23/%E8%B4%9F%E8%B7%9D%E7%A6%BB/"/>
-    <id>http://example.com/2020/11/23/%E8%B4%9F%E8%B7%9D%E7%A6%BB/</id>
+    <link href="http://example.com/posts/33422a09/"/>
+    <id>http://example.com/posts/33422a09/</id>
     <published>2020-11-22T16:00:00.000Z</published>
-    <updated>2020-11-24T15:29:45.578Z</updated>
+    <updated>2021-04-13T03:53:32.690Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;负距离&quot;&gt;&lt;a href=&quot;#负距离&quot; class=&quot;headerlink&quot; title=&quot;负距离&quot;&gt;&lt;/a&gt;负距离&lt;/h1&gt;&lt;img src=&quot;/posts/33422a09/bg.jpg&quot; class=&quot;&quot; title=&quot;bg&quot;&gt;
+
+
+
+&lt;p&gt;想是因为久了所以记不起了，想是因为空气湿了不是眼眶红了。&lt;/p&gt;
+&lt;p&gt;我看见凋零的枫，天空的颜色比油彩更凝重，大块白色的浮云掠过，那栋灰色的建筑闪烁香槟色的光芒，我从未怀疑过自己在梦里。&lt;/p&gt;</summary>
     
     
     
@@ -93,60 +129,81 @@
   
   <entry>
     <title>JWT</title>
-    <link href="http://example.com/2020/11/20/JWT/"/>
-    <id>http://example.com/2020/11/20/JWT/</id>
+    <link href="http://example.com/posts/1bb08f7a/"/>
+    <id>http://example.com/posts/1bb08f7a/</id>
     <published>2020-11-19T16:00:00.000Z</published>
-    <updated>2020-12-18T09:26:44.176Z</updated>
+    <updated>2021-04-13T04:26:04.201Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;JWT&quot;&gt;&lt;a href=&quot;#JWT&quot; class=&quot;headerlink&quot; title=&quot;JWT&quot;&gt;&lt;/a&gt;JWT&lt;/h1&gt;&lt;center&gt;
+    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;💤 Khighness 💤&lt;/font&gt;&lt;br&gt;
+&lt;/center&gt;
+
+&lt;h2 id=&quot;📖官方文档&quot;&gt;&lt;a href=&quot;#📖官方文档&quot; class=&quot;headerlink&quot; title=&quot;📖官方文档&quot;&gt;&lt;/a&gt;📖官方文档&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;🌐官方文档&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;👉&lt;a href=&quot;https://jwt.io/introduction/&quot;&gt;JWT&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;💰JWT概述&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;JSON Web Token&lt;/strong&gt;是一个开放标准（RFC 7519），它定义了一种紧凑且包含的方式，用于在各方之间安全地传输信息作为JSON对象。由于此信息是经过数字签名的，用于在各方面之间安全地传输信息作为JSON对象。由于此信息是经过数字签名地，因此可以被验证和信任。可以使用秘密（或者&lt;strong&gt;HMAC&lt;/strong&gt;算法）或使用&lt;strong&gt;RSA&lt;/strong&gt;或&lt;strong&gt;ECDSA&lt;/strong&gt;的公钥/私钥对对JWT进行签名。&lt;/p&gt;
+&lt;p&gt;尽管可以对JWT进行加密以提供双方之间的保密性，但我们将重点关注已签名的令牌。签名的令牌可以验证其中包含的声明的完整性，而加密的令牌则将这些声明隐藏在其他方的面前。当使用公钥/私钥对对令牌进行签名时，签名还证明只有持有私钥的一方才是对其进行签名的一方。&lt;/p&gt;</summary>
     
     
     
-    <category term="JWT" scheme="http://example.com/categories/JWT/"/>
+    <category term="Web" scheme="http://example.com/categories/Web/"/>
     
     
-    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    <category term="JWT" scheme="http://example.com/tags/JWT/"/>
     
   </entry>
   
   <entry>
     <title>Mybatis-plus</title>
-    <link href="http://example.com/2020/11/12/MybatisPlus/"/>
-    <id>http://example.com/2020/11/12/MybatisPlus/</id>
+    <link href="http://example.com/posts/fd1960c6/"/>
+    <id>http://example.com/posts/fd1960c6/</id>
     <published>2020-11-11T16:00:00.000Z</published>
-    <updated>2020-12-18T09:27:44.077Z</updated>
+    <updated>2021-04-13T04:26:09.896Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;MybatiS-Plus&quot;&gt;&lt;a href=&quot;#MybatiS-Plus&quot; class=&quot;headerlink&quot; title=&quot;MybatiS-Plus&quot;&gt;&lt;/a&gt;MybatiS-Plus&lt;/h1&gt;&lt;center&gt;
+    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;💌 Khighness 💌&lt;/font&gt;&lt;br&gt;
+&lt;/center&gt;
+
+
+
+&lt;h2 id=&quot;📖-官方文档&quot;&gt;&lt;a href=&quot;#📖-官方文档&quot; class=&quot;headerlink&quot; title=&quot;📖 官方文档&quot;&gt;&lt;/a&gt;📖 官方文档&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;🌐文档&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;👉 &lt;a href=&quot;https://mybatis.plus/&quot;&gt;mybatis-plus&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;☄️特性&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;润物无声：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑。&lt;/li&gt;
+&lt;li&gt;效率至上：只需简单配置，即可快速进行单表 CRUD 操作，从而节省大量时间。&lt;/li&gt;
+&lt;li&gt;丰富功能：代码生成、物理分页、性能分析等功能一应俱全。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⛓结构&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;img src=&quot;/posts/fd1960c6/mybatis-plus-framework.jpg&quot; class=&quot;&quot; title=&quot;mybatis-plus-framework&quot;&gt;</summary>
     
     
     
-    <category term="Mybatis-plus" scheme="http://example.com/categories/Mybatis-plus/"/>
+    <category term="Web" scheme="http://example.com/categories/Web/"/>
     
     
-    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    <category term="Mybatis-plus" scheme="http://example.com/tags/Mybatis-plus/"/>
     
   </entry>
   
   <entry>
-    <title>设计模式</title>
-    <link href="http://example.com/2020/11/11/DesignPattern/"/>
-    <id>http://example.com/2020/11/11/DesignPattern/</id>
-    <published>2020-11-10T16:00:00.000Z</published>
-    <updated>2021-04-08T07:04:22.788Z</updated>
+    <title></title>
+    <link href="http://example.com/posts/1/"/>
+    <id>http://example.com/posts/1/</id>
+    <published>2020-11-11T08:36:49.389Z</published>
+    <updated>2021-04-13T04:25:53.710Z</updated>
     
     
       
@@ -159,30 +216,29 @@
     
     
     
-    <category term="Design Pattern" scheme="http://example.com/categories/Design-Pattern/"/>
-    
-    
-    <category term="Java" scheme="http://example.com/tags/Java/"/>
-    
-    <category term="Design Pattern" scheme="http://example.com/tags/Design-Pattern/"/>
     
   </entry>
   
   <entry>
     <title>红黑树</title>
-    <link href="http://example.com/2020/11/07/RBTree/"/>
-    <id>http://example.com/2020/11/07/RBTree/</id>
+    <link href="http://example.com/posts/f89cb603/"/>
+    <id>http://example.com/posts/f89cb603/</id>
     <published>2020-11-06T16:00:00.000Z</published>
-    <updated>2020-12-18T09:28:02.390Z</updated>
+    <updated>2021-04-13T04:28:31.585Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;红黑树&quot;&gt;&lt;a href=&quot;#红黑树&quot; class=&quot;headerlink&quot; title=&quot;红黑树&quot;&gt;&lt;/a&gt;红黑树&lt;/h1&gt;&lt;center&gt;
+    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;💌 Khighness 💌&lt;/font&gt;&lt;br&gt;
+&lt;/center&gt;
+
+
+
+&lt;h2 id=&quot;📓-定义&quot;&gt;&lt;a href=&quot;#📓-定义&quot; class=&quot;headerlink&quot; title=&quot;📓 定义&quot;&gt;&lt;/a&gt;📓 定义&lt;/h2&gt;&lt;p&gt;红黑树是一种含有红黑节点并能自平衡的二叉查找树&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;🌲二叉查找树&lt;/p&gt;
+&lt;p&gt;满足约束：左结点的值小于父结点，父结点的值小于右结点的值。&lt;/p&gt;
+&lt;p&gt;场景理解：假设二叉查找树建立在x-y笛卡尔坐标系中，则所有结点向x轴投影，值正好沿着x轴递增。&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
     
     
     
@@ -195,23 +251,24 @@
   
   <entry>
     <title>叶惠美</title>
-    <link href="http://example.com/2020/10/13/Yehuimei/"/>
-    <id>http://example.com/2020/10/13/Yehuimei/</id>
+    <link href="http://example.com/posts/f8cdfd0a/"/>
+    <id>http://example.com/posts/f8cdfd0a/</id>
     <published>2020-10-13T12:49:15.000Z</published>
-    <updated>2020-11-15T07:26:33.820Z</updated>
+    <updated>2021-04-13T04:31:05.611Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">&lt;div id=&quot;aplayer-hMWdUWiA&quot; class=&quot;aplayer aplayer-tag-marker&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&lt;/div&gt;
+			  &lt;script&gt;
+				  var options = {&quot;narrow&quot;:false,&quot;autoplay&quot;:false,&quot;showlrc&quot;:1,&quot;mode&quot;:&quot;oredr&quot;,&quot;mutex&quot;:true,&quot;theme&quot;:&quot;#e6d0b2&quot;,&quot;preload&quot;:&quot;metadata&quot;,&quot;listmaxheight&quot;:&quot;513px&quot;,&quot;music&quot;:[{&quot;title&quot;:&quot;以父之名&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/以父之名.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;以父之名.txt&quot;},{&quot;title&quot;:&quot;懦夫&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/懦夫.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;懦夫.txt&quot;},{&quot;title&quot;:&quot;晴天&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/晴天.flac&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;晴天.txt&quot;},{&quot;title&quot;:&quot;三年二班&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/三年二班.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;三年二班.txt&quot;},{&quot;title&quot;:&quot;东风破&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/东风破.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;东风破.txt&quot;},{&quot;title&quot;:&quot;你听得到&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/你听得到.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;你听得到.txt&quot;},{&quot;title&quot;:&quot;同一种调调&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/同一种调调.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;同一种调调.txt&quot;},{&quot;title&quot;:&quot;她的睫毛&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/她的睫毛.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;她的睫毛.txt&quot;},{&quot;title&quot;:&quot;爱情悬崖&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/爱情悬崖.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;爱情悬崖.txt&quot;},{&quot;title&quot;:&quot;梯田&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/梯田.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;梯田.txt&quot;},{&quot;title&quot;:&quot;双刀&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/双刀.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;双刀.txt&quot;}]};
+				  options.element = document.getElementById(&quot;aplayer-hMWdUWiA&quot;);
+				  var ap = new APlayer(options);
+			    window.aplayers || (window.aplayers = []);
+				  window.aplayers.push(ap);
+			  &lt;/script&gt;</summary>
     
     
     
-    <category term="Jay" scheme="http://example.com/categories/Jay/"/>
+    <category term="Music" scheme="http://example.com/categories/Music/"/>
     
     
     <category term="叶惠美" scheme="http://example.com/tags/%E5%8F%B6%E6%83%A0%E7%BE%8E/"/>
@@ -220,26 +277,31 @@
   
   <entry>
     <title>Redis</title>
-    <link href="http://example.com/2020/10/08/Redis/"/>
-    <id>http://example.com/2020/10/08/Redis/</id>
+    <link href="http://example.com/posts/bae4ff13/"/>
+    <id>http://example.com/posts/bae4ff13/</id>
     <published>2020-10-07T16:00:00.000Z</published>
-    <updated>2020-12-18T09:28:16.053Z</updated>
+    <updated>2021-04-13T04:30:24.197Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;Redis&quot;&gt;&lt;a href=&quot;#Redis&quot; class=&quot;headerlink&quot; title=&quot;Redis&quot;&gt;&lt;/a&gt;Redis&lt;/h1&gt;&lt;center&gt;
+    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;💌 Khighness 💌&lt;/font&gt;&lt;br&gt;
+&lt;/center&gt;
+
+
+
+&lt;h2 id=&quot;1-📩NoSQL概述&quot;&gt;&lt;a href=&quot;#1-📩NoSQL概述&quot; class=&quot;headerlink&quot; title=&quot;1. 📩NoSQL概述&quot;&gt;&lt;/a&gt;1. 📩NoSQL概述&lt;/h2&gt;&lt;h3 id=&quot;1-1-📃简介&quot;&gt;&lt;a href=&quot;#1-1-📃简介&quot; class=&quot;headerlink&quot; title=&quot;1.1 📃简介&quot;&gt;&lt;/a&gt;1.1 📃简介&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;⚡ NoSQL&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;NoSQL != 非SQL &lt;/p&gt;
+&lt;p&gt;NoSQL == Not Only SQL&lt;/p&gt;
+&lt;p&gt;不仅仅是SQL！&lt;/p&gt;
+&lt;p&gt;泛指非关系型的数据库。克服大并发。&lt;/p&gt;
+&lt;p&gt;很多的数据类型，用户的个人信息、社交网络和地理位置，这些数据类型的存储不需要一个固定的格式，不需要多元的操作就可以横向扩展。&lt;/p&gt;</summary>
     
     
     
     <category term="Redis" scheme="http://example.com/categories/Redis/"/>
     
-    
-    <category term="Redis" scheme="http://example.com/tags/Redis/"/>
     
     <category term="NoSQL" scheme="http://example.com/tags/NoSQL/"/>
     
@@ -249,26 +311,50 @@
   
   <entry>
     <title>Regex</title>
-    <link href="http://example.com/2020/10/06/Regex/"/>
-    <id>http://example.com/2020/10/06/Regex/</id>
+    <link href="http://example.com/posts/83c5d7ce/"/>
+    <id>http://example.com/posts/83c5d7ce/</id>
     <published>2020-10-05T16:00:00.000Z</published>
-    <updated>2020-12-18T09:28:26.147Z</updated>
+    <updated>2021-04-13T04:30:48.354Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;Regex&quot;&gt;&lt;a href=&quot;#Regex&quot; class=&quot;headerlink&quot; title=&quot;Regex&quot;&gt;&lt;/a&gt;Regex&lt;/h1&gt;&lt;center&gt;
+    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;Khighness&lt;/font&gt;&lt;br&gt;
+&lt;/center&gt;
+
+
+
+&lt;h2 id=&quot;1-简介&quot;&gt;&lt;a href=&quot;#1-简介&quot; class=&quot;headerlink&quot; title=&quot;1. 简介&quot;&gt;&lt;/a&gt;1. 简介&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Regex&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;正则表达式，Regular Expression&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;为什么需要正则表达式？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;文本的复杂处理&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;正则表达式的优势和用途？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;一种强大而灵活的文本处理工具&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;大部分编程语言、数据库、文本编辑器、开发环境都支持正则表达式&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;正则表达式定义：&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一种字符串匹配的模式&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;开发中使用&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;分析所要匹配的数据，写出测试用的典型数据&lt;/li&gt;
+&lt;li&gt;在工具软件中进行匹配测试&lt;/li&gt;
+&lt;li&gt;在程序中调用测试的正则表达式&lt;/li&gt;
+&lt;/ul&gt;</summary>
     
     
     
-    <category term="Regex" scheme="http://example.com/categories/Regex/"/>
+    <category term="Algorithm" scheme="http://example.com/categories/Algorithm/"/>
     
-    
-    <category term="Java" scheme="http://example.com/tags/Java/"/>
     
     <category term="Regex" scheme="http://example.com/tags/Regex/"/>
     
@@ -276,19 +362,23 @@
   
   <entry>
     <title>博弈论</title>
-    <link href="http://example.com/2020/10/03/Game/"/>
-    <id>http://example.com/2020/10/03/Game/</id>
+    <link href="http://example.com/posts/12bcd26e/"/>
+    <id>http://example.com/posts/12bcd26e/</id>
     <published>2020-10-02T16:00:00.000Z</published>
-    <updated>2020-12-18T09:26:01.359Z</updated>
+    <updated>2021-04-13T04:22:48.978Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;博弈论&quot;&gt;&lt;a href=&quot;#博弈论&quot; class=&quot;headerlink&quot; title=&quot;博弈论&quot;&gt;&lt;/a&gt;博弈论&lt;/h1&gt;&lt;center&gt;
+    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;Khighness、寻找必败态&lt;/font&gt;&lt;br&gt;
+&lt;/center&gt;
+
+
+
+
+
+&lt;h2 id=&quot;1-巴什博弈&quot;&gt;&lt;a href=&quot;#1-巴什博弈&quot; class=&quot;headerlink&quot; title=&quot;1. 巴什博弈&quot;&gt;&lt;/a&gt;1. 巴什博弈&lt;/h2&gt;&lt;h3 id=&quot;1-1-问题&quot;&gt;&lt;a href=&quot;#1-1-问题&quot; class=&quot;headerlink&quot; title=&quot;1.1 问题&quot;&gt;&lt;/a&gt;1.1 问题&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;两个顶尖聪明的人在玩游戏，有 n 个石子，每个人每次拿 1~m 个石头，拿掉最后一块石头的人就是获胜者。请问先手与后手谁必胜？&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
     
     
     
@@ -301,102 +391,137 @@
   
   <entry>
     <title>大数据</title>
-    <link href="http://example.com/2020/10/02/Hadoop/"/>
-    <id>http://example.com/2020/10/02/Hadoop/</id>
+    <link href="http://example.com/posts/ec060e02/"/>
+    <id>http://example.com/posts/ec060e02/</id>
     <published>2020-10-01T16:00:00.000Z</published>
-    <updated>2020-12-18T09:26:13.166Z</updated>
+    <updated>2021-04-13T04:23:13.000Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;大数据与云计算&quot;&gt;&lt;a href=&quot;#大数据与云计算&quot; class=&quot;headerlink&quot; title=&quot;大数据与云计算&quot;&gt;&lt;/a&gt;大数据与云计算&lt;/h1&gt;&lt;center&gt;
+    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; font-size=100px&gt;💌 Khighness 💌&lt;/font&gt;&lt;br&gt;
+&lt;/center&gt;
+
+
+
+
+
+&lt;h2 id=&quot;1-安装CentOS7&quot;&gt;&lt;a href=&quot;#1-安装CentOS7&quot; class=&quot;headerlink&quot; title=&quot;1. 安装CentOS7&quot;&gt;&lt;/a&gt;1. 安装CentOS7&lt;/h2&gt;&lt;h3 id=&quot;1-下载镜像&quot;&gt;&lt;a href=&quot;#1-下载镜像&quot; class=&quot;headerlink&quot; title=&quot;1. 下载镜像&quot;&gt;&lt;/a&gt;1. 下载镜像&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;ISO: &lt;a href=&quot;https://www.centos.org/download/&quot;&gt;CentOS7 X86_64&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;img src=&quot;/posts/ec060e02/image-20200915192222693.png&quot; class=&quot;&quot; title=&quot;image-20200915192222693&quot;&gt;</summary>
     
     
     
-    <category term="BigData" scheme="http://example.com/categories/BigData/"/>
+    <category term="Cloud" scheme="http://example.com/categories/Cloud/"/>
     
-    
-    <category term="Java" scheme="http://example.com/tags/Java/"/>
     
     <category term="Hadoop" scheme="http://example.com/tags/Hadoop/"/>
-    
-    <category term="HBase" scheme="http://example.com/tags/HBase/"/>
-    
-    <category term="CentOS7" scheme="http://example.com/tags/CentOS7/"/>
     
   </entry>
   
   <entry>
     <title>Netty</title>
-    <link href="http://example.com/2020/10/01/Netty/"/>
-    <id>http://example.com/2020/10/01/Netty/</id>
+    <link href="http://example.com/posts/1c6ba3e2/"/>
+    <id>http://example.com/posts/1c6ba3e2/</id>
     <published>2020-09-30T16:00:00.000Z</published>
-    <updated>2020-12-18T09:27:53.447Z</updated>
+    <updated>2021-04-13T04:01:33.372Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;Netty&quot;&gt;&lt;a href=&quot;#Netty&quot; class=&quot;headerlink&quot; title=&quot;Netty&quot;&gt;&lt;/a&gt;Netty&lt;/h1&gt;&lt;center&gt;
+    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;Khighness&lt;/font&gt;&lt;br&gt;
+&lt;/center&gt;
+
+&lt;h2 id=&quot;1-IO&quot;&gt;&lt;a href=&quot;#1-IO&quot; class=&quot;headerlink&quot; title=&quot;1. IO&quot;&gt;&lt;/a&gt;1. IO&lt;/h2&gt;&lt;h3 id=&quot;1-1-BIO&quot;&gt;&lt;a href=&quot;#1-1-BIO&quot; class=&quot;headerlink&quot; title=&quot;1.1 BIO&quot;&gt;&lt;/a&gt;1.1 BIO&lt;/h3&gt;&lt;h4 id=&quot;1-1-1-介绍&quot;&gt;&lt;a href=&quot;#1-1-1-介绍&quot; class=&quot;headerlink&quot; title=&quot;1.1.1 介绍&quot;&gt;&lt;/a&gt;1.1.1 介绍&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;Java BIO就是传统的Java IO编程，相关API都在java.io&lt;/li&gt;
+&lt;li&gt;BIO (&lt;strong&gt;blocking I/O&lt;/strong&gt;)：&lt;strong&gt;同步并阻塞&lt;/strong&gt;，服务器实现模式为一个连接一个线程，即有连接请求时服务器就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销&lt;/li&gt;
+&lt;li&gt;BIO方式适用于连接数目较小且固定的架构，这种方式对服务器资源要求比较高，并发局限于应用中，JDK1.4以前的唯一选择&lt;/li&gt;
+&lt;/ul&gt;</summary>
     
     
     
-    <category term="-Netty" scheme="http://example.com/categories/Netty/"/>
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
     
     
-    <category term="Java" scheme="http://example.com/tags/Java/"/>
-    
-    <category term="Netty" scheme="http://example.com/tags/Netty/"/>
+    <category term="Server" scheme="http://example.com/tags/Server/"/>
     
   </entry>
   
   <entry>
     <title>Java8-Stream</title>
-    <link href="http://example.com/2020/09/20/Java8-Stream/"/>
-    <id>http://example.com/2020/09/20/Java8-Stream/</id>
+    <link href="http://example.com/posts/3e51ba23/"/>
+    <id>http://example.com/posts/3e51ba23/</id>
     <published>2020-09-19T16:00:00.000Z</published>
-    <updated>2020-12-18T09:26:31.352Z</updated>
+    <updated>2021-04-13T04:33:03.461Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;Java8-Stream&quot;&gt;&lt;a href=&quot;#Java8-Stream&quot; class=&quot;headerlink&quot; title=&quot;Java8-Stream&quot;&gt;&lt;/a&gt;Java8-Stream&lt;/h1&gt;&lt;center&gt;
+    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;Khighness&lt;/font&gt;&lt;br&gt;
+&lt;/center&gt;
+
+
+
+&lt;h2 id=&quot;一-概述&quot;&gt;&lt;a href=&quot;#一-概述&quot; class=&quot;headerlink&quot; title=&quot;一. 概述&quot;&gt;&lt;/a&gt;一. 概述&lt;/h2&gt;&lt;p&gt;​       Stream 是 Java8 中处理集合的关键抽象概念，它可以指定你希望对集合进行的操作，可以执行非常复杂的查找、过滤和映射数据等操作。使用Stream API 对集合数据进行操作，就类似于使用 SQL 执行的数据库查询。也可以使用 Stream API 来并行执行操作。简而言之，Stream API 提供了一种高效且易于使用的处理数据的方式。&lt;/p&gt;
+&lt;p&gt;特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;不是数据结构，不会保存数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不会修改原来的数据源，它会将操作后的数据保存到另外一个对象中。（保留意见：毕竟peek方法可以修改流中元素）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;惰性求值，流在中间处理过程中，只是对操作进行了记录，并不会立即执行，需要等到执行终止操作的时候才会进行实际的计算。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
     
     
     
-    <category term="-Stream" scheme="http://example.com/categories/Stream/"/>
+    <category term="Java" scheme="http://example.com/categories/Java/"/>
     
     
-    <category term="Java" scheme="http://example.com/tags/Java/"/>
+    <category term="Java8" scheme="http://example.com/tags/Java8/"/>
     
   </entry>
   
   <entry>
     <title>Http状态码</title>
-    <link href="http://example.com/2020/06/01/HttpCode/"/>
-    <id>http://example.com/2020/06/01/HttpCode/</id>
+    <link href="http://example.com/posts/140645a5/"/>
+    <id>http://example.com/posts/140645a5/</id>
     <published>2020-05-31T16:00:00.000Z</published>
-    <updated>2020-12-18T09:26:22.218Z</updated>
+    <updated>2021-04-13T04:23:27.120Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">&lt;h1 id=&quot;Http状态码&quot;&gt;&lt;a href=&quot;#Http状态码&quot; class=&quot;headerlink&quot; title=&quot;Http状态码&quot;&gt;&lt;/a&gt;Http状态码&lt;/h1&gt;&lt;center&gt;
+    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;Khighness&lt;/font&gt;&lt;br&gt;
+&lt;/center&gt;
+
+
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;分类&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;1**&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;信息，服务器收到请求，需要请求者继续执行操作&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;2**&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;成功，操作被成功接收并处理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;3**&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;重定向，需要进一步的操作以完成请求&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;4**&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;客户端错误，请求白蛤语法错误或无分发完成请求&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;5**&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;服务器错误，服务器才处理请求的过程中发生了错误&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;</summary>
     
     
     

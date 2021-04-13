@@ -1,0 +1,1972 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="K殿" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    大数据 |  K殿
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/k.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'ParaK', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+  
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?ParaK";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  <!-- 封面标题闪烁 -->
+  <link rel="stylesheet" href="/css/titleFlash.css">
+  <!-- 浏览器搞笑标题 -->
+<!--  <script type="text/javascript">
+  //
+  var OriginTitle = document.title;
+  var titleTime;
+  document.addEventListener('visibilitychange', function () {
+      if (location.href != "https://www.xxxzhy.com/"){//主页不变
+          if (document.hidden) {
+              //$('[rel="icon"]').attr('href', "/funny.ico");
+              document.title = '/(ㄒoㄒ)/你弄丢了XXXZhy';
+              clearTimeout(titleTime);
+          }else {
+              //$('[rel="icon"]').attr('href', "/favicon.ico");
+              document.title = '(ฅ>ω<*ฅ) 噫又好啦~' + OriginTitle;
+              titleTime = setTimeout(function () {
+                  document.title = OriginTitle;
+              }, 2000);
+          }
+      }
+  });
+  </script> -->
+  <!-- 百度自动推送 -->
+  <script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+<link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
+</head>
+
+</html>
+
+
+<body>
+  <div id="app">
+    
+      <canvas class="fireworks"></canvas>
+      <style>
+        .fireworks {
+          position: fixed;
+          left: 0;
+          top: 0;
+          z-index: 99999;
+          pointer-events: none;
+        }
+      </style>
+      
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Hadoop"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  大数据
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/posts/ec060e02/" class="article-date">
+  <time datetime="2020-10-01T16:00:00.000Z" itemprop="datePublished">2020-10-02</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Cloud/">Cloud</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">6.6k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">35 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="大数据与云计算"><a href="#大数据与云计算" class="headerlink" title="大数据与云计算"></a>大数据与云计算</h1><center>
+    <font face="Kristen ITC" color="#555555" font-size=100px>💌 Khighness 💌</font><br>
+</center>
+
+
+
+
+
+<h2 id="1-安装CentOS7"><a href="#1-安装CentOS7" class="headerlink" title="1. 安装CentOS7"></a>1. 安装CentOS7</h2><h3 id="1-下载镜像"><a href="#1-下载镜像" class="headerlink" title="1. 下载镜像"></a>1. 下载镜像</h3><blockquote>
+<p>ISO: <a target="_blank" rel="noopener" href="https://www.centos.org/download/">CentOS7 X86_64</a></p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915192222693.png" class="" title="image-20200915192222693">
+
+
+
+<a id="more"></a>
+
+
+
+<h3 id="2-安装系统"><a href="#2-安装系统" class="headerlink" title="2. 安装系统"></a>2. 安装系统</h3><img src="/posts/ec060e02/image-20200914201854650.png" class="" title="image-20200914201854650">
+
+<img src="/posts/ec060e02/image-20200914201950325.png" class="" title="image-20200914201950325">
+
+
+
+<img src="/posts/ec060e02/image-20200914202216056.png" class="" title="image-20200914202216056">
+
+
+
+<h3 id="3-虚拟机完成"><a href="#3-虚拟机完成" class="headerlink" title="3. 虚拟机完成"></a>3. 虚拟机完成</h3><img src="/posts/ec060e02/image-20200914204312121.png" class="" title="image-20200914204312121">
+
+
+
+<h3 id="4-安装Docker"><a href="#4-安装Docker" class="headerlink" title="4. 安装Docker"></a>4. 安装Docker</h3><blockquote>
+<p>Docker要求CentOS系统的内核版本高于 3.10，查看CentOS版本是否支持 Docker</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure>
+
+<p><img src="Hadoop%5Cimage-20200922202458823.png" alt="image-20200922202458823"></p>
+<blockquote>
+<p>确保yum包更新到最新</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum update</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200922202118583.png" class="" title="image-20200922202118583">
+
+<img src="/posts/ec060e02/image-20200922202544937.png" class="" title="image-20200922202544937">
+
+<blockquote>
+<p>安装过Docker则卸载旧版本</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum remove docker  docker-common docker-selinux docker-engine</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200922204747806.png" class="" title="image-20200922204747806">
+
+<blockquote>
+<p>安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200922203530629.png" class="" title="image-20200922203530629">
+
+<blockquote>
+<p>设置yum源（使用阿里云地址）</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200922203620500.png" class="" title="image-20200922203620500">
+
+<blockquote>
+<p>可以查看所有仓库中所有的docker版本，并选择特定版本安装</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum list docker-ce --showduplicates | sort -r</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200922203726104.png" class="" title="image-20200922203726104">
+
+<blockquote>
+<p>安装最新版本的 Docker Engine-Community 和 containerd</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200922204125206.png" class="" title="image-20200922204125206">
+
+<blockquote>
+<p>验证是否安装成功</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200922204248819.png" class="" title="image-20200922204248819">
+
+<blockquote>
+<p>启动Docker</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200922204613291.png" class="" title="image-20200922204613291">
+
+<blockquote>
+<p>运行Hello World</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200922204637363.png" class="" title="image-20200922204637363">
+
+
+
+<h2 id="2-搭建Hadoop集群"><a href="#2-搭建Hadoop集群" class="headerlink" title="2. 搭建Hadoop集群"></a>2. 搭建Hadoop集群</h2><h3 id="1-下载并配置JDK"><a href="#1-下载并配置JDK" class="headerlink" title="1. 下载并配置JDK"></a>1. 下载并配置JDK</h3><blockquote>
+<p>下载 jdk</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install java-1.8.0-openjdk* -y</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914205909499.png" class="" title="image-20200914205909499">
+
+<blockquote>
+<p>获取JAVA_HOME</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dirname $(readlink $(readlink $(which java))) </span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>配置环境变量</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.262.b10-0.el7_8.x86_64</span><br><span class="line">export JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">export CLASSPATH=$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH</span><br><span class="line">export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914210707353.png" class="" title="image-20200914210707353">
+
+<blockquote>
+<p>查看JAVA_HOME</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br><span class="line">echo $JAVA_HOME</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200930135506971.png" class="" title="image-20200930135506971">
+
+<blockquote>
+<p>测试</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200930135637993.png" class="" title="image-20200930135637993">
+
+
+
+<h3 id="2-配置Hosts列表"><a href="#2-配置Hosts列表" class="headerlink" title="2. 配置Hosts列表"></a>2. 配置Hosts列表</h3><p>由于两台虚拟机是同一台虚拟机复制而来，所以必须先重新生成Mac地址</p>
+<img src="/posts/ec060e02/image-20200930135951474.png" class="" title="image-20200930135951474">
+
+<blockquote>
+<p>master 和 slave 禁用防火墙</p>
+</blockquote>
+<p>停止防火墙 </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+
+<p>禁用防火墙</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable firewalld</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200913225928453.png" class="" title="image-20200913225928453">
+
+<blockquote>
+<p>master 和 slave 修改主机名</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi &#x2F;etc&#x2F;sysconfig&#x2F;network</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200913230804529.png" class="" title="image-20200913230804529">
+
+<img src="/posts/ec060e02/image-20200913230917724.png" class="" title="image-20200913230917724">
+
+<blockquote>
+<p>确认修改</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200913231003539.png" class="" title="image-20200913231003539">
+
+<img src="/posts/ec060e02/image-20200913231047961.png" class="" title="image-20200913231047961">
+
+<blockquote>
+<p>master 和 slave 执行 ifconfig 查询 IP</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914215339951.png" class="" title="image-20200914215339951">
+
+<img src="/posts/ec060e02/image-20200914215731073.png" class="" title="image-20200914215731073">
+
+<blockquote>
+<p> master 和 slave 将IP地址和主机名分别添加至/etc/hosts中</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914215942690.png" class="" title="image-20200914215942690">
+
+<blockquote>
+<p>master 和 slave 之间互ping</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200914220102245.png" class="" title="image-20200914220102245">
+
+<img src="/posts/ec060e02/image-20200914220213547.png" class="" title="image-20200914220213547">
+
+
+
+<h3 id="3-集群ssh免密登录"><a href="#3-集群ssh免密登录" class="headerlink" title="3. 集群ssh免密登录"></a>3. 集群ssh免密登录</h3><p>对master操作：</p>
+<blockquote>
+<p>master 生成公钥</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914220829338.png" class="" title="image-20200914220829338">
+
+<blockquote>
+<p>将公钥追加到授权列表</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914221008829.png" class="" title="image-20200914221008829">
+
+<blockquote>
+<p>修改authorized_keys文件的权限</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 600 ~/.ssh/authorized_keys </span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914221036706.png" class="" title="image-20200914221036706">
+
+<blockquote>
+<p>将authorized_keys文件复制到slave节点</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp ~/.ssh/authorized_keys parak@slave:~/.ssh</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914221427275.png" class="" title="image-20200914221427275">
+
+<blockquote>
+<p>查看slave的.ssh的目录</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200914221514758.png" class="" title="image-20200914221514758">
+
+<blockquote>
+<p>修改master和slave的SSH配置</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br><span class="line">vi /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914221856072.png" class="" title="image-20200914221856072">
+
+<blockquote>
+<p>使用ssh-add指令将私钥加入并重启sshd服务</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa</span><br><span class="line">service sshd restart</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>测试免密登录</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200914223950719.png" class="" title="image-20200914223950719">
+
+<p>ssh登录依然需要密码，我们可以去看一下master的日志文件</p>
+<blockquote>
+<p>cat  var/log/secure </p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200916160625256.png" class="" title="image-20200916160625256">
+
+<blockquote>
+<p><strong>原因</strong></p>
+<p>sshd为了安全，对属主的目录和文件权限有所要求。</p>
+<p>如果权限不对，则ssh的免密码登陆不生效。</p>
+</blockquote>
+<blockquote>
+<p><strong>解决</strong></p>
+<p>将.ssh目录的权限改为755</p>
+<p>id_rsa.pub和authorized_keys权限改为644</p>
+<p>id_rsa权限必须为600</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chmod 755 .ssh</span><br><span class="line">cd .ssh</span><br><span class="line">chmod 644 id_rsa.pub authorized_keys</span><br><span class="line">chmod 600 id_rsa</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>再次测试免密登录</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200914224837430.png" class="" title="image-20200914224837430">
+
+
+
+<h3 id="4-下载并配置Hadoop"><a href="#4-下载并配置Hadoop" class="headerlink" title="4. 下载并配置Hadoop"></a>4. 下载并配置Hadoop</h3><blockquote>
+<p>下载：<a target="_blank" rel="noopener" href="https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-3.3.0/hadoop-3.3.0.tar.gz">hadoop-2.9.2</a>    选择bsfu的北京外国语学院的镜像, 速度流批</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200914211714263.png" class="" title="image-20200914211714263">
+
+<blockquote>
+<p>解压下载的压缩包</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf hadoop-2.3.2.tar.gz</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914211633182.png" class="" title="image-20200914211633182">
+
+<blockquote>
+<p>修改文件权限</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 hadoop-env.sh core-site.xml hdfs-site.xml yarn-site.xml mapred-site.xml slaves</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914212318855.png" class="" title="image-20200914212318855">
+
+<blockquote>
+<p>配置环境变量</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gedit /home/parak/hadoop/hadoop-2.9.2/etc/hadoop/hadoop-env.sh</span><br><span class="line"></span><br><span class="line">添加</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.262.b10-0.el7_8.x86_64</span><br><span class="line">export HADOOP_HOME=/home/parak/hadoop/hadoop-2.9.2</span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$&#123;HADOOP_HOME&#125;/bin:$&#123;HADOOP_HOME&#125;/sbin:$PATH</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>配置核心组件  <strong><em>core-site.xml</em></strong></p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></span><br><span class="line"><span class="comment">  you may not use this file except in compliance with the License.</span></span><br><span class="line"><span class="comment">  You may obtain a copy of the License at</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="comment">  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></span><br><span class="line"><span class="comment">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="comment">  See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="comment">  limitations under the License. See accompanying LICENSE file.</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Put site-specific property overrides in this file. --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://master:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>/home/parak/hadoopdata<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<img src="/posts/ec060e02/image-20200914213003704.png" class="" title="image-20200914213003704">
+
+<blockquote>
+<p>配置文件系统  <strong><em>hdfs.site.xml</em></strong></p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></span><br><span class="line"><span class="comment">  you may not use this file except in compliance with the License.</span></span><br><span class="line"><span class="comment">  You may obtain a copy of the License at</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="comment">  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></span><br><span class="line"><span class="comment">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="comment">  See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="comment">  limitations under the License. See accompanying LICENSE file.</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Put site-specific property overrides in this file. --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<img src="/posts/ec060e02/image-20200914213047280.png" class="" title="image-20200914213047280">
+
+<blockquote>
+<p>配置文件系统  <strong><em>yarn-site.xml</em></strong></p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot;?&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></span><br><span class="line"><span class="comment">  you may not use this file except in compliance with the License.</span></span><br><span class="line"><span class="comment">  You may obtain a copy of the License at</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">  Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="comment">  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></span><br><span class="line"><span class="comment">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="comment">  See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="comment">  limitations under the License. See accompanying LICENSE file.</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Site specific YARN configuration properties --&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>master:18040<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.scheduler.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">value</span>&gt;</span>master:18030<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.resource-tracker.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">value</span>&gt;</span>master:18025<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.admin.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">value</span>&gt;</span>master:18141<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.webapp.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">value</span>&gt;</span>master:18088<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<img src="/posts/ec060e02/image-20200914213215770.png" class="" title="image-20200914213215770">
+
+<blockquote>
+<p>配置计算框架  <strong><em>mapred-site.xml</em></strong></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span><br><span class="line">  you may not use this file except in compliance with the License.</span><br><span class="line">  You may obtain a copy of the License at</span><br><span class="line"></span><br><span class="line">    http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line"></span><br><span class="line">  Unless required by applicable law or agreed to in writing, software</span><br><span class="line">  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line">  See the License for the specific language governing permissions and</span><br><span class="line">  limitations under the License. See accompanying LICENSE file.</span><br><span class="line"><span class="meta">--&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;!-- Put site-specific property overrides in this file. --&gt;</span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line">	&lt;property&gt;</span><br><span class="line">		&lt;name&gt;mapreduce.framework.name&lt;/name&gt;</span><br><span class="line">		&lt;value&gt;yarn&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<img src="/posts/ec060e02/image-20200914213254714.png" class="" title="image-20200914213254714">
+
+<blockquote>
+<p>在master节点配置slaves文件 </p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200914225547865.png" class="" title="image-20200914225547865">
+
+
+
+<h3 id="5-启动Hadoo集群"><a href="#5-启动Hadoo集群" class="headerlink" title="5. 启动Hadoo集群"></a>5. 启动Hadoo集群</h3><blockquote>
+<p>切换用户  <strong><em>parak</em></strong></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su parak</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>配置Hadoop启动的系统环境变量</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">cd</span><br><span class="line">gedit ~/.bash_profile</span><br><span class="line"></span><br><span class="line">添加：</span><br><span class="line"><span class="meta">#</span><span class="bash">HADOOP</span></span><br><span class="line">export HADOOP_HOME=/home/parak/hadoop/hadoop-2.9.2</span><br><span class="line">export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH</span><br><span class="line"></span><br><span class="line">执行：</span><br><span class="line">source ~/.bash_profile</span><br><span class="line"></span><br><span class="line">验证：</span><br><span class="line">echo $&#123;HADOOP_HOME&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914213558226.png" class="" title="image-20200914213558226">
+
+<img src="/posts/ec060e02/image-20200914230053210.png" class="" title="image-20200914230053210">
+
+<blockquote>
+<p>创建数据目录  <strong><em>hadoopdata</em></strong></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /home/parak/hadoopdata</span><br><span class="line">chmod 777 hadoopdata/</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914225858363.png" class="" title="image-20200914225858363">
+
+<blockquote>
+<p>格式化文件系统</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs namenode -format</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914230347627.png" class="" title="image-20200914230347627">
+
+<img src="/posts/ec060e02/image-20200914230450.png" class="" title="image-20200914230450">
+
+<blockquote>
+<p>启动Hadoop</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sbin/start-all.sh</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914232331519.png" class="" title="image-20200914232331519">
+
+<blockquote>
+<p>查看进程</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200914232056642.png" class="" title="image-20200914232056642">
+
+<img src="/posts/ec060e02/image-20200914232211741.png" class="" title="image-20200914232211741">
+
+
+
+<blockquote>
+<p>进入 <strong>FireFox</strong> 输入：<a target="_blank" rel="noopener" href="http://master:50070/">http://master:50070/</a>   </p>
+<p>检查 <strong>namenode</strong> 和 <strong>datanode</strong> 是否正常</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200914232603284.png" class="" title="image-20200914232603284">
+
+
+
+<blockquote>
+<p>进入 <strong>FireFox</strong> 输入：<a target="_blank" rel="noopener" href="http://master:18088/">http://master:18088/</a></p>
+<p>检查 <strong>Yarn</strong> 是否正常</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200914232824073.png" class="" title="image-20200914232824073">
+
+
+
+<blockquote>
+<p>运行PI实例检查Hadoop集群是否搭建成功</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/hadoop/hadoop-2.9.2/share/hadoop/mapreduce/</span><br><span class="line">hadoop jar hadoop-mapreduce-examples-2.9.2.jar pi 10 10</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915083538083.png" class="" title="image-20200915083538083">
+
+<blockquote>
+<p> <strong>报错</strong>：未找到主机路由</p>
+<p><strong>分析</strong>：slave的防火墙没有关闭</p>
+</blockquote>
+<blockquote>
+<p>检查slave的防火墙</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915084136061.png" class="" title="image-20200915084136061">
+
+<blockquote>
+<p>关闭且禁用防火墙</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl disable firewalld</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915084354244.png" class="" title="image-20200915084354244">
+
+<blockquote>
+<p>再次运行PI实例</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915084909905.png" class="" title="image-20200915084909905">
+
+<img src="/posts/ec060e02/image-20200915084933355.png" class="" title="image-20200915084933355">
+
+<p>可以看到运行结果：PI = 3.20000000000000000000</p>
+<p><strong>综上，集群正常启动</strong></p>
+<blockquote>
+<p>关闭Hadoop集群</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915085606053.png" class="" title="image-20200915085606053">
+
+
+
+
+
+<h2 id="3-分布式文件系统HDFS上的操作"><a href="#3-分布式文件系统HDFS上的操作" class="headerlink" title="3. 分布式文件系统HDFS上的操作"></a>3. 分布式文件系统HDFS上的操作</h2><h3 id="1-利用Shell命令与HDFS进行交互"><a href="#1-利用Shell命令与HDFS进行交互" class="headerlink" title="1. 利用Shell命令与HDFS进行交互"></a>1. 利用Shell命令与HDFS进行交互</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs    //适用于任何不同的文件系统，比如本地文件系统和HDFS文件系统</span><br><span class="line">hadoop dfa   //只能适用于HDFS文件系统</span><br><span class="line">hdfs dfs     //跟hadoop dfs的命令作用一样，也只能适用于HDFS文件系统</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915091307833.png" class="" title="image-20200915091307833">
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -help put</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915091423474.png" class="" title="image-20200915091423474">
+
+
+
+<h4 id="1-目录操作"><a href="#1-目录操作" class="headerlink" title="(1) 目录操作"></a>(1) 目录操作</h4><blockquote>
+<p>在HDFS中为parak用户创建一个用户目录，命令如下：</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir -p /user/parak</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以使用如下命令显示HDFS中/user目录下的内容：</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -ls /user</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915091936795.png" class="" title="image-20200915091936795">
+
+<blockquote>
+<p>创建/user/parak/input目录</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir -p /user/parak/input</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看/user/parak/input目录是否创建成功</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -ls /user/parak</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915094202790.png" class="" title="image-20200915094202790">
+
+<blockquote>
+<p>创建/input目录</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir -p /input</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>删除/input目录</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -rm -r /input</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看/input目录是否删除成功</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -ls /</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915094415033.png" class="" title="image-20200915094415033">
+
+
+
+<h4 id="2-文件操作"><a href="#2-文件操作" class="headerlink" title="(2) 文件操作"></a>(2) 文件操作</h4><p>​       在实际应用中，经常需要从本地文件系统向HDFS中上传文件，或者把HDFS中的文件下载到本地文件系统中。</p>
+<blockquote>
+<p>首先，使用vim编辑器，在本地Linux文件系统的“/home/parak/”目录下创建一个文件myLocalFile.txt，里面输入：</p>
+</blockquote>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Hadoop</span><br><span class="line">MapReduce</span><br><span class="line">Spark</span><br><span class="line">Khighness</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然后，把本地文件系统的“/home/parak/myLocalFile.txt”上传到HDFS中的当前用户目录的input目录下，也就是上传到HDFS的“/user/parak/input/”目录下：</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -put /home/parak/myLocalFile.txt /user/parak/input</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看一下文件是否成功上传到HDFS中：</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -ls /user/parak/input</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看HDFS中的myLocalFile.txt这个文件的内容</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -cat /user/parak/input/myLocalFile.txt</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915094905208.png" class="" title="image-20200915094905208">
+
+<blockquote>
+<p>把HDFS中的myLocalFile.txt文件下载到本地文件系统中的“/home/parak/下载/”这个目录下</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -get /user/parak/input/myLocalFile.txt /home/parak/下载</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在本地查看下载下来的文件myLocalFile.txt</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd 下载</span><br><span class="line">ll</span><br><span class="line">cat myLocalFile.txt</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915100241999.png" class="" title="image-20200915100241999">
+
+<blockquote>
+<p>把HDFS的“/user/parak/input/myLocalFile.txt”文件，拷贝到HDFS的另外一个目录“/input”中</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir /input</span><br><span class="line">hadoop fs -cp /user/parak/input/myLocalFile.txt /input</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915100148440.png" class="" title="image-20200915100148440">
+
+
+
+<h3 id="2-利用Web界面管理HDFS"><a href="#2-利用Web界面管理HDFS" class="headerlink" title="2. 利用Web界面管理HDFS"></a>2. 利用Web界面管理HDFS</h3><blockquote>
+<p>在本机Chorme输入 <a target="_blank" rel="noopener" href="http://192.168.117.141:50070/">http://192.168.117.141:50070</a> , 即可看到HDFS的Web管理界面</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915093904228.png" class="" title="image-20200915093904228">
+
+
+
+
+
+<h2 id="4-分布式文件系统HDFS上的编程实践"><a href="#4-分布式文件系统HDFS上的编程实践" class="headerlink" title="4. 分布式文件系统HDFS上的编程实践"></a>4. 分布式文件系统HDFS上的编程实践</h2><h3 id="1-安装Eclipse"><a href="#1-安装Eclipse" class="headerlink" title="1. 安装Eclipse"></a>1. 安装Eclipse</h3><h4 id="1-官网下载安装包"><a href="#1-官网下载安装包" class="headerlink" title="(1) 官网下载安装包"></a>(1) 官网下载安装包</h4><blockquote>
+<p>进入FireFox打开下载: <a target="_blank" rel="noopener" href="http://www.eclipse.org/downloads/packages/release/neon/1a/eclipse-ide-java-ee-developers">eclipe</a></p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915190751901.png" class="" title="image-20200915190751901">
+
+<blockquote>
+<p>或者</p>
+<p>百度网盘下载</p>
+<p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1P4vDgBEj_eOSakabM93rew">https://pan.baidu.com/s/1P4vDgBEj_eOSakabM93rew</a></p>
+<p>密码: eujp</p>
+</blockquote>
+<h4 id="2-解压安装包"><a href="#2-解压安装包" class="headerlink" title="(2) 解压安装包"></a>(2) 解压安装包</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar xzvf eclipse-inst-linux64.tar.gz </span><br><span class="line">cd eclipse-installer/</span><br><span class="line">ll</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915191250751.png" class="" title="image-20200915191250751">
+
+<img src="/posts/ec060e02/image-20200915191446018.png" class="" title="image-20200915191446018">
+
+<h4 id="3-安装Eclipse-For-JavaEE"><a href="#3-安装Eclipse-For-JavaEE" class="headerlink" title="(3) 安装Eclipse For JavaEE"></a>(3) 安装Eclipse For JavaEE</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eclipse-inst.ini</span><br></pre></td></tr></table></figure>
+
+
+
+
+<img src="/posts/ec060e02/image-20200915191721107.png" class="" title="image-20200915191721107.png">
+
+<img src="/posts/ec060e02/image-20200915191841247.png" class="" title="image-20200915191841247.png">
+
+<img src="/posts/ec060e02/image-20200915192946961.png" class="" title="image-20200915192946961.png">
+
+
+
+<h4 id="4-创建桌面快捷方式"><a href="#4-创建桌面快捷方式" class="headerlink" title="(4) 创建桌面快捷方式"></a>(4) 创建桌面快捷方式</h4><blockquote>
+<p>1、切换root身份：su root</p>
+<p>2、进入usr/share/applications目录：cd /usr/share/applications</p>
+<p>3、创建eclipase.desktop文件：touch eclipase.desktop</p>
+<p>4、输入以下内容后保存：vi eclipase.desktop</p>
+<p>5、最后将快捷方式复制到桌面，并添加信任即可</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Name&#x3D;Eclipse</span><br><span class="line">Exec&#x3D;&#x2F;home&#x2F;parak&#x2F;eclipse&#x2F;eclipse-j2e&#x2F;eclipse&#x2F;eclipse</span><br><span class="line">Type&#x3D;Application</span><br><span class="line">Icon&#x3D;&#x2F;home&#x2F;parak&#x2F;eclipse&#x2F;eclipse-j2e&#x2F;eclipse&#x2F;icon.xpm</span><br><span class="line">Terminal&#x3D;false</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915195019210.png" class="" title="image-20200915195019210">
+
+
+
+<h3 id="2-创建eclipse工程"><a href="#2-创建eclipse工程" class="headerlink" title="2. 创建eclipse工程"></a>2. 创建eclipse工程</h3><blockquote>
+<p>双击eclipse桌面快捷方式</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915195625107.png" class="" title="image-20200915195625107">
+
+<blockquote>
+<p>进入eclipseIDE</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915195720416.png" class="" title="image-20200915195720416">
+
+<blockquote>
+<p>点击：File —&gt; Project —&gt; Java Project</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915200231455.png" class="" title="image-20200915200231455">
+
+<blockquote>
+<p>设置JRE</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915200448059.png" class="" title="image-20200915200448059">
+
+<blockquote>
+<p>添加JAR</p>
+</blockquote>
+<ul>
+<li><strong>/home/parak/hadoop/hadoop-2.9.2/share/hadoop/common/</strong>:  <strong>hadoop-common-2.9.2.jar</strong>和<strong>hadoop-nfs-2.9.2.jar</strong></li>
+<li><strong>/home/parak/hadoop/hadoop-2.9.2/share/hadoop/common/</strong>:  <strong>lib</strong>目录下的所有jar包</li>
+<li><strong>/home/parak/hadoop/hadoop-2.9.2/share/hadoop/hdfs/</strong>:  <strong>hadoop-hdfs-2.9.2.jar</strong>和<strong>hadoop-hdfs-nfs-2.9.2.jar</strong></li>
+<li><strong>/home/parak/hadoop/hadoop-2.9.2/share/hadoop/hdfs/</strong>:  <strong>lib</strong>目录下的所有jar包</li>
+</ul>
+<img src="/posts/ec060e02/image-20200915202106984.png" class="" title="image-20200915202106984">
+
+<blockquote>
+<p>点击Finish，点击Open Perspective，并且勾选Remember my decision</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915202239806.png" class="" title="image-20200915202239806">
+
+<img src="/posts/ec060e02/image-20200915202452808.png" class="" title="image-20200915202452808">
+
+
+
+<h3 id="3-编写一个Java应用程序检测HDFS中是否存在一个文件"><a href="#3-编写一个Java应用程序检测HDFS中是否存在一个文件" class="headerlink" title="3. 编写一个Java应用程序检测HDFS中是否存在一个文件"></a>3. 编写一个Java应用程序检测HDFS中是否存在一个文件</h3><h4 id="1-编写Java程序"><a href="#1-编写Java程序" class="headerlink" title="(1) 编写Java程序"></a>(1) 编写Java程序</h4><blockquote>
+<p>右击HDFSExample —&gt; New —&gt; Class</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915203644447.png" class="" title="image-20200915203644447">
+
+<blockquote>
+<p>Name = HDFSFileIfExist，然后Finish</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915203811679.png" class="" title="image-20200915203811679">
+
+<blockquote>
+<p>编写代码</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> parak</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>   2020-9-15 </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HDFSFileIfExist</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            String fileName = <span class="string">&quot;/user/parak/input/myLocalFile.txt&quot;</span>;</span><br><span class="line">            Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">            conf.set(<span class="string">&quot;fs.defaultFS&quot;</span>, <span class="string">&quot;hdfs://master:9000&quot;</span>);</span><br><span class="line">            conf.set(<span class="string">&quot;fs.hdfs.impl&quot;</span>, <span class="string">&quot;org.apache.hadoop.hdfs.DistributedFileSystem&quot;</span>);</span><br><span class="line">            FileSystem fs = FileSystem.get(conf);</span><br><span class="line">            <span class="keyword">if</span>(fs.exists(<span class="keyword">new</span> Path(fileName)))&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;文件存在&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;文件不存在&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-运行程序"><a href="#2-运行程序" class="headerlink" title="(2) 运行程序"></a>(2) 运行程序</h4><blockquote>
+<p>启动Hadoop集群</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915204824967.png" class="" title="image-20200915204824967">
+
+<blockquote>
+<p>运行程序</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915205051079.png" class="" title="image-20200915205051079">
+
+<blockquote>
+<p>运行结果</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915205218013.png" class="" title="image-20200915205218013">
+
+<h4 id="3-部署到Hadoop平台上运行"><a href="#3-部署到Hadoop平台上运行" class="headerlink" title="(3) 部署到Hadoop平台上运行"></a>(3) 部署到Hadoop平台上运行</h4><blockquote>
+<p>在hadoop安装目录下新建myapp目录，存放Hadoop应用程序</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/hadoop/hadoop-2.9.2/myapp</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915205811634.png" class="" title="image-20200915205811634">
+
+<blockquote>
+<p>右击HDFSExample —&gt; Export —&gt; Java —&gt; Runnable JAR file —&gt; Next</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915210022617.png" class="" title="image-20200915210022617">
+
+<blockquote>
+<p>Lauch configuration: HDFSFileIfExist -HDFSExsmple</p>
+<p>Export destination: /home/parak/hadoop/hadoop-2.9.2/myapp/HDFSExample.jar</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915210640358.png" class="" title="image-20200915210640358">
+
+<blockquote>
+<p>出现警告，选择OK</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915210911473.png" class="" title="image-20200915210911473">
+
+<img src="/posts/ec060e02/image-20200915211215820.png" class="" title="image-20200915211215820">
+
+<blockquote>
+<p>查看myapp中生成的HDFSExample.jar文件</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915211618901.png" class="" title="image-20200915211618901">
+
+<blockquote>
+<p>运行程序</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar ~/hadoop/hadoop-2.9.2/myapp/HDFSExample.jar </span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200915211802010.png" class="" title="image-20200915211802010">
+
+
+
+<h3 id="4-编写一个Java应用程序读-写HDFS文件"><a href="#4-编写一个Java应用程序读-写HDFS文件" class="headerlink" title="4. 编写一个Java应用程序读/写HDFS文件"></a>4. 编写一个Java应用程序读/写HDFS文件</h3><h4 id="1-读取HDFS文件程序"><a href="#1-读取HDFS文件程序" class="headerlink" title="(1) 读取HDFS文件程序"></a>(1) 读取HDFS文件程序</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FSDataInputStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> parak</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020-9-15</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HDFSReadFile</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">			conf.set(<span class="string">&quot;fs.defaultFS&quot;</span>, <span class="string">&quot;hdfs://master:9000&quot;</span>);</span><br><span class="line">			conf.set(<span class="string">&quot;fs.hdfs.impl&quot;</span>,</span><br><span class="line">					<span class="string">&quot;org.apache.hadoop.hdfs.DistributedFileSystem&quot;</span>);</span><br><span class="line">			FileSystem fs = FileSystem.get(conf);</span><br><span class="line">			Path file = <span class="keyword">new</span> Path(<span class="string">&quot;/user/parak/input/myLocalFile.txt&quot;</span>);</span><br><span class="line">			FSDataInputStream getIt = fs.open(file);</span><br><span class="line">			BufferedReader d = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(getIt));</span><br><span class="line">			String content = <span class="keyword">null</span>;</span><br><span class="line">			<span class="keyword">while</span>((content = d.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">				System.out.println(content);</span><br><span class="line">			&#125;</span><br><span class="line">			d.close(); <span class="comment">// 关闭文件</span></span><br><span class="line">			fs.close(); <span class="comment">// 关闭hdfs</span></span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运行</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915213406899.png" class="" title="image-20200915213406899">
+
+<h4 id="2-写HDFS文件程序"><a href="#2-写HDFS文件程序" class="headerlink" title="(2) 写HDFS文件程序"></a>(2) 写HDFS文件程序</h4> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FileSystem;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.FSDataOutputStream;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> parak</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020-9-15</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HDFSWriteFile</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">			conf.set(<span class="string">&quot;fs.defaultFS&quot;</span>, <span class="string">&quot;hdfs://master:9000&quot;</span>);</span><br><span class="line">			conf.set(<span class="string">&quot;fs.hdfs.impl&quot;</span>,</span><br><span class="line">					<span class="string">&quot;org.apache.hadoop.hdfs.DistributedFileSystem&quot;</span>);</span><br><span class="line">			FileSystem fs = FileSystem.get(conf);</span><br><span class="line">			<span class="keyword">byte</span>[] buff = <span class="string">&quot;Hello, Khighness&quot;</span>.getBytes(); <span class="comment">// 要写入的内容</span></span><br><span class="line">			String filename = <span class="string">&quot;/user/parak/test.txt&quot;</span>; <span class="comment">// 要写入的文件名</span></span><br><span class="line">			FSDataOutputStream os = fs.create(<span class="keyword">new</span> Path(filename));</span><br><span class="line">			os.write(buff, <span class="number">0</span>, buff.length);</span><br><span class="line">			System.out.println(<span class="string">&quot;Create:&quot;</span> + filename);</span><br><span class="line">			os.close();</span><br><span class="line">			fs.close();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运行</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200915213012019.png" class="" title="image-20200915213012019">
+
+
+
+<h2 id="5-Eclipse上的HDFS操作"><a href="#5-Eclipse上的HDFS操作" class="headerlink" title="5. Eclipse上的HDFS操作"></a>5. Eclipse上的HDFS操作</h2><h3 id="1-安装Hadoop-Eclipse-Plugin"><a href="#1-安装Hadoop-Eclipse-Plugin" class="headerlink" title="1. 安装Hadoop-Eclipse-Plugin"></a>1. 安装Hadoop-Eclipse-Plugin</h3><p>(1) 下载相关插件：<a target="_blank" rel="noopener" href="https://github.com/winghc/hadoop2x-eclipse-plugin">hadoop-eclipse-plugin</a></p>
+<img src="/posts/ec060e02/image-20200922203150692.png" class="" title="image-20200922203150692">
+
+<p>我是vpn下载下来的，分享一下：</p>
+<blockquote>
+<p>完整包</p>
+<p>网盘链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Q72HyCSUnh-Q0JRQK03Jjg">https://pan.baidu.com/s/1Q72HyCSUnh-Q0JRQK03Jjg</a></p>
+<p>提取码：kkkk</p>
+<p>插件包</p>
+<p>网盘链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1dfBm7JB4ZXTR3bwF7PSaKA">https://pan.baidu.com/s/1dfBm7JB4ZXTR3bwF7PSaKA</a></p>
+<p>提取码：kkkk</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200922222447098.png" class="" title="image-20200922222447098">
+
+
+
+<p>(2) 下载后将release中的<code>hadoop-eclipse-plugin-2.6.0.jar</code>复制到 Eclipse 安装目录的 plugins 文件夹中</p>
+<img src="/posts/ec060e02/image-20200922223813270.png" class="" title="image-20200922223813270">
+
+<p>(3) 运行 <code>eclipse-clean</code> 重启 Eclipse</p>
+<h3 id="2-配置Hadoop-Eclipse-Plugin"><a href="#2-配置Hadoop-Eclipse-Plugin" class="headerlink" title="2. 配置Hadoop-Eclipse-Plugin"></a>2. 配置Hadoop-Eclipse-Plugin</h3><p>配置前开启Hadoop</p>
+<img src="/posts/ec060e02/image-20200928131439434.png" class="" title="image-20200928131439434">
+
+<p>(1) 切换到“Map/Reduce”开发视图</p>
+<img src="/posts/ec060e02/image-20200928131546990.png" class="" title="image-20200928131546990">
+
+
+
+<p>(2) 建立与Hadoop集群的连接</p>
+<img src="/posts/ec060e02/image-20200928131720837.png" class="" title="image-20200928131720837">
+
+<p>(3) 填写Hadoop连接配置</p>
+<img src="/posts/ec060e02/image-20200928131907971.png" class="" title="image-20200928131907971">
+
+
+
+<h3 id="3-在Eclipse中操作HDFS中的文件"><a href="#3-在Eclipse中操作HDFS中的文件" class="headerlink" title="3. 在Eclipse中操作HDFS中的文件"></a>3. 在Eclipse中操作HDFS中的文件</h3><p>点击左侧DFS Locations即可查看HDFS的文件列表</p>
+<img src="/posts/ec060e02/image-20200928132219334.png" class="" title="image-20200928132219334">
+
+
+
+<h2 id="6-在Eclipse中运行”Wold-Count”MapReduce程序"><a href="#6-在Eclipse中运行”Wold-Count”MapReduce程序" class="headerlink" title="6. 在Eclipse中运行”Wold Count”MapReduce程序"></a>6. 在Eclipse中运行”Wold Count”MapReduce程序</h2><h3 id="1-在Eclipse中创建”WordCount”MapReduce项目"><a href="#1-在Eclipse中创建”WordCount”MapReduce项目" class="headerlink" title="1. 在Eclipse中创建”WordCount”MapReduce项目"></a>1. 在Eclipse中创建”WordCount”MapReduce项目</h3><blockquote>
+<p>选择File -&gt; New -&gt; Project -&gt; Map/Reduce Project</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928133415156.png" class="" title="image-20200928133415156">
+
+<blockquote>
+<p>项目名称=MyWordCount，然后Configure Hadoop install directory -&gt; Finish</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928133508525.png" class="" title="image-20200928133508525">
+
+<blockquote>
+<p>新建Java文件，name = WordCountTest</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928134118935.png" class="" title="image-20200928134118935">
+
+<blockquote>
+<p>代码如下</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.StringTokenizer;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IntWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Job;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.util.GenericOptionsParser;</span><br><span class="line"> </span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> parak</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>   2020-9-28</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordCountTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WordCountTest</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">        String[] otherArgs = (<span class="keyword">new</span> GenericOptionsParser(conf, args)).getRemainingArgs();</span><br><span class="line">        <span class="keyword">if</span>(otherArgs.length &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            System.err.println(<span class="string">&quot;Usage: wordcount &lt;in&gt; [&lt;in&gt;...] &lt;out&gt;&quot;</span>);</span><br><span class="line">            System.exit(<span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        Job job = Job.getInstance(conf, <span class="string">&quot;word count test&quot;</span>);</span><br><span class="line">        job.setJarByClass(WordCountTest.class);</span><br><span class="line">        job.setMapperClass(WordCountTest.TokenizerMapper.class);</span><br><span class="line">        job.setCombinerClass(WordCountTest.IntSumReducer.class);</span><br><span class="line">        job.setReducerClass(WordCountTest.IntSumReducer.class);</span><br><span class="line">        job.setOutputKeyClass(Text.class);</span><br><span class="line">        job.setOutputValueClass(IntWritable.class);</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; otherArgs.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">            FileInputFormat.addInputPath(job, <span class="keyword">new</span> Path(otherArgs[i]));</span><br><span class="line"> </span><br><span class="line">        FileOutputFormat.setOutputPath(job, <span class="keyword">new</span> Path(otherArgs[otherArgs.length - <span class="number">1</span>]));</span><br><span class="line">        System.exit(job.waitForCompletion(<span class="keyword">true</span>)?<span class="number">0</span>:<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntSumReducer</span> <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">Text</span>, <span class="title">IntWritable</span>, <span class="title">Text</span>, <span class="title">IntWritable</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> IntWritable result = <span class="keyword">new</span> IntWritable();</span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">IntSumReducer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(Text key, Iterable&lt;IntWritable&gt; values, Reducer&lt;Text, IntWritable, Text, IntWritable&gt;.Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">            IntWritable val;</span><br><span class="line">            <span class="keyword">for</span>(Iterator itr = values.iterator(); itr.hasNext(); sum += val.get()) &#123;</span><br><span class="line">                val = (IntWritable)itr.next();</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">            <span class="keyword">this</span>.result.set(sum);</span><br><span class="line">            context.write(key, <span class="keyword">this</span>.result);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenizerMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">Object</span>, <span class="title">Text</span>, <span class="title">Text</span>, <span class="title">IntWritable</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> IntWritable one = <span class="keyword">new</span> IntWritable(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">private</span> Text word = <span class="keyword">new</span> Text();</span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">TokenizerMapper</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(Object key, Text value, Mapper&lt;Object, Text, Text, IntWritable&gt;.Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">            StringTokenizer itr = <span class="keyword">new</span> StringTokenizer(value.toString());</span><br><span class="line"> </span><br><span class="line">            <span class="keyword">while</span>(itr.hasMoreTokens()) &#123;</span><br><span class="line">                <span class="keyword">this</span>.word.set(itr.nextToken());</span><br><span class="line">                context.write(<span class="keyword">this</span>.word, one);</span><br><span class="line">            &#125;</span><br><span class="line"> </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-添加log4j-properties配置文件到src目录下"><a href="#2-添加log4j-properties配置文件到src目录下" class="headerlink" title="2. 添加log4j.properties配置文件到src目录下"></a>2. 添加log4j.properties配置文件到src目录下</h3><blockquote>
+<p>新建文件</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928205438905.png" class="" title="image-20200928205438905">
+
+<blockquote>
+<p>内容如下</p>
+</blockquote>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">log4j.rootLogger</span> = <span class="string">INFO,KAG,CONSOLE</span></span><br><span class="line"></span><br><span class="line"><span class="meta">log4j.appender.KAG.Threshold</span>=<span class="string">INFO</span></span><br><span class="line"><span class="meta">log4j.appender.KAG.encoding</span>=<span class="string">UTF-8</span></span><br><span class="line"></span><br><span class="line"><span class="meta">log4j.appender.KAG</span> = <span class="string">org.apache.log4j.DailyRollingFileAppender</span></span><br><span class="line"><span class="meta">log4j.appender.KAG.File</span>=<span class="string">log/sHadoop.log</span></span><br><span class="line"><span class="meta">log4j.appender.KAG.ImmediateFlush</span>=<span class="string">true</span></span><br><span class="line"><span class="meta">log4j.appender.KAG.DatePattern</span>=<span class="string">&#x27;_&#x27;yyyy-MM-dd</span></span><br><span class="line"><span class="meta">log4j.appender.KAG.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="meta">log4j.appender.KAG.layout.ConversionPattern</span>=<span class="string">%-d&#123;yyyy-MM-dd HH:mm:ss&#125; KAG %-5p [%c] - %m%n</span></span><br><span class="line"></span><br><span class="line"><span class="meta">log4j.appender.CONSOLE</span>=<span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="meta">log4j.appender.Threshold</span>=<span class="string">INFO</span></span><br><span class="line"></span><br><span class="line"><span class="meta">log4j.appender.CONSOLE.Target</span>=<span class="string">System.out</span></span><br><span class="line"><span class="meta">log4j.appender.CONSOLE.layout</span>=<span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="meta">log4j.appender.CONSOLE.layout.ConversionPattern</span>=<span class="string">%-d&#123;yyyy-MM-dd HH:mm:ss&#125; KAG %-5p [%c] - %m%n</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-通过Eclipse运行“MyWordCount”-MapReduce项目"><a href="#3-通过Eclipse运行“MyWordCount”-MapReduce项目" class="headerlink" title="3. 通过Eclipse运行“MyWordCount” MapReduce项目"></a>3. 通过Eclipse运行“MyWordCount” MapReduce项目</h3><blockquote>
+<p>更改运行配置</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928183606296.png" class="" title="image-20200928183606296"> 
+
+<blockquote>
+<p>运行结果</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928184930876.png" class="" title="image-20200928184930876">
+
+<img src="/posts/ec060e02/image-20200928184947160.png" class="" title="image-20200928184947160">
+
+<blockquote>
+<p>查看/user/parak/output目录，和目录下的文件</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928185257730.png" class="" title="image-20200928185257730">
+
+<blockquote>
+<p>重启Eclipse，在Eclipse中查看HDFS文件系统，/user/parak/output</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928185548345.png" class="" title="image-20200928185548345">
+
+
+
+<h3 id="4-在Hadoop平台上部署WordCount程序"><a href="#4-在Hadoop平台上部署WordCount程序" class="headerlink" title="4. 在Hadoop平台上部署WordCount程序"></a>4. 在Hadoop平台上部署WordCount程序</h3><blockquote>
+<p>右键 WordCountTest —&gt; Export</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928205719777.png" class="" title="image-20200928205719777">
+
+<blockquote>
+<p>选择 Java —&gt; Runnable JAR File —&gt; Next</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928205756522.png" class="" title="image-20200928205756522">
+
+<blockquote>
+<p>填入内容：</p>
+<p>Lauch configuration: WordCountTest - MyWordCount</p>
+<p>Export destination: /home/parak/hadoop/hadoop-2.9.2/myapp/WordCount.jar</p>
+<p>然后Finish即可</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928210235072.png" class="" title="image-20200928210235072">
+
+<blockquote>
+<p>运行程序</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar /home/parak/hadoop/hadoop-<span class="number">2.9</span>.<span class="number">2</span>/myapp/WordCount.jar</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7-统计某电商网站买家收藏商品数量"><a href="#7-统计某电商网站买家收藏商品数量" class="headerlink" title="7. 统计某电商网站买家收藏商品数量"></a>7. 统计某电商网站买家收藏商品数量</h2><p><strong>要求</strong></p>
+<p>现有某电商网站用户对商品的收藏数据，记录了用户收藏的商品id以及收藏日期，名为buyer_favorite1。buyer_favorite1包含：买家id，商品id，收藏日期这三个字段，数据以“\t”分割，样本数据及格式如下：</p>
+<ol>
+<li><p>买家id  商品id  收藏日期 </p>
+</li>
+<li><p>10181  1000481  2010-04-04 16:54:31 </p>
+</li>
+<li><p>20001  1001597  2010-04-07 15:07:52 </p>
+</li>
+<li><p>20001  1001560  2010-04-07 15:08:27 </p>
+</li>
+<li><p>20042  1001368  2010-04-08 08:20:30 </p>
+</li>
+<li><p>20067  1002061  2010-04-08 16:45:33 </p>
+</li>
+<li><p>20056  1003289  2010-04-12 10:50:55 </p>
+</li>
+<li><p>20056  1003290  2010-04-12 11:57:35 </p>
+</li>
+<li><p>20056  1003292  2010-04-12 12:05:29 </p>
+</li>
+<li><p>20054  1002420  2010-04-14 15:24:12 </p>
+</li>
+<li><p>20055  1001679  2010-04-14 19:46:04 </p>
+</li>
+<li><p>20054  1010675  2010-04-14 15:23:53 </p>
+</li>
+<li><p>20054  1002429  2010-04-14 17:52:45 </p>
+</li>
+<li><p>20076  1002427  2010-04-14 19:35:39 </p>
+</li>
+<li><p>20054  1003326  2010-04-20 12:54:44 </p>
+</li>
+<li><p>20056  1002420  2010-04-15 11:24:49 </p>
+</li>
+<li><p>20064  1002422  2010-04-15 11:35:54 </p>
+</li>
+<li><p>20056  1003066  2010-04-15 11:43:01 </p>
+</li>
+<li><p>20056  1003055  2010-04-15 11:43:06 </p>
+</li>
+<li><p>20056  1010183  2010-04-15 11:45:24 </p>
+</li>
+<li><p>20056  1002422  2010-04-15 11:45:49 </p>
+</li>
+<li><p>20056  1003100  2010-04-15 11:45:54 </p>
+</li>
+<li><p>20056  1003094  2010-04-15 11:45:57 </p>
+</li>
+<li><p>20056  1003064  2010-04-15 11:46:04 </p>
+</li>
+<li><p>20056  1010178  2010-04-15 16:15:20 </p>
+</li>
+<li><p>20076  1003101  2010-04-15 16:37:27 </p>
+</li>
+<li><p>20076  1003103  2010-04-15 16:37:05 </p>
+</li>
+<li><p>20076  1003100  2010-04-15 16:37:18 </p>
+</li>
+<li><p>20076  1003066  2010-04-15 16:37:31 </p>
+</li>
+<li><p>20054  1003103  2010-04-15 16:40:14 </p>
+</li>
+<li><p>20054  1003100  2010-04-15 16:40:16 </p>
+</li>
+</ol>
+<p>要求编写MapReduce程序，统计每个买家收藏商品数量。</p>
+<h3 id="1-在文档下新建文件buyer-favourite9"><a href="#1-在文档下新建文件buyer-favourite9" class="headerlink" title="1. 在文档下新建文件buyer_favourite9"></a>1. 在文档下新建文件buyer_favourite9</h3><blockquote>
+<p>写入数据</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">10181   1000481   2010-04-04添加到日历 16:54:31</span><br><span class="line">20001   1001597   2010-04-07 15:07:52</span><br><span class="line">20001   1001560   2010-04-07 15:08:27</span><br><span class="line">20042   1001368   2010-04-08 08:20:30</span><br><span class="line">20067   1002061   2010-04-08 16:45:33</span><br><span class="line">20056   1003289   2010-04-12 10:50:55</span><br><span class="line">20056   1003290   2010-04-12 11:57:35</span><br><span class="line">20056   1003292   2010-04-12 12:05:29</span><br><span class="line">20054   1002420   2010-04-14 15:24:12</span><br><span class="line">20055   1001679   2010-04-14 19:46:04</span><br><span class="line">20054   1010675   2010-04-14 15:23:53</span><br><span class="line">20054   1002429   2010-04-14 17:52:45</span><br><span class="line">20076   1002427   2010-04-14 19:35:39</span><br><span class="line">20054   1003326   2010-04-20 12:54:44</span><br><span class="line">20056   1002420   2010-04-15 11:24:49</span><br><span class="line">20064   1002422   2010-04-15 11:35:54</span><br><span class="line">20056   1003066   2010-04-15 11:43:01</span><br><span class="line">20056   1003055   2010-04-15 11:43:06</span><br><span class="line">20056   1010183   2010-04-15 11:45:24</span><br><span class="line">20056   1002422   2010-04-15 11:45:49</span><br><span class="line">20056   1003100   2010-04-15 11:45:54</span><br><span class="line">20056   1003094   2010-04-15 11:45:57</span><br><span class="line">20056   1003064   2010-04-15 11:46:04</span><br><span class="line">20056   1010178   2010-04-15 16:15:20</span><br><span class="line">20076   1003101   2010-04-15 16:37:27</span><br><span class="line">20076   1003103   2010-04-15 16:37:05</span><br><span class="line">20076   1003100   2010-04-15 16:37:18</span><br><span class="line">20076   1003066   2010-04-15 16:37:31</span><br><span class="line">20054   1003103   2010-04-15 16:40:14</span><br><span class="line">20054   1003100   2010-04-15 16:40:16 </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-将buyer-favourite9上传到HDFS文件系统"><a href="#2-将buyer-favourite9上传到HDFS文件系统" class="headerlink" title="2. 将buyer_favourite9上传到HDFS文件系统"></a>2. 将buyer_favourite9上传到HDFS文件系统</h3><blockquote>
+<p>右键input —&gt; Upload files to DFS</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928222920023.png" class="" title="image-20200928222920023">
+
+<blockquote>
+<p>选择buyer_favourite1后确定</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928225427432.png" class="" title="image-20200928225427432">
+
+
+
+<h3 id="3-新建java文件ProductNumber"><a href="#3-新建java文件ProductNumber" class="headerlink" title="3. 新建java文件ProductNumber"></a>3. 新建java文件ProductNumber</h3><blockquote>
+<p>代码如下</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.kag;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;  </span><br><span class="line"><span class="keyword">import</span> java.util.StringTokenizer;  </span><br><span class="line"><span class="keyword">import</span> org.apache.log4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IntWritable;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Job;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Mapper;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Reducer;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.input.FileInputFormat;  </span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.output.FileOutputFormat; </span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> parak</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020-9-28</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductNumber</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException, InterruptedException </span>&#123;</span><br><span class="line">		Job job = Job.getInstance();</span><br><span class="line">		job.setJobName(<span class="string">&quot;ProductNumber&quot;</span>);</span><br><span class="line">		job.setJarByClass(ProductNumber.class);</span><br><span class="line">		job.setMapperClass(MapperHandler.class);  </span><br><span class="line">		job.setReducerClass(ReducerHandler.class);  </span><br><span class="line">		job.setOutputKeyClass(Text.class);  </span><br><span class="line">		job.setOutputValueClass(IntWritable.class);  </span><br><span class="line">		Path inputPath = <span class="keyword">new</span> Path(<span class="string">&quot;hdfs://master:9000/user/parak/input/buyer_favourite1&quot;</span>);</span><br><span class="line">		Path outputPath = <span class="keyword">new</span> Path(<span class="string">&quot;hdfs://master:9000/user/parak/output/buyer_favourite1_analysis_result&quot;</span>);</span><br><span class="line">		FileInputFormat.addInputPath(job, inputPath);</span><br><span class="line">		FileOutputFormat.setOutputPath(job, outputPath);</span><br><span class="line">		<span class="keyword">boolean</span> flag = job.waitForCompletion(<span class="keyword">true</span>);</span><br><span class="line">		Logger log = Logger.getLogger(ProductNumber.class);</span><br><span class="line">		log.info(<span class="string">&quot;Falg = &quot;</span> + flag);</span><br><span class="line">		System.exit(flag ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MapperHandler</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">Object</span>, <span class="title">Text</span>, <span class="title">Text</span>, <span class="title">IntWritable</span>&gt; </span>&#123;</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> IntWritable intWritable = <span class="keyword">new</span> IntWritable(<span class="number">1</span>);</span><br><span class="line">		<span class="keyword">public</span> <span class="keyword">static</span> Text word = <span class="keyword">new</span> Text();</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(Object key, Text value, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">			StringTokenizer tokenizer = <span class="keyword">new</span> StringTokenizer(value.toString(), <span class="string">&quot;   &quot;</span>);</span><br><span class="line">			word.set(tokenizer.nextToken());</span><br><span class="line">			context.write(word, intWritable);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ReducerHandler</span> <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">Text</span>, <span class="title">IntWritable</span>, <span class="title">Text</span>, <span class="title">IntWritable</span>&gt; </span>&#123;</span><br><span class="line">		<span class="keyword">private</span> IntWritable intWritable = <span class="keyword">new</span> IntWritable(<span class="number">1</span>);</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(Text key, Iterable&lt;IntWritable&gt; values, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">			<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span> (IntWritable value : values) &#123;</span><br><span class="line">				sum += value.get();</span><br><span class="line">			&#125;</span><br><span class="line">			intWritable.set(sum);</span><br><span class="line">			context.write(key, intWritable);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>运行结果</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928223752502.png" class="" title="image-20200928223752502">
+
+<blockquote>
+<p>运行后的HDFS文件系统</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928225133967.png" class="" title="image-20200928225133967">
+
+
+
+<blockquote>
+<p>part-r-00000文件内容即为统计结果</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200928225154667.png" class="" title="image-20200928225154667">
+
+
+
+
+
+<h2 id="8-安装部署HBase"><a href="#8-安装部署HBase" class="headerlink" title="8. 安装部署HBase"></a>8. 安装部署HBase</h2><p>HBase与Hadoop版本支持关系</p>
+<img src="/posts/ec060e02/image-20201002211137852.png" class="" title="image-20201002211137852">
+
+
+
+
+
+<h3 id="1-下载安装HBase-1-6-0"><a href="#1-下载安装HBase-1-6-0" class="headerlink" title="1. 下载安装HBase-1.6.0"></a>1. 下载安装HBase-1.6.0</h3><blockquote>
+<p>使用镜像：<a target="_blank" rel="noopener" href="https://mirrors.bfsu.edu.cn/apache/hbase/">https://mirrors.bfsu.edu.cn/apache/hbase/</a></p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200929100114445.png" class="" title="image-20200929100114445">
+
+<blockquote>
+<p>选择1.6.0，下载tar.gz压缩包</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200929100159559.png" class="" title="image-20200929100159559">
+
+<blockquote>
+<p>解压</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xzvf hbase-1.6.0-bin.tar.gz </span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929102107183.png" class="" title="image-20200929102107183">
+
+<blockquote>
+<p>查看</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200929102212291.png" class="" title="image-20200929102212291">
+
+
+
+<h3 id="2-配置Hbase"><a href="#2-配置Hbase" class="headerlink" title="2. 配置Hbase"></a>2. 配置Hbase</h3><blockquote>
+<p>进入HBase安装主目录的conf目录，然后修改配置文件</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd conf/</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-修改配置文件hbase-env-sh"><a href="#1-修改配置文件hbase-env-sh" class="headerlink" title="(1) 修改配置文件hbase-env.sh"></a>(1) 修改配置文件hbase-env.sh</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gedit hbase-env.sh</span><br><span class="line"></span><br><span class="line">修改JAVA_HOME:</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.262.b10-0.el7_8.x86_64</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929103119874.png" class="" title="image-20200929103119874">
+
+<h4 id="2-修改配置文件hbase-site-xml"><a href="#2-修改配置文件hbase-site-xml" class="headerlink" title="(2) 修改配置文件hbase-site.xml"></a>(2) 修改配置文件hbase-site.xml</h4><blockquote>
+<p>将hbase-site.xml修改为‘</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Licensed to the Apache Software Foundation (ASF) under one</span></span><br><span class="line"><span class="comment"> * or more contributor license agreements.  See the NOTICE file</span></span><br><span class="line"><span class="comment"> * distributed with this work for additional information</span></span><br><span class="line"><span class="comment"> * regarding copyright ownership.  The ASF licenses this file</span></span><br><span class="line"><span class="comment"> * to you under the Apache License, Version 2.0 (the</span></span><br><span class="line"><span class="comment"> * &quot;License&quot;); you may not use this file except in compliance</span></span><br><span class="line"><span class="comment"> * with the License.  You may obtain a copy of the License at</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="comment"> * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></span><br><span class="line"><span class="comment"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="comment"> * See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="comment"> * limitations under the License.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.cluster.distributed<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.rootdir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://master:9000/hbase<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.quorum<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>master<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.master.info.port<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>60010<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929103343424.png" class="" title="image-20200929103343424">
+
+<h4 id="3-设置-regionservers"><a href="#3-设置-regionservers" class="headerlink" title="(3) 设置 regionservers"></a>(3) 设置 regionservers</h4><blockquote>
+<p>将regionservers中的localhost修改为: slave</p>
+</blockquote>
+<h4 id="4-设置环境变量"><a href="#4-设置环境变量" class="headerlink" title="(4) 设置环境变量"></a>(4) 设置环境变量</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gedit ~/.bash_profile</span><br><span class="line"></span><br><span class="line">将下面代码添加到文件末尾：</span><br><span class="line"><span class="meta">#</span><span class="bash">HBase</span></span><br><span class="line">export HBASE_HOME=/home/parak/HBase/hbase-1.6.0</span><br><span class="line">export PATH=$HBASE_HOME/bin:$PATH</span><br><span class="line">export HADOOP_CLASSPATH=$HBASE_HOME/lib/*</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929104148521.png" class="" title="image-20200929104148521">
+
+<h4 id="5-将HBase复制到Slave结点"><a href="#5-将HBase复制到Slave结点" class="headerlink" title="(5) 将HBase复制到Slave结点"></a>(5) 将HBase复制到Slave结点</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r /home/parak/HBase/hbase-1.6.0 slave:/home/parak/HBase/</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929104703378.png" class="" title="image-20200929104703378">
+
+<blockquote>
+<p>查看slave结点的HBase文件夹</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200929104827983.png" class="" title="image-20200929104827983">
+
+
+
+<h3 id="3-验证并启动HBase"><a href="#3-验证并启动HBase" class="headerlink" title="3. 验证并启动HBase"></a>3. 验证并启动HBase</h3><blockquote>
+<p>先启动Hadoop: start-all.sh</p>
+<p>再启动Hbase: start-hbase.sh</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200929105006101.png" class="" title="image-20200929105006101">
+
+<blockquote>
+<p>启动HBase出现错误</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200929110647176.png" class="" title="image-20200929110647176">
+
+<p>我意识到是Hadoop-2.9.2与HBase-1.6.0的版本匹配问题，于是我下载HBase-2.2.6。</p>
+<h3 id="4-重新下载配置HBase-2-2-6"><a href="#4-重新下载配置HBase-2-2-6" class="headerlink" title="4. 重新下载配置HBase-2.2.6"></a>4. 重新下载配置HBase-2.2.6</h3><blockquote>
+<p>下载</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200929110514041.png" class="" title="image-20200929110514041">
+
+<img src="/posts/ec060e02/image-20200929110553845.png" class="" title="image-20200929110553845">
+
+<blockquote>
+<p>解压: tar xzvf hbase-2.2.6-bin.tar.gz</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200929110818266.png" class="" title="image-20200929110818266">
+
+<blockquote>
+<p>修改配置文件hbase-env.sh</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200929111024747.png" class="" title="image-20200929111024747">
+
+<blockquote>
+<p>修改配置文件hbase-site.xml</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Licensed to the Apache Software Foundation (ASF) under one</span></span><br><span class="line"><span class="comment"> * or more contributor license agreements.  See the NOTICE file</span></span><br><span class="line"><span class="comment"> * distributed with this work for additional information</span></span><br><span class="line"><span class="comment"> * regarding copyright ownership.  The ASF licenses this file</span></span><br><span class="line"><span class="comment"> * to you under the Apache License, Version 2.0 (the</span></span><br><span class="line"><span class="comment"> * &quot;License&quot;); you may not use this file except in compliance</span></span><br><span class="line"><span class="comment"> * with the License.  You may obtain a copy of the License at</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     http://www.apache.org/licenses/LICENSE-2.0</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Unless required by applicable law or agreed to in writing, software</span></span><br><span class="line"><span class="comment"> * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span></span><br><span class="line"><span class="comment"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span></span><br><span class="line"><span class="comment"> * See the License for the specific language governing permissions and</span></span><br><span class="line"><span class="comment"> * limitations under the License.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">    The following properties are set for running HBase as a single process on a</span></span><br><span class="line"><span class="comment">    developer workstation. With this configuration, HBase is running in</span></span><br><span class="line"><span class="comment">    &quot;stand-alone&quot; mode and without a distributed file system. In this mode, and</span></span><br><span class="line"><span class="comment">    without further configuration, HBase and ZooKeeper data are stored on the</span></span><br><span class="line"><span class="comment">    local filesystem, in a path under the value configured for `hbase.tmp.dir`.</span></span><br><span class="line"><span class="comment">    This value is overridden from its default value of `/tmp` because many</span></span><br><span class="line"><span class="comment">    systems clean `/tmp` on a regular basis. Instead, it points to a path within</span></span><br><span class="line"><span class="comment">    this HBase installation directory.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    Running against the `LocalFileSystem`, as opposed to a distributed</span></span><br><span class="line"><span class="comment">    filesystem, runs the risk of data integrity issues and data loss. Normally</span></span><br><span class="line"><span class="comment">    HBase will refuse to run in such an environment. Setting</span></span><br><span class="line"><span class="comment">    `hbase.unsafe.stream.capability.enforce` to `false` overrides this behavior,</span></span><br><span class="line"><span class="comment">    permitting operation. This configuration is for the developer workstation</span></span><br><span class="line"><span class="comment">    only and __should not be used in production!__</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    See also https://hbase.apache.org/book.html#standalone_dist</span></span><br><span class="line"><span class="comment">  --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.cluster.distributed<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>./tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.unsafe.stream.capability.enforce<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.rootdir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://master:9000/hbase<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.zookeeper.quorum<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>master<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.master.info.port<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>60010<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929111344171.png" class="" title="image-20200929111344171">
+
+<blockquote>
+<p>修改regionservers文件</p>
+</blockquote>
+<p><img src="Hadoop%5Cimage-20200929113716160.png" alt="image-20200929113716160"></p>
+<blockquote>
+<p>将HBase复制到Slave节点</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -r /home/parak/HBase/hbase-2.2.6 slave:/home/parak/HBase</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929112324004.png" class="" title="image-20200929112324004">
+
+<blockquote>
+<p>再次启动Hbase</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200929113827901.png" class="" title="image-20200929113827901">
+
+<blockquote>
+<p>打开FireFox，进入<a target="_blank" rel="noopener" href="http://master:60010/">http://master:60010</a></p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200929113959833.png" class="" title="image-20200929113959833">
+
+<p>说明HBase启动成功</p>
+<h3 id="4-关闭HBase"><a href="#4-关闭HBase" class="headerlink" title="4. 关闭HBase"></a>4. 关闭HBase</h3><blockquote>
+<p>先关闭HBase: stop-hbase.sh</p>
+<p>再关闭Hadoop: stop-all.sh</p>
+</blockquote>
+<img src="/posts/ec060e02/image-20200929114148065.png" class="" title="image-20200929114148065">
+
+
+
+<h2 id="9-HBase-Shell命令操作"><a href="#9-HBase-Shell命令操作" class="headerlink" title="9. HBase Shell命令操作"></a>9. HBase Shell命令操作</h2><h3 id="1-启动HBase-Shell"><a href="#1-启动HBase-Shell" class="headerlink" title="1. 启动HBase Shell"></a>1. 启动HBase Shell</h3><h4 id="1-启动HBase-Shell界面"><a href="#1-启动HBase-Shell界面" class="headerlink" title="(1) 启动HBase Shell界面"></a>(1) 启动HBase Shell界面</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hbase shell</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929191351747.png" class="" title="image-20200929191351747">
+
+<h4 id="2-HBase-Shell的help命令"><a href="#2-HBase-Shell的help命令" class="headerlink" title="(2) HBase Shell的help命令"></a>(2) HBase Shell的help命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929191531507.png" class="" title="image-20200929191531507">
+
+<blockquote>
+<p>查看HBase建表命令create的用法</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help &quot;create&quot;</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929191618099.png" class="" title="image-20200929191618099">
+
+
+
+<h3 id="2-创建HBase数据表"><a href="#2-创建HBase数据表" class="headerlink" title="2. 创建HBase数据表"></a>2. 创建HBase数据表</h3><blockquote>
+<p>HBase中用create命令创建表</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="string">&#x27;student&#x27;</span>, <span class="string">&#x27;Sname&#x27;</span>, <span class="string">&#x27;Ssex&#x27;</span>, <span class="string">&#x27;Sage&#x27;</span>, <span class="string">&#x27;Sdept&#x27;</span>, <span class="string">&#x27;course&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929191856923.png" class="" title="image-20200929191856923">
+
+<blockquote>
+<p>查看’student’表的属性</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">describe &#x27;student&#x27;</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929191953519.png" class="" title="image-20200929191953519">
+
+
+
+<h3 id="3-HBase数据库基本操作"><a href="#3-HBase数据库基本操作" class="headerlink" title="3. HBase数据库基本操作"></a>3. HBase数据库基本操作</h3><h4 id="1-添加数据"><a href="#1-添加数据" class="headerlink" title="(1) 添加数据"></a>(1) 添加数据</h4><blockquote>
+<p>put命令添加数据，一次只能为一个表的一行数据的一个列添加一个数据</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">put &#x27;student&#x27;, &#x27;95001&#x27;, &#x27;Sname&#x27;, &#x27;Li Ying&#x27;</span><br><span class="line">put &#x27;student&#x27;, &#x27;95001&#x27;, &#x27;Sdept&#x27;, &#x27;CS&#x27;</span><br><span class="line">put &#x27;student&#x27;, &#x27;95001&#x27;, &#x27;course:math&#x27;, &#x27;81&#x27;</span><br><span class="line">put &#x27;student&#x27;, &#x27;95001&#x27;, &#x27;course:english&#x27;, &#x27;85&#x27;</span><br><span class="line">put &#x27;student&#x27;, &#x27;95002&#x27;, &#x27;course:math&#x27;, &#x27;83&#x27;</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929193655517.png" class="" title="image-20200929193655517">
+
+
+
+<h4 id="2-查看数据"><a href="#2-查看数据" class="headerlink" title="(2) 查看数据"></a>(2) 查看数据</h4><blockquote>
+<p>查看表某一行的数据</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get &#x27;student&#x27;, &#x27;95001&#x27;</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929194017359.png" class="" title="image-20200929194017359">
+
+<blockquote>
+<p>查看表的全部数据</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scan &#x27;student&#x27;</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929194135877.png" class="" title="image-20200929194135877">
+
+
+
+<h4 id="3-删除数据"><a href="#3-删除数据" class="headerlink" title="(3) 删除数据"></a>(3) 删除数据</h4><blockquote>
+<p>delete命令删除某一项数据</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete &#x27;student&#x27;, &#x27;95001&#x27;, &#x27;Ssex&#x27;</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929194514884.png" class="" title="image-20200929194514884">
+
+<blockquote>
+<p>delete命令删除某行的全部数据</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete &#x27;student&#x27;,&#x27;95001&#x27;</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929194626605.png" class="" title="image-20200929194626605">
+
+
+
+<h4 id="4-删除表"><a href="#4-删除表" class="headerlink" title="(4) 删除表"></a>(4) 删除表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">disable &#x27;student&#x27;</span><br><span class="line">drop &#x27;student&#x27;</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929193442627.png" class="" title="image-20200929193442627">
+
+
+
+<h3 id="4-查询HBase数据表的历史数据"><a href="#4-查询HBase数据表的历史数据" class="headerlink" title="4. 查询HBase数据表的历史数据"></a>4. 查询HBase数据表的历史数据</h3><blockquote>
+<p>在创建表的时候，指定保存的版本数</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create &#x27;teacher&#x27;, &#123;NAME=&gt;&#x27;username&#x27;, VERSIONS=&gt;5&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929203801474.png" class="" title="image-20200929203801474">
+
+<blockquote>
+<p>插入数据然后更新数据，使其产生历史版本数据</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">put &#x27;teacher&#x27;, &#x27;91001&#x27;, &#x27;username&#x27;, &#x27;Mary&#x27;</span><br><span class="line">put &#x27;teacher&#x27;, &#x27;91001&#x27;, &#x27;username&#x27;, &#x27;Mary1&#x27;</span><br><span class="line">put &#x27;teacher&#x27;, &#x27;91001&#x27;, &#x27;username&#x27;, &#x27;Mary2&#x27;</span><br><span class="line">put &#x27;teacher&#x27;, &#x27;91001&#x27;, &#x27;username&#x27;, &#x27;Mary3&#x27;</span><br><span class="line">put &#x27;teacher&#x27;, &#x27;91001&#x27;, &#x27;username&#x27;, &#x27;Mary4&#x27;</span><br><span class="line">put &#x27;teacher&#x27;, &#x27;91001&#x27;, &#x27;username&#x27;, &#x27;Mary5&#x27;</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929204220031.png" class="" title="image-20200929204220031">
+
+<blockquote>
+<p>查询时，指定查询的历史版本书（默认会查询出最新的数据）</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get &#x27;teacher&#x27;, &#x27;91001&#x27;, &#123;COLUMN=&gt;&#x27;username&#x27;, VERSIONS=&gt;5&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/posts/ec060e02/image-20200929204245861.png" class="" title="image-20200929204245861">
+
+
+
+<h3 id="5-退出HBase-Shell"><a href="#5-退出HBase-Shell" class="headerlink" title="5. 退出HBase Shell"></a>5. 退出HBase Shell</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/posts/ec060e02/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/posts/12bcd26e/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            博弈论
+          
+        </div>
+      </a>
+    
+    
+      <a href="/posts/1c6ba3e2/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Netty</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!-- <script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script> -->
+<!-- <script src="//unpkg.com/valine/dist/Valine.min.js"></script> -->
+<script src="/js/Valine.min.js"></script>
+<!-- 评论背景 -->
+<style>
+    #veditor{min-height: 10rem;
+        background-image: url('/images/comment-bg.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;}
+</style>
+<!-- Valine配置 -->
+<script>
+    new Valine({
+        el: '#vcomments',
+        enableQQ: true,
+        app_id: 'Py2eOHzSdrnxKPzKrOJaHJOq-9Nh9j0Va',
+        app_key: '9eQhwuCgyshpYKn4rtEhqt4R',
+        path: window.location.pathname,
+        //notify: 'false',
+        //verify: 'false',
+        avatar: 'wavatar',
+        placeholder: 'come on baby~',
+        recordIP: true,
+
+        // 设置Bilibili表情包地址
+        emojiCDN: 'https://cdn.jsdelivr.net/gh/XXXZhy/Blog_Image/valine_emoticon/',
+        // 表情title和图片映射
+        emojiMaps: {
+            "墙角滑稽": "害怕滑稽.gif",
+            "仙女下凡": "仙女下凡.webp",
+            "听歌": "听歌.webp",
+            "嫌弃": "嫌弃.webp",
+            "害羞": "害羞.webp",
+            "彩虹滑稽": "彩虹滑稽.webp",
+            "快走": "快走.webp",
+            "扯脸": "扯脸.webp",
+            "摸脸": "摸脸.webp",
+            "流汗": "流汗.webp",
+            "滑滑板": "滑滑板.webp",
+            "点赞": "点赞.webp",
+            "转圈圈": "转圈圈.webp",
+            // ... 更多表情
+        }
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2021
+        <i class="ri-heart-fill heart_icon"></i> Khighness
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s4.cnzz.com/z_stat.php?id=1279324689&amp;web_id=1279324689'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/Khighness.jpg" alt="Khighness"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://www.parak.top/contact/">联系</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>来杯抹茶？</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wepay.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+
+    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js"></script>
+        
+    
+
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script>
+
+<script src="/js/clickBoom1.js"></script>
+
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+  <!-- 三角彩带背景 -->
+  <canvas id="evanyou-canvas" style="opacity: 0.3; position: fixed; top: 0px; left: 0px; z-index: -1; width: 100%; height: 100%; pointer-events: none;"></canvas>
+  <script src="/js/evanyou-canvas.js"></script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/ni-j.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7}});</script></body>
+
+</html>
