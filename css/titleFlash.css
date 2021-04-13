@@ -1,4 +1,4 @@
-/*网站标题鼠标停留闪烁*/
+/* 网站标题鼠标停留闪烁 */
 .center-text{margin:auto;font-family:'Ubuntu',sans-serif;font-size:80px; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
 .glitch{position:relative;color:#fff;mix-blend-mode:lighten}
 .glitch:before,.glitch:after{content:attr(data-text);position:absolute;top:0;width:100%;background:rgba(0,0,0,0);clip:rect(0,0,0,0)}
