@@ -1,6 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Chartjs</title>
+    <url>/posts/50163/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="Chartjs初试"><a href="#Chartjs初试" class="headerlink" title="Chartjs初试"></a>Chartjs初试</h1><blockquote>
+<p>前言</p>
+</blockquote>
+<p>四月了，水一篇博客吧，关于<code>hexo-tag-chart</code>插件的使用，文档只有一个案例，官方文档只给出<code>js</code>用法，至于怎么使用以及用到何种程度，就看自己的造化吧。</p>
+<p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
+<p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
+<h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
+    <canvas id="chart2715" style="height: 120px"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('chart2715').getContext('2d');
+    var options = {
+    type: 'line',
+    data: {
+        labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+        datasets: [{
+        	label: '2020',
+            borderColor: 'orange',
+            backgroundColor: 'yellow',
+			data: [0, 0, 0, 0, 0, 1, 0, 0, 1, 6, 5, 1], 
+		},{
+			label: '2021',
+            borderColor: 'blue',
+            backgroundColor: 'lightBlue',
+			data: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+		}]
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: '每月明细'
+        }
+    }
+};;
+    new Chart(ctx, options);
+</script>
+
+
+
+<a id="more"></a>
+
+
+
+
+<h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
+    <canvas id="chart8747" style="height: 100px"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('chart8747').getContext('2d');
+    var options = {
+    type: 'polarArea',
+    data: {
+        labels: ['2020', '2021'],
+        datasets: [{
+            backgroundColor: ['orange', 'blue'],
+			data: [14, 1], 
+		}]
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: '博客统计'
+        }
+    }
+};;
+    new Chart(ctx, options);
+</script>
+
+
+
+<h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
+    <canvas id="chart1247" style="height: 100px"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('chart1247').getContext('2d');
+    var options = {
+    type: 'radar',
+    data: {
+        labels: ['Java', 'MySQL', 'Redis', 'Spring', 'SpringBoot', 'SpringCloud Alibaba', 'Vue', 'TCP/IP', 'OS'],
+        datasets: [{
+            label: '2020',
+            fill: true,
+            borderColor: 'rgb(253, 100, 131)',
+			pointHoverBackgroundColor: 'red',
+			data: [0.5, 0.4, 0.4, 0.1, 0.5, 0.2, 0.2, 0.5, 0.3]
+		},
+		{
+			label: '2021',
+			fill: true,
+			borderColor: 'rgb(100, 147, 208)',
+			pointHoverBackgroundColor: 'blue', 
+			data: [0.7, 0.7, 0.5, 0.5, 0.7, 0.5, 0.1, 0.6, 0.2]
+        }]
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: '能力雷达'
+        }
+    }
+};;
+    new Chart(ctx, options);
+</script>
+
+]]></content>
+      <categories>
+        <category>Frontend</category>
+      </categories>
+      <tags>
+        <tag>Chartjs</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL</title>
     <url>/posts/c24675b4/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><center>
@@ -3570,10 +3691,10 @@
     <title>叶惠美</title>
     <url>/posts/f8cdfd0a/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-sCFajjci" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-hhfuTKQm" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-sCFajjci");
+				  options.element = document.getElementById("aplayer-hhfuTKQm");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    归档: 2021 |  K殿
+    Chartjs |  K殿
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -119,72 +119,386 @@ var _hmt = _hmt || [];
       
     <main class="content on">
       <section class="outer">
-  
-  <article class="articles">
+  <article
+  id="post-Chartjs"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
     
-    
-    <h1 class="page-type-title">2021</h1>
-    
-    
-  
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2021" class="archive-year">2021</a>
-    </div>
-    <div class="archives">
-      
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/posts/50163/" class="archive-article-date">
-  <time datetime="2021-04-12T16:00:00.000Z" itemprop="datePublished">04/13</time>
-</a>
+    <header class="article-header">
        
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/posts/50163/"
-    >Chartjs</a> 
-</h2>
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Chartjs
+</h1>
  
 
     </header>
-    
-    
+     
+    <div class="article-meta">
+      <a href="/posts/50163/" class="article-date">
+  <time datetime="2021-04-12T16:00:00.000Z" itemprop="datePublished">2021-04-13</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
   </div>
-</article>
-      
   
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/posts/c24675b4/" class="archive-article-date">
-  <time datetime="2021-03-26T02:51:00.000Z" itemprop="datePublished">03/26</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/posts/c24675b4/"
-    >MySQL</a> 
-</h2>
- 
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">320</span>
+        </span>
+    </span>
 
-    </header>
-    
-    
-  </div>
-</article>
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">1 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
       
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="Chartjs初试"><a href="#Chartjs初试" class="headerlink" title="Chartjs初试"></a>Chartjs初试</h1><blockquote>
+<p>前言</p>
+</blockquote>
+<p>四月了，水一篇博客吧，关于<code>hexo-tag-chart</code>插件的使用，文档只有一个案例，官方文档只给出<code>js</code>用法，至于怎么使用以及用到何种程度，就看自己的造化吧。</p>
+<p>示例：<a target="_blank" rel="noopener" href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
+<p>文档：<a target="_blank" rel="noopener" href="https://chartjs.bootcss.com/">中文官方文档</a></p>
+<h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
+    <canvas id="chart2715" style="height: 120px"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('chart2715').getContext('2d');
+    var options = {
+    type: 'line',
+    data: {
+        labels: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+        datasets: [{
+        	label: '2020',
+            borderColor: 'orange',
+            backgroundColor: 'yellow',
+			data: [0, 0, 0, 0, 0, 1, 0, 0, 1, 6, 5, 1], 
+		},{
+			label: '2021',
+            borderColor: 'blue',
+            backgroundColor: 'lightBlue',
+			data: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+		}]
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: '每月明细'
+        }
+    }
+};;
+    new Chart(ctx, options);
+</script>
+
+
+
+<a id="more"></a>
+
+
+
+
+<h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
+    <canvas id="chart8747" style="height: 100px"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('chart8747').getContext('2d');
+    var options = {
+    type: 'polarArea',
+    data: {
+        labels: ['2020', '2021'],
+        datasets: [{
+            backgroundColor: ['orange', 'blue'],
+			data: [14, 1], 
+		}]
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: '博客统计'
+        }
+    }
+};;
+    new Chart(ctx, options);
+</script>
+
+
+
+<h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
+    <canvas id="chart1247" style="height: 100px"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('chart1247').getContext('2d');
+    var options = {
+    type: 'radar',
+    data: {
+        labels: ['Java', 'MySQL', 'Redis', 'Spring', 'SpringBoot', 'SpringCloud Alibaba', 'Vue', 'TCP/IP', 'OS'],
+        datasets: [{
+            label: '2020',
+            fill: true,
+            borderColor: 'rgb(253, 100, 131)',
+			pointHoverBackgroundColor: 'red',
+			data: [0.5, 0.4, 0.4, 0.1, 0.5, 0.2, 0.2, 0.5, 0.3]
+		},
+		{
+			label: '2021',
+			fill: true,
+			borderColor: 'rgb(100, 147, 208)',
+			pointHoverBackgroundColor: 'blue', 
+			data: [0.7, 0.7, 0.5, 0.5, 0.7, 0.5, 0.1, 0.6, 0.2]
+        }]
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: '能力雷达'
+        }
+    }
+};;
+    new Chart(ctx, options);
+</script>
+
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
       
     </div>
-  </div>
-  
-  
+    
 
-  
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/posts/50163/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chartjs/" rel="tag">Chartjs</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/posts/c24675b4/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">MySQL</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<!-- <script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script> -->
+<!-- <script src="//unpkg.com/valine/dist/Valine.min.js"></script> -->
+<script src="/js/Valine.min.js"></script>
+
+<style>
+    /* 设置评论背景 */
+    #veditor{min-height: 10rem;
+        background-image: url('/images/comment-bg.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: right;
+        background-color: rgba(255,255,255,0);
+        resize: none;
+    }
+
+    /* 设置头像旋转 */
+    .v .vcards .vcard .vimg {
+        width: 3.125em;
+        height: 3.125em;
+        float: left;
+        border-radius: 50%;
+        margin-right: .7525em;
+        padding: 0.125em;
+        border: 1px solid #FFA500;
+        opacity: 1;
+        transition: all 1.0s;
+    }
+
+    .v .vcards .vcard .vimg:hover {
+        box-shadow: 0 0 10px #fff;
+        -webkit-box-shadow: 0 0 19px #fff;
+        transform:rotate(360deg);
+        -ms-transform:rotate(360deg); 	  /* IE 9 */
+        -moz-transform:rotate(360deg); 	  /* Firefox */
+        -webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+        -o-transform:rotate(360deg); 	  /* Opera */
+        filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    }
+</style>
+<!-- Valine配置 -->
+<script>
+    new Valine({
+        el: '#vcomments',
+        enableQQ: true,
+        app_id: 'Py2eOHzSdrnxKPzKrOJaHJOq-9Nh9j0Va',
+        app_key: '9eQhwuCgyshpYKn4rtEhqt4R',
+        path: window.location.pathname,
+        //notify: 'false',
+        //verify: 'false',
+        avatar: 'wavatar',
+        placeholder: 'come on baby~',
+        recordIP: true,
+
+        // 设置Bilibili表情包地址
+        emojiCDN: '//i0.hdslb.com/bfs/emote/',
+        // 表情title和图片映射
+        emojiMaps: {
+           "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+            "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+            "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+            "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+            "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+            "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+            "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+            "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+            "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+            "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+            "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+            "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+            "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+            "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+            "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+            "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+            "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+            "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+            "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+            "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+            "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+            // ... 更多表情
+        }
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+ 
+     
+</article>
+
 </section>
       <footer class="footer">
   <div class="outer">
@@ -336,6 +650,23 @@ var _hmt = _hmt || [];
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
