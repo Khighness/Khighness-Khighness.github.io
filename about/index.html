@@ -173,8 +173,8 @@ var _hmt = _hmt || [];
 <li>Avater：<u><a target="_blank" rel="noopener" href="https://www.parak.top/Khighness.jpg">https://www.parak.top/Khighness.jpg</a></u></li>
 </ul>
 <h3 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h3><hr>
-<p>🐧 <a href="mailto:&#49;&#56;&#50;&#x33;&#x36;&#55;&#x36;&#x33;&#55;&#50;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;">&#49;&#56;&#50;&#x33;&#x36;&#55;&#x36;&#x33;&#55;&#50;&#x40;&#x71;&#x71;&#x2e;&#99;&#x6f;&#x6d;</a></p>
-<p>📭 <a href="mailto:&#x70;&#x61;&#x72;&#x61;&#x6b;&#111;&#118;&#111;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;">&#x70;&#x61;&#x72;&#x61;&#x6b;&#111;&#118;&#111;&#64;&#x67;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;</a></p>
+<p>🐧 <a href="mailto:&#49;&#56;&#x32;&#51;&#54;&#55;&#x36;&#51;&#55;&#x32;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;">&#49;&#56;&#x32;&#51;&#54;&#55;&#x36;&#51;&#55;&#x32;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;</a></p>
+<p>📭 <a href="mailto:&#112;&#x61;&#x72;&#x61;&#107;&#x6f;&#x76;&#111;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#112;&#x61;&#x72;&#x61;&#107;&#x6f;&#x76;&#111;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
  
       <!-- reward -->
       
@@ -264,15 +264,41 @@ var _hmt = _hmt || [];
 <!-- <script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script> -->
 <!-- <script src="//unpkg.com/valine/dist/Valine.min.js"></script> -->
 <script src="/js/Valine.min.js"></script>
-<!-- 评论背景 -->
+
 <style>
+    /* 设置评论背景 */
     #veditor{min-height: 10rem;
         background-image: url('/images/comment-bg.jpg');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: right;
         background-color: rgba(255,255,255,0);
-        resize: none;}
+        resize: none;
+    }
+
+    /* 设置头像旋转 */
+    .v .vcards .vcard .vimg {
+        width: 3.125em;
+        height: 3.125em;
+        float: left;
+        border-radius: 50%;
+        margin-right: .7525em;
+        padding: 0.125em;
+        border: 1px solid #FFA500;
+        opacity: 1;
+        transition: all 1.0s;
+    }
+
+    .v .vcards .vcard .vimg:hover {
+        box-shadow: 0 0 10px #fff;
+        -webkit-box-shadow: 0 0 19px #fff;
+        transform:rotate(360deg);
+        -ms-transform:rotate(360deg); 	  /* IE 9 */
+        -moz-transform:rotate(360deg); 	  /* Firefox */
+        -webkit-transform:rotate(360deg); /* Safari 和 Chrome */
+        -o-transform:rotate(360deg); 	  /* Opera */
+        filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    }
 </style>
 <!-- Valine配置 -->
 <script>
@@ -289,22 +315,30 @@ var _hmt = _hmt || [];
         recordIP: true,
 
         // 设置Bilibili表情包地址
-        emojiCDN: 'https://cdn.jsdelivr.net/gh/XXXZhy/Blog_Image/valine_emoticon/',
+        emojiCDN: '//i0.hdslb.com/bfs/emote/',
         // 表情title和图片映射
         emojiMaps: {
-            "墙角滑稽": "害怕滑稽.gif",
-            "仙女下凡": "仙女下凡.webp",
-            "听歌": "听歌.webp",
-            "嫌弃": "嫌弃.webp",
-            "害羞": "害羞.webp",
-            "彩虹滑稽": "彩虹滑稽.webp",
-            "快走": "快走.webp",
-            "扯脸": "扯脸.webp",
-            "摸脸": "摸脸.webp",
-            "流汗": "流汗.webp",
-            "滑滑板": "滑滑板.webp",
-            "点赞": "点赞.webp",
-            "转圈圈": "转圈圈.webp",
+           "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+            "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+            "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+            "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+            "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+            "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+            "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+            "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+            "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+            "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+            "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+            "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+            "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+            "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+            "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+            "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+            "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+            "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+            "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+            "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+            "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
             // ... 更多表情
         }
     });

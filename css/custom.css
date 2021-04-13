@@ -31,3 +31,10 @@ body {
     transform: translateX(8rem);
   }
 }
+/*设置评论头像旋转*/
+.v .vlist .vcard .vimg: hover {
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -transform: rotate(360deg);
+}
