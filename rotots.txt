@@ -1,0 +1,18 @@
+User-agent: *
+
+Allow: /page/
+Allow: /posts/
+Allow: /categories/
+Allow: /tags/
+Allow: /archives/
+Allow: /friends/
+Allow: /about/
+
+Disallow: /js/
+Disallow: /css/
+Disallow: /images/
+Disallow: /assets/
+Disallow: /lib/
+
+Sitemap: https://parak.top/sitemap.xml
+Sitemap: https://parak.top/baidusitemap.xml
