@@ -209,8 +209,6 @@ var _hmt = _hmt || [];
 <p>前端在每次请求时将JWT放入HTTP Header的Authorization位。（解决XSS和XSRF问题）</p>
 <p>后端检查是否存在，如存在验证JWT的有效性。（签名是否正确，Token是否过期等）</p>
 <p>验证通过后后端使用JWT中包含的用户信息进行其他逻辑操作，并返回相应结果。</p>
-<br>
-
 <p>优势：</p>
 <ul>
 <li>简洁，可以通过URL，POST参数或者在HTTP Header发送，因为数据量小，传输速度也很快</li>

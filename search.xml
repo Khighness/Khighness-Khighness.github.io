@@ -10,11 +10,11 @@
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart5403" style="height: 120px"></canvas>
+    <canvas id="chart2882" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart5403').getContext('2d');
+    var ctx = document.getElementById('chart2882').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -50,11 +50,11 @@
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart4931" style="height: 100px"></canvas>
+    <canvas id="chart7356" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart4931').getContext('2d');
+    var ctx = document.getElementById('chart7356').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -78,11 +78,11 @@
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart785" style="height: 100px"></canvas>
+    <canvas id="chart6295" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart785').getContext('2d');
+    var ctx = document.getElementById('chart6295').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -2040,8 +2040,6 @@
 <p>前端在每次请求时将JWT放入HTTP Header的Authorization位。（解决XSS和XSRF问题）</p>
 <p>后端检查是否存在，如存在验证JWT的有效性。（签名是否正确，Token是否过期等）</p>
 <p>验证通过后后端使用JWT中包含的用户信息进行其他逻辑操作，并返回相应结果。</p>
-<br>
-
 <p>优势：</p>
 <ul>
 <li>简洁，可以通过URL，POST参数或者在HTTP Header发送，因为数据量小，传输速度也很快</li>
@@ -3531,7 +3529,8 @@
 <blockquote>
 <p>⭕红黑树自平衡的最小单元</p>
 </blockquote>
-<p><img src="../../../../Java/AlgorithmNote/RBTree/image-20201106225159861.png" alt="image-20201106225159861"></p>
+<img src="/posts/f89cb603/image-20201106225159861.png" class="" title="image-20201106225159861">
+
 <p>红黑树的自平衡</p>
 <p>插入只考虑G-{P, U}-C三代，删除只考虑P-{C, B}-{CL, CR, BL, BR}三代</p>
 <br>
@@ -3542,7 +3541,8 @@
 <p>包括：变色、左旋、右旋</p>
 <p>旋转要有圆心，有方向。</p>
 <p>旋转结点是父结点围绕子节点旋转(子节点为圆心)。</p>
-<p><img src="../../../../Java/AlgorithmNote/RBTree/image-20201103220142748.png" alt="image-20201103220142748"></p>
+<img src="/posts/f89cb603/image-20201103220142748.png" class="" title="image-20201103220142748">
+
 <center>
     <font face="Kristen ITC" color="#555555" font-size=100px>☬ 旋转结点 ☬</font><br>
 </center>
@@ -3552,7 +3552,8 @@
 <blockquote>
 <p>🌐变色：P-Black=&gt;Red,CB-Red=&gt;Black</p>
 </blockquote>
-<p><img src="../../../../Java/AlgorithmNote/RBTree/image-20201103221816468.png" alt="image-20201103221816468"></p>
+<img src="/posts/f89cb603/image-20201103221816468.png" class="" title="image-20201103221816468">
+
 <center>
     <font face="Kristen ITC" color="#555555" font-size=100px>☬ 变色操作 ☬</font><br>
 </center>
@@ -3562,7 +3563,8 @@
 <blockquote>
 <p>🌔左旋：旋转结点绕圆心逆时针方向旋转。基于最短路径来确定方向。</p>
 </blockquote>
-<p><img src="../../../../Java/AlgorithmNote/RBTree/image-20201103222025132.png" alt="image-20201103222025132"></p>
+<img src="/posts/f89cb603/image-20201103222025132.png" class="" title="image-20201103222025132">
+
 <center>
     <font face="Kristen ITC" color="#555555" font-size=100px>☬ 左旋操作 ☬</font><br>
 </center>
@@ -3576,7 +3578,8 @@
 <blockquote>
 <p>🌖右旋：旋转结点绕圆心顺时针方向旋转。基于最短路径确定方向。</p>
 </blockquote>
-<p><img src="../../../../Java/AlgorithmNote/RBTree/image-20201103223223997.png" alt="image-20201103223223997"></p>
+<img src="/posts/f89cb603/image-20201103223223997.png" class="" title="image-20201103223223997">
+
 <center>
     <font face="Kristen ITC" color="#555555" font-size=100px>☬ 右旋操作 ☬</font><br>
 </center>
@@ -3698,10 +3701,10 @@
     <title>叶惠美</title>
     <url>/posts/f8cdfd0a/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-rdXsPTKw" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-QwWGehAF" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-rdXsPTKw");
+				  options.element = document.getElementById("aplayer-QwWGehAF");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
