@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-13T16:07:16.225Z</updated>
+  <updated>2021-04-16T12:22:44.335Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,21 +21,21 @@
     <link href="http://example.com/posts/50163/"/>
     <id>http://example.com/posts/50163/</id>
     <published>2021-04-12T16:00:00.000Z</published>
-    <updated>2021-04-13T16:07:16.225Z</updated>
+    <updated>2021-04-16T12:22:44.335Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;Chartjs初试&quot;&gt;&lt;a href=&quot;#Chartjs初试&quot; class=&quot;headerlink&quot; title=&quot;Chartjs初试&quot;&gt;&lt;/a&gt;Chartjs初试&lt;/h1&gt;&lt;blockquote&gt;
+    <summary type="html">&lt;blockquote&gt;
 &lt;p&gt;前言&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;四月了，水一篇博客吧，关于&lt;code&gt;hexo-tag-chart&lt;/code&gt;插件的使用，文档只有一个案例，官方文档只给出&lt;code&gt;js&lt;/code&gt;用法，至于怎么使用以及用到何种程度，就看自己的造化吧。&lt;/p&gt;
 &lt;p&gt;示例：&lt;a href=&quot;https://shen-yu.gitee.io/2020/chartjs&quot;&gt;沈宇大佬博客&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;文档：&lt;a href=&quot;https://chartjs.bootcss.com/&quot;&gt;中文官方文档&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;每月明细&quot;&gt;&lt;a href=&quot;#每月明细&quot; class=&quot;headerlink&quot; title=&quot;每月明细&quot;&gt;&lt;/a&gt;每月明细&lt;/h3&gt;&lt;div style=&quot;width: 80%;margin: 0 auto&quot;&gt;
-    &lt;canvas id=&quot;chart2246&quot; style=&quot;height: 120px&quot;&gt;&lt;/canvas&gt;
+    &lt;canvas id=&quot;chart5403&quot; style=&quot;height: 120px&quot;&gt;&lt;/canvas&gt;
 &lt;/div&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
-    var ctx = document.getElementById(&#39;chart2246&#39;).getContext(&#39;2d&#39;);
+    var ctx = document.getElementById(&#39;chart5403&#39;).getContext(&#39;2d&#39;);
     var options = {
     type: &#39;line&#39;,
     data: {
@@ -77,16 +77,10 @@
     <link href="http://example.com/posts/c24675b4/"/>
     <id>http://example.com/posts/c24675b4/</id>
     <published>2021-03-26T02:51:00.000Z</published>
-    <updated>2021-04-13T04:26:17.523Z</updated>
+    <updated>2021-04-16T12:28:04.274Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;MySQL&quot;&gt;&lt;a href=&quot;#MySQL&quot; class=&quot;headerlink&quot; title=&quot;MySQL&quot;&gt;&lt;/a&gt;MySQL&lt;/h1&gt;&lt;center&gt;
-    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;💤 Khighness 💤&lt;/font&gt;&lt;br&gt;
-&lt;/center&gt;
-
-
-
-&lt;h2 id=&quot;MySQL概述&quot;&gt;&lt;a href=&quot;#MySQL概述&quot; class=&quot;headerlink&quot; title=&quot;MySQL概述&quot;&gt;&lt;/a&gt;MySQL概述&lt;/h2&gt;&lt;h3 id=&quot;CentOS7安装&quot;&gt;&lt;a href=&quot;#CentOS7安装&quot; class=&quot;headerlink&quot; title=&quot;CentOS7安装&quot;&gt;&lt;/a&gt;CentOS7安装&lt;/h3&gt;&lt;blockquote&gt;
+    <summary type="html">&lt;h2 id=&quot;MySQL概述&quot;&gt;&lt;a href=&quot;#MySQL概述&quot; class=&quot;headerlink&quot; title=&quot;MySQL概述&quot;&gt;&lt;/a&gt;MySQL概述&lt;/h2&gt;&lt;h3 id=&quot;CentOS7安装&quot;&gt;&lt;a href=&quot;#CentOS7安装&quot; class=&quot;headerlink&quot; title=&quot;CentOS7安装&quot;&gt;&lt;/a&gt;CentOS7安装&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;下载RPM安装包&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;下载: &lt;a href=&quot;https://downloads.mysql.com/archives/community/&quot;&gt;mysql download&lt;/a&gt;&lt;/p&gt;
@@ -107,16 +101,10 @@
     <link href="http://example.com/posts/f5f9fa9b/"/>
     <id>http://example.com/posts/f5f9fa9b/</id>
     <published>2020-12-01T16:00:00.000Z</published>
-    <updated>2021-04-13T04:21:27.753Z</updated>
+    <updated>2021-04-16T12:23:51.525Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;Docker&quot;&gt;&lt;a href=&quot;#Docker&quot; class=&quot;headerlink&quot; title=&quot;Docker&quot;&gt;&lt;/a&gt;Docker&lt;/h1&gt;&lt;center&gt;
-    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;💤 Khighness 💤&lt;/font&gt;&lt;br&gt;
-&lt;/center&gt;
-
-
-
-&lt;h2 id=&quot;📖概述&quot;&gt;&lt;a href=&quot;#📖概述&quot; class=&quot;headerlink&quot; title=&quot;📖概述&quot;&gt;&lt;/a&gt;📖概述&lt;/h2&gt;
+    <summary type="html">&lt;h2 id=&quot;📖概述&quot;&gt;&lt;a href=&quot;#📖概述&quot; class=&quot;headerlink&quot; title=&quot;📖概述&quot;&gt;&lt;/a&gt;📖概述&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;故事&lt;/p&gt;
@@ -163,14 +151,10 @@
     <link href="http://example.com/posts/1bb08f7a/"/>
     <id>http://example.com/posts/1bb08f7a/</id>
     <published>2020-11-19T16:00:00.000Z</published>
-    <updated>2021-04-13T04:26:04.201Z</updated>
+    <updated>2021-04-16T12:27:34.164Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;JWT&quot;&gt;&lt;a href=&quot;#JWT&quot; class=&quot;headerlink&quot; title=&quot;JWT&quot;&gt;&lt;/a&gt;JWT&lt;/h1&gt;&lt;center&gt;
-    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;💤 Khighness 💤&lt;/font&gt;&lt;br&gt;
-&lt;/center&gt;
-
-&lt;h2 id=&quot;📖官方文档&quot;&gt;&lt;a href=&quot;#📖官方文档&quot; class=&quot;headerlink&quot; title=&quot;📖官方文档&quot;&gt;&lt;/a&gt;📖官方文档&lt;/h2&gt;&lt;blockquote&gt;
+    <summary type="html">&lt;h2 id=&quot;📖官方文档&quot;&gt;&lt;a href=&quot;#📖官方文档&quot; class=&quot;headerlink&quot; title=&quot;📖官方文档&quot;&gt;&lt;/a&gt;📖官方文档&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;🌐官方文档&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;👉&lt;a href=&quot;https://jwt.io/introduction/&quot;&gt;JWT&lt;/a&gt;&lt;/p&gt;
@@ -178,7 +162,8 @@
 &lt;p&gt;💰JWT概述&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;JSON Web Token&lt;/strong&gt;是一个开放标准（RFC 7519），它定义了一种紧凑且包含的方式，用于在各方之间安全地传输信息作为JSON对象。由于此信息是经过数字签名的，用于在各方面之间安全地传输信息作为JSON对象。由于此信息是经过数字签名地，因此可以被验证和信任。可以使用秘密（或者&lt;strong&gt;HMAC&lt;/strong&gt;算法）或使用&lt;strong&gt;RSA&lt;/strong&gt;或&lt;strong&gt;ECDSA&lt;/strong&gt;的公钥/私钥对对JWT进行签名。&lt;/p&gt;
-&lt;p&gt;尽管可以对JWT进行加密以提供双方之间的保密性，但我们将重点关注已签名的令牌。签名的令牌可以验证其中包含的声明的完整性，而加密的令牌则将这些声明隐藏在其他方的面前。当使用公钥/私钥对对令牌进行签名时，签名还证明只有持有私钥的一方才是对其进行签名的一方。&lt;/p&gt;</summary>
+&lt;p&gt;尽管可以对JWT进行加密以提供双方之间的保密性，但我们将重点关注已签名的令牌。签名的令牌可以验证其中包含的声明的完整性，而加密的令牌则将这些声明隐藏在其他方的面前。当使用公钥/私钥对对令牌进行签名时，签名还证明只有持有私钥的一方才是对其进行签名的一方。&lt;/p&gt;
+&lt;br&gt;</summary>
     
     
     
@@ -234,16 +219,10 @@
     <link href="http://example.com/posts/41682/"/>
     <id>http://example.com/posts/41682/</id>
     <published>2020-11-10T16:00:00.000Z</published>
-    <updated>2021-04-13T06:08:26.995Z</updated>
+    <updated>2021-04-16T12:23:09.777Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;设计模式&quot;&gt;&lt;a href=&quot;#设计模式&quot; class=&quot;headerlink&quot; title=&quot;设计模式&quot;&gt;&lt;/a&gt;设计模式&lt;/h1&gt;&lt;center&gt;
-    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;💌 Khighness 💌&lt;/font&gt;&lt;br&gt;
-&lt;/center&gt;
-
-
-
-&lt;p&gt;可扩展性的本质是找到系统的变化点，并隔离变化点。 &lt;/p&gt;
+    <summary type="html">&lt;p&gt;可扩展性的本质是找到系统的变化点，并隔离变化点。 &lt;/p&gt;
 &lt;p&gt;世间众多设计模式其实就是一种设计模式即隔离变化点的模式。&lt;/p&gt;
 &lt;p&gt;极致扩展性的标志，就是需求的新增，不会在原有代码交付物上进行任何形式的修改。&lt;/p&gt;
 &lt;p&gt;——《阿里巴巴Java开发手册》&lt;/p&gt;
@@ -263,21 +242,16 @@
     <link href="http://example.com/posts/f89cb603/"/>
     <id>http://example.com/posts/f89cb603/</id>
     <published>2020-11-06T16:00:00.000Z</published>
-    <updated>2021-04-13T04:28:31.585Z</updated>
+    <updated>2021-04-16T12:30:59.679Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;红黑树&quot;&gt;&lt;a href=&quot;#红黑树&quot; class=&quot;headerlink&quot; title=&quot;红黑树&quot;&gt;&lt;/a&gt;红黑树&lt;/h1&gt;&lt;center&gt;
-    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;💌 Khighness 💌&lt;/font&gt;&lt;br&gt;
-&lt;/center&gt;
-
-
-
-&lt;h2 id=&quot;📓-定义&quot;&gt;&lt;a href=&quot;#📓-定义&quot; class=&quot;headerlink&quot; title=&quot;📓 定义&quot;&gt;&lt;/a&gt;📓 定义&lt;/h2&gt;&lt;p&gt;红黑树是一种含有红黑节点并能自平衡的二叉查找树&lt;/p&gt;
+    <summary type="html">&lt;h2 id=&quot;📓-定义&quot;&gt;&lt;a href=&quot;#📓-定义&quot; class=&quot;headerlink&quot; title=&quot;📓 定义&quot;&gt;&lt;/a&gt;📓 定义&lt;/h2&gt;&lt;p&gt;红黑树是一种含有红黑节点并能自平衡的二叉查找树&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;🌲二叉查找树&lt;/p&gt;
 &lt;p&gt;满足约束：左结点的值小于父结点，父结点的值小于右结点的值。&lt;/p&gt;
 &lt;p&gt;场景理解：假设二叉查找树建立在x-y笛卡尔坐标系中，则所有结点向x轴投影，值正好沿着x轴递增。&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
+&lt;/blockquote&gt;
+&lt;br&gt;</summary>
     
     
     
@@ -296,10 +270,10 @@
     <updated>2021-04-13T04:31:05.611Z</updated>
     
     
-    <summary type="html">&lt;div id=&quot;aplayer-XMVjhNko&quot; class=&quot;aplayer aplayer-tag-marker&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&lt;/div&gt;
+    <summary type="html">&lt;div id=&quot;aplayer-rdXsPTKw&quot; class=&quot;aplayer aplayer-tag-marker&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&quot;narrow&quot;:false,&quot;autoplay&quot;:false,&quot;showlrc&quot;:1,&quot;mode&quot;:&quot;oredr&quot;,&quot;mutex&quot;:true,&quot;theme&quot;:&quot;#e6d0b2&quot;,&quot;preload&quot;:&quot;metadata&quot;,&quot;listmaxheight&quot;:&quot;513px&quot;,&quot;music&quot;:[{&quot;title&quot;:&quot;以父之名&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/以父之名.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;以父之名.txt&quot;},{&quot;title&quot;:&quot;懦夫&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/懦夫.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;懦夫.txt&quot;},{&quot;title&quot;:&quot;晴天&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/晴天.flac&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;晴天.txt&quot;},{&quot;title&quot;:&quot;三年二班&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/三年二班.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;三年二班.txt&quot;},{&quot;title&quot;:&quot;东风破&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/东风破.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;东风破.txt&quot;},{&quot;title&quot;:&quot;你听得到&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/你听得到.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;你听得到.txt&quot;},{&quot;title&quot;:&quot;同一种调调&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/同一种调调.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;同一种调调.txt&quot;},{&quot;title&quot;:&quot;她的睫毛&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/她的睫毛.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;她的睫毛.txt&quot;},{&quot;title&quot;:&quot;爱情悬崖&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/爱情悬崖.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;爱情悬崖.txt&quot;},{&quot;title&quot;:&quot;梯田&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/梯田.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;梯田.txt&quot;},{&quot;title&quot;:&quot;双刀&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/双刀.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;双刀.txt&quot;}]};
-				  options.element = document.getElementById(&quot;aplayer-XMVjhNko&quot;);
+				  options.element = document.getElementById(&quot;aplayer-rdXsPTKw&quot;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -404,14 +378,12 @@
     <link href="http://example.com/posts/12bcd26e/"/>
     <id>http://example.com/posts/12bcd26e/</id>
     <published>2020-10-02T16:00:00.000Z</published>
-    <updated>2021-04-13T04:22:48.978Z</updated>
+    <updated>2021-04-16T12:24:22.655Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;博弈论&quot;&gt;&lt;a href=&quot;#博弈论&quot; class=&quot;headerlink&quot; title=&quot;博弈论&quot;&gt;&lt;/a&gt;博弈论&lt;/h1&gt;&lt;center&gt;
+    <summary type="html">&lt;center&gt;
     &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;Khighness、寻找必败态&lt;/font&gt;&lt;br&gt;
 &lt;/center&gt;
-
-
 
 
 
@@ -433,18 +405,10 @@
     <link href="http://example.com/posts/ec060e02/"/>
     <id>http://example.com/posts/ec060e02/</id>
     <published>2020-10-01T16:00:00.000Z</published>
-    <updated>2021-04-13T04:23:13.000Z</updated>
+    <updated>2021-04-16T12:25:19.413Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;大数据与云计算&quot;&gt;&lt;a href=&quot;#大数据与云计算&quot; class=&quot;headerlink&quot; title=&quot;大数据与云计算&quot;&gt;&lt;/a&gt;大数据与云计算&lt;/h1&gt;&lt;center&gt;
-    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; font-size=100px&gt;💌 Khighness 💌&lt;/font&gt;&lt;br&gt;
-&lt;/center&gt;
-
-
-
-
-
-&lt;h2 id=&quot;1-安装CentOS7&quot;&gt;&lt;a href=&quot;#1-安装CentOS7&quot; class=&quot;headerlink&quot; title=&quot;1. 安装CentOS7&quot;&gt;&lt;/a&gt;1. 安装CentOS7&lt;/h2&gt;&lt;h3 id=&quot;1-下载镜像&quot;&gt;&lt;a href=&quot;#1-下载镜像&quot; class=&quot;headerlink&quot; title=&quot;1. 下载镜像&quot;&gt;&lt;/a&gt;1. 下载镜像&lt;/h3&gt;&lt;blockquote&gt;
+    <summary type="html">&lt;h2 id=&quot;1-安装CentOS7&quot;&gt;&lt;a href=&quot;#1-安装CentOS7&quot; class=&quot;headerlink&quot; title=&quot;1. 安装CentOS7&quot;&gt;&lt;/a&gt;1. 安装CentOS7&lt;/h2&gt;&lt;h3 id=&quot;1-下载镜像&quot;&gt;&lt;a href=&quot;#1-下载镜像&quot; class=&quot;headerlink&quot; title=&quot;1. 下载镜像&quot;&gt;&lt;/a&gt;1. 下载镜像&lt;/h3&gt;&lt;blockquote&gt;
 &lt;p&gt;ISO: &lt;a href=&quot;https://www.centos.org/download/&quot;&gt;CentOS7 X86_64&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;img src=&quot;/posts/ec060e02/image-20200915192222693.png&quot; class=&quot;&quot; title=&quot;image-20200915192222693&quot;&gt;</summary>
@@ -463,14 +427,10 @@
     <link href="http://example.com/posts/1c6ba3e2/"/>
     <id>http://example.com/posts/1c6ba3e2/</id>
     <published>2020-09-30T16:00:00.000Z</published>
-    <updated>2021-04-13T04:01:33.372Z</updated>
+    <updated>2021-04-16T12:28:20.959Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;Netty&quot;&gt;&lt;a href=&quot;#Netty&quot; class=&quot;headerlink&quot; title=&quot;Netty&quot;&gt;&lt;/a&gt;Netty&lt;/h1&gt;&lt;center&gt;
-    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;Khighness&lt;/font&gt;&lt;br&gt;
-&lt;/center&gt;
-
-&lt;h2 id=&quot;1-IO&quot;&gt;&lt;a href=&quot;#1-IO&quot; class=&quot;headerlink&quot; title=&quot;1. IO&quot;&gt;&lt;/a&gt;1. IO&lt;/h2&gt;&lt;h3 id=&quot;1-1-BIO&quot;&gt;&lt;a href=&quot;#1-1-BIO&quot; class=&quot;headerlink&quot; title=&quot;1.1 BIO&quot;&gt;&lt;/a&gt;1.1 BIO&lt;/h3&gt;&lt;h4 id=&quot;1-1-1-介绍&quot;&gt;&lt;a href=&quot;#1-1-1-介绍&quot; class=&quot;headerlink&quot; title=&quot;1.1.1 介绍&quot;&gt;&lt;/a&gt;1.1.1 介绍&lt;/h4&gt;&lt;ul&gt;
+    <summary type="html">&lt;h2 id=&quot;1-IO&quot;&gt;&lt;a href=&quot;#1-IO&quot; class=&quot;headerlink&quot; title=&quot;1. IO&quot;&gt;&lt;/a&gt;1. IO&lt;/h2&gt;&lt;h3 id=&quot;1-1-BIO&quot;&gt;&lt;a href=&quot;#1-1-BIO&quot; class=&quot;headerlink&quot; title=&quot;1.1 BIO&quot;&gt;&lt;/a&gt;1.1 BIO&lt;/h3&gt;&lt;h4 id=&quot;1-1-1-介绍&quot;&gt;&lt;a href=&quot;#1-1-1-介绍&quot; class=&quot;headerlink&quot; title=&quot;1.1.1 介绍&quot;&gt;&lt;/a&gt;1.1.1 介绍&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;Java BIO就是传统的Java IO编程，相关API都在java.io&lt;/li&gt;
 &lt;li&gt;BIO (&lt;strong&gt;blocking I/O&lt;/strong&gt;)：&lt;strong&gt;同步并阻塞&lt;/strong&gt;，服务器实现模式为一个连接一个线程，即有连接请求时服务器就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销&lt;/li&gt;
 &lt;li&gt;BIO方式适用于连接数目较小且固定的架构，这种方式对服务器资源要求比较高，并发局限于应用中，JDK1.4以前的唯一选择&lt;/li&gt;
@@ -490,16 +450,10 @@
     <link href="http://example.com/posts/3e51ba23/"/>
     <id>http://example.com/posts/3e51ba23/</id>
     <published>2020-09-19T16:00:00.000Z</published>
-    <updated>2021-04-13T04:33:03.461Z</updated>
+    <updated>2021-04-16T12:26:04.232Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;Java8-Stream&quot;&gt;&lt;a href=&quot;#Java8-Stream&quot; class=&quot;headerlink&quot; title=&quot;Java8-Stream&quot;&gt;&lt;/a&gt;Java8-Stream&lt;/h1&gt;&lt;center&gt;
-    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;Khighness&lt;/font&gt;&lt;br&gt;
-&lt;/center&gt;
-
-
-
-&lt;h2 id=&quot;一-概述&quot;&gt;&lt;a href=&quot;#一-概述&quot; class=&quot;headerlink&quot; title=&quot;一. 概述&quot;&gt;&lt;/a&gt;一. 概述&lt;/h2&gt;&lt;p&gt;​       Stream 是 Java8 中处理集合的关键抽象概念，它可以指定你希望对集合进行的操作，可以执行非常复杂的查找、过滤和映射数据等操作。使用Stream API 对集合数据进行操作，就类似于使用 SQL 执行的数据库查询。也可以使用 Stream API 来并行执行操作。简而言之，Stream API 提供了一种高效且易于使用的处理数据的方式。&lt;/p&gt;
+    <summary type="html">&lt;h2 id=&quot;一-概述&quot;&gt;&lt;a href=&quot;#一-概述&quot; class=&quot;headerlink&quot; title=&quot;一. 概述&quot;&gt;&lt;/a&gt;一. 概述&lt;/h2&gt;&lt;p&gt;​       Stream 是 Java8 中处理集合的关键抽象概念，它可以指定你希望对集合进行的操作，可以执行非常复杂的查找、过滤和映射数据等操作。使用Stream API 对集合数据进行操作，就类似于使用 SQL 执行的数据库查询。也可以使用 Stream API 来并行执行操作。简而言之，Stream API 提供了一种高效且易于使用的处理数据的方式。&lt;/p&gt;
 &lt;p&gt;特点：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;不是数据结构，不会保存数据。&lt;/p&gt;
@@ -524,16 +478,10 @@
     <link href="http://example.com/posts/140645a5/"/>
     <id>http://example.com/posts/140645a5/</id>
     <published>2020-05-31T16:00:00.000Z</published>
-    <updated>2021-04-13T04:23:27.120Z</updated>
+    <updated>2021-04-16T12:25:38.188Z</updated>
     
     
-    <summary type="html">&lt;h1 id=&quot;Http状态码&quot;&gt;&lt;a href=&quot;#Http状态码&quot; class=&quot;headerlink&quot; title=&quot;Http状态码&quot;&gt;&lt;/a&gt;Http状态码&lt;/h1&gt;&lt;center&gt;
-    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;Khighness&lt;/font&gt;&lt;br&gt;
-&lt;/center&gt;
-
-
-
-&lt;table&gt;
+    <summary type="html">&lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th align=&quot;center&quot;&gt;分类&lt;/th&gt;
