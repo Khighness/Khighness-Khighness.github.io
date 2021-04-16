@@ -51,7 +51,7 @@ ga('send', 'pageview');
 var _hmt = _hmt || [];
 (function() {
 	var hm = document.createElement("script");
-	hm.src = "https://hm.baidu.com/hm.js?ParaK";
+	hm.src = "https://hm.baidu.com/hm.js?97974cf7c750ac7da47173f2992d6970";
 	var s = document.getElementsByTagName("script")[0]; 
 	s.parentNode.insertBefore(hm, s);
 })();
@@ -288,128 +288,18 @@ var _hmt = _hmt || [];
     
   </nav>
 
+  
+     
    
-<!-- valine评论 -->
-<div id="vcomments-box">
-    <div id="vcomments">
-    </div>
-</div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<!-- <script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script> -->
-<!-- <script src="//unpkg.com/valine/dist/Valine.min.js"></script> -->
-<script src="/js/Valine.min.js"></script>
-
-<style>
-    /* 设置评论背景 */
-    #veditor{min-height: 10rem;
-        background-image: url('/images/comment-bg.jpg');
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: right;
-        background-color: rgba(255,255,255,0);
-        resize: none;
-    }
-
-    /* 设置头像旋转 */
-    .v .vcards .vcard .vimg {
-        width: 3.125em;
-        height: 3.125em;
-        float: left;
-        border-radius: 50%;
-        margin-right: .7525em;
-        padding: 0.125em;
-        border: 1px solid #FFA500;
-        opacity: 1;
-        transition: all 1.0s;
-    }
-
-    .v .vcards .vcard .vimg:hover {
-        box-shadow: 0 0 10px #fff;
-        -webkit-box-shadow: 0 0 19px #fff;
-        transform:rotate(360deg);
-        -ms-transform:rotate(360deg); 	  /* IE 9 */
-        -moz-transform:rotate(360deg); 	  /* Firefox */
-        -webkit-transform:rotate(360deg); /* Safari 和 Chrome */
-        -o-transform:rotate(360deg); 	  /* Opera */
-        filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-    }
-</style>
-<!-- Valine配置 -->
-<script>
-    new Valine({
-        el: '#vcomments',
-        enableQQ: true,
-        app_id: 'Py2eOHzSdrnxKPzKrOJaHJOq-9Nh9j0Va',
-        app_key: '9eQhwuCgyshpYKn4rtEhqt4R',
-        path: window.location.pathname,
-        //notify: 'false',
-        //verify: 'false',
-        avatar: 'wavatar',
-        placeholder: '建议使用QQ邮箱，会自动获取QQ头像~',
-        recordIP: true,
-
-        // 设置Bilibili表情包地址
-        emojiCDN: '//i0.hdslb.com/bfs/emote/',
-        // 表情title和图片映射
-        emojiMaps: {
-           "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
-            "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
-            "tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
-            "tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
-            "tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
-            "tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
-            "tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
-            "tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
-            "tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
-            "tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
-            "tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
-            "tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
-            "tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
-            "tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
-            "tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
-            "tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
-            "tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
-            "tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
-            "tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
-            "tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
-            "tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
-            // ... 更多表情
-        }
-    });
-    const infoEle = document.querySelector('#vcomments .info');
-    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
-        infoEle.childNodes.forEach(function (item) {
-            item.parentNode.removeChild(item);
-        });
-    }
-</script>
-
-<style>
-    #vcomments-box {
-        padding: 5px 30px;
-    }
-
-    @media screen and (max-width: 800px) {
-        #vcomments-box {
-            padding: 5px 0px;
-        }
-    }
-
-    #vcomments-box #vcomments {
-        background-color: #fff;
-    }
-
-    .v .vlist .vcard .vh {
-        padding-right: 20px;
-    }
-
-    .v .vlist .vcard {
-        padding-left: 10px;
-    }
-</style>
+    <script src="https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js"></script>
+    <div id="twikoo" class="twikoo"></div>
+    <script>
+        twikoo.init({
+            envId: "hexo-2grv2lyu1131c342"
+        })
+    </script>
 
  
-     
 </article>
 
 </section>
