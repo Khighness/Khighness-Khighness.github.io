@@ -1,1063 +1,519 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Khighness</title><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="炒菜K殿下">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Khighness">
+<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:site_name" content="Khighness">
+<meta property="og:description" content="炒菜K殿下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Khighness/images/avatar/Khighness.jpg">
+<meta property="article:author" content="Khighness">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Khighness/images/avatar/Khighness.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Khighness/images/avatar/K.jpg"><link rel="canonical" href="http://example.com/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//s4.cnzz.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="yandex-verification" content="{&quot;theme_color&quot;:{&quot;enable&quot;:true,&quot;main&quot;:&quot;#49B1F5&quot;,&quot;paginator&quot;:&quot;#00c4b6&quot;,&quot;button_hover&quot;:&quot;#FF7242&quot;,&quot;text_selection&quot;:&quot;#00c4b6&quot;,&quot;link_color&quot;:&quot;#99a9bf&quot;,&quot;meta_color&quot;:&quot;#858585&quot;,&quot;hr_color&quot;:&quot;#A4D8FA&quot;,&quot;code_foreground&quot;:&quot;#F47466&quot;,&quot;code_background&quot;:&quot;rgba(27, 31, 35, .05)&quot;,&quot;toc_color&quot;:&quot;#00c4b6&quot;,&quot;blockquote_padding_color&quot;:&quot;#49b1f5&quot;,&quot;blockquote_background_color&quot;:&quot;#49b1f5&quot;}}"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" data-pjax="data-pjax" src="https://s4.cnzz.com/z_stat.php?id=1279324689&amp;web_id=1279324689"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Khighness","link":"链接: ","source":"来源: Khighness","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-04-17 22:25:25'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-<html lang="zh-CN">
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-<head>
-  <meta charset="utf-8" />
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-  <meta name="description" content="K殿" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>
-     K殿
-  </title>
-  <meta name="generator" content="hexo-theme-ayer">
-  
-  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Khighness/Khighness.github.io/k.ico" />
-  
-  
-<link rel="stylesheet" href="/dist/main.css">
-
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
-
-  
-<link rel="stylesheet" href="/css/custom.css">
-
-  
-  
-<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-
-  
-  
-
-  
-<script>
-var _hmt = _hmt || [];
-(function() {
-	var hm = document.createElement("script");
-	hm.src = "https://hm.baidu.com/hm.js?97974cf7c750ac7da47173f2992d6970";
-	var s = document.getElementsByTagName("script")[0]; 
-	s.parentNode.insertBefore(hm, s);
-})();
-</script>
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/avatar/Khighness.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Khighness/images/common/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Khighness</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/Khighness" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:parakovo@gmail.com" target="_blank" title="Gmail"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=1823676372&amp;website=www.oicqzone.com" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/posts/83c5d7ce/" title="Regex">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-6.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="Regex"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/83c5d7ce/" title="Regex">Regex</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-05T16:00:00.000Z" title="发表于 2020-10-06 00:00:00">2020-10-06</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Algorithm/">Algorithm</a></span></div><div class="content">1. 简介
 
 
-  <!-- 封面标题闪烁 -->
-  <link rel="stylesheet" href="/css/titleFlash.css">
-  <!-- 浏览器搞笑标题 -->
-<!--  <script type="text/javascript">
-  //
-  var OriginTitle = document.title;
-  var titleTime;
-  document.addEventListener('visibilitychange', function () {
-      if (location.href != "https://www.xxxzhy.com/"){//主页不变
-          if (document.hidden) {
-              //$('[rel="icon"]').attr('href', "/funny.ico");
-              document.title = '/(ㄒoㄒ)/你弄丢了XXXZhy';
-              clearTimeout(titleTime);
-          }else {
-              //$('[rel="icon"]').attr('href', "/favicon.ico");
-              document.title = '(ฅ>ω<*ฅ) 噫又好啦~' + OriginTitle;
-              titleTime = setTimeout(function () {
-                  document.title = OriginTitle;
-              }, 2000);
+Regex
+
+正则表达式，Regular Expression
+
+
+
+为什么需要正则表达式？
+
+文本的复杂处理
+
+
+
+正则表达式的优势和用途？
+
+
+一种强大而灵活的文本处理工具
+大部分编程语言、数据库、文本编辑器、开发环境都支持正则表达式
+
+
+
+
+正则表达式定义：
+
+一种字符串匹配的模式
+
+
+
+开发中使用
+
+
+分析所要匹配的数据，写出测试用的典型数据
+在工具软件中进行匹配测试
+在程序中调用测试的正则表达式
+
+
+
+
+
+2. 语法
+
+2.1 标准字符集合
+能够与”多种字符”匹配的表达式
+注意区分大小写，大写是相反的意思
+
+
+
+
+字符
+描述
+
+
+
+\d
+任意一个数字，0-9中的任意一个
+
+
+\w
+任意一个字母或数字或下划线，也就是A-Z、a-z、0-9、_中任意一个
+
+
+\s
+包括空格、制表符、换行符等空白字符的其中一个
+
+
+.
+小数点可以匹配任意一个字符(除了换行符)， 如果要匹配包括”\n”在内的所有字符，一般用[\s\S]
+
+
+如果要匹配真正的’.’、’+’、’-‘、’\&#39; ， 就要转义，用\.、\+、\-、\\
+
+
+2.2 自定义字符集合
+[]方括号匹配方式， ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/posts/12bcd26e/" title="博弈论">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-5.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="博弈论"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/12bcd26e/" title="博弈论">博弈论</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-02T16:00:00.000Z" title="发表于 2020-10-03 00:00:00">2020-10-03</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Algorithm/">Algorithm</a></span></div><div class="content">
+    Khighness、寻找必败态
+
+
+
+
+1. 巴什博弈
+
+1.1 问题
+两个顶尖聪明的人在玩游戏，有 n 个石子，每个人每次拿 1~m 个石头，拿掉最后一块石头的人就是获胜者。请问先手与后手谁必胜？
+
+
+
+
+
+1.2 分析
+分类讨论: 
+（1）当n ≤ m时，这时先手的人可以一次取走所有的；
+（2）当n = m+1时，这时先手无论取走多少个，后手的人都能取走剩下所有的；
+（3）当n = k ∗ ( m + 1)时，对于每(m + 1)个石子，先手取i个，后手一定能将剩下的(m + 1 − i)个都取走，因此后手必胜；
+（4）当n = k ∗ ( m + 1)  + x ( 0&lt; x&lt; m + 1)时，先手可以先取 x 个，之后的局势就回到了上一种情况，无论后手取多少个，先手都能取走m+1个中剩下的，因此先手必胜。
+
+
+
+1.3 结论
+当n % m + 1) == 0时，后手必胜，否则先手必胜。
+
+
+
+1.4 代码123456789public class BashGame &#123;    public void play(int n, int m) &#123 ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/posts/ec060e02/" title="大数据">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-4.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="大数据"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/ec060e02/" title="大数据">大数据</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-01T16:00:00.000Z" title="发表于 2020-10-02 00:00:00">2020-10-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Cloud/">Cloud</a></span></div><div class="content">1. 安装CentOS71. 下载镜像
+ISO: CentOS7 X86_64
+
+
+
+
+
+
+
+
+
+2. 安装系统
+
+
+
+
+
+
+
+
+
+3. 虚拟机完成
+
+
+
+4. 安装Docker
+Docker要求CentOS系统的内核版本高于 3.10，查看CentOS版本是否支持 Docker
+
+1uname -r
+
+
+
+确保yum包更新到最新
+
+1sudo yum update
+
+
+
+
+
+
+安装过Docker则卸载旧版本
+
+1sudo yum remove docker  docker-common docker-selinux docker-engine
+
+
+
+
+安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的
+
+1sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+
+
+
+
+设置yum源（使用阿里云地址）
+
+1sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docke ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/posts/1c6ba3e2/" title="Netty">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-3.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="Netty"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/1c6ba3e2/" title="Netty">Netty</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-09-30T16:00:00.000Z" title="发表于 2020-10-01 00:00:00">2020-10-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java/">Java</a></span></div><div class="content">1. IO1.1 BIO1.1.1 介绍
+Java BIO就是传统的Java IO编程，相关API都在java.io
+BIO (blocking I/O)：同步并阻塞，服务器实现模式为一个连接一个线程，即有连接请求时服务器就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销
+BIO方式适用于连接数目较小且固定的架构，这种方式对服务器资源要求比较高，并发局限于应用中，JDK1.4以前的唯一选择
+
+
+
+
+
+1.1.2 实例
+BIO服务器
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394package com.kag.bio;import org.apache.log4j.Logger;import java.io.IOException;import java. ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/posts/3e51ba23/" title="Java8-Stream">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-2.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="Java8-Stream"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/3e51ba23/" title="Java8-Stream">Java8-Stream</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-09-19T16:00:00.000Z" title="发表于 2020-09-20 00:00:00">2020-09-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Java/">Java</a></span></div><div class="content">1. 概述
+
+​       Stream 是 Java8 中处理集合的关键抽象概念，它可以指定你希望对集合进行的操作，可以执行非常复杂的查找、过滤和映射数据等操作。使用Stream API 对集合数据进行操作，就类似于使用 SQL 执行的数据库查询。也可以使用 Stream API 来并行执行操作。简而言之，Stream API 提供了一种高效且易于使用的处理数据的方式。
+特点：
+
+不是数据结构，不会保存数据。
+
+不会修改原来的数据源，它会将操作后的数据保存到另外一个对象中。（保留意见：毕竟peek方法可以修改流中元素）
+
+惰性求值，流在中间处理过程中，只是对操作进行了记录，并不会立即执行，需要等到执行终止操作的时候才会进行实际的计算。
+
+
+
+
+
+
+2. 分类
+
+
+
+
+类型
+状态
+API
+
+
+
+中间操作
+有状态
+unordered() filter() map() mapToInt() mapToDouble() flatMap() flatMapToInt() flatMapToLong() flatMapToDouble() peek()
+
+
+中间操作
+无状态
+distinct( ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/posts/140645a5/" title="Http状态码">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-1.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="Http状态码"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/140645a5/" title="Http状态码">Http状态码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-31T16:00:00.000Z" title="发表于 2020-06-01 00:00:00">2020-06-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Http/">Http</a></span></div><div class="content">五种状态
+
+
+
+
+
+
+分类
+描述
+
+
+
+1**
+信息，服务器收到请求，需要请求者继续执行操作
+
+
+2**
+成功，操作被成功接收并处理
+
+
+3**
+重定向，需要进一步的操作以完成请求
+
+
+4**
+客户端错误，请求白蛤语法错误或无分发完成请求
+
+
+5**
+服务器错误，服务器才处理请求的过程中发生了错误
+
+
+
+
+
+
+
+1xx-消息这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应，只包含状态行和某些可选的响应头信息，并以空行结束。由于HTTP/1.0协议中没有定义任何1xx状态码，所以除非在某些试验条件下，服务器禁止向此类客户端发送1xx响应。 这些状态码代表的响应都是信息性的，标示客户应该采取的其他行动。
+
+100 Continue服务器已经接收到请求头，并且客户端应继续发送请求主体（在需要发送身体的请求的情况下：例如，POST请求），或者如果请求已经完成，忽略这个响应。服务器必须在请求完成后向客户端发送一个最终响应。要使服务器检查请求的头部，客户端必须在其初始请求中发送Expect: 100-continue作为头部，并在发送正文之前接收100 Continue状态代码 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/avatar/Khighness.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="avatar"/><div class="author-info__name">Khighness</div><div class="author-info__description">炒菜K殿下</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Khighness"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Khighness" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:parakovo@gmail.com" target="_blank" title="Gmail"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=1823676372&amp;website=www.oicqzone.com" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">带我逃走，日落之前</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/50163/" title="Chartjs"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-16.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="Chartjs"/></a><div class="content"><a class="title" href="/posts/50163/" title="Chartjs">Chartjs</a><time datetime="2021-04-12T16:00:00.000Z" title="发表于 2021-04-13 00:00:00">2021-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c24675b4/" title="MySQL"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-15.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="MySQL"/></a><div class="content"><a class="title" href="/posts/c24675b4/" title="MySQL">MySQL</a><time datetime="2021-03-26T02:51:00.000Z" title="发表于 2021-03-26 10:51:00">2021-03-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/f5f9fa9b/" title="Docker"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-14.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="Docker"/></a><div class="content"><a class="title" href="/posts/f5f9fa9b/" title="Docker">Docker</a><time datetime="2020-12-01T16:00:00.000Z" title="发表于 2020-12-02 00:00:00">2020-12-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/33422a09/" title="负距离"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-13.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="负距离"/></a><div class="content"><a class="title" href="/posts/33422a09/" title="负距离">负距离</a><time datetime="2020-11-22T16:00:00.000Z" title="发表于 2020-11-23 00:00:00">2020-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1bb08f7a/" title="JWT"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-12.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="JWT"/></a><div class="content"><a class="title" href="/posts/1bb08f7a/" title="JWT">JWT</a><time datetime="2020-11-19T16:00:00.000Z" title="发表于 2020-11-20 00:00:00">2020-11-20</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-bolt"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Algorithm/"><span class="card-category-list-name">Algorithm</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cloud/"><span class="card-category-list-name">Cloud</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DevOps/"><span class="card-category-list-name">DevOps</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Frontend/"><span class="card-category-list-name">Frontend</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Http/"><span class="card-category-list-name">Http</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Music/"><span class="card-category-list-name">Music</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MySQL/"><span class="card-category-list-name">MySQL</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Cache/" style="font-size: 1.1em; color: #999">Cache</a> <a href="/tags/Chartjs/" style="font-size: 1.1em; color: #999">Chartjs</a> <a href="/tags/Design-Pattern/" style="font-size: 1.1em; color: #999">Design Pattern</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/Game/" style="font-size: 1.1em; color: #999">Game</a> <a href="/tags/Hadoop/" style="font-size: 1.1em; color: #999">Hadoop</a> <a href="/tags/HttpCode/" style="font-size: 1.1em; color: #999">HttpCode</a> <a href="/tags/JWT/" style="font-size: 1.1em; color: #999">JWT</a> <a href="/tags/Java8/" style="font-size: 1.1em; color: #999">Java8</a> <a href="/tags/MySQL/" style="font-size: 1.1em; color: #999">MySQL</a> <a href="/tags/Mybatis-plus/" style="font-size: 1.1em; color: #999">Mybatis-plus</a> <a href="/tags/NoSQL/" style="font-size: 1.1em; color: #999">NoSQL</a> <a href="/tags/RedBlackTree/" style="font-size: 1.1em; color: #999">RedBlackTree</a> <a href="/tags/Regex/" style="font-size: 1.1em; color: #999">Regex</a> <a href="/tags/Server/" style="font-size: 1.1em; color: #999">Server</a> <a href="/tags/%E5%8F%B6%E6%83%A0%E7%BE%8E/" style="font-size: 1.1em; color: #999">叶惠美</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.1em; color: #999">随笔</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/04/"><span class="card-archive-list-date">四月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/03/"><span class="card-archive-list-date">三月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/12/"><span class="card-archive-list-date">十二月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/11/"><span class="card-archive-list-date">十一月 2020</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/09/"><span class="card-archive-list-date">九月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">六月 2020</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">16</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-04-17T14:25:24.893Z"></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Khighness/images/common/footer.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Khighness</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "逐日之灵，K无止境".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '逐'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'butterfly-4ggykf730d3228c5',
+        region: 'ap-shanghai',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
           }
-      }
-  });
-  </script> -->
-  <!-- 百度自动推送 -->
-  <script>
-  (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      if (curProtocol === 'https') {
-          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-      }
-      else {
-          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-      }
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-  })();
-  </script>
-<link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
-</head>
-
-</html>
-
-
-<body>
-  <div id="app">
-    
-      <canvas class="fireworks"></canvas>
-      <style>
-        .fireworks {
-          position: fixed;
-          left: 0;
-          top: 0;
-          z-index: 99999;
-          pointer-events: none;
-        }
-      </style>
-      
-      
-    <main class="content on">
-      
-<section class="cover">
-    
-      
-      <a class="forkMe" href="https://github.com/Khighness"
-        target="_blank"><img width="149" height="149" src="/images/forkme.png"
-          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
-    
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="https://cdn.jsdelivr.net/gh/Khighness/Khighness.github.io/images/earth.jpg" alt="image frame" />
-    </div>
-    <div class="cover-inner text-center text-white">
-<!--      <h1><a href="/">Khighness</a></h1> -->
-<h1 class="center-text glitch" data-text="Khighness">Khighness</h1>
-      <div id="subtitle-box">
-        
-        <span id="subtitle"></span>
-        
-      </div>
-      <div>
-        
-        <img
-          src="https://cdn.jsdelivr.net/gh/Khighness/Khighness.github.io/images/Khighness.jpg"
-          class="cover-logo"
-          alt="Khighness"
-        />
-        
-      </div>
-    </div>
-  </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
-
-
-<!-- Subtitle -->
-
-  <script>
-    try {
-      var typed = new Typed("#subtitle", {
-        strings: ['逐日之灵，K无止境', '青麟可浪，碧月可辰', '夜尽天明，天光破晓'],
-        startDelay: 0,
-        typeSpeed: 100,
-        loop: true,
-        backSpeed: 50,
-        showCursor: true
-      });
-    } catch (err) {
-      console.log(err)
-    }
-  </script>
-  
-
-<div id="main">
-  <section class="outer">
-  
-  
-
-<div class="notice" style="margin-top:50px">
-    <i class="ri-heart-fill"></i>
-    <div class="notice-content" id="broad"></div>
-</div>
-<script type="text/javascript">
-    fetch('https://v1.hitokoto.cn')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("broad").innerHTML = data.hitokoto;
         })
-        .catch(console.error)
-</script>
 
-<style>
-    .notice {
-        padding: 20px;
-        border: 1px dashed #e6e6e6;
-        color: #969696;
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        background: #fbfbfb50;
-        border-radius: 10px;
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      })
     }
 
-    .notice i {
-        float: left;
-        color: #999;
-        font-size: 16px;
-        padding-right: 10px;
-        vertical-align: middle;
-        margin-top: -2px;
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runTwikoo)
     }
-
-    .notice-content {
-        display: initial;
-        vertical-align: middle;
-    }
-</style>
-  
-  <article class="articles">
-    
-    
-    
-    
-    <article
-  id="post-Regex"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/83c5d7ce/"
-    >Regex</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/83c5d7ce/" class="article-date">
-  <time datetime="2020-10-05T16:00:00.000Z" itemprop="datePublished">2020-10-06</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="Regex"><a href="#Regex" class="headerlink" title="Regex"></a>Regex</h1><center>
-    <font face="Kristen ITC" color="#555555" size=3>Khighness</font><br>
-</center>
-
-
-
-<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><blockquote>
-<p>Regex</p>
-</blockquote>
-<p><strong>正则表达式，Regular Expression</strong></p>
-<blockquote>
-<p>为什么需要正则表达式？</p>
-</blockquote>
-<p><strong>文本的复杂处理</strong></p>
-<blockquote>
-<p>正则表达式的优势和用途？</p>
-</blockquote>
-<ul>
-<li><strong>一种强大而灵活的文本处理工具</strong></li>
-<li><strong>大部分编程语言、数据库、文本编辑器、开发环境都支持正则表达式</strong></li>
-</ul>
-<blockquote>
-<p>正则表达式定义：</p>
-</blockquote>
-<p><strong>一种字符串匹配的模式</strong></p>
-<blockquote>
-<p>开发中使用</p>
-</blockquote>
-<ul>
-<li>分析所要匹配的数据，写出测试用的典型数据</li>
-<li>在工具软件中进行匹配测试</li>
-<li>在程序中调用测试的正则表达式</li>
-</ul> 
-      <a class="article-more-link" href="/posts/83c5d7ce/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Regex/" rel="tag">Regex</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-Game"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/12bcd26e/"
-    >博弈论</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/12bcd26e/" class="article-date">
-  <time datetime="2020-10-02T16:00:00.000Z" itemprop="datePublished">2020-10-03</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <center>
-    <font face="Kristen ITC" color="#555555" size=3>Khighness、寻找必败态</font><br>
-</center>
-
-
-
-<h2 id="1-巴什博弈"><a href="#1-巴什博弈" class="headerlink" title="1. 巴什博弈"></a>1. 巴什博弈</h2><h3 id="1-1-问题"><a href="#1-1-问题" class="headerlink" title="1.1 问题"></a>1.1 问题</h3><blockquote>
-<p>两个顶尖聪明的人在玩游戏，有 n 个石子，每个人每次拿 1~m 个石头，拿掉最后一块石头的人就是获胜者。请问先手与后手谁必胜？</p>
-</blockquote> 
-      <a class="article-more-link" href="/posts/12bcd26e/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Game/" rel="tag">Game</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-Hadoop"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/ec060e02/"
-    >大数据</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/ec060e02/" class="article-date">
-  <time datetime="2020-10-01T16:00:00.000Z" itemprop="datePublished">2020-10-02</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Cloud/">Cloud</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="1-安装CentOS7"><a href="#1-安装CentOS7" class="headerlink" title="1. 安装CentOS7"></a>1. 安装CentOS7</h2><h3 id="1-下载镜像"><a href="#1-下载镜像" class="headerlink" title="1. 下载镜像"></a>1. 下载镜像</h3><blockquote>
-<p>ISO: <a target="_blank" rel="noopener" href="https://www.centos.org/download/">CentOS7 X86_64</a></p>
-</blockquote>
-<img src="/posts/ec060e02/image-20200915192222693.png" class="" title="image-20200915192222693"> 
-      <a class="article-more-link" href="/posts/ec060e02/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-Netty"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/1c6ba3e2/"
-    >Netty</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/1c6ba3e2/" class="article-date">
-  <time datetime="2020-09-30T16:00:00.000Z" itemprop="datePublished">2020-10-01</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="1-IO"><a href="#1-IO" class="headerlink" title="1. IO"></a>1. IO</h2><h3 id="1-1-BIO"><a href="#1-1-BIO" class="headerlink" title="1.1 BIO"></a>1.1 BIO</h3><h4 id="1-1-1-介绍"><a href="#1-1-1-介绍" class="headerlink" title="1.1.1 介绍"></a>1.1.1 介绍</h4><ul>
-<li>Java BIO就是传统的Java IO编程，相关API都在java.io</li>
-<li>BIO (<strong>blocking I/O</strong>)：<strong>同步并阻塞</strong>，服务器实现模式为一个连接一个线程，即有连接请求时服务器就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销</li>
-<li>BIO方式适用于连接数目较小且固定的架构，这种方式对服务器资源要求比较高，并发局限于应用中，JDK1.4以前的唯一选择</li>
-</ul> 
-      <a class="article-more-link" href="/posts/1c6ba3e2/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Server/" rel="tag">Server</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-Java8-Stream"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/3e51ba23/"
-    >Java8-Stream</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/3e51ba23/" class="article-date">
-  <time datetime="2020-09-19T16:00:00.000Z" itemprop="datePublished">2020-09-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="一-概述"><a href="#一-概述" class="headerlink" title="一. 概述"></a>一. 概述</h2><p>​       Stream 是 Java8 中处理集合的关键抽象概念，它可以指定你希望对集合进行的操作，可以执行非常复杂的查找、过滤和映射数据等操作。使用Stream API 对集合数据进行操作，就类似于使用 SQL 执行的数据库查询。也可以使用 Stream API 来并行执行操作。简而言之，Stream API 提供了一种高效且易于使用的处理数据的方式。</p>
-<p>特点：</p>
-<ul>
-<li><p>不是数据结构，不会保存数据。</p>
-</li>
-<li><p>不会修改原来的数据源，它会将操作后的数据保存到另外一个对象中。（保留意见：毕竟peek方法可以修改流中元素）</p>
-</li>
-<li><p>惰性求值，流在中间处理过程中，只是对操作进行了记录，并不会立即执行，需要等到执行终止操作的时候才会进行实际的计算。</p>
-</li>
-</ul> 
-      <a class="article-more-link" href="/posts/3e51ba23/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java8/" rel="tag">Java8</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-HttpCode"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/140645a5/"
-    >Http状态码</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/140645a5/" class="article-date">
-  <time datetime="2020-05-31T16:00:00.000Z" itemprop="datePublished">2020-06-01</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Http/">Http</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <table>
-<thead>
-<tr>
-<th align="center">分类</th>
-<th align="center">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">1**</td>
-<td align="center">信息，服务器收到请求，需要请求者继续执行操作</td>
-</tr>
-<tr>
-<td align="center">2**</td>
-<td align="center">成功，操作被成功接收并处理</td>
-</tr>
-<tr>
-<td align="center">3**</td>
-<td align="center">重定向，需要进一步的操作以完成请求</td>
-</tr>
-<tr>
-<td align="center">4**</td>
-<td align="center">客户端错误，请求白蛤语法错误或无分发完成请求</td>
-</tr>
-<tr>
-<td align="center">5**</td>
-<td align="center">服务器错误，服务器才处理请求的过程中发生了错误</td>
-</tr>
-</tbody></table> 
-      <a class="article-more-link" href="/posts/140645a5/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HttpCode/" rel="tag">HttpCode</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-  </article>
-  
-
-  
-  <nav class="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-  
-</section>
-</div>
-
-      <footer class="footer">
-  <div class="outer">
-    <ul>
-      <li>
-        Copyrights &copy;
-        2020-2021
-        <i class="ri-heart-fill heart_icon"></i> Khighness
-      </li>
-    </ul>
-    <ul>
-      <li>
-        
-      </li>
-    </ul>
-    <ul>
-      <li>
-        
-        
-        <span>
-  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
-  <span class="division">|</span>
-  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
-</span>
-        
-      </li>
-    </ul>
-    <ul>
-      
-    </ul>
-    <ul>
-      
-    </ul>
-    <ul>
-      <li>
-        <!-- cnzz统计 -->
-        
-        <script type="text/javascript" src='https://s4.cnzz.com/z_stat.php?id=1279324689&amp;web_id=1279324689'></script>
-        
-      </li>
-    </ul>
-  </div>
-</footer>
-      <div class="float_btns">
-        <div class="totop" id="totop">
-  <i class="ri-arrow-up-line"></i>
-</div>
-
-<div class="todark" id="todark">
-  <i class="ri-moon-line"></i>
-</div>
-
-      </div>
-    </main>
-    <aside class="sidebar on">
-      <button class="navbar-toggle"></button>
-<nav class="navbar">
-  
-  <div class="logo">
-    <a href="/"><img src="https://cdn.jsdelivr.net/gh/Khighness/Khighness.github.io/images/Khighness.jpg" alt="Khighness"></a>
-  </div>
-  
-  <ul class="nav nav-main">
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/about">关于</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/friends">友链</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" target="_blank" rel="noopener" href="https://www.tidio.com/talk/Khighness">联系</a>
-    </li>
-    
-  </ul>
-</nav>
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
-      
-      <a class="nav-item-link nav-item-search"  title="搜索">
-        <i class="ri-search-line"></i>
-      </a>
-      
-      
-      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
-        <i class="ri-rss-line"></i>
-      </a>
-      
-    </li>
-  </ul>
-</nav>
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-    </aside>
-    <script>
-      if (window.matchMedia("(max-width: 768px)").matches) {
-        document.querySelector('.content').classList.remove('on');
-        document.querySelector('.sidebar').classList.remove('on');
-      }
-    </script>
-    <div id="mask"></div>
-
-<!-- #reward -->
-<div id="reward">
-  <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>来杯抹茶？</p>
-  <div class="reward-box">
-    
-    <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Khighness/Khighness.github.io/images/alipay.jpg">
-      <span class="reward-type">支付宝</span>
-    </div>
-    
-    
-    <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Khighness/Khighness.github.io/images/wepay.jpg">
-      <span class="reward-type">微信</span>
-    </div>
-    
-  </div>
-</div>
-    
-<script src="/js/jquery-2.0.3.min.js"></script>
-
-
-<script src="/js/lazyload.min.js"></script>
-
-<!-- Tocbot -->
-
-<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
-<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
-
-<script src="/dist/main.js"></script>
-
-<!-- ImageViewer -->
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <!--  Controls are self-explanatory. Order can be changed. -->
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
-
-<script>
-    function viewer_init() {
-        let pswpElement = document.querySelectorAll('.pswp')[0];
-        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
-
-        $imgArr.forEach(($em, i) => {
-            $em.onclick = () => {
-                // slider展开状态
-                // todo: 这样不好，后面改成状态
-                if (document.querySelector('.left-col.show')) return
-                let items = []
-                $imgArr.forEach(($em2, i2) => {
-                    let img = $em2.getAttribute('data-idx', i2)
-                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
-                    let title = $em2.getAttribute('alt')
-                    // 获得原图尺寸
-                    const image = new Image()
-                    image.src = src
-                    items.push({
-                        src: src,
-                        w: image.width || $em2.width,
-                        h: image.height || $em2.height,
-                        title: title
-                    })
-                })
-                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
-                    index: parseInt(i)
-                });
-                gallery.init()
-            }
-        })
-    }
-    viewer_init()
-</script>
-
-<!-- MathJax -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-  });
-
-  MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-  });
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-  var ayerConfig = {
-    mathjax: true
   }
-</script>
 
-<!-- Katex -->
+  const generateHtml = array => {
+    let result = ''
 
-<!-- busuanzi  -->
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
 
-
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
-
-
-<!-- ClickLove -->
-
-<!-- ClickBoom1 -->
-
-<script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script>
-
-<script src="/js/clickBoom1.js"></script>
-
-
-<!-- ClickBoom2 -->
-
-<!-- CodeCopy -->
-
-
-<link rel="stylesheet" href="/css/clipboard.css">
-
-<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-<script>
-  function wait(callback, seconds) {
-    var timelag = null;
-    timelag = window.setTimeout(callback, seconds);
-  }
-  !function (e, t, a) {
-    var initCopyCode = function(){
-      var copyHtml = '';
-      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
-      copyHtml += '</button>';
-      $(".highlight .code pre").before(copyHtml);
-      $(".article pre code").before(copyHtml);
-      var clipboard = new ClipboardJS('.btn-copy', {
-        target: function(trigger) {
-          return trigger.nextElementSibling;
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
         }
-      });
-      clipboard.on('success', function(e) {
-        let $btn = $(e.trigger);
-        $btn.addClass('copied');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-checkbox-circle-line');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPIED';
         
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-checkbox-circle-line');
-          $icon.addClass('ri-file-copy-2-line');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-      clipboard.on('error', function(e) {
-        e.clearSelection();
-        let $btn = $(e.trigger);
-        $btn.addClass('copy-failed');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-time-line');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPY FAILED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-time-line');
-          $icon.addClass('ri-file-copy-2-line');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
     }
-    initCopyCode();
-  }(window, document);
-</script>
 
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
 
-<!-- CanvasBackground -->
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
 
-
-    
-  </div>
-
-  
-  <script src="//code.tidio.co/ao1f4qdjllf8yowzz7v5brdaejt42uoi.js" async>
-</script>
-
-  
-
-  
-  <canvas id="evanyou-canvas" style="opacity: 0.3; position: fixed; top: 0px; left: 0px; z-index: -1; width: 100%; height: 100%; pointer-events: none;"></canvas>
-<script src="/js/evanyou-canvas.js"></script>
-
-  
-
-  <!-- 百度统计 -->
-  <script>
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?97974cf7c750ac7da47173f2992d6970";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-  </script>
-
-</body>
-
-</html>
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

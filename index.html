@@ -1,266 +1,154 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Khighness</title><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="炒菜K殿下">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Khighness">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Khighness">
+<meta property="og:description" content="炒菜K殿下">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Khighness/images/avatar/Khighness.jpg">
+<meta property="article:author" content="Khighness">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Khighness/images/avatar/Khighness.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Khighness/images/avatar/K.jpg"><link rel="canonical" href="http://example.com/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//s4.cnzz.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="yandex-verification" content="{&quot;theme_color&quot;:{&quot;enable&quot;:true,&quot;main&quot;:&quot;#49B1F5&quot;,&quot;paginator&quot;:&quot;#00c4b6&quot;,&quot;button_hover&quot;:&quot;#FF7242&quot;,&quot;text_selection&quot;:&quot;#00c4b6&quot;,&quot;link_color&quot;:&quot;#99a9bf&quot;,&quot;meta_color&quot;:&quot;#858585&quot;,&quot;hr_color&quot;:&quot;#A4D8FA&quot;,&quot;code_foreground&quot;:&quot;#F47466&quot;,&quot;code_background&quot;:&quot;rgba(27, 31, 35, .05)&quot;,&quot;toc_color&quot;:&quot;#00c4b6&quot;,&quot;blockquote_padding_color&quot;:&quot;#49b1f5&quot;,&quot;blockquote_background_color&quot;:&quot;#49b1f5&quot;}}"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script async="async" data-pjax="data-pjax" src="https://s4.cnzz.com/z_stat.php?id=1279324689&amp;web_id=1279324689"></script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Khighness","link":"链接: ","source":"来源: Khighness","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-04-17 22:25:25'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-
-<html lang="zh-CN">
-
-
-<head>
-  <meta charset="utf-8" />
-    
-  <meta name="description" content="K殿" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <title>
-     K殿
-  </title>
-  <meta name="generator" content="hexo-theme-ayer">
-  
-  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Khighness/Khighness.github.io/k.ico" />
-  
-  
-<link rel="stylesheet" href="/dist/main.css">
-
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
-
-  
-<link rel="stylesheet" href="/css/custom.css">
-
-  
-  
-<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
-
-  
-  
-
-  
-<script>
-var _hmt = _hmt || [];
-(function() {
-	var hm = document.createElement("script");
-	hm.src = "https://hm.baidu.com/hm.js?97974cf7c750ac7da47173f2992d6970";
-	var s = document.getElementsByTagName("script")[0]; 
-	s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-
-  <!-- 封面标题闪烁 -->
-  <link rel="stylesheet" href="/css/titleFlash.css">
-  <!-- 浏览器搞笑标题 -->
-<!--  <script type="text/javascript">
-  //
-  var OriginTitle = document.title;
-  var titleTime;
-  document.addEventListener('visibilitychange', function () {
-      if (location.href != "https://www.xxxzhy.com/"){//主页不变
-          if (document.hidden) {
-              //$('[rel="icon"]').attr('href', "/funny.ico");
-              document.title = '/(ㄒoㄒ)/你弄丢了XXXZhy';
-              clearTimeout(titleTime);
-          }else {
-              //$('[rel="icon"]').attr('href', "/favicon.ico");
-              document.title = '(ฅ>ω<*ฅ) 噫又好啦~' + OriginTitle;
-              titleTime = setTimeout(function () {
-                  document.title = OriginTitle;
-              }, 2000);
-          }
-      }
-  });
-  </script> -->
-  <!-- 百度自动推送 -->
-  <script>
-  (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      if (curProtocol === 'https') {
-          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-      }
-      else {
-          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-      }
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-  })();
-  </script>
-<link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
-<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
-<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
-</head>
-
-</html>
-
-
-<body>
-  <div id="app">
-    
-      <canvas class="fireworks"></canvas>
-      <style>
-        .fireworks {
-          position: fixed;
-          left: 0;
-          top: 0;
-          z-index: 99999;
-          pointer-events: none;
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
         }
-      </style>
-      
-      
-    <main class="content on">
-      
-<section class="cover">
-    
-      
-      <a class="forkMe" href="https://github.com/Khighness"
-        target="_blank"><img width="149" height="149" src="/images/forkme.png"
-          class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
-    
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="https://cdn.jsdelivr.net/gh/Khighness/Khighness.github.io/images/earth.jpg" alt="image frame" />
-    </div>
-    <div class="cover-inner text-center text-white">
-<!--      <h1><a href="/">Khighness</a></h1> -->
-<h1 class="center-text glitch" data-text="Khighness">Khighness</h1>
-      <div id="subtitle-box">
-        
-        <span id="subtitle"></span>
-        
-      </div>
-      <div>
-        
-        <img
-          src="https://cdn.jsdelivr.net/gh/Khighness/Khighness.github.io/images/Khighness.jpg"
-          class="cover-logo"
-          alt="Khighness"
-        />
-        
-      </div>
-    </div>
-  </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
-
-
-<!-- Subtitle -->
-
-  <script>
-    try {
-      var typed = new Typed("#subtitle", {
-        strings: ['逐日之灵，K无止境', '青麟可浪，碧月可辰', '夜尽天明，天光破晓'],
-        startDelay: 0,
-        typeSpeed: 100,
-        loop: true,
-        backSpeed: 50,
-        showCursor: true
-      });
-    } catch (err) {
-      console.log(err)
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
     }
-  </script>
   
-
-<div id="main">
-  <section class="outer">
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-  
-
-<div class="notice" style="margin-top:50px">
-    <i class="ri-heart-fill"></i>
-    <div class="notice-content" id="broad"></div>
-</div>
-<script type="text/javascript">
-    fetch('https://v1.hitokoto.cn')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("broad").innerHTML = data.hitokoto;
-        })
-        .catch(console.error)
-</script>
-
-<style>
-    .notice {
-        padding: 20px;
-        border: 1px dashed #e6e6e6;
-        color: #969696;
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        background: #fbfbfb50;
-        border-radius: 10px;
-    }
-
-    .notice i {
-        float: left;
-        color: #999;
-        font-size: 16px;
-        padding-right: 10px;
-        vertical-align: middle;
-        margin-top: -2px;
-    }
-
-    .notice-content {
-        display: initial;
-        vertical-align: middle;
-    }
-</style>
-  
-  <article class="articles">
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-    
-    
-    
-    <article
-  id="post-Chartjs"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/50163/"
-    >Chartjs
-  <i class="article-topping">置顶</i>
-</a> 
-</h2>
- 
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/avatar/Khighness.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Khighness/images/common/index.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Khighness</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/Khighness" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:parakovo@gmail.com" target="_blank" title="Gmail"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=1823676372&amp;website=www.oicqzone.com" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/posts/50163/" title="Chartjs">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-16.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="Chartjs"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/50163/" title="Chartjs">Chartjs</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-04-12T16:00:00.000Z" title="发表于 2021-04-13 00:00:00">2021-04-13</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Frontend/">Frontend</a></span></div><div class="content">
+前言
 
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/50163/" class="article-date">
-  <time datetime="2021-04-12T16:00:00.000Z" itemprop="datePublished">2021-04-13</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <blockquote>
-<p>前言</p>
-</blockquote>
-<p>四月了，水一篇博客吧，关于<code>hexo-tag-chart</code>插件的使用，文档只有一个案例，官方文档只给出<code>js</code>用法，至于怎么使用以及用到何种程度，就看自己的造化吧。</p>
-<p>示例：<a target="_blank" rel="noopener" href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
-<p>文档：<a target="_blank" rel="noopener" href="https://chartjs.bootcss.com/">中文官方文档</a></p>
-<h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart2882" style="height: 120px"></canvas>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-<script type="text/javascript">
-    var ctx = document.getElementById('chart2882').getContext('2d');
+四月了，水一篇博客吧，关于hexo-tag-chart插件的使用，文档只有一个案例，官方文档只给出js用法，至于怎么使用以及用到何种程度，就看自己的造化吧。
+示例：沈宇大佬博客
+文档：中文官方文档
+每月明细
+    
+
+
+
+    var ctx = document.getElementById('chart4078').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -270,1061 +158,417 @@ var _hmt = _hmt || [];
             borderColor: 'orange',
             backgroundColor: 'yellow',
 			data: [0, 0, 0, 0, 0, 1, 0, 0, 1, 6, 5, 1], 
-		},{
-			label: '2021',
-            borderColor: 'blue',
-            backgroundColor: 'lightBlue',
-			data: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-		}]
-    },
-    options: {
-        responsive: true,
-        title: {
-            display: true,
-            text: '每月明细'
-        }
+		}, ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/posts/c24675b4/" title="MySQL">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-15.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="MySQL"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/c24675b4/" title="MySQL">MySQL</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-26T02:51:00.000Z" title="发表于 2021-03-26 10:51:00">2021-03-26</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/MySQL/">MySQL</a></span></div><div class="content">MySQL概述CentOS7安装
+下载RPM安装包
+
+下载: mysql download
+将四个包下载后移动到opt文件夹下
+
+
+
+
+
+
+
+
+
+检查是否已安装MySQL
+
+如果没有信息显示则表示未安装MySQL
+1$ rpm -qa | grep -i mysql
+
+
+
+
+安装MySQL
+
+-i：显示套件的文件列表
+-v：显示指令执行过程
+-h：套件安装时列出标记
+1$ rpm -ivh &lt;包名&gt;
+
+安装顺序：
+
+common
+libs
+client
+server
+
+依赖冲突：
+直接卸载mariadb
+详情如下：
+12345678910111213141516171819202122232425262728293031[root@parak opt]# rpm -ivh mysql-community-common-8.0.20-1.el7.x86_64.rpm 警告：mysql-community-common-8.0.20-1.el7.x86_64.rpm: 头V3 DSA/SHA1 Signature, 密钥 ID 5072e1f5: NOKEY准备中...     ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/posts/f5f9fa9b/" title="Docker">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-14.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="Docker"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/f5f9fa9b/" title="Docker">Docker</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-12-01T16:00:00.000Z" title="发表于 2020-12-02 00:00:00">2020-12-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/DevOps/">DevOps</a></span></div><div class="content">📖概述
+
+
+故事
+
+2010年，几个搞 IT 的年轻人，在美国旧金山成立了一家名叫 dotCloud 的公司。dotCloud 的平台即服务（Platform-as-a-Service）提供商。底层技术上，dotCloud 平台利用了Linux的 LXC 容器技术。为了方便创建和管理这些容器，dotCloud 基于 Google 公司推出的 Go 语言开发了一套内部工具，之后被命名为 Docker。Docker 就是这样诞生的。
+2013年的后端技术领域已经太久没有出现让人振奋的东西了。当然Docker在发行之后也没用引起行业的关注。在开源之后才爆火。
+Docker定义容器技术标砖使得容器技术的落地变得十分简单，应用可以稳定便携的运行在容器中。
+
+
+
+
+
+特点
+
+
+更快速的应用交付和部署
+更便捷的升级和扩缩容
+更高效的计算资源利用
+更简单的系统运维
+
+
+架构
+
+
+
+镜像（image）： 相当于一个模板，可以通过这个模板来创建容器服务
+容器（container）： 独立运行一个或者一个组应用
+仓库（repository）： 存放镜像的地方
+
+
+🔨安装
+官方文档
+
+CentOS 7安装 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/posts/33422a09/" title="负距离">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-13.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="负距离"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/33422a09/" title="负距离">负距离</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-22T16:00:00.000Z" title="发表于 2020-11-23 00:00:00">2020-11-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a></span></div><div class="content">
+
+
+
+想是因为久了所以记不起了，想是因为空气湿了不是眼眶红了。
+我看见凋零的枫，天空的颜色比油彩更凝重，大块白色的浮云掠过，那栋灰色的建筑闪烁香槟色的光芒，我从未怀疑过自己在梦里。
+
+
+
+
+两年以来，自己是否成长，又是否改变？当初懵懂的选择，中间努力的迷茫，而今这已是一条不归路。
+每个人的身体和意志，总有被环境的牢笼禁锢那一部分，想施展拳脚就各种Error。
+或许人都应该做到张弛有度，速度不缓不急，自有安排妥当的节奏，该收敛的时候不逞强，该出击的时候不犹豫，该保留的时候不盲目，该竭力的时候不气短。
+2020，惟愿信念使自己超越。
+</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/posts/1bb08f7a/" title="JWT">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-12.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="JWT"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/1bb08f7a/" title="JWT">JWT</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-19T16:00:00.000Z" title="发表于 2020-11-20 00:00:00">2020-11-20</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Web/">Web</a></span></div><div class="content">📖官方文档
+🌐官方文档
+
+👉JWT
+
+💰JWT概述
+
+JSON Web Token是一个开放标准（RFC 7519），它定义了一种紧凑且包含的方式，用于在各方之间安全地传输信息作为JSON对象。由于此信息是经过数字签名的，用于在各方面之间安全地传输信息作为JSON对象。由于此信息是经过数字签名地，因此可以被验证和信任。可以使用秘密（或者HMAC算法）或使用RSA或ECDSA的公钥/私钥对对JWT进行签名。
+尽管可以对JWT进行加密以提供双方之间的保密性，但我们将重点关注已签名的令牌。签名的令牌可以验证其中包含的声明的完整性，而加密的令牌则将这些声明隐藏在其他方的面前。当使用公钥/私钥对对令牌进行签名时，签名还证明只有持有私钥的一方才是对其进行签名的一方。
+
+
+
+
+
+
+
+🔱应用场景
+
+
+授权认证：使用JWT的最常见方案。一旦用户登录，每个后续请求将包括令牌，从而允许用户访问该令牌允许的路由、服务和资源。单点登录是当今广泛使用JWT的一项功能，因为它的开销很小并且可以在不同的域中轻松使用。
+信息交换：JWT是在各方之间安全地传输信息的一种好方法。因为可以对JWT进行签名，例如使用 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/posts/fd1960c6/" title="Mybatis-plus">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-11.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="Mybatis-plus"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/fd1960c6/" title="Mybatis-plus">Mybatis-plus</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-11T16:00:00.000Z" title="发表于 2020-11-12 00:00:00">2020-11-12</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Web/">Web</a></span></div><div class="content">📖 官方文档
+🌐文档
+
+👉 mybatis-plus
+
+☄️特性
+
+
+润物无声：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑。
+效率至上：只需简单配置，即可快速进行单表 CRUD 操作，从而节省大量时间。
+丰富功能：代码生成、物理分页、性能分析等功能一应俱全。
+
+
+⛓结构
+
+
+
+
+
+
+
+
+
+➕ 添加依赖123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;pro ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/posts/41682/" title="设计模式">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-10.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="设计模式"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/41682/" title="设计模式">设计模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-10T16:00:00.000Z" title="发表于 2020-11-11 00:00:00">2020-11-11</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Software-Engineering/">Software Engineering</a></span></div><div class="content">可扩展性的本质是找到系统的变化点，并隔离变化点。 
+世间众多设计模式其实就是一种设计模式即隔离变化点的模式。
+极致扩展性的标志，就是需求的新增，不会在原有代码交付物上进行任何形式的修改。
+——《阿里巴巴Java开发手册》
+
+
+1. 设计原则
+
+
+
+
+
+
+
+
+
+1.1 开闭原则
+定义
+
+软件实体应当对扩展开放，对修改关闭。
+
+实现
+
+可以通过“抽象约束、封装变化”来实现开闭原则，即通过接口或者抽象类为软件实体定义一个相对稳定的抽象层，而将相同的可变因素封装在相同的具体实现类中。
+因为抽象灵活性好，适应性广，只要抽象的合理，可以基本保持软件架构的稳定。而软件中易变的细节可以从抽象派生来的实现类来进行扩展，当软件需要发生变化时，只需要根据需求重新派生一个实现类来扩展就可以了。
+
+作用
+
+开闭原则是面向对象程序设计的终极目标，它使软件实体拥有一定的适应性和灵活性的同时具备稳定性和延续性。具体来说，其作用如下。
+
+对软件测试的影响
+
+软件遵守开闭原则的话，软件测试时只需要对扩展的代码进行测试就可以了，因为原有的测试代码仍然能够正常运行。
+
+可以提高代码的可复用性
+
+粒度越小，被复用的可能性就越大 ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/posts/f89cb603/" title="红黑树">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-9.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="红黑树"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/f89cb603/" title="红黑树">红黑树</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-06T16:00:00.000Z" title="发表于 2020-11-07 00:00:00">2020-11-07</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Algorithm/">Algorithm</a></span></div><div class="content">📓 定义红黑树是一种含有红黑节点并能自平衡的二叉查找树
+
+🌲二叉查找树
+满足约束：左结点的值小于父结点，父结点的值小于右结点的值。
+场景理解：假设二叉查找树建立在x-y笛卡尔坐标系中，则所有结点向x轴投影，值正好沿着x轴递增。
+
+
+
+
+
+
+
+🔰 性质
+每个结点要么是黑色，要么是红色
+根节点是黑色
+每个叶子结点(NIL)是黑色的(虚结点)
+每个红色结点的两个子结点一定都是黑色
+任意一结点到每个叶子结点的路径都包含数量相同的黑结点(黑色完美平衡)
+
+以上为最简性质，任何一条不可缺少，任意四条不能推出另外一条。
+
+
+🌗 平衡红黑树是非完美平衡二叉查找树，是完美黑色平衡二叉查找树。
+
+
+
+⭕红黑树自平衡的最小单元
+
+
+
+红黑树的自平衡
+插入只考虑G-{P, U}-C三代，删除只考虑P-{C, B}-{CL, CR, BL, BR}三代
+
+
+
+🔱红黑树自平衡的原子操作
+
+包括：变色、左旋、右旋
+旋转要有圆心，有方向。
+旋转结点是父结点围绕子节点旋转(子节点为圆心)。
+
+
+
+    ☬ 旋转结点 ☬
+
+
+
+
+
+🌐变色：P-Black=&gt;Red,CB-Red=&gt;Black
+
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover left_radius"><a href="/posts/f8cdfd0a/" title="叶惠美">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-8.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="叶惠美"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/f8cdfd0a/" title="叶惠美">叶惠美</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-13T12:49:15.000Z" title="发表于 2020-10-13 20:49:15">2020-10-13</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Music/">Music</a></span></div><div class="content">
+
+
+        
+			  
+				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","l ...</div></div></div><div class="recent-post-item"><div class="post_cover right_radius"><a href="/posts/bae4ff13/" title="Redis">     <img class="post_bg" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-7.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="Redis"></a></div><div class="recent-post-info"><a class="article-title" href="/posts/bae4ff13/" title="Redis">Redis</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-07T16:00:00.000Z" title="发表于 2020-10-08 00:00:00">2020-10-08</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Redis/">Redis</a></span></div><div class="content">Redis
+    💌 Khighness 💌
+
+
+
+
+1. 📩NoSQL概述1.1 📃简介
+⚡ NoSQL
+
+NoSQL != 非SQL 
+NoSQL == Not Only SQL
+不仅仅是SQL！
+泛指非关系型的数据库。克服大并发。
+很多的数据类型，用户的个人信息、社交网络和地理位置，这些数据类型的存储不需要一个固定的格式，不需要多元的操作就可以横向扩展。
+
+
+
+
+1.2 🌀特点
+方便扩展（数据之间没有关系，很好扩展）
+
+大数据量高性能（细粒度缓存，性能高）
+
+数据类型多样（不需要设计数据库，随取随用）
+
+RDBMS和NoSQL的区别: 
+
+RDBMS
+结构化组织
+SQL
+数据和关系都存在单独的表中
+严格的一致性
+基础的事务
+···
+
+
+NoSQL
+不仅仅是数据
+没有固定的查询语言
+键值对存储，列存储，文档存储，图形存储
+最终一致性
+CAP和BASE
+三高：高性能、高可用、高可扩展
+···
+
+
+
+
+
+1.3 🚀3V+3H
+大数据时代的3V
+海量 Volume
+多样 Variety
+实时 Velocity
+
+
+互联网需求的3H
+高并发 High concurrency
+ ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/avatar/Khighness.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="avatar"/><div class="author-info__name">Khighness</div><div class="author-info__description">炒菜K殿下</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">12</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Khighness"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Khighness" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:parakovo@gmail.com" target="_blank" title="Gmail"><i class="fas fa-envelope"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=1823676372&amp;website=www.oicqzone.com" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">带我逃走，日落之前</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/50163/" title="Chartjs"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-16.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="Chartjs"/></a><div class="content"><a class="title" href="/posts/50163/" title="Chartjs">Chartjs</a><time datetime="2021-04-12T16:00:00.000Z" title="发表于 2021-04-13 00:00:00">2021-04-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c24675b4/" title="MySQL"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-15.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="MySQL"/></a><div class="content"><a class="title" href="/posts/c24675b4/" title="MySQL">MySQL</a><time datetime="2021-03-26T02:51:00.000Z" title="发表于 2021-03-26 10:51:00">2021-03-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/f5f9fa9b/" title="Docker"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-14.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="Docker"/></a><div class="content"><a class="title" href="/posts/f5f9fa9b/" title="Docker">Docker</a><time datetime="2020-12-01T16:00:00.000Z" title="发表于 2020-12-02 00:00:00">2020-12-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/33422a09/" title="负距离"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-13.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="负距离"/></a><div class="content"><a class="title" href="/posts/33422a09/" title="负距离">负距离</a><time datetime="2020-11-22T16:00:00.000Z" title="发表于 2020-11-23 00:00:00">2020-11-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/1bb08f7a/" title="JWT"><img data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/images/top/bg-12.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/Khighness/images/bg/404.jpg'" alt="JWT"/></a><div class="content"><a class="title" href="/posts/1bb08f7a/" title="JWT">JWT</a><time datetime="2020-11-19T16:00:00.000Z" title="发表于 2020-11-20 00:00:00">2020-11-20</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-bolt"></i><span>最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            <a class="card-more-btn" href="/categories/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Algorithm/"><span class="card-category-list-name">Algorithm</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Cloud/"><span class="card-category-list-name">Cloud</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/DevOps/"><span class="card-category-list-name">DevOps</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Frontend/"><span class="card-category-list-name">Frontend</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Http/"><span class="card-category-list-name">Http</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Music/"><span class="card-category-list-name">Music</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/MySQL/"><span class="card-category-list-name">MySQL</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Cache/" style="font-size: 1.1em; color: #999">Cache</a> <a href="/tags/Chartjs/" style="font-size: 1.1em; color: #999">Chartjs</a> <a href="/tags/Design-Pattern/" style="font-size: 1.1em; color: #999">Design Pattern</a> <a href="/tags/Docker/" style="font-size: 1.1em; color: #999">Docker</a> <a href="/tags/Game/" style="font-size: 1.1em; color: #999">Game</a> <a href="/tags/Hadoop/" style="font-size: 1.1em; color: #999">Hadoop</a> <a href="/tags/HttpCode/" style="font-size: 1.1em; color: #999">HttpCode</a> <a href="/tags/JWT/" style="font-size: 1.1em; color: #999">JWT</a> <a href="/tags/Java8/" style="font-size: 1.1em; color: #999">Java8</a> <a href="/tags/MySQL/" style="font-size: 1.1em; color: #999">MySQL</a> <a href="/tags/Mybatis-plus/" style="font-size: 1.1em; color: #999">Mybatis-plus</a> <a href="/tags/NoSQL/" style="font-size: 1.1em; color: #999">NoSQL</a> <a href="/tags/RedBlackTree/" style="font-size: 1.1em; color: #999">RedBlackTree</a> <a href="/tags/Regex/" style="font-size: 1.1em; color: #999">Regex</a> <a href="/tags/Server/" style="font-size: 1.1em; color: #999">Server</a> <a href="/tags/%E5%8F%B6%E6%83%A0%E7%BE%8E/" style="font-size: 1.1em; color: #999">叶惠美</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.1em; color: #999">随笔</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/04/"><span class="card-archive-list-date">四月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/03/"><span class="card-archive-list-date">三月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/12/"><span class="card-archive-list-date">十二月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/11/"><span class="card-archive-list-date">十一月 2020</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/09/"><span class="card-archive-list-date">九月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">六月 2020</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">16</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-04-17T14:25:24.893Z"></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/Khighness/images/common/footer.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Khighness</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    var typed = new Typed("#subtitle", {
+      strings: "逐日之灵，K无止境".split(","),
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = '逐'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script><script>if (document.getElementsByClassName('mermaid').length) {
+  if (window.mermaidJsLoad) mermaid.init()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+      window.mermaidJsLoad = true
+      mermaid.initialize({
+        theme: 'default',
+      })
+      false && mermaid.init()
+    })
+  }
+}</script></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
     }
-};;
-    new Chart(ctx, options);
-</script> 
-      <a class="article-more-link" href="/posts/50163/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chartjs/" rel="tag">Chartjs</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-MySQL"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/c24675b4/"
-    >MySQL</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/c24675b4/" class="article-date">
-  <time datetime="2021-03-26T02:51:00.000Z" itemprop="datePublished">2021-03-26</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="MySQL概述"><a href="#MySQL概述" class="headerlink" title="MySQL概述"></a>MySQL概述</h2><h3 id="CentOS7安装"><a href="#CentOS7安装" class="headerlink" title="CentOS7安装"></a>CentOS7安装</h3><blockquote>
-<p>下载RPM安装包</p>
-</blockquote>
-<p>下载: <a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">mysql download</a></p>
-<p>将四个包下载后移动到opt文件夹下</p>
-<img src="/posts/c24675b4/image-20210314104200636.png" class="" title="s"> 
-      <a class="article-more-link" href="/posts/c24675b4/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-Docker"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/f5f9fa9b/"
-    >Docker</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/f5f9fa9b/" class="article-date">
-  <time datetime="2020-12-01T16:00:00.000Z" itemprop="datePublished">2020-12-02</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/DevOps/">DevOps</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="📖概述"><a href="#📖概述" class="headerlink" title="📖概述"></a>📖概述</h2>
-
-<blockquote>
-<p>故事</p>
-</blockquote>
-<p>2010年，几个搞 IT 的年轻人，在美国旧金山成立了一家名叫 <code>dotCloud </code>的公司。<code>dotCloud </code>的平台即服务（Platform-as-a-Service）提供商。底层技术上，<code>dotCloud</code> 平台利用了<code>Linux</code>的 <code>LXC </code>容器技术。为了方便创建和管理这些容器，<code>dotCloud </code>基于 Google 公司推出的 <code>Go </code>语言开发了一套内部工具，之后被命名为 <code>Docker</code>。<code>Docker </code>就是这样诞生的。</p>
-<p>2013年的后端技术领域已经太久没有出现让人振奋的东西了。当然<code>Docker</code>在发行之后也没用引起行业的关注。在开源之后才爆火。</p>
-<p><code>Docker</code>定义容器技术标砖使得容器技术的落地变得十分简单，应用可以稳定便携的运行在容器中。</p> 
-      <a class="article-more-link" href="/posts/f5f9fa9b/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-负距离"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/33422a09/"
-    >负距离</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/33422a09/" class="article-date">
-  <time datetime="2020-11-22T16:00:00.000Z" itemprop="datePublished">2020-11-23</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="负距离"><a href="#负距离" class="headerlink" title="负距离"></a>负距离</h1><img src="/posts/33422a09/bg.jpg" class="" title="bg">
-
-
-
-<p>想是因为久了所以记不起了，想是因为空气湿了不是眼眶红了。</p>
-<p>我看见凋零的枫，天空的颜色比油彩更凝重，大块白色的浮云掠过，那栋灰色的建筑闪烁香槟色的光芒，我从未怀疑过自己在梦里。</p> 
-      <a class="article-more-link" href="/posts/33422a09/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-JWT"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/1bb08f7a/"
-    >JWT</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/1bb08f7a/" class="article-date">
-  <time datetime="2020-11-19T16:00:00.000Z" itemprop="datePublished">2020-11-20</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Web/">Web</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="📖官方文档"><a href="#📖官方文档" class="headerlink" title="📖官方文档"></a>📖官方文档</h2><blockquote>
-<p>🌐官方文档</p>
-</blockquote>
-<p>👉<a target="_blank" rel="noopener" href="https://jwt.io/introduction/">JWT</a></p>
-<blockquote>
-<p>💰JWT概述</p>
-</blockquote>
-<p><strong>JSON Web Token</strong>是一个开放标准（RFC 7519），它定义了一种紧凑且包含的方式，用于在各方之间安全地传输信息作为JSON对象。由于此信息是经过数字签名的，用于在各方面之间安全地传输信息作为JSON对象。由于此信息是经过数字签名地，因此可以被验证和信任。可以使用秘密（或者<strong>HMAC</strong>算法）或使用<strong>RSA</strong>或<strong>ECDSA</strong>的公钥/私钥对对JWT进行签名。</p>
-<p>尽管可以对JWT进行加密以提供双方之间的保密性，但我们将重点关注已签名的令牌。签名的令牌可以验证其中包含的声明的完整性，而加密的令牌则将这些声明隐藏在其他方的面前。当使用公钥/私钥对对令牌进行签名时，签名还证明只有持有私钥的一方才是对其进行签名的一方。</p>
-<br> 
-      <a class="article-more-link" href="/posts/1bb08f7a/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JWT/" rel="tag">JWT</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-MybatisPlus"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/fd1960c6/"
-    >Mybatis-plus</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/fd1960c6/" class="article-date">
-  <time datetime="2020-11-11T16:00:00.000Z" itemprop="datePublished">2020-11-12</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Web/">Web</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="Mybatis-Plus"><a href="#Mybatis-Plus" class="headerlink" title="Mybatis-Plus"></a>Mybatis-Plus</h1><center>
-    <font face="Kristen ITC" color="#555555" size=3>💌 Khighness 💌</font><br>
-</center>
-
-
-
-<h2 id="📖-官方文档"><a href="#📖-官方文档" class="headerlink" title="📖 官方文档"></a>📖 官方文档</h2><blockquote>
-<p>🌐文档</p>
-</blockquote>
-<p>👉 <a target="_blank" rel="noopener" href="https://mybatis.plus/">mybatis-plus</a></p>
-<blockquote>
-<p>☄️特性</p>
-</blockquote>
-<ul>
-<li>润物无声：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑。</li>
-<li>效率至上：只需简单配置，即可快速进行单表 CRUD 操作，从而节省大量时间。</li>
-<li>丰富功能：代码生成、物理分页、性能分析等功能一应俱全。</li>
-</ul>
-<blockquote>
-<p>⛓结构</p>
-</blockquote>
-<img src="/posts/fd1960c6/mybatis-plus-framework.jpg" class="" title="mybatis-plus-framework"> 
-      <a class="article-more-link" href="/posts/fd1960c6/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mybatis-plus/" rel="tag">Mybatis-plus</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-DesignPattern"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/41682/"
-    >设计模式</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/41682/" class="article-date">
-  <time datetime="2020-11-10T16:00:00.000Z" itemprop="datePublished">2020-11-11</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Software-Engineering/">Software Engineering</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>可扩展性的本质是找到系统的变化点，并隔离变化点。 </p>
-<p>世间众多设计模式其实就是一种设计模式即隔离变化点的模式。</p>
-<p>极致扩展性的标志，就是需求的新增，不会在原有代码交付物上进行任何形式的修改。</p>
-<p>——《阿里巴巴Java开发手册》</p>
-<h2 id="1-设计原则"><a href="#1-设计原则" class="headerlink" title="1. 设计原则"></a>1. 设计原则</h2><img src="/posts/41682/image-20210413121732627.png" class="" title="DesignPrinciple"> 
-      <a class="article-more-link" href="/posts/41682/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">-Design Pattern</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-RBTree"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/f89cb603/"
-    >红黑树</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/f89cb603/" class="article-date">
-  <time datetime="2020-11-06T16:00:00.000Z" itemprop="datePublished">2020-11-07</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h2 id="📓-定义"><a href="#📓-定义" class="headerlink" title="📓 定义"></a>📓 定义</h2><p>红黑树是一种含有红黑节点并能自平衡的二叉查找树</p>
-<blockquote>
-<p>🌲二叉查找树</p>
-<p>满足约束：左结点的值小于父结点，父结点的值小于右结点的值。</p>
-<p>场景理解：假设二叉查找树建立在x-y笛卡尔坐标系中，则所有结点向x轴投影，值正好沿着x轴递增。</p>
-</blockquote>
-<br> 
-      <a class="article-more-link" href="/posts/f89cb603/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RedBlackTree/" rel="tag">RedBlackTree</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-Yehuimei"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/f8cdfd0a/"
-    >叶惠美</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/f8cdfd0a/" class="article-date">
-  <time datetime="2020-10-13T12:49:15.000Z" itemprop="datePublished">2020-10-13</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Music/">Music</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <div id="aplayer-QwWGehAF" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
-			  <script>
-				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-QwWGehAF");
-				  var ap = new APlayer(options);
-			    window.aplayers || (window.aplayers = []);
-				  window.aplayers.push(ap);
-			  </script> 
-      <a class="article-more-link" href="/posts/f8cdfd0a/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%B6%E6%83%A0%E7%BE%8E/" rel="tag">叶惠美</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-    <article
-  id="post-Redis"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/posts/bae4ff13/"
-    >Redis</a> 
-</h2>
- 
-
-    </header>
-     
-    <div class="article-meta">
-      <a href="/posts/bae4ff13/" class="article-date">
-  <time datetime="2020-10-07T16:00:00.000Z" itemprop="datePublished">2020-10-08</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Redis/">Redis</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><center>
-    <font face="Kristen ITC" color="#555555" size=3>💌 Khighness 💌</font><br>
-</center>
-
-
-
-<h2 id="1-📩NoSQL概述"><a href="#1-📩NoSQL概述" class="headerlink" title="1. 📩NoSQL概述"></a>1. 📩NoSQL概述</h2><h3 id="1-1-📃简介"><a href="#1-1-📃简介" class="headerlink" title="1.1 📃简介"></a>1.1 📃简介</h3><blockquote>
-<p>⚡ NoSQL</p>
-</blockquote>
-<p>NoSQL != 非SQL </p>
-<p>NoSQL == Not Only SQL</p>
-<p>不仅仅是SQL！</p>
-<p>泛指非关系型的数据库。克服大并发。</p>
-<p>很多的数据类型，用户的个人信息、社交网络和地理位置，这些数据类型的存储不需要一个固定的格式，不需要多元的操作就可以横向扩展。</p> 
-      <a class="article-more-link" href="/posts/bae4ff13/"
-        >More</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cache/" rel="tag">Cache</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NoSQL/" rel="tag">NoSQL</a></li></ul>
-
-    </footer>
-  </div>
-
-   
-   
-   
- 
-
-</article>
-
-    
-  </article>
-  
-
-  
-  <nav class="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
-  </nav>
-  
-</section>
-</div>
-
-      <footer class="footer">
-  <div class="outer">
-    <ul>
-      <li>
-        Copyrights &copy;
-        2020-2021
-        <i class="ri-heart-fill heart_icon"></i> Khighness
-      </li>
-    </ul>
-    <ul>
-      <li>
-        
-      </li>
-    </ul>
-    <ul>
-      <li>
-        
-        
-        <span>
-  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
-  <span class="division">|</span>
-  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
-</span>
-        
-      </li>
-    </ul>
-    <ul>
-      
-    </ul>
-    <ul>
-      
-    </ul>
-    <ul>
-      <li>
-        <!-- cnzz统计 -->
-        
-        <script type="text/javascript" src='https://s4.cnzz.com/z_stat.php?id=1279324689&amp;web_id=1279324689'></script>
-        
-      </li>
-    </ul>
-  </div>
-</footer>
-      <div class="float_btns">
-        <div class="totop" id="totop">
-  <i class="ri-arrow-up-line"></i>
-</div>
-
-<div class="todark" id="todark">
-  <i class="ri-moon-line"></i>
-</div>
-
-      </div>
-    </main>
-    <aside class="sidebar on">
-      <button class="navbar-toggle"></button>
-<nav class="navbar">
-  
-  <div class="logo">
-    <a href="/"><img src="https://cdn.jsdelivr.net/gh/Khighness/Khighness.github.io/images/Khighness.jpg" alt="Khighness"></a>
-  </div>
-  
-  <ul class="nav nav-main">
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/">主页</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/archives">归档</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/categories">分类</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/tags">标签</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/about">关于</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="/friends">友链</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" target="_blank" rel="noopener" href="https://www.tidio.com/talk/Khighness">联系</a>
-    </li>
-    
-  </ul>
-</nav>
-<nav class="navbar navbar-bottom">
-  <ul class="nav">
-    <li class="nav-item">
-      
-      <a class="nav-item-link nav-item-search"  title="搜索">
-        <i class="ri-search-line"></i>
-      </a>
-      
-      
-      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
-        <i class="ri-rss-line"></i>
-      </a>
-      
-    </li>
-  </ul>
-</nav>
-<div class="search-form-wrap">
-  <div class="local-search local-search-plugin">
-  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
-  <div id="local-search-result" class="local-search-result"></div>
-</div>
-</div>
-    </aside>
-    <script>
-      if (window.matchMedia("(max-width: 768px)").matches) {
-        document.querySelector('.content').classList.remove('on');
-        document.querySelector('.sidebar').classList.remove('on');
-      }
-    </script>
-    <div id="mask"></div>
-
-<!-- #reward -->
-<div id="reward">
-  <span class="close"><i class="ri-close-line"></i></span>
-  <p class="reward-p"><i class="ri-cup-line"></i>来杯抹茶？</p>
-  <div class="reward-box">
-    
-    <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Khighness/Khighness.github.io/images/alipay.jpg">
-      <span class="reward-type">支付宝</span>
-    </div>
-    
-    
-    <div class="reward-item">
-      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Khighness/Khighness.github.io/images/wepay.jpg">
-      <span class="reward-type">微信</span>
-    </div>
-    
-  </div>
-</div>
-    
-<script src="/js/jquery-2.0.3.min.js"></script>
-
-
-<script src="/js/lazyload.min.js"></script>
-
-<!-- Tocbot -->
-
-<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
-<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
-
-<script src="/dist/main.js"></script>
-
-<!-- ImageViewer -->
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <!--  Controls are self-explanatory. Order can be changed. -->
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
-
-<script>
-    function viewer_init() {
-        let pswpElement = document.querySelectorAll('.pswp')[0];
-        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
-
-        $imgArr.forEach(($em, i) => {
-            $em.onclick = () => {
-                // slider展开状态
-                // todo: 这样不好，后面改成状态
-                if (document.querySelector('.left-col.show')) return
-                let items = []
-                $imgArr.forEach(($em2, i2) => {
-                    let img = $em2.getAttribute('data-idx', i2)
-                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
-                    let title = $em2.getAttribute('alt')
-                    // 获得原图尺寸
-                    const image = new Image()
-                    image.src = src
-                    items.push({
-                        src: src,
-                        w: image.width || $em2.width,
-                        h: image.height || $em2.height,
-                        title: title
-                    })
-                })
-                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
-                    index: parseInt(i)
-                });
-                gallery.init()
-            }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'butterfly-4ggykf730d3228c5',
+        region: 'ap-shanghai',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
         })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      })
     }
-    viewer_init()
-</script>
 
-<!-- MathJax -->
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-      tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-  });
-
-  MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for(i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-  });
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-  var ayerConfig = {
-    mathjax: true
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runTwikoo)
+    }
   }
-</script>
 
-<!-- Katex -->
+  const generateHtml = array => {
+    let result = ''
 
-<!-- busuanzi  -->
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
 
-
-<script src="/js/busuanzi-2.3.pure.min.js"></script>
-
-
-<!-- ClickLove -->
-
-<!-- ClickBoom1 -->
-
-<script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script>
-
-<script src="/js/clickBoom1.js"></script>
-
-
-<!-- ClickBoom2 -->
-
-<!-- CodeCopy -->
-
-
-<link rel="stylesheet" href="/css/clipboard.css">
-
-<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-<script>
-  function wait(callback, seconds) {
-    var timelag = null;
-    timelag = window.setTimeout(callback, seconds);
-  }
-  !function (e, t, a) {
-    var initCopyCode = function(){
-      var copyHtml = '';
-      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
-      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
-      copyHtml += '</button>';
-      $(".highlight .code pre").before(copyHtml);
-      $(".article pre code").before(copyHtml);
-      var clipboard = new ClipboardJS('.btn-copy', {
-        target: function(trigger) {
-          return trigger.nextElementSibling;
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
         }
-      });
-      clipboard.on('success', function(e) {
-        let $btn = $(e.trigger);
-        $btn.addClass('copied');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-checkbox-circle-line');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPIED';
         
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-checkbox-circle-line');
-          $icon.addClass('ri-file-copy-2-line');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
-      clipboard.on('error', function(e) {
-        e.clearSelection();
-        let $btn = $(e.trigger);
-        $btn.addClass('copy-failed');
-        let $icon = $($btn.find('i'));
-        $icon.removeClass('ri-file-copy-2-line');
-        $icon.addClass('ri-time-line');
-        let $span = $($btn.find('span'));
-        $span[0].innerText = 'COPY FAILED';
-        
-        wait(function () { // 等待两秒钟后恢复
-          $icon.removeClass('ri-time-line');
-          $icon.addClass('ri-file-copy-2-line');
-          $span[0].innerText = 'COPY';
-        }, 2000);
-      });
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
     }
-    initCopyCode();
-  }(window, document);
-</script>
 
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
 
-<!-- CanvasBackground -->
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
 
-
-    
-  </div>
-
-  
-  <script src="//code.tidio.co/ao1f4qdjllf8yowzz7v5brdaejt42uoi.js" async>
-</script>
-
-  
-
-  
-  <canvas id="evanyou-canvas" style="opacity: 0.3; position: fixed; top: 0px; left: 0px; z-index: -1; width: 100%; height: 100%; pointer-events: none;"></canvas>
-<script src="/js/evanyou-canvas.js"></script>
-
-  
-
-  <!-- 百度统计 -->
-  <script>
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?97974cf7c750ac7da47173f2992d6970";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-  </script>
-
-</body>
-
-</html>
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
