@@ -1,7 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>springboot-json</title>
+    <title>Golang-module</title>
+    <url>/posts/58003/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a name="PrxUV"></a></p>
+<h2 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h2><p>modules的wiki: <a href="https://github.com/golang/go/wiki/Modules">https://github.com/golang/go/wiki/Modules</a></p>
+<blockquote>
+<p>go 1.14</p>
+</blockquote>
+<p>模块支持已经准备好用于生产，并且鼓励所有用户从其他依赖管理系统迁移到模块。</p>
+<blockquote>
+<p>go 1.16</p>
+</blockquote>
+<p>模块模式默认开启，即GO111MODULE=on。<br /></p>
+<p><a name="vsK82"></a></p>
+<h2 id="GO111MODULE"><a href="#GO111MODULE" class="headerlink" title="GO111MODULE"></a>GO111MODULE</h2><p>GO111MODULE有三个值：off、on和auto，不同版本的默认值不尽相同。</p>
+<ol>
+<li>off：go命令行将不会支持module功能，寻找依赖包的方式将会沿用旧版本通过vendor目录或者GOPATH模式查找。</li>
+<li>on：go命令行会使用modules，而且一点也不会去GOPATH目录下查找。</li>
+<li>auto：go命令行将会根据当前目录来决定是否启用module功能，分为两种情形：<ol>
+<li>当前目录在$GOPATH/src之外且该目录包含go.mod文件</li>
+<li>当前文件在包含go.mod文件的目录下面</li>
+</ol>
+</li>
+</ol>
+<p><br />说明：当modules 功能启用时，依赖包的存放位置变更为$GOPATH/pkg，允许同一个package多个版本并存，且多个项目可以共享缓存的 module。<br /></p>
+<p><a name="sKlFC"></a></p>
+<h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>golang提供了<code>go mod</code>命令来管理包，后置参数如下</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>download</td>
+<td>下载依赖包</td>
+</tr>
+<tr>
+<td>edit</td>
+<td>编辑go.mod</td>
+</tr>
+<tr>
+<td>graph</td>
+<td>打印模块依赖图</td>
+</tr>
+<tr>
+<td>init</td>
+<td>在当前目录初始化mod</td>
+</tr>
+<tr>
+<td>tidy</td>
+<td>拉取缺少的模块，移除不用的模块</td>
+</tr>
+<tr>
+<td>vendor</td>
+<td>将依赖复制到vendor下</td>
+</tr>
+<tr>
+<td>verify</td>
+<td>验证依赖是否正确</td>
+</tr>
+<tr>
+<td>why</td>
+<td>解释为什么需要依赖</td>
+</tr>
+</tbody></table>
+<p><a name="hkrPo"></a></p>
+<h2 id="mod文件"><a href="#mod文件" class="headerlink" title="mod文件"></a>mod文件</h2><p>go.mod文件中提供了四个命令：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>module</td>
+<td>指定包的名称</td>
+</tr>
+<tr>
+<td>require</td>
+<td>指定依赖项模块</td>
+</tr>
+<tr>
+<td>replace</td>
+<td>替换依赖项模块</td>
+</tr>
+<tr>
+<td>exclude</td>
+<td>忽略依赖项模块</td>
+</tr>
+</tbody></table>
+<p><a name="npq32"></a></p>
+<h2 id="项目案例"><a href="#项目案例" class="headerlink" title="项目案例"></a>项目案例</h2><p>环境：go 1.16.3<br /></p>
+<blockquote>
+<p>创建项目</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> mkdir go<span class="literal">-mod</span> &amp;&amp; <span class="built_in">cd</span> go<span class="literal">-mod</span></span><br><span class="line"><span class="variable">$</span> go mod init hello</span><br><span class="line"><span class="variable">$</span> touch server.go</span><br><span class="line"><span class="variable">$</span> mkdir api &amp;&amp; <span class="built_in">cd</span> api</span><br><span class="line"><span class="variable">$</span> touch hello.go &amp;&amp; touch print.go</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>项目结构</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">go<span class="literal">-mod</span></span><br><span class="line">├── go.mod</span><br><span class="line">├── server.go</span><br><span class="line">└── api</span><br><span class="line">    ├── hello.mod</span><br><span class="line">    └── print.go</span><br></pre></td></tr></table></figure>
+<p>其中server需要调用api中的hello的<code>_HelloKHighness_</code>和print的<code>_ConsolePrint_</code>接口。<br />初始化的go-mod中内容如下：</p>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">module hello</span><br><span class="line"></span><br><span class="line">go <span class="number">1.16</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>hello.go</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> api</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @author KHighness</span></span><br><span class="line"><span class="comment"> * @since 2021-04-20</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;github.com/labstack/echo&quot;</span></span><br><span class="line">	<span class="string">&quot;net/http&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">HelloKHighness</span><span class="params">(c echo.Context)</span> <span class="title">error</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> c.JSON(http.StatusOK, <span class="string">&quot;Hello KHighness!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>print.go</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> api</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @author KHighness</span></span><br><span class="line"><span class="comment"> * @since 2021-04-20</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">ConsolePrint</span><span class="params">()</span></span>  &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;Hello, KHighness!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>server.go</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @author KHighness</span></span><br><span class="line"><span class="comment"> * @since 2021-04-20</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;github.com/labstack/echo&quot;</span></span><br><span class="line">	helloAPI <span class="string">&quot;hello/api&quot;</span> </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	helloAPI.ConsolePrint()</span><br><span class="line">	e := echo.New()</span><br><span class="line">	e.GET(<span class="string">&quot;/&quot;</span>, helloAPI.HelloKHighness)</span><br><span class="line">	e.Logger.Fatal(e.Start(<span class="string">&quot;:3333&quot;</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>安装依赖</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> go mod tidy</span><br><span class="line">go: finding module <span class="keyword">for</span> package github.com/labstack/<span class="built_in">echo</span></span><br><span class="line">go: found github.com/labstack/<span class="built_in">echo</span> <span class="keyword">in</span> github.com/labstack/<span class="built_in">echo</span> v3.<span class="number">3.10</span>+incompatible</span><br><span class="line">go: finding module <span class="keyword">for</span> package github.com/stretchr/testify/assert</span><br><span class="line">go: finding module <span class="keyword">for</span> package github.com/labstack/gommon/color</span><br><span class="line">go: finding module <span class="keyword">for</span> package github.com/labstack/gommon/log</span><br><span class="line">go: finding module <span class="keyword">for</span> package golang.org/x/crypto/acme/autocert</span><br><span class="line">go: found github.com/labstack/gommon/color <span class="keyword">in</span> github.com/labstack/gommon v0.<span class="number">3.0</span></span><br><span class="line">go: found github.com/labstack/gommon/log <span class="keyword">in</span> github.com/labstack/gommon v0.<span class="number">3.0</span></span><br><span class="line">go: found golang.org/x/crypto/acme/autocert <span class="keyword">in</span> golang.org/x/crypto v0.<span class="number">0.0</span><span class="literal">-20210415154028</span><span class="literal">-4f45737414dc</span></span><br><span class="line">go: found github.com/stretchr/testify/assert <span class="keyword">in</span> github.com/stretchr/testify v1.<span class="number">7.0</span></span><br></pre></td></tr></table></figure>
+<p>安装后可以看到go.mod文件如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">module hello</span><br><span class="line"></span><br><span class="line">go 1.16</span><br><span class="line"></span><br><span class="line">require (</span><br><span class="line">	github.com&#x2F;labstack&#x2F;echo v3.3.10+incompatible</span><br><span class="line">	github.com&#x2F;labstack&#x2F;gommon v0.3.0 &#x2F;&#x2F; indirect</span><br><span class="line">	github.com&#x2F;stretchr&#x2F;testify v1.7.0 &#x2F;&#x2F; indirect</span><br><span class="line">	golang.org&#x2F;x&#x2F;crypto v0.0.0-20210415154028-4f45737414dc &#x2F;&#x2F; indirect</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>运行项目</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> go run server.go</span><br><span class="line">Hello, KHighness!</span><br><span class="line"></span><br><span class="line">   ____    __</span><br><span class="line">  / __/___/ /  ___</span><br><span class="line"> / _// __/ _ \/ _ \</span><br><span class="line">/___/\__/_//_/\___/ v3.<span class="number">3.10</span><span class="literal">-dev</span></span><br><span class="line">High performance, minimalist Go web framework</span><br><span class="line">https://echo.labstack.com</span><br><span class="line">____________________________________O/_______</span><br><span class="line">                                    O\</span><br><span class="line">⇨ http server started on [::]:<span class="number">3333</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>项目测试</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"> <span class="variable">$</span> <span class="built_in">curl</span> <span class="literal">-X</span> GET http://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">3333</span></span><br><span class="line"><span class="string">&quot;Hello KHighness!&quot;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>项目打包</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="variable">$</span> go build</span><br></pre></td></tr></table></figure>
+<p>打包后在项目根目录下可以看到hello.exe可执行文件。<br /></p>
+<p><a name="WluSR"></a></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1] modules wiki: <a href="https://github.com/golang/go/wiki/Modules">https://github.com/golang/go/wiki/Modules</a><br />[2] go mod 使用: <a href="https://juejin.cn/post/6844903798658301960">https://juejin.cn/post/6844903798658301960</a><br />[3] 再探go modules: <a href="https://www.cnblogs.com/apocelipes/p/10295096.html">https://www.cnblogs.com/apocelipes/p/10295096.html</a></p>
+]]></content>
+      <categories>
+        <category>Golang</category>
+      </categories>
+      <tags>
+        <tag>Golang</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RMI &amp; RPC</title>
+    <url>/posts/18721/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a name="a35Xi"></a></p>
+<h2 id="RMI"><a href="#RMI" class="headerlink" title="RMI"></a>RMI</h2><p><br />Remote Method Invocation：远程方法调用<br /></p>
+<p><a name="f5ijZ"></a></p>
+<h3 id="调用过程"><a href="#调用过程" class="headerlink" title="调用过程"></a>调用过程</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/images/common/loading.gif" data-lazy-src="/posts/18721/rmi.png" class="" title="rmi">
+
+<ul>
+<li>Client调用Client Stub上的方法</li>
+<li>Client Stub将方法和参数进行序列化（编码）成可传输消息体</li>
+<li>消息通过网络传输到Server</li>
+<li>Server Stub将消息进行反序列化（解码）</li>
+<li>Server根据解码结果调用方法，并将结果返回给Server Stub</li>
+<li>Server Stub对返回结果进行序列化（编码）成可传输消息体</li>
+<li>消息网络传输到Client</li>
+<li>Client Stub对消息进行反序列化（解码）</li>
+<li>Client Stub将解码结果返回给Client</li>
+</ul>
+<br />
+
+<p><a name="bxgrO"></a></p>
+<h2 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h2><p><br />Remote Procedure Call：远程过程调用<br /></p>
+<p><a name="zBw3W"></a></p>
+<h3 id="框架组成"><a href="#框架组成" class="headerlink" title="框架组成"></a>框架组成</h3><ul>
+<li>客户端（Client）：服务调用方</li>
+<li>客户端存根（Client Stub）：存放服务端地址信息，将客户端的请求参数数据信息打包成网络消息，再通过网络传输发送给服务端</li>
+<li>服务端存根（Server Stub）：接收客户端发送过来的请求消息并进行解包，然后再调用本地服务进行处理</li>
+<li>服务端（Server）：服务的真正提供者</li>
+<li>Network Service：底层传输，可以是 TCP 或 HTTP</li>
+</ul>
+<br />
+
+<p><a name="40eNr"></a></p>
+<h3 id="调用过程-1"><a href="#调用过程-1" class="headerlink" title="调用过程"></a>调用过程</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/images/common/loading.gif" data-lazy-src="/posts/18721/rpc.png" class="" title="rpc"><br />
+
+<ul>
+<li>Client通过本地调用的方式调用服务</li>
+<li>Client Stub接收到调用请求后负责将方法、参数等编码成可传输消息体</li>
+<li>Client Stub找到远程的服务地址，并且将消息通过网络发送给Server</li>
+<li>Server Stub收到消息后进行解码操作</li>
+<li>Server Stub根据解码结果调用本地的服务进行相关处理</li>
+<li>Server进行业务逻辑处理</li>
+<li>Server将处理结果返回给Server Stub</li>
+<li>Server Stub将返回结果进行编码</li>
+<li>Server Stub将结果通过网络发送至消费方</li>
+<li>Client Stub接收到消息，并进行解码</li>
+<li>Client得到最终结果</li>
+</ul>
+<p><a name="iDmiD"></a></p>
+<h3 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h3><ul>
+<li>服务寻址</li>
+<li>数据流的序列化和反序列化</li>
+<li>网络传输</li>
+</ul>
+<br />
+
+<p><a name="z05rV"></a></p>
+<h2 id="RPC-VS-PMI"><a href="#RPC-VS-PMI" class="headerlink" title="RPC VS PMI"></a>RPC VS PMI</h2><p><br />不同点：<br />（1）方法调用方式不同<br />RMI中是通过在客户端的Stub对象作为远程接口进行远程方法的调用。每个远程方法都具有方法签名。如果服务器上添加了一个可执行方法，但是没有相匹配的签名被添加到这个远程接口Stub对象上，那么这个新方法就不能被客户端调用。<br />RPC是通过网络服务协议向远程主机发送请求，请求包含了一个参数集和文本值，通常形成”classname.methodname”的形式，服务器就去搜索与之相匹配的类和方法，找到后就执行方法并把结果编码，通过网络协议返回。<br />（2）使用语言范围不同<br />RMI是J2EE的13大规范之一，只适用于Java；RPC是网络协议，与操作系统和语言无关。<br />（5）调用结果的返回形式不同<br />RMI的调用结果可以是Java的对象类型或者基本数据类型；RPC的调用结果统一由外部数据表示。</p>
+]]></content>
+      <categories>
+        <category>web</category>
+      </categories>
+      <tags>
+        <tag>RPC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Springboot-json</title>
     <url>/posts/22416/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
 <p>前言</p>
@@ -153,73 +366,6 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
       </tags>
   </entry>
   <entry>
-    <title>RMI &amp; RPC</title>
-    <url>/posts/18721/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a name="a35Xi"></a></p>
-<h2 id="RMI"><a href="#RMI" class="headerlink" title="RMI"></a>RMI</h2><p><br />Remote Method Invocation：远程方法调用<br /></p>
-<p><a name="f5ijZ"></a></p>
-<h3 id="调用过程"><a href="#调用过程" class="headerlink" title="调用过程"></a>调用过程</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/images/common/loading.gif" data-lazy-src="/posts/18721/rmi.png" class="" title="rmi">
-
-<ul>
-<li>Client调用Client Stub上的方法</li>
-<li>Client Stub将方法和参数进行序列化（编码）成可传输消息体</li>
-<li>消息通过网络传输到Server</li>
-<li>Server Stub将消息进行反序列化（解码）</li>
-<li>Server根据解码结果调用方法，并将结果返回给Server Stub</li>
-<li>Server Stub对返回结果进行序列化（编码）成可传输消息体</li>
-<li>消息网络传输到Client</li>
-<li>Client Stub对消息进行反序列化（解码）</li>
-<li>Client Stub将解码结果返回给Client</li>
-</ul>
-<br />
-
-<p><a name="bxgrO"></a></p>
-<h2 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h2><p><br />Remote Procedure Call：远程过程调用<br /></p>
-<p><a name="zBw3W"></a></p>
-<h3 id="框架组成"><a href="#框架组成" class="headerlink" title="框架组成"></a>框架组成</h3><ul>
-<li>客户端（Client）：服务调用方</li>
-<li>客户端存根（Client Stub）：存放服务端地址信息，将客户端的请求参数数据信息打包成网络消息，再通过网络传输发送给服务端</li>
-<li>服务端存根（Server Stub）：接收客户端发送过来的请求消息并进行解包，然后再调用本地服务进行处理</li>
-<li>服务端（Server）：服务的真正提供者</li>
-<li>Network Service：底层传输，可以是 TCP 或 HTTP</li>
-</ul>
-<br />
-
-<p><a name="40eNr"></a></p>
-<h3 id="调用过程-1"><a href="#调用过程-1" class="headerlink" title="调用过程"></a>调用过程</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/images/common/loading.gif" data-lazy-src="/posts/18721/rpc.png" class="" title="rpc"><br />
-
-<ul>
-<li>Client通过本地调用的方式调用服务</li>
-<li>Client Stub接收到调用请求后负责将方法、参数等编码成可传输消息体</li>
-<li>Client Stub找到远程的服务地址，并且将消息通过网络发送给Server</li>
-<li>Server Stub收到消息后进行解码操作</li>
-<li>Server Stub根据解码结果调用本地的服务进行相关处理</li>
-<li>Server进行业务逻辑处理</li>
-<li>Server将处理结果返回给Server Stub</li>
-<li>Server Stub将返回结果进行编码</li>
-<li>Server Stub将结果通过网络发送至消费方</li>
-<li>Client Stub接收到消息，并进行解码</li>
-<li>Client得到最终结果</li>
-</ul>
-<p><a name="iDmiD"></a></p>
-<h3 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h3><ul>
-<li>服务寻址</li>
-<li>数据流的序列化和反序列化</li>
-<li>网络传输</li>
-</ul>
-<br />
-
-<p><a name="z05rV"></a></p>
-<h2 id="RPC-VS-PMI"><a href="#RPC-VS-PMI" class="headerlink" title="RPC VS PMI"></a>RPC VS PMI</h2><p><br />不同点：<br />（1）方法调用方式不同<br />RMI中是通过在客户端的Stub对象作为远程接口进行远程方法的调用。每个远程方法都具有方法签名。如果服务器上添加了一个可执行方法，但是没有相匹配的签名被添加到这个远程接口Stub对象上，那么这个新方法就不能被客户端调用。<br />RPC是通过网络服务协议向远程主机发送请求，请求包含了一个参数集和文本值，通常形成”classname.methodname”的形式，服务器就去搜索与之相匹配的类和方法，找到后就执行方法并把结果编码，通过网络协议返回。<br />（2）使用语言范围不同<br />RMI是J2EE的13大规范之一，只适用于Java；RPC是网络协议，与操作系统和语言无关。<br />（5）调用结果的返回形式不同<br />RMI的调用结果可以是Java的对象类型或者基本数据类型；RPC的调用结果统一由外部数据表示。</p>
-]]></content>
-      <categories>
-        <category>web</category>
-      </categories>
-      <tags>
-        <tag>RPC</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Chartjs</title>
     <url>/posts/50163/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -229,11 +375,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart9885" style="height: 120px"></canvas>
+    <canvas id="chart1270" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart9885').getContext('2d');
+    var ctx = document.getElementById('chart1270').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -269,11 +415,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart914" style="height: 100px"></canvas>
+    <canvas id="chart3804" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart914').getContext('2d');
+    var ctx = document.getElementById('chart3804').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -297,11 +443,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart1779" style="height: 100px"></canvas>
+    <canvas id="chart50" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart1779').getContext('2d');
+    var ctx = document.getElementById('chart50').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -3941,10 +4087,10 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src= "https://cdn.jsdelivr.net/gh/Khighness/images/common/loading.gif" data-lazy-src="/posts/f8cdfd0a/MyCD.jpg" class="" title="MyCD">
 
 
-        <div id="aplayer-EmuMilUB" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-OFfkkkYJ" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-EmuMilUB");
+				  options.element = document.getElementById("aplayer-OFfkkkYJ");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
