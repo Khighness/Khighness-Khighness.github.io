@@ -131,11 +131,11 @@
 &lt;p&gt;示例：&lt;a href=&quot;https://shen-yu.gitee.io/2020/chartjs&quot;&gt;沈宇大佬博客&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;文档：&lt;a href=&quot;https://chartjs.bootcss.com/&quot;&gt;中文官方文档&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;每月明细&quot;&gt;&lt;a href=&quot;#每月明细&quot; class=&quot;headerlink&quot; title=&quot;每月明细&quot;&gt;&lt;/a&gt;每月明细&lt;/h3&gt;&lt;div style=&quot;width: 80%;margin: 0 auto&quot;&gt;
-    &lt;canvas id=&quot;chart4822&quot; style=&quot;height: 120px&quot;&gt;&lt;/canvas&gt;
+    &lt;canvas id=&quot;chart2037&quot; style=&quot;height: 120px&quot;&gt;&lt;/canvas&gt;
 &lt;/div&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
-    var ctx = document.getElementById(&#39;chart4822&#39;).getContext(&#39;2d&#39;);
+    var ctx = document.getElementById(&#39;chart2037&#39;).getContext(&#39;2d&#39;);
     var options = {
     type: &#39;line&#39;,
     data: {
@@ -373,10 +373,10 @@
     <summary type="html">&lt;img src=&quot;/posts/f8cdfd0a/MyCD.jpg&quot; class=&quot;&quot; title=&quot;MyCD&quot;&gt;
 
 
-        &lt;div id=&quot;aplayer-kjckxSGk&quot; class=&quot;aplayer aplayer-tag-marker&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&lt;/div&gt;
+        &lt;div id=&quot;aplayer-KTgKCrhk&quot; class=&quot;aplayer aplayer-tag-marker&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&quot;narrow&quot;:false,&quot;autoplay&quot;:false,&quot;showlrc&quot;:1,&quot;mode&quot;:&quot;oredr&quot;,&quot;mutex&quot;:true,&quot;theme&quot;:&quot;#e6d0b2&quot;,&quot;preload&quot;:&quot;metadata&quot;,&quot;listmaxheight&quot;:&quot;513px&quot;,&quot;music&quot;:[{&quot;title&quot;:&quot;以父之名&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/以父之名.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;以父之名.txt&quot;},{&quot;title&quot;:&quot;懦夫&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/懦夫.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;懦夫.txt&quot;},{&quot;title&quot;:&quot;晴天&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/晴天.flac&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;晴天.txt&quot;},{&quot;title&quot;:&quot;三年二班&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/三年二班.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;三年二班.txt&quot;},{&quot;title&quot;:&quot;东风破&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/东风破.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;东风破.txt&quot;},{&quot;title&quot;:&quot;你听得到&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/你听得到.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;你听得到.txt&quot;},{&quot;title&quot;:&quot;同一种调调&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/同一种调调.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;同一种调调.txt&quot;},{&quot;title&quot;:&quot;她的睫毛&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/她的睫毛.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;她的睫毛.txt&quot;},{&quot;title&quot;:&quot;爱情悬崖&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/爱情悬崖.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;爱情悬崖.txt&quot;},{&quot;title&quot;:&quot;梯田&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/梯田.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;梯田.txt&quot;},{&quot;title&quot;:&quot;双刀&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/双刀.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;双刀.txt&quot;}]};
-				  options.element = document.getElementById(&quot;aplayer-kjckxSGk&quot;);
+				  options.element = document.getElementById(&quot;aplayer-KTgKCrhk&quot;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
