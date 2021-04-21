@@ -186,14 +186,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/Golang/</loc>
+    <loc>http://example.com/tags/Game/</loc>
     <lastmod>2021-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/Game/</loc>
+    <loc>http://example.com/tags/Golang/</loc>
     <lastmod>2021-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -328,14 +328,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/Golang/</loc>
+    <loc>http://example.com/categories/Algorithm/</loc>
     <lastmod>2021-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Algorithm/</loc>
+    <loc>http://example.com/categories/Golang/</loc>
     <lastmod>2021-04-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
