@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Khighness/cdn/top/bg-23.jpg">
 <meta property="article:published_time" content="2021-04-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-26T07:37:09.043Z">
+<meta property="article:modified_time" content="2021-04-26T07:48:31.542Z">
 <meta property="article:author" content="Khighness">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -64,7 +64,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2021-04-26 15:37:09'
+  postUpdate: '2021-04-26 15:48:31'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -147,7 +147,7 @@
         }
       }
     })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/cdn/avatar/Khighness.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Khighness/cdn/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Khighness/cdn/top/bg-23.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JUC-2(共享模型之管程)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-24T16:00:00.000Z" title="发表于 2021-04-25 00:00:00">2021-04-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-26T07:37:09.043Z" title="更新于 2021-04-26 15:37:09">2021-04-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JUC/">JUC</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">16.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>72分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JUC-2(共享模型之管程)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="2-1-第一部分-线程安全"><a href="#2-1-第一部分-线程安全" class="headerlink" title="2.1 第一部分-线程安全"></a>2.1 第一部分-线程安全</h2><h3 id="2-1-1-线程安全问题"><a href="#2-1-1-线程安全问题" class="headerlink" title="2.1.1 线程安全问题"></a>2.1.1 线程安全问题</h3><blockquote>
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/cdn/avatar/Khighness.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Khighness/cdn/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Khighness/cdn/top/bg-23.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JUC-2(共享模型之管程)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-24T16:00:00.000Z" title="发表于 2021-04-25 00:00:00">2021-04-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-26T07:48:31.542Z" title="更新于 2021-04-26 15:48:31">2021-04-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JUC/">JUC</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">16.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>72分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JUC-2(共享模型之管程)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="2-1-第一部分-线程安全"><a href="#2-1-第一部分-线程安全" class="headerlink" title="2.1 第一部分-线程安全"></a>2.1 第一部分-线程安全</h2><h3 id="2-1-1-线程安全问题"><a href="#2-1-1-线程安全问题" class="headerlink" title="2.1.1 线程安全问题"></a>2.1.1 线程安全问题</h3><blockquote>
 <p>案例</p>
 </blockquote>
 <p>两个线程对初始值为0的静态变量一个做自增，一个做自增，一个做自减，结果是0吗？</p>
@@ -161,13 +161,13 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># i++</span><br><span class="line">getstatic i <span class="comment">// 获取静态变量i的值</span></span><br><span class="line">iconst_1    <span class="comment">// 准备常量1</span></span><br><span class="line">iadd        <span class="comment">// 自增</span></span><br><span class="line">putstatic i <span class="comment">// 将修改后的值存入静态变量i</span></span><br><span class="line"># i--</span><br><span class="line">getstatic i <span class="comment">// 获取静态变量i的值</span></span><br><span class="line">iconst_1    <span class="comment">// 准备常量1</span></span><br><span class="line">isub        <span class="comment">// 自减</span></span><br><span class="line">putstatic i <span class="comment">// 将修改后的值存入静态变量i</span></span><br></pre></td></tr></table></figure>
 
 <p>Java的内存模型如下，完成静态变量的自增和自减，需要在主存和工作内存中进行数据交换：</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210407174859979.png" class="" title="image-20210407174859979">
 
 <p>如果是单线程顺序执行以上8行字节码指令，不会出现问题：</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210407175158573.png" class="" title="image-20210407175158573">
 
 <p>但是在双线程的情况下，会产生指令重排序，导致各种问题，比如脏读（读取更新未保存的数据）：</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210407175406638.png" class="" title="image-20210407175406638">
 
 
 
@@ -316,7 +316,7 @@
 <li>两个线程中的<code>method2</code>引用的都是同一个对象中的list成员变量。</li>
 <li><code>method3</code>和<code>method2</code>分析相同。</li>
 </ul>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210407220707659.png" class="" title="image-20210407220707659">
 
 <p>将原类中的成员变量修改为局部变量则不会有线程安全问题：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SafeOperation</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">(<span class="keyword">int</span> loopNumber)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; loopNumber; i++) &#123;</span><br><span class="line">            method2(list);</span><br><span class="line">            method3(list);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">(ArrayList&lt;String&gt; list)</span> </span>&#123; list.add(<span class="string">&quot;1&quot;</span>); &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">method3</span><span class="params">(ArrayList&lt;String&gt; list)</span> </span>&#123; list.remove(<span class="number">0</span>); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -327,7 +327,7 @@
 <li><code>method2</code>的参数是从<code>method1</code>中传递过来的，与<code>method1</code>中引用同一个对象。</li>
 <li><code>method3</code>的参数分析与<code>method2</code>相同。</li>
 </ul>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210407221447318.png" class="" title="image-20210407221447318">
 
 
 
@@ -365,7 +365,7 @@
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> /L %n <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">1</span>,<span class="number">10</span>) <span class="keyword">do</span> java <span class="literal">-cp</span> <span class="string">&quot;.;C:\Java\maven\localRepository\org\projectlombok\lombok\1.18.12\lombok-1.18.12.jar;C:\Java\maven\localRepository\ch\qos\logback\logback-classic\1.1.2\logback-classic-1.1.2.jar;C:\Java\maven\localRepository\ch\qos\logback\logback-core\1.1.2\logback-core-1.1.2.jar;C:\Java\maven\localRepository\org\slf4j\slf4j-api\1.7.6\slf4j-api-1.7.6.jar&quot;</span> top.parak.safe.ExerciseSellDemo</span><br></pre></td></tr></table></figure>
 
 <p>多次测试，终于发现错误结果：</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210408140200022.png" class="" title="image-20210408140200022">
 
 <p>分析原因，就在于临界区<code>TicketWindow</code>的<code>sell()</code>方法，多个线程对类的成员变量<code>count</code>进行写操作，而这个方法并未受到保护，于是出现线程安全问题。只需要在方法头上标识<code>synchronized</code>即可，锁住实例对象，则线程安全。</p>
 <blockquote>
@@ -389,13 +389,13 @@
 <p>Java对象头</p>
 </blockquote>
 <p>普通对象</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210408123514132.png" class="" title="image-20210408123514132">
 
 <p>数组对象</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210408123633123.png" class="" title="image-20210408123633123">
 
 <p>其中Mark Word结构为：</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210408123818981.png" class="" title="image-20210408123818981">
 
 <ul>
 <li><code>Normal</code>：一般状态，没有加任何锁，Mark Word前面30位保存的是对象的信息，最后2位为状态（01），倒数第三位表示是否使用偏向锁（未使用：0）</li>
@@ -409,7 +409,7 @@
 <p>Monitor被翻译为监视器或管程</p>
 <p>每个Java对象都可以关联一个Monitor对象，如果使用<code>synchronized</code>给对象上锁（重量级）之后，该对象头的Mark Word中就被设置指向Monitor对象的指针。</p>
 <p>Monitor结构如下：</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210408204555166.png" class="" title="image-20210408204555166">
 
 <ul>
 <li>刚开始<code>Monitor</code>中<code>Owner</code>为null。</li>
@@ -439,23 +439,23 @@
 <p>加锁流程：</p>
 <ul>
 <li><p>栈帧中创建锁记录（Lock Record）对象：每个线程的栈帧都会包含一个锁记录的结构，内部可以存储锁定对象的Mark Word</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210409150238190.png" class="" title="image-20210409150238190">
 </li>
 <li><p>让锁记录中Object reference指向锁对象，并尝试用CAS替换Object的Mark Word，将Mark Word的值存入锁记录</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210409150651052.png" class="" title="image-20210409150651052">
 </li>
 <li><p>如果CAS替换成功，对象头中存储了锁记录地址和状态，表示由该线程给对象加锁，这时图示如下：</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210409155409161.png" class="" title="image-20210409155409161">
 </li>
 <li><p>如果CAS替换失败，有两种情况：</p>
 <ul>
 <li>如果是其他线程已经持有了该Object的轻量级锁，这时表明有竞争，进入锁膨胀过程</li>
 <li>如果是自己执行了synchronized锁重入，那么再添加一条Lock Record作为重入的计数。在上面的代码中</li>
 </ul>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210409155939040.png" class="" title="image-20210409155939040">
 </li>
 <li><p>当退出synchronized代码块（解锁时）如果有取值位null的锁记录，表示有重入，这是重置锁记录，表示重入计数减一</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210409160448791.png" class="" title="image-20210409160448791">
 </li>
 <li><p>当退出synchronized代码块（解锁时）锁记录的值不为null，这时使用CAS将Mark Word的值恢复给对象头。</p>
 <ul>
@@ -469,14 +469,14 @@
 
 <ul>
 <li><p>当Thread-1进行轻量级加锁时，Thread-0已经对该对象加了轻量级锁</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210409161426089.png" class="" title="image-20210409161426089">
 </li>
 <li><p>这时Thread-1加轻量级锁失败，进入锁膨胀流程（因为Thread-1线程加轻量级锁失败，轻量级锁没有阻塞队列的概念，所以此时就要为对象申请Monitor锁（重量级锁），让Object指向重量级锁，然后Thread-1自己进入了Monitor的EntryList变成BLOCKED状态。）</p>
 <ul>
 <li>即为Object对象申请Monitor锁，让Object指向重量级锁地址</li>
 <li>然后自己进入Monitor的EntryList BLOCKED</li>
 </ul>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210409163035688.png" class="" title="image-20210409163035688">
 </li>
 <li><p>当Thread-0退出同步块解锁时，使用CAS将Mark Word的值恢复给对象头，肯定恢复失败，因为对象的对象头中存储的是重量级锁的地址。这时会进入重量级解锁流程，即按照Monitor地址找到Monitor对象，设置Owner为null，唤醒EntryList中BLOCKED线程Thread-1。</p>
 </li>
@@ -494,11 +494,11 @@
 
 
 
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210409171350303.png" class="" title="image-20210409171350303">
 
 
 
-
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210409171429240.png" class="" title="image-20210409171429240">
 
 
 
@@ -581,7 +581,7 @@
 <h2 id="2-3-第三部分-模式"><a href="#2-3-第三部分-模式" class="headerlink" title="2.3 第三部分-模式"></a>2.3 第三部分-模式</h2><h3 id="2-3-1-wait-notify"><a href="#2-3-1-wait-notify" class="headerlink" title="2.3.1 wait notify"></a>2.3.1 wait notify</h3><blockquote>
 <p>wait/notify原理</p>
 </blockquote>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210410164622176.png" class="" title="image-20210410164622176">
 
 
 
@@ -650,7 +650,7 @@
 <li>JDK中，join的实现、future的实现，采用的就是此模式</li>
 <li>因为要等待另一方的结果，因此归类到同步模式</li>
 </ul>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210411112747728.png" class="" title="image-20210411112747728">
 
 
 
@@ -674,7 +674,7 @@
 <p>扩展</p>
 </blockquote>
 <p>如果需要在多个类中间使用<code>GuardedObject</code>对象，作为参数传递不是很方便，因此设计一个用来解耦的中间类。</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210411231829154.png" class="" title="image-20210411231829154">
 
 <p>比如一个小区有一个信箱，每个居民只需要在信箱里根据ID取到自己的信件，而每一封信件都由不同的邮递员送达。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MailBoxesDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> People().start();</span><br><span class="line">        &#125;</span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (Integer id : MailBoxes.getIds()) &#123;</span><br><span class="line">            <span class="keyword">new</span> Postman(id, <span class="string">&quot;内容&quot;</span> + id).start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 居民</span></span><br><span class="line"><span class="meta">@Slf4j(topic = &quot;People&quot;)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Mail mail = MailBoxes.createMail();</span><br><span class="line">        log.debug(<span class="string">&quot;开始收信: &#123;&#125;&quot;</span>, mail.getId());</span><br><span class="line">        String content = (String) mail.getContent(<span class="number">5000</span>);</span><br><span class="line">        log.debug(<span class="string">&quot;收到信件: &#123;&#125;&quot;</span>,  content);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 邮递员</span></span><br><span class="line"><span class="meta">@Slf4j(topic = &quot;Postman&quot;)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Postman</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String content;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Postman</span><span class="params">(<span class="keyword">int</span> id, String content)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.content = content;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Mail mail = MailBoxes.getMail(id);</span><br><span class="line">        log.debug(<span class="string">&quot;送信 [id=&#123;&#125;, content=&#123;&#125;]&quot;</span>, id, content);</span><br><span class="line">        mail.setContent(content);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 信箱</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MailBoxes</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;Integer, Mail&gt; boxes = <span class="keyword">new</span> Hashtable&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> id = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">int</span> <span class="title">generateId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> ++id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Mail <span class="title">getMail</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> boxes.remove(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Mail <span class="title">createMail</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> id = generateId();</span><br><span class="line">        Mail mail = <span class="keyword">new</span> Mail(id);</span><br><span class="line">        boxes.put(id, mail);</span><br><span class="line">        <span class="keyword">return</span> mail;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Set&lt;Integer&gt; <span class="title">getIds</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> boxes.keySet();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 信件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mail</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 信件ID</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Mail</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 信件内容</span></span><br><span class="line">    <span class="keyword">private</span> Object content;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getContent</span><span class="params">(<span class="keyword">long</span> timeout)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">            <span class="comment">// 开始时间</span></span><br><span class="line">            <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">            <span class="comment">// 经历时间</span></span><br><span class="line">            <span class="keyword">long</span> pass = <span class="number">0</span>;</span><br><span class="line">            <span class="comment">// 没有结果</span></span><br><span class="line">            <span class="keyword">while</span> (content == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">// 此轮循环应该等待的时间</span></span><br><span class="line">                <span class="keyword">long</span> wait = timeout - pass;</span><br><span class="line">                <span class="keyword">if</span> (wait &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="keyword">this</span>.wait(wait);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                pass = System.currentTimeMillis() - start;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> content;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setContent</span><span class="params">(Object content)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="keyword">this</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.content = content;</span><br><span class="line">            <span class="keyword">this</span>.notifyAll();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -690,7 +690,7 @@
 <li>消息队列是有容量限制的，满时不会再加入数据，空时不会再消耗数据</li>
 <li>JDK中各种阻塞队列，采用的就是这种模式</li>
 </ul>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210411232117401.png" class="" title="image-20210411232117401">
 
 
 
@@ -754,7 +754,7 @@
 </ul>
 <p><strong>图示</strong></p>
 <p>（1）先调用<code>park</code>再调用<code>unpark</code></p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210418212139187.png" class="" title="image-20210418212139187">
 
 <ol>
 <li>当前线程调用<code>Unsafe.park()</code>方法</li>
@@ -762,7 +762,7 @@
 <li>线程进入<code>_cond</code>条件变量阻塞</li>
 <li>设置<code>_counter = 0</code></li>
 </ol>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210419110033795.png" class="" title="image-20210419110033795">
 
 <ol>
 <li>调用<code>Unsafe.unpark(Thread_0)</code>方法，设置<code>_counter</code>为1</li>
@@ -771,7 +771,7 @@
 <li>设置<code>_counter</code>为0</li>
 </ol>
 <p>（2）先调用<code>unpark</code>再调用<code>park</code></p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210419214214099.png" class="" title="image-20210419214214099">
 
 <ol>
 <li>调用<code>Unsafe.unpark(Thread)0</code>方法，设置<code>_counter</code>为1</li>
@@ -779,7 +779,7 @@
 <li>检查<code>_counter</code>，本情况为1，这时线程无需阻塞，继续运行</li>
 <li>设置<code>_counter</code>为0</li>
 </ol>
-<h3 id="2-3-5-线程状态转换"><a href="#2-3-5-线程状态转换" class="headerlink" title="2.3.5 线程状态转换"></a>2.3.5 线程状态转换</h3>
+<h3 id="2-3-5-线程状态转换"><a href="#2-3-5-线程状态转换" class="headerlink" title="2.3.5 线程状态转换"></a>2.3.5 线程状态转换</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210419222926434.png" class="" title="image-20210419222926434">
 
 <p>假设有线程t:</p>
 <p>（1）情况1：<code>NEW</code> ==&gt; <code>RUNNABLE</code></p>
@@ -901,9 +901,9 @@
 <li>jconsole工具检测死锁</li>
 </ol>
 <p>powershell输入<code>jconsole</code>，连接本地进程，选择线程界面</p>
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210422112258636.png" class="" title="image-20210422112258636">
 
-
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210422112653368.png" class="" title="image-20210422112653368">
 
 
 
@@ -916,7 +916,7 @@
 <li>吃饭时要用两根筷子吃，桌子上共有五根筷子，每位哲学家左右手边各有一根筷子。</li>
 <li>如果筷子被身边的人拿着，自己就得等待。</li>
 </ul>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210422110000353.png" class="" title="image-20210422110000353">
 
 <p>当每位哲学家即线程持有一根筷子时，他们都在等待另一个线程释放锁，因此造成了死锁。</p>
 <p>代码：</p>
@@ -947,10 +947,10 @@
 </blockquote>
 <p>某些线程因为优先级太低，始终得不到CPU调度执行，也不能够结束。</p>
 <p>在使用顺序加锁时，可能会出现饥饿现象：</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210422165813526.png" class="" title="image-20210422165813526">
 
 <p>顺序加锁的解决方案：</p>
-
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62531/image-20210422205258032.png" class="" title="image-20210422205258032">
 
 
 
