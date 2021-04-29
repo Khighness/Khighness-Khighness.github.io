@@ -2564,11 +2564,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart3566" style="height: 120px"></canvas>
+    <canvas id="chart418" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart3566').getContext('2d');
+    var ctx = document.getElementById('chart418').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -2604,11 +2604,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart907" style="height: 100px"></canvas>
+    <canvas id="chart6507" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart907').getContext('2d');
+    var ctx = document.getElementById('chart6507').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -2632,11 +2632,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart6539" style="height: 100px"></canvas>
+    <canvas id="chart40" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart6539').getContext('2d');
+    var ctx = document.getElementById('chart40').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -3428,7 +3428,7 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 <blockquote>
 <p>EXPLAIN测试</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;* 最好索引怎么创建的，就怎么用，按照顺序使用，避免让MySQL再自己去翻译一次 *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;* 1.全值匹配 用到索引c1 c2 c3 c4全字段 *&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND &#96;c2&#96; &#x3D; &#39;a2&#39; AND &#96;c3&#96; &#x3D; &#39;a3&#39; AND &#96;c4&#96; &#x3D; &#39;a4&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;* 2.用到索引c1 c2 c3 c4全字段 MySQL的查询优化器会优化SQL语句的顺序*&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND &#96;c2&#96; &#x3D; &#39;a2&#39; AND &#96;c4&#96; &#x3D; &#39;a4&#39; AND &#96;c3&#96; &#x3D; &#39;a3&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;* 3.用到索引c1 c2 c3 c4全字段 MySQL的查询优化器会优化SQL语句的顺序*&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c4&#96; &#x3D; &#39;a4&#39; AND &#96;c3&#96; &#x3D; &#39;a3&#39; AND &#96;c2&#96; &#x3D; &#39;a2&#39; AND &#96;c1&#96; &#x3D; &#39;a1&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;* 4.用到索引c1 c2 c3字段，c4字段失效，范围之后全失效 *&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND &#96;c2&#96; &#x3D; &#39;a2&#39; AND &#96;c3&#96; &gt; &#39;a3&#39; AND &#96;c4&#96; &#x3D; &#39;a4&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;* 5.用到索引c1 c2 c3 c4全字段 MySQL的查询优化器会优化SQL语句的顺序*&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND &#96;c2&#96; &#x3D; &#39;a2&#39; AND &#96;c4&#96; &gt; &#39;a4&#39; AND &#96;c3&#96; &#x3D; &#39;a3&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;* </span><br><span class="line">   6.用到了索引c1 c2 c3三个字段, c1和c2两个字段用于查找,  c3字段用于排序了但是没有统计到key_len中，c4字段失效</span><br><span class="line">*&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND &#96;c2&#96; &#x3D; &#39;a2&#39; AND &#96;c4&#96; &#x3D; &#39;a4&#39; ORDER BY &#96;c3&#96;;</span><br><span class="line"></span><br><span class="line">&#x2F;* 7.用到了索引c1 c2 c3三个字段，c1和c2两个字段用于查找, c3字段用于排序了但是没有统计到key_len中*&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND &#96;c2&#96; &#x3D; &#39;a2&#39; ORDER BY &#96;c3&#96;;</span><br><span class="line"></span><br><span class="line">&#x2F;* </span><br><span class="line">   8.用到了索引c1 c2两个字段，c4失效，c1和c2两个字段用于查找，c4字段排序产生了Using filesort说明排序没有用到c4字段 </span><br><span class="line">*&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND &#96;c2&#96; &#x3D; &#39;a2&#39; ORDER BY &#96;c4&#96;;</span><br><span class="line"></span><br><span class="line">&#x2F;* 9.用到了索引c1 c2 c3三个字段，c1用于查找，c2和c3用于排序 *&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND &#96;c5&#96; &#x3D; &#39;a5&#39; ORDER BY &#96;c2&#96;, &#96;c3&#96;;</span><br><span class="line"></span><br><span class="line">&#x2F;* 10.用到了c1一个字段，c1用于查找，c3和c2两个字段索引失效，产生了Using filesort *&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND &#96;c5&#96; &#x3D; &#39;a5&#39; ORDER BY &#96;c3&#96;, &#96;c2&#96;;</span><br><span class="line"></span><br><span class="line">&#x2F;* 11.用到了c1 c2 c3三个字段，c1 c2用于查找，c2 c3用于排序 *&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND  &#96;c2&#96; &#x3D; &#39;a2&#39; ORDER BY c2, c3;</span><br><span class="line"></span><br><span class="line">&#x2F;* 12.用到了c1 c2 c3三个字段，c1 c2用于查找，c2 c3用于排序 *&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND  &#96;c2&#96; &#x3D; &#39;a2&#39; AND &#96;c5&#96; &#x3D; &#39;a5&#39; ORDER BY c2, c3;</span><br><span class="line"></span><br><span class="line">&#x2F;* </span><br><span class="line">   13.用到了c1 c2 c3三个字段，c1 c2用于查找，c2 c3用于排序 没有产生Using filesort </span><br><span class="line">      因为之前c2这个字段已经确定了是&#39;a2&#39;了，这是一个常量，再去ORDER BY c3,c2 这时候c2已经不用排序了！</span><br><span class="line">      所以没有产生Using filesort 和(10)进行对比学习！</span><br><span class="line">*&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND &#96;c2&#96; &#x3D; &#39;a2&#39; AND &#96;c5&#96; &#x3D; &#39;a5&#39; ORDER BY c3, c2;</span><br><span class="line"></span><br><span class="line">&#x2F;* GROUP BY 表面上是叫做分组，但是分组之前必定排序。 *&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;* 14.用到c1 c2 c3三个字段，c1用于查找，c2 c3用于排序，c4失效 *&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND &#96;c4&#96; &#x3D; &#39;a4&#39; GROUP BY &#96;c2&#96;,&#96;c3&#96;;</span><br><span class="line"></span><br><span class="line">&#x2F;* 15.用到c1这一个字段，c4失效，c2和c3排序失效产生了Using filesort *&#x2F;</span><br><span class="line">EXPLAIN SELECT * FROM &#96;test03&#96; WHERE &#96;c1&#96; &#x3D; &#39;a1&#39; AND &#96;c4&#96; &#x3D; &#39;a4&#39; GROUP BY &#96;c3&#96;,&#96;c2&#96;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- 最好索引如何创建就如何使用，避免让MySQL自己再翻译优化 --</span><br><span class="line"></span><br><span class="line">-- 1. 用到索引c1 c2 c3 c4全字段，全值匹配</span><br><span class="line">EXPLAIN SELECT * FROM tb4_test WHERE c1 &#x3D; &#39;a1&#39; AND c2 &#x3D; &#39;a2&#39; AND c3 &#x3D; &#39;a3&#39; AND c4 &#x3D; &#39;a4&#39;;</span><br><span class="line"></span><br><span class="line">-- 2. 用到索引c1 c2 c3 c4全字段，查询优化器会优化SQL语句的执行顺序</span><br><span class="line">EXPLAIN SELECT * FROM tb4_test WHERE c4 &#x3D; &#39;a4&#39; AND c3 &#x3D; &#39;a3&#39; AND c2 &#x3D; &#39;a2&#39; AND c1 &#x3D; &#39;a1&#39;;</span><br><span class="line"></span><br><span class="line">-- 3. 用到索引c1 c2 c3字段，c4字段失效，范围之后全失效</span><br><span class="line">EXPLAIN SELECT * FROM tb4_test WHERE c1 &#x3D; &#39;a1&#39; AND c2 &#x3D; &#39;a2&#39; AND c3 &gt; &#39;a3&#39; AND c4 &#x3D; &#39;a4&#39;;</span><br><span class="line"></span><br><span class="line">-- 4. 用到索引c1 c2 c3 c4全字段，查询优化器会优化SQL语句的执行顺序</span><br><span class="line">EXPLAIN SELECT * FROM tb4_test WHERE c1 &#x3D; &#39;a1&#39; AND c2 &#x3D; &#39;a2&#39; AND c4 &gt; &#39;a4&#39; AND c3 &#x3D; &#39;a3&#39;;</span><br><span class="line"></span><br><span class="line">-- order by排序一定要注意顺序，这个顺序MySQL不会自动优化 --</span><br><span class="line"></span><br><span class="line">-- 5. 用到索引c1 c2 c3字段，c1 c2用于查找，c3用于排序，但是没有统计到key_len中，c4字段失效</span><br><span class="line">EXPLAIN SELECT * FROM tb4_test WHERE c1 &#x3D; &#39;a1&#39; AND c2 &#x3D; &#39;a2&#39; AND c4 &gt; &#39;a4&#39; ORDER BY c3;</span><br><span class="line"></span><br><span class="line">-- 6. 用到索引c1 c2字段，c1 c2用于查找，c4排序产生了Using filesort说明c4失效</span><br><span class="line">EXPLAIN SELECT * FROM tb4_test WHERE c1 &#x3D; &#39;a1&#39; AND c2 &#x3D; &#39;a2&#39; ORDER BY c4;</span><br><span class="line"></span><br><span class="line">-- 7. 用到索引c1 c2 c3字段，c1用于查找，c2 c3用于排序</span><br><span class="line">EXPLAIN SELECT * FROM tb4_test WHERE c1 &#x3D; &#39;a1&#39; AND c5 &#x3D; &#39;a5&#39; ORDER BY c2, c3;</span><br><span class="line"></span><br><span class="line">-- 8. 用到索引c1字段，c1用于查找，c3 c2失效，产生了Using filesort</span><br><span class="line">EXPLAIN SELECT * FROM tb4_test WHERE c1 &#x3D; &#39;a1&#39; AND c5 &#x3D; &#39;a5&#39; ORDER BY c3, c2;</span><br><span class="line"></span><br><span class="line">-- 9. 用到索引c1 c2 c3字段，c1 c2用于查找，c2 c3用于排序</span><br><span class="line">EXPLAIN SELECT * FROM tb4_test WHERE c1 &#x3D; &#39;a1&#39; AND c2 &#x3D; &#39;a2&#39; AND c5 &#x3D; &#39;a5&#39; ORDER BY c2, c3;</span><br><span class="line"></span><br><span class="line">-- 10. 用到索引c1 c2 c3字段，c1 c2用于查找，c2 才用于排序</span><br><span class="line">--     没有产生Using filesort，因为c2查找时已经确定了，排序时c2已经不用排序了</span><br><span class="line">EXPLAIN SELECT * FROM tb4_test WHERE c1 &#x3D; &#39;a1&#39; AND c2 &#x3D; &#39;a2&#39; AND c5 &#x3D; &#39;a5&#39; ORDER BY c3, c2;</span><br><span class="line"></span><br><span class="line">-- group by虽然是分组，但是分组之前必然排序 --</span><br><span class="line"></span><br><span class="line">-- 11. 用到索引c1 c2 c3字段，c1用于查找，c2 c3用于排序，c4失效</span><br><span class="line">EXPLAIN SELECT * FROM tb4_test WHERE c1 &#x3D; &#39;a1&#39; AND c4 &#x3D; &#39;a4&#39; GROUP BY c2, c3;</span><br><span class="line"></span><br><span class="line">-- 12. 用到索引c1字段，c1用于查找，c2 c3失效，产生了Using temporary</span><br><span class="line">EXPLAIN SELECT * FROM tb4_test WHERE c1 &#x3D; &#39;a1&#39; AND c4 &#x3D; &#39;a4&#39; GROUP BY c3, c2;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -3950,7 +3950,6 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 </blockquote>
 <p>进入Slave内部</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mysql&gt; CHANGE MASTER TO</span><br><span class="line">    -&gt; MASTER_HOST&#x3D;&#39;172.17.0.5&#39;,</span><br><span class="line">    -&gt; MASTER_PORT&#x3D;3307,</span><br><span class="line">    -&gt; MASTER_USER&#x3D;&#39;Khighness&#39;,</span><br><span class="line">    -&gt; MASTER_PASSWORD&#x3D;&#39;KAG1823&#39;,</span><br><span class="line">    -&gt; MASTER_LOG_FILE&#x3D;&#39;mysql-bin.000003&#39;,</span><br><span class="line">    -&gt; MASTER_LOG_POS&#x3D;4440;</span><br><span class="line">Query OK, 0 rows affected, 2 warnings (0.02 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; START SLAVE;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure>
-
 
 ]]></content>
       <categories>
@@ -6281,10 +6280,10 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/f8cdfd0a/MyCD.jpg" class="" title="MyCD">
 
 
-        <div id="aplayer-ygBpnxRe" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-ZvQcOXzy" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-ygBpnxRe");
+				  options.element = document.getElementById("aplayer-ZvQcOXzy");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
