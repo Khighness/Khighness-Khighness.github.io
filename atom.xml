@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-30T04:13:23.146Z</updated>
+  <updated>2021-04-30T09:47:01.878Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>凝眉</title>
+    <link href="http://example.com/posts/5781/"/>
+    <id>http://example.com/posts/5781/</id>
+    <published>2021-04-29T16:00:00.000Z</published>
+    <updated>2021-04-30T09:47:01.878Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="微小说" scheme="http://example.com/categories/%E5%BE%AE%E5%B0%8F%E8%AF%B4/"/>
+    
+    
+    <category term="微小说" scheme="http://example.com/tags/%E5%BE%AE%E5%B0%8F%E8%AF%B4/"/>
+    
+  </entry>
   
   <entry>
     <title>JUC-5(共享模型之不可变)</title>
@@ -281,11 +306,11 @@
 &lt;p&gt;示例：&lt;a href=&quot;https://shen-yu.gitee.io/2020/chartjs&quot;&gt;沈宇大佬博客&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;文档：&lt;a href=&quot;https://chartjs.bootcss.com/&quot;&gt;中文官方文档&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;每月明细&quot;&gt;&lt;a href=&quot;#每月明细&quot; class=&quot;headerlink&quot; title=&quot;每月明细&quot;&gt;&lt;/a&gt;每月明细&lt;/h3&gt;&lt;div style=&quot;width: 80%;margin: 0 auto&quot;&gt;
-    &lt;canvas id=&quot;chart6868&quot; style=&quot;height: 120px&quot;&gt;&lt;/canvas&gt;
+    &lt;canvas id=&quot;chart3708&quot; style=&quot;height: 120px&quot;&gt;&lt;/canvas&gt;
 &lt;/div&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
-    var ctx = document.getElementById(&#39;chart6868&#39;).getContext(&#39;2d&#39;);
+    var ctx = document.getElementById(&#39;chart3708&#39;).getContext(&#39;2d&#39;);
     var options = {
     type: &#39;line&#39;,
     data: {
@@ -523,10 +548,10 @@
     <summary type="html">&lt;img src=&quot;/posts/f8cdfd0a/MyCD.jpg&quot; class=&quot;&quot; title=&quot;MyCD&quot;&gt;
 
 
-        &lt;div id=&quot;aplayer-aDFpNanr&quot; class=&quot;aplayer aplayer-tag-marker&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&lt;/div&gt;
+        &lt;div id=&quot;aplayer-mdISJDTV&quot; class=&quot;aplayer aplayer-tag-marker&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&lt;/div&gt;
 			  &lt;script&gt;
 				  var options = {&quot;narrow&quot;:false,&quot;autoplay&quot;:false,&quot;showlrc&quot;:1,&quot;mode&quot;:&quot;oredr&quot;,&quot;mutex&quot;:true,&quot;theme&quot;:&quot;#e6d0b2&quot;,&quot;preload&quot;:&quot;metadata&quot;,&quot;listmaxheight&quot;:&quot;513px&quot;,&quot;music&quot;:[{&quot;title&quot;:&quot;以父之名&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/以父之名.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;以父之名.txt&quot;},{&quot;title&quot;:&quot;懦夫&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/懦夫.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;懦夫.txt&quot;},{&quot;title&quot;:&quot;晴天&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/晴天.flac&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;晴天.txt&quot;},{&quot;title&quot;:&quot;三年二班&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/三年二班.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;三年二班.txt&quot;},{&quot;title&quot;:&quot;东风破&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/东风破.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;东风破.txt&quot;},{&quot;title&quot;:&quot;你听得到&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/你听得到.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;你听得到.txt&quot;},{&quot;title&quot;:&quot;同一种调调&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/同一种调调.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;同一种调调.txt&quot;},{&quot;title&quot;:&quot;她的睫毛&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/她的睫毛.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;她的睫毛.txt&quot;},{&quot;title&quot;:&quot;爱情悬崖&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/爱情悬崖.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;爱情悬崖.txt&quot;},{&quot;title&quot;:&quot;梯田&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/梯田.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;梯田.txt&quot;},{&quot;title&quot;:&quot;双刀&quot;,&quot;author&quot;:&quot;周杰伦&quot;,&quot;url&quot;:&quot;/posts/f8cdfd0a/双刀.ogg&quot;,&quot;pic&quot;:&quot;/posts/f8cdfd0a/YHM.jpg&quot;,&quot;lrc&quot;:&quot;双刀.txt&quot;}]};
-				  options.element = document.getElementById(&quot;aplayer-aDFpNanr&quot;);
+				  options.element = document.getElementById(&quot;aplayer-mdISJDTV&quot;);
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -538,40 +563,6 @@
     
     
     <category term="叶惠美" scheme="http://example.com/tags/%E5%8F%B6%E6%83%A0%E7%BE%8E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redis</title>
-    <link href="http://example.com/posts/bae4ff13/"/>
-    <id>http://example.com/posts/bae4ff13/</id>
-    <published>2020-10-07T16:00:00.000Z</published>
-    <updated>2021-04-22T08:43:57.363Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;Redis&quot;&gt;&lt;a href=&quot;#Redis&quot; class=&quot;headerlink&quot; title=&quot;Redis&quot;&gt;&lt;/a&gt;Redis&lt;/h1&gt;&lt;center&gt;
-    &lt;font face=&quot;Kristen ITC&quot; color=&quot;#555555&quot; size=3&gt;💌 Khighness 💌&lt;/font&gt;&lt;br&gt;
-&lt;/center&gt;
-
-
-
-&lt;h2 id=&quot;1-📩NoSQL概述&quot;&gt;&lt;a href=&quot;#1-📩NoSQL概述&quot; class=&quot;headerlink&quot; title=&quot;1. 📩NoSQL概述&quot;&gt;&lt;/a&gt;1. 📩NoSQL概述&lt;/h2&gt;&lt;h3 id=&quot;1-1-📃简介&quot;&gt;&lt;a href=&quot;#1-1-📃简介&quot; class=&quot;headerlink&quot; title=&quot;1.1 📃简介&quot;&gt;&lt;/a&gt;1.1 📃简介&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;⚡ NoSQL&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;NoSQL != 非SQL &lt;/p&gt;
-&lt;p&gt;NoSQL == Not Only SQL&lt;/p&gt;
-&lt;p&gt;不仅仅是SQL！&lt;/p&gt;
-&lt;p&gt;泛指非关系型的数据库。克服大并发。&lt;/p&gt;
-&lt;p&gt;很多的数据类型，用户的个人信息、社交网络和地理位置，这些数据类型的存储不需要一个固定的格式，不需要多元的操作就可以横向扩展。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Redis" scheme="http://example.com/categories/Redis/"/>
-    
-    
-    <category term="NoSQL" scheme="http://example.com/tags/NoSQL/"/>
-    
-    <category term="Cache" scheme="http://example.com/tags/Cache/"/>
     
   </entry>
   
