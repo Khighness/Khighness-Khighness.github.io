@@ -1,6 +1,463 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JUC-6(并发工具之线程池)</title>
+    <url>/posts/62082/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="6-1-自定义线程池"><a href="#6-1-自定义线程池" class="headerlink" title="6.1 自定义线程池"></a>6.1 自定义线程池</h2><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62082/image-20210430145117537.png" class="" title="image-20210430145117537.png">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayDeque;</span><br><span class="line"><span class="keyword">import</span> java.util.Deque;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.Condition;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.ReentrantLock;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2021-04-30</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j(topic = &quot;ParaKThreadPoolDemo&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ParaKThreadPoolDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ParaKThreadPool threadPool = <span class="keyword">new</span> ParaKThreadPool(</span><br><span class="line">                <span class="number">1</span>, <span class="number">1000</span>, TimeUnit.MILLISECONDS, <span class="number">1</span>,</span><br><span class="line">                <span class="comment">// (1) 一直等待</span></span><br><span class="line">                <span class="comment">// BlockingQueue::put</span></span><br><span class="line"><span class="comment">//                (2) 超时等待</span></span><br><span class="line">                (queue, task) -&gt; &#123;</span><br><span class="line">                    queue.offer(task, <span class="number">1500</span>, TimeUnit.MILLISECONDS);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// (3) 放弃执行</span></span><br><span class="line"><span class="comment">//                (queue, task) -&gt; &#123;</span></span><br><span class="line"><span class="comment">//                    log.debug(&quot;放弃执行: &#123;&#125;&quot;, task);</span></span><br><span class="line"><span class="comment">//                &#125;</span></span><br><span class="line">                <span class="comment">// (4) 抛出异常</span></span><br><span class="line"><span class="comment">//                (queue, task) -&gt; &#123;</span></span><br><span class="line"><span class="comment">//                    throw new RuntimeException(&quot;任务执行失败: &quot; + task);</span></span><br><span class="line"><span class="comment">//                &#125;</span></span><br><span class="line">                <span class="comment">// (5) 自己执行</span></span><br><span class="line"><span class="comment">//                (queue, task) -&gt; &#123;</span></span><br><span class="line"><span class="comment">//                    task.run();</span></span><br><span class="line"><span class="comment">//                &#125;</span></span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> k = i;</span><br><span class="line">            threadPool.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                log.debug(<span class="string">&quot;&#123;&#125;&quot;</span>, k);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j(topic = &quot;ParaKThreadPool&quot;)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ParaKThreadPool</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 任务队列</span></span><br><span class="line">    <span class="keyword">private</span> BlockingQueue&lt;Runnable&gt; taskQueue;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 线程集合</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> HashSet&lt;Worker&gt; workers = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 核心线程数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> coreSize;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取任务的超时时间</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">long</span> timeout;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 时间单位</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> TimeUnit timeUnit;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 拒绝策略</span></span><br><span class="line">    <span class="keyword">private</span> RejectPolicy&lt;Runnable&gt; rejectPolicy;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ParaKThreadPool</span><span class="params">(<span class="keyword">int</span> coreSize, <span class="keyword">long</span> timeout, TimeUnit timeUnit, <span class="keyword">int</span> queueCapacity, RejectPolicy&lt;Runnable&gt; rejectPolicy)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.coreSize = coreSize;</span><br><span class="line">        <span class="keyword">this</span>.timeout = timeout;</span><br><span class="line">        <span class="keyword">this</span>.timeUnit = timeUnit;</span><br><span class="line">        <span class="keyword">this</span>.taskQueue = <span class="keyword">new</span> BlockingQueue&lt;&gt;(queueCapacity);</span><br><span class="line">        <span class="keyword">this</span>.rejectPolicy = rejectPolicy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 执行任务</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable task)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 当任务数没有超过coreSize时，直接交给worker对象执行</span></span><br><span class="line">        <span class="comment">// 如果任务数超过coreSize时，加入任务队列暂存</span></span><br><span class="line">        <span class="keyword">synchronized</span> (workers) &#123;</span><br><span class="line">            <span class="keyword">if</span> (workers.size() &lt; coreSize) &#123;</span><br><span class="line">                Worker worker = <span class="keyword">new</span> Worker(task);</span><br><span class="line">                log.debug(<span class="string">&quot;执行线程新增: &#123;&#125;&quot;</span>, worker);</span><br><span class="line">                workers.add(worker);</span><br><span class="line">                worker.start();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// (1) 一直等待</span></span><br><span class="line">                <span class="comment">// (2) 超时等待</span></span><br><span class="line">                <span class="comment">// (3) 放弃执行</span></span><br><span class="line">                <span class="comment">// (4) 抛出异常</span></span><br><span class="line">                <span class="comment">// (5) 让调用者自己执行任务</span></span><br><span class="line">                taskQueue.tryPut(rejectPolicy, task);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Runnable task;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Worker</span><span class="params">(Runnable task)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.task = task;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 执行任务</span></span><br><span class="line">            <span class="comment">// (1) 当task不为空，执行任务</span></span><br><span class="line">            <span class="comment">// (2) 当task执行完毕，再接着从任务队列获取任务并执行</span></span><br><span class="line"><span class="comment">//            while (task != null || (task = taskQueue.take()) != null) &#123;</span></span><br><span class="line">            <span class="keyword">while</span> (task != <span class="keyword">null</span> || (task = taskQueue.poll(timeout, timeUnit)) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    log.debug(<span class="string">&quot;正在执行 =&gt; &#123;&#125;&quot;</span>, task);</span><br><span class="line">                    task.run();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    task = <span class="keyword">null</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">synchronized</span> (workers) &#123;</span><br><span class="line">                log.debug(<span class="string">&quot;执行线程移除: &#123;&#125;&quot;</span>, <span class="keyword">this</span>);</span><br><span class="line">                workers.remove(<span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j(topic = &quot;BlockingQueue&quot;)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlockingQueue</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 任务队列</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Deque&lt;T&gt; queue = <span class="keyword">new</span> ArrayDeque&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 锁</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock lock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 最大容量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> capacity;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 生产者条件变量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Condition fullWaitSet = lock.newCondition();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 消费者条件变量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Condition emptyWaitSet = lock.newCondition();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BlockingQueue</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 带超时的阻塞获取</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">poll</span><span class="params">(<span class="keyword">long</span> timeout, TimeUnit unit)</span> </span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 将超时时间统一转换为纳秒</span></span><br><span class="line">            <span class="keyword">long</span> nanos = unit.toNanos(timeout);</span><br><span class="line">            <span class="keyword">while</span> (queue.isEmpty()) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="comment">// 返回剩余时间</span></span><br><span class="line">                    <span class="keyword">if</span> (nanos &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    nanos = emptyWaitSet.awaitNanos(nanos);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            T t = queue.removeFirst();</span><br><span class="line">            fullWaitSet.signal();</span><br><span class="line">            <span class="keyword">return</span> t;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 阻塞获取</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">take</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 队列为空，阻塞</span></span><br><span class="line">            <span class="keyword">while</span> (queue.isEmpty()) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    emptyWaitSet.await();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            T t = queue.removeFirst();</span><br><span class="line">            fullWaitSet.signal();</span><br><span class="line">            <span class="keyword">return</span> t;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 阻塞添加</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(T element)</span> </span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 队列已满，阻塞</span></span><br><span class="line">            <span class="keyword">while</span> (queue.size() == capacity) &#123;</span><br><span class="line">                log.debug(<span class="string">&quot;等待加入任务队列: &#123;&#125;...&quot;</span>, element);</span><br><span class="line">                fullWaitSet.await();</span><br><span class="line">            &#125;</span><br><span class="line">            log.debug(<span class="string">&quot;加入任务队列: &#123;&#125;&quot;</span>, element);</span><br><span class="line">            queue.addLast(element);</span><br><span class="line">            emptyWaitSet.signal();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 带超时时间添加</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">offer</span><span class="params">(T element, <span class="keyword">long</span> timeout, TimeUnit timeUnit)</span> </span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">long</span> nanos = timeUnit.toNanos(timeout);</span><br><span class="line">            <span class="comment">// 队列已满，阻塞</span></span><br><span class="line">            <span class="keyword">while</span> (queue.size() == capacity) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nanos &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                log.debug(<span class="string">&quot;等待加入任务队列: &#123;&#125;...&quot;</span>, element);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    nanos = fullWaitSet.awaitNanos(nanos);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            log.debug(<span class="string">&quot;加入任务队列: &#123;&#125;&quot;</span>, element);</span><br><span class="line">            queue.addLast(element);</span><br><span class="line">            emptyWaitSet.signal();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取大小</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> queue.size();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tryPut</span><span class="params">(RejectPolicy&lt;T&gt; rejectPolicy, T task)</span> </span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 判断队列是否已满</span></span><br><span class="line">            <span class="keyword">if</span> (queue.size() == capacity) &#123;</span><br><span class="line">                rejectPolicy.reject(<span class="keyword">this</span>, task);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123; <span class="comment">// 有空闲</span></span><br><span class="line">                log.debug(<span class="string">&quot;加入任务队列 &#123;&#125;&quot;</span>, task);</span><br><span class="line">                queue.addLast(task);</span><br><span class="line">                emptyWaitSet.signal();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">RejectPolicy</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reject</span><span class="params">(BlockingQueue&lt;T&gt; queue, T task)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-2-ThreadPoolExecutor"><a href="#6-2-ThreadPoolExecutor" class="headerlink" title="6.2 ThreadPoolExecutor"></a>6.2 ThreadPoolExecutor</h2><h3 id="6-2-1-线程池的继承关系"><a href="#6-2-1-线程池的继承关系" class="headerlink" title="6.2.1 线程池的继承关系"></a>6.2.1 线程池的继承关系</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62082/image-20210430184352672.png" class="" title="image-20210430184352672">
+
+
+
+<h3 id="6-2-2-Executor框架结构"><a href="#6-2-2-Executor框架结构" class="headerlink" title="6.2.2 Executor框架结构"></a>6.2.2 Executor框架结构</h3><p>三大部分：</p>
+<ul>
+<li>任务类（Runnable / Callable）：执行任务需要实现的<code>Runnable</code>或者<code>Callable</code>接口。</li>
+<li>任何的执行（Executor）：任务执行机制的核心接口<code>Executor</code>，以及继承自<code>Executor</code>接口的<code>ExecutorService</code>接口。</li>
+<li>异步计算结果（Future）：<code>Future</code>接口以及<code>FutureTask</code>类都可以代表异步计算的结果。</li>
+</ul>
+<p>使用示意：</p>
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62082/image-20210430184722889.png" class="" title="image-20210430184722889.png">
+
+
+
+<h3 id="6-2-3-线程池状态"><a href="#6-2-3-线程池状态" class="headerlink" title="6.2.3 线程池状态"></a>6.2.3 线程池状态</h3><p><code>ThreadPoolExecutor</code>使用int的高3位来表示线程池状态，低29位表示线程数量。</p>
+<table>
+<thead>
+<tr>
+<th>状态名</th>
+<th>高3位</th>
+<th>接收新任务</th>
+<th>处理阻塞队列任务</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RUNNING</td>
+<td>111</td>
+<td>Y</td>
+<td>Y</td>
+<td>接收新任务，同时处理任务队列中的任务</td>
+</tr>
+<tr>
+<td>SHUTDOWN</td>
+<td>000</td>
+<td>N</td>
+<td>Y</td>
+<td>不会接收新任务，但会处理阻塞队列剩余任务</td>
+</tr>
+<tr>
+<td>STOP</td>
+<td>001</td>
+<td>N</td>
+<td>N</td>
+<td>会中断正在执行的任务，并抛弃阻塞队列任务</td>
+</tr>
+<tr>
+<td>TIDYING</td>
+<td>010</td>
+<td>-</td>
+<td>-</td>
+<td>任务全执行完毕，活动线程为0即将进入终结</td>
+</tr>
+<tr>
+<td>TERMINATED</td>
+<td>011</td>
+<td>-</td>
+<td>-</td>
+<td>终结状态</td>
+</tr>
+</tbody></table>
+<p>从数字上比较（第一位是符号位），TERMINATED &gt; TIDYING &gt; STOP &gt; SHUTDOWN &gt; RUNNING。</p>
+<p>这些信息存储在一个原子变量ctl中，目的是将线程池状态与线程个数合二为一，这样就可以用一次CAS原子操作进行赋值。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// c为旧值，ctlOf返回结果为新值</span></span><br><span class="line">ctl.compareAndSet(c, ctlOf(targetState, workerCountOf(c)));</span><br><span class="line"></span><br><span class="line"><span class="comment">// rs为高三位代表线程池状态，wc为低29位代表线程个数，ctl是合并它们</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">ctlOf</span><span class="params">(<span class="keyword">int</span> rs, <span class="keyword">int</span> wc)</span> </span>&#123; <span class="keyword">return</span> rs | wc; &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-2-4-线程池属性"><a href="#6-2-4-线程池属性" class="headerlink" title="6.2.4 线程池属性"></a>6.2.4 线程池属性</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/** 工作线程 */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="keyword">extends</span> <span class="title">AbstractQueuedSynchronizer</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/** 正在运行的线程 */</span></span><br><span class="line">    <span class="keyword">final</span> Thread thread;</span><br><span class="line">    <span class="comment">/** 初始化任务 */</span></span><br><span class="line">    Runnable firstTask;</span><br><span class="line">    <span class="comment">/** 已完成的任务数量 */</span></span><br><span class="line">    <span class="keyword">volatile</span> <span class="keyword">long</span> completedTasks;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/** 阻塞队列 */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> BlockingQueue&lt;Runnable&gt; workQueue;</span><br><span class="line"><span class="comment">/** 锁 */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> ReentrantLock mainLock = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line"><span class="comment">/** 线程容器 */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> HashSet&lt;Worker&gt; workers = <span class="keyword">new</span> HashSet&lt;Worker&gt;();</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-2-5-构造函数和参数"><a href="#6-2-5-构造函数和参数" class="headerlink" title="6.2.5 构造函数和参数"></a>6.2.5 构造函数和参数</h3><p>最全构造函数：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                          TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue,</span></span></span><br><span class="line"><span class="function"><span class="params">                          ThreadFactory threadFactory,</span></span></span><br><span class="line"><span class="function"><span class="params">                          RejectedExecutionHandler handler)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>参数解释：</p>
+<ul>
+<li><code>corePoolSize</code>：核心线程数量</li>
+<li><code>maximumPoolSize</code>：最大线程数量<ul>
+<li><code>maximumPool - corePoolSize</code>：救急线程数</li>
+<li>在没有空闲的核心线程和任务队列满了的情况下才使用救急线程</li>
+</ul>
+</li>
+<li><code>keepAliveTime</code>：最大生存时间（对于救急线程）</li>
+<li><code>unit</code>：时间单位</li>
+<li><code>workQueue</code>：阻塞队列（存放任务）<ul>
+<li>有界阻塞队列<code>ArrayBlockingQueue</code></li>
+<li>无界阻塞队列<code>LinkedBlockingQueue</code></li>
+<li>最多只有一个同步元素的<code>SynchronousQueue</code></li>
+<li>优先队列<code>PriorityBlockingQueue</code></li>
+</ul>
+</li>
+<li><code>threadFactory</code>：线程工厂</li>
+<li><code>handler</code>：拒绝策略</li>
+</ul>
+<p>工作流程：</p>
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62082/image-20210430203563881.png" class="" title="image-20210430203563881.png">
+
+
+
+
+
+<h3 id="6-2-6-拒绝策略和场景"><a href="#6-2-6-拒绝策略和场景" class="headerlink" title="6.2.6 拒绝策略和场景"></a>6.2.6 拒绝策略和场景</h3><p>如果线程数量达到<code>maximumPoolSize</code>仍然有新人物时会执行拒绝策略，JDK提供了四种实现。</p>
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62082/image-20210430215158450.png" class="" title="image-20210430215158450">
+
+<p>具体：</p>
+<p>（1）<code>AbortPolicy</code>终止策略：丢弃任务并抛出<code>RejectedExecutionException</code>异常，这是默认策略。</p>
+<ul>
+<li>详述：这是线程池默认的拒绝策略，在任务不能再提交的时候，抛出异常，及时反馈程序运行状态。如果是比较关键的业务，推荐使用此拒绝策略，这样子在系统不能承载更大的并发量的时候，能够及时的通过异常发现。</li>
+<li>功能：当触发拒绝策略时，直接抛出拒绝执行的异常，中止策略的意思也就是打断当前执行流程。</li>
+<li>使用场景：这个就没有特殊的场景了，但是有一点要正确处理抛出的异常。ThreadPoolExecutor中默认的策略就是AbortPolicy，ExecutorService接口的系列ThreadPoolExecutor因为都没有显示的设置拒绝策略，所以默认的都是这个。但是请注意，ExecutorService中的线程池实例队列都是无界的，也就是说把内存撑爆了都不会触发拒绝策略。当自己自定义线程池实例时，使用这个策略一定要处理好触发策略时抛的异常，因为他会打断当前的执行流程。</li>
+</ul>
+<p>（2）<code>DiscardPolicy</code>丢弃策略：丢弃任务，但是不抛出异常。如果线程队列已满，则后续提交的任务都会被丢弃，且静默丢弃。</p>
+<ul>
+<li>详述：使用此策略，可能使我们无法发现系统的异常状态。建议是一些无关紧要的业务采用此策略。</li>
+<li>功能：直接静静地丢弃这个任务，不触发任何动作。</li>
+<li>使用场景：如果你提交的任务无关紧要，你就可以使用它 。因为它就是个空实现，会悄无声息的吞噬你的的任务。所以这个策略基本上不用了。</li>
+</ul>
+<p>（3）<code>DiscardOldestPolicy</code>弃老策略：丢弃队列最前面的任务，然后重新提交被拒绝的任务。</p>
+<ul>
+<li>详述：喜新厌旧的拒绝策略。是否采用还是得根据实际业务是否允许丢弃老任务来认真衡量。</li>
+<li>功能：如果线程池未关闭，就弹出队列头部的元素，然后尝试执行。</li>
+<li>使用场景：这个策略还是会丢弃任务，丢弃时也是毫无声息，但是特点是丢弃的是老的未执行的任务，而且是待执行优先级较高的任务。基于这个特性，想到的场景就是，发布消息和修改消息，当消息发布出去后，还未执行，此时更新的消息又来了，这个时候未执行的消息的版本比现在提交的消息版本要低就可以被丢弃了。因为队列中还有可能存在消息版本更低的消息会排队执行，所以在真正处理消息的时候一定要做好消息的版本比较。</li>
+</ul>
+<p>（4）<code>CallerRunsPolicy</code>调用者运行策略：由调用线程处理该任务。</p>
+<ul>
+<li>功能：当触发拒绝策略时，只要线程没有关闭，就由提交任务的当前线程处理。</li>
+<li>使用场景：一般在不允许失败的、对性能要求不高、并发量较小的场景下使用，因为线程池一般情况下不会关闭，也就是提交的任务一定会被运行，但是由于是调用者线程自己执行的，当多次提交任务时，就会阻塞后续任务执行，性能和效率自然就慢了。</li>
+</ul>
+<blockquote>
+<p>其他框架实现</p>
+<ul>
+<li>Dubbo：在抛出<code>RejectedExecutionException</code>异常之前会记录日志和dump线程栈信息，方便定位问题</li>
+<li>Netty：创建一个新的线程来执行任务</li>
+<li>ActiveMQ：带超市等待(60s)尝试放入队列</li>
+<li>PinPoint：使用了一种拒绝策略链，会逐一尝试策略链中每种拒绝策略</li>
+</ul>
+</blockquote>
+<p>口诀：拒终丢老调（线程池拒绝策略：终止策略、丢弃策略、弃老策略、调用者运行策略）</p>
+<p>场景：</p>
+<ul>
+<li>终止策略：无特殊场景</li>
+<li>丢弃策略：无关紧要的任务</li>
+<li>弃老策略：发布消息</li>
+<li>调用者运行策略：不允许失败</li>
+</ul>
+<p>过程：</p>
+<ol>
+<li>线程池中刚开始没有线程，当一个任务提交给线程池后，线程池会创建一个新线程来执行任务。</li>
+<li>当线程数达到<code>corePoolSize</code>并没有线程空闲，这时再加入任务，新加的任务会被加入<code>workQueue</code>队列，直到有空闲的线程。</li>
+<li>如果队列选择了有界队列，那么任务超过了队列大小时，会创建<code>maximumPoolSize</code>-<code>corePoolSize</code>数目的线程来救急。</li>
+<li>如果线程达到<code>maximumPoolSize</code>仍然有新任务时会执行拒绝策略。</li>
+<li>当高峰过去后，超过<code>corePoolSize</code>的救急线程如果一段时间没有任务做，需要结束节省资源，这个时间<code>kepAliveTime</code>和<code>unit</code>来控制。</li>
+</ol>
+<h3 id="6-2-7-固定大小线程池"><a href="#6-2-7-固定大小线程池" class="headerlink" title="6.2.7 固定大小线程池"></a>6.2.7 固定大小线程池</h3><p><code>newFixedThreadPool</code></p>
+<p>构造方法的参数：</p>
+<ul>
+<li>核心线程数：<code>nThreads</code></li>
+<li>线程工厂：<code>threadFactory</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newFixedThreadPool</span><span class="params">(<span class="keyword">int</span> nThreads, ThreadFactory threadFactory)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(nThreads, nThreads,</span><br><span class="line">                                  <span class="number">0L</span>, TimeUnit.MILLISECONDS,</span><br><span class="line">                                  <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;(),</span><br><span class="line">                                  threadFactory);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>特点：</p>
+<ul>
+<li>核心线程数 = 最大线程数，没有救急线程，无需设置超时时间。</li>
+<li>阻塞队列是无界的，可以放任意数量的任务。</li>
+</ul>
+<p>场景：适用于任务量已知，相对耗时的任务。</p>
+<h3 id="6-2-8-无界限制线程池"><a href="#6-2-8-无界限制线程池" class="headerlink" title="6.2.8 无界限制线程池"></a>6.2.8 无界限制线程池</h3><p><code>newCachedThreadPool</code></p>
+<p>构造方法的参数：</p>
+<ul>
+<li>线程工厂：<code>threadFactory</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ExecutorService <span class="title">newCachedThreadPool</span><span class="params">(ThreadFactory threadFactory)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ThreadPoolExecutor(<span class="number">0</span>, Integer.MAX_VALUE,</span><br><span class="line">                                  <span class="number">60L</span>, TimeUnit.SECONDS,</span><br><span class="line">                                  <span class="keyword">new</span> SynchronousQueue&lt;Runnable&gt;(),</span><br><span class="line">                                  threadFactory);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>特点：</p>
+<ul>
+<li>核心线程是<code>0</code>，最大线程数是<code>Integer.MAX_VALUE</code>，救急线程的空闲生存时间是<code>60S</code>，意味着<ul>
+<li>全部都是救急线程（空闲60S后可以回收）</li>
+<li>救急线程可以无限创建</li>
+</ul>
+</li>
+<li>任务队列采用<code>SyncheonousQueue</code>实现特点是，它没有容量，没有线程来取是放不进去的</li>
+</ul>
+<p>场景：</p>
+<ul>
+<li>整个线程池表现为线程数会根据任务量不断增长，没有上限，当任务执行完毕，空闲1分钟后释放线程。</li>
+<li>适合任务数比较密集，但每个任务执行时间较短的情况。</li>
+</ul>
+<p><code>SyncheonousQueue</code>示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j(topic = &quot;SynchronousQueue&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SynchronousQueueDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        SynchronousQueue&lt;Integer&gt; integers = <span class="keyword">new</span> SynchronousQueue&lt;&gt;();</span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                log.debug(<span class="string">&quot;putting &#123;&#125;&quot;</span>, <span class="number">1</span>);</span><br><span class="line">                integers.put(<span class="number">1</span>);</span><br><span class="line">                log.debug(<span class="string">&quot;&#123;&#125; finish&quot;</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">                log.debug(<span class="string">&quot;putting &#123;&#125;&quot;</span>, <span class="number">2</span>);</span><br><span class="line">                integers.put(<span class="number">2</span>);</span><br><span class="line">                log.debug(<span class="string">&quot;&#123;&#125; finish&quot;</span>, <span class="number">2</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">&quot;t1&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               log.debug(<span class="string">&quot;taking &#123;&#125;&quot;</span>, <span class="number">1</span>);</span><br><span class="line">               integers.take();</span><br><span class="line">           &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;, <span class="string">&quot;t2&quot;</span>).start();</span><br><span class="line"></span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                log.debug(<span class="string">&quot;taking &#123;&#125;&quot;</span>, <span class="number">2</span>);</span><br><span class="line">                integers.take();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="string">&quot;t3&quot;</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2021-05-01 15:19:10.611 [t1] DEBUG SynchronousQueue - putting 1</span><br><span class="line">2021-05-01 15:19:11.621 [t2] DEBUG SynchronousQueue - taking 1</span><br><span class="line">2021-05-01 15:19:11.621 [t1] DEBUG SynchronousQueue - 1 finish</span><br><span class="line">2021-05-01 15:19:11.621 [t1] DEBUG SynchronousQueue - putting 2</span><br><span class="line">2021-05-01 15:19:12.632 [t3] DEBUG SynchronousQueue - taking 2</span><br><span class="line">2021-05-01 15:19:12.633 [t1] DEBUG SynchronousQueue - 2 finish</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-2-9-始终如一线程池"><a href="#6-2-9-始终如一线程池" class="headerlink" title="6.2.9 始终如一线程池"></a>6.2.9 始终如一线程池</h3><p><code>newSingleThreadExecutor</code></p>
+<p>构造方法的参数：</p>
+<ul>
+<li>线程工厂：<code>threadFactory</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public static ExecutorService newSingleThreadExecutor(ThreadFactory threadFactory) &#123;</span><br><span class="line">    return new FinalizableDelegatedExecutorService</span><br><span class="line">        (new ThreadPoolExecutor(1, 1,</span><br><span class="line">                                0L, TimeUnit.MILLISECONDS,</span><br><span class="line">                                new LinkedBlockingQueue&lt;Runnable&gt;(),</span><br><span class="line">                                threadFactory));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>场景：希望多个任务排队执行。线程数固定为1，任务数多于1时，会放入无界队列排队。任务执行完毕，这唯一的线程也不会被释放。</p>
+<p>区别：</p>
+<ul>
+<li>对比：创建一个单线程串行执行任务<ul>
+<li>单线程如果任务执行失败而终止那么没有任何补救措施。</li>
+<li><code>newSingleThreadExecutor</code>线程池还会新建一个线程，保证线程池的正常工作。</li>
+</ul>
+</li>
+<li>对比：<code>Executors.newFixedThreadPool(1)</code><ul>
+<li><code>newFixedThreadPool</code>对外暴露的是<code>ThreadPoolExecutor</code>对象，可以强转后调用<code>setCoreSize</code>等方法进行修改。</li>
+<li><code>FinalizableDelegatedExecutorService</code>应用的是装饰器模式，只对外暴露了<code>ExecutorService</code>接口，因此不能<code>ThreadPoolExecutor</code>中特有的方法。</li>
+</ul>
+</li>
+</ul>
+<h3 id="6-2-10-执行-提交任务"><a href="#6-2-10-执行-提交任务" class="headerlink" title="6.2.10 执行/提交任务"></a>6.2.10 执行/提交任务</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 执行任务</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交任务task，用返回值Future获得任务执行结果</span></span><br><span class="line">&lt;T&gt; <span class="function">Future&lt;T&gt; <span class="title">submit</span><span class="params">(Callable&lt;T&gt; task)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交tasks中所有任务</span></span><br><span class="line">&lt;T&gt; List&lt;Future&lt;T&gt;&gt; invokeAll(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks) <span class="keyword">throws</span> InterruptedException;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交taks中所有任务，带超时时间</span></span><br><span class="line">&lt;T&gt; List&lt;Future&lt;T&gt;&gt; invokeAll(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks, <span class="keyword">long</span> timeout, TimeUnit unit) <span class="keyword">throws</span> InterruptedException;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交tasks中所有任务，哪个任务先成功执行完毕，返回此任务执行结果，其他任务取消</span></span><br><span class="line">&lt;T&gt; <span class="function">T <span class="title">invokeAny</span><span class="params">(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks)</span> <span class="keyword">throws</span> InterruptedException, ExecutionException</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交tasks中所有任务，哪个任务先成功执行完毕，返回此任务执行结果，其他任务取消</span></span><br><span class="line">&lt;T&gt; <span class="function">T <span class="title">invokeAny</span><span class="params">(Collection&lt;? extends Callable&lt;T&gt;&gt; tasks, <span class="keyword">long</span> timeout, TimeUnit unit)</span> sthrows InterruptedException, ExecutionException, TimeoutException</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-2-11-关闭线程池"><a href="#6-2-11-关闭线程池" class="headerlink" title="6.2.11 关闭线程池"></a>6.2.11 关闭线程池</h3><p><code>shutdown</code></p>
+<ul>
+<li>将线程池的状态改为<code>SHUTDOWN</code></li>
+<li>不再接收新任务，但是会将阻塞队列中的任务执行完</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> ReentrantLock mainLock = <span class="keyword">this</span>.mainLock;</span><br><span class="line">    mainLock.lock();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        checkShutdownAccess();</span><br><span class="line">        <span class="comment">// 修改线程池状态</span></span><br><span class="line">        advanceRunState(SHUTDOWN);</span><br><span class="line">        <span class="comment">// 仅打断空闲线程</span></span><br><span class="line">        interruptIdleWorkers();</span><br><span class="line">        onShutdown(); <span class="comment">// hook for ScheduledThreadPoolExecutor</span></span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        mainLock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 尝试终结</span></span><br><span class="line">    tryTerminate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>shutdownNow</code></p>
+<ul>
+<li>将线程池的状态改为<code>STOP</code></li>
+<li>不再接收新任务，也不会再执行阻塞队列中的任务</li>
+<li>会将阻塞队列中未执行的任务作为方法返回值</li>
+<li>并用<code>interrupt</code>的方式中断正在执行的任务</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Runnable&gt; <span class="title">shutdownNow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;Runnable&gt; tasks;</span><br><span class="line">    <span class="keyword">final</span> ReentrantLock mainLock = <span class="keyword">this</span>.mainLock;</span><br><span class="line">    mainLock.lock();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        checkShutdownAccess();</span><br><span class="line">        <span class="comment">// 修改线程池状态</span></span><br><span class="line">        advanceRunState(STOP);</span><br><span class="line">        <span class="comment">// 打断所有线程</span></span><br><span class="line">        interruptWorkers();</span><br><span class="line">        <span class="comment">// 获取队列中剩余任务</span></span><br><span class="line">        tasks = drainQueue();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        mainLock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 尝试终结</span></span><br><span class="line">    tryTerminate();</span><br><span class="line">    <span class="keyword">return</span> tasks;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其他方法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 判断线程池状态是否是非RUNNING</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isShutdown</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断线程池状态是否是TERMINATED</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isTerminated</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用shutdown后，由于调用线程并不会等待所有任务运行结束，因此如果它想在线程池TERMINATED后做些事情，可以利用此方法等待</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">awaitTermination</span><span class="params">(<span class="keyword">long</span> timeout, TimeUnit unit)</span></span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-3-异步模式之工作线程"><a href="#6-3-异步模式之工作线程" class="headerlink" title="6.3 异步模式之工作线程"></a>6.3 异步模式之工作线程</h2><h3 id="6-3-1-概述"><a href="#6-3-1-概述" class="headerlink" title="6.3.1 概述"></a>6.3.1 概述</h3><p><strong>定义</strong>：让有限的工作线程（Worker Thread）来轮流移除处理无限多的任务。也可以将其归类为分工模式，它的典型实现就是线程池，也体现了经典设计模式中的享元模式。</p>
+<p><strong>例如</strong>：海底捞的服务员（线程），轮流处理每位客人的点餐（任务），如果为每位客人都配一名专属的服务员，那么成本就太高了。（对比另一种多线程设计模式：Thread-Per-Message）</p>
+<p><strong>注意</strong>：不同任务类型应该使用不同的线程池，这样能够避免饥饿，并能提升效率。</p>
+<p><strong>例如</strong>：如果一个餐馆的工人既要招呼客人（任务类型A），又要到后厨做菜（任务类型B）显然效率不咋地，分成服务员（线程池A）与厨师（线程池B）更为合理，当然还有更细的分工。</p>
+<p><strong>饥饿</strong>：固定大小线程池会有饥饿现象</p>
+<ul>
+<li>两个工人是同一个线程池中的两个线程</li>
+<li>他们要做的事情是：为客人点餐和到后厨做菜，这是两个阶段的工作<ul>
+<li>客人点餐：必须先点完餐，等菜做好，上菜，在此期间处理点餐的工人必须等待</li>
+<li>后厨做菜：做就完了</li>
+</ul>
+</li>
+<li>如果只有一个客人，工人A处理了点餐任务，接下来它要等着工人B去把菜做好，然后上菜</li>
+<li>如果同时来了两个客人，这个时候工人A和工人B都去处理点餐了，这时没人做饭了，饥饿</li>
+</ul>
+<p><strong>解决</strong>：</p>
+<p>可以增加线程池的大小，但是不是根本解决之道。不同的任务类型，创建不同的线程池。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j(topic = &quot;Starvation&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StarvationDemo</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 菜单</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> List&lt;String&gt; MENU = Arrays.asList(<span class="string">&quot;鱼香肉丝&quot;</span>, <span class="string">&quot;宫保鸡丁&quot;</span>, <span class="string">&quot;红烧肉&quot;</span>, <span class="string">&quot;烤鸡翅&quot;</span>);</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> Random RANDOM = <span class="keyword">new</span> Random();</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 随机做个菜</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> String <span class="title">cooking</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> MENU.get(RANDOM.nextInt(MENU.size()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 服务员</span></span><br><span class="line">        ExecutorService waiterPool = Executors.newFixedThreadPool(<span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 厨师</span></span><br><span class="line">        ExecutorService cookPool =  Executors.newFixedThreadPool(<span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 10位客人</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            waiterPool.execute(() -&gt; &#123;</span><br><span class="line">                log.debug(<span class="string">&quot;处理点餐&quot;</span>);</span><br><span class="line">                Future&lt;String&gt; future = cookPool.submit(() -&gt; &#123;</span><br><span class="line">                    log.debug(<span class="string">&quot;做菜&quot;</span>);</span><br><span class="line">                    <span class="keyword">return</span> cooking();</span><br><span class="line">                &#125;);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    log.debug(<span class="string">&quot;上菜: &#123;&#125;&quot;</span>, future.get());</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException | ExecutionException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-3-2-创建多少线程池合适"><a href="#6-3-2-创建多少线程池合适" class="headerlink" title="6.3.2 创建多少线程池合适"></a>6.3.2 创建多少线程池合适</h3><ul>
+<li>过小会导致程序不能充分地利用系统资源、容易导致饥饿</li>
+<li>过大后导致更多的线程上下文切换，占用更多内存</li>
+</ul>
+<p><strong>CPU密集型运算</strong></p>
+<p>通常采用CPU核数 + 1能够实现最优的CPU利用率，+1是保证当线程由于页缺失故障（操作系统）或其他原因导致暂停时，额外的这个线程就能顶上去，保证CPU时钟周期不被浪费。</p>
+<p><strong>I/O密集型运算</strong></p>
+<p>CPU不总是处于繁忙状态，例如，当你执行业务计算时，这时候会使用CPU资源，但当你执行IO操作时、远程RPC调用时，包括进行数据操作时，这时候CPU就闲下来了，你可以利用多线程提高它的利用率。</p>
+<p>经验公式：<code>线程数 = 核数 * 期望CPU利用率 * 总时间(CPU计算时间 + 等待时间) / CPU计算时间</code></p>
+<h3 id="6-3-3-任务调度线程池"><a href="#6-3-3-任务调度线程池" class="headerlink" title="6.3.3 任务调度线程池"></a>6.3.3 任务调度线程池</h3><p>在『任务调度线程池』功能加入之前，可以使用<code>java.util.Timer</code>来实现定时功能，<code>Timer</code>的优点在于简单易用，但由于所有任务都是由同一个线程来调度，因此所有任务都是串行执行的，同一时间只能有一个任务再执行，前一个任务的延迟或异常都将会影响到之后的任务。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j(topic = &quot;Timer&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TimerDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Timer timer = <span class="keyword">new</span> Timer();</span><br><span class="line">        TimerTask task1 = <span class="keyword">new</span> TimerTask() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                log.debug(<span class="string">&quot;task1&quot;</span>);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TimeUnit.SECONDS.sleep(<span class="number">2</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        TimerTask task2 = <span class="keyword">new</span> TimerTask() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                log.debug(<span class="string">&quot;task2&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        log.debug(<span class="string">&quot;start...&quot;</span>);</span><br><span class="line">        timer.schedule(task1, <span class="number">1000</span>);</span><br><span class="line">        timer.schedule(task2, <span class="number">1000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2021-05-01 22:34:08.514 [main] DEBUG Timer - start...</span><br><span class="line">2021-05-01 22:34:09.528 [Timer-0] DEBUG Timer - task1</span><br><span class="line">2021-05-01 22:34:11.541 [Timer-0] DEBUG Timer - task2</span><br></pre></td></tr></table></figure>
+
+<p>由于task1的原因导致task2被延迟执行。</p>
+<p>使用<code>ScheduledThreadPool</code>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j(topic = &quot;NewScheduledThreadPool&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NewScheduledThreadPoolDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ScheduledExecutorService pool = Executors.newScheduledThreadPool(<span class="number">2</span>);</span><br><span class="line">        pool.schedule(() -&gt; &#123;</span><br><span class="line">            log.debug(<span class="string">&quot;task1&quot;</span>);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                TimeUnit.SECONDS.sleep(<span class="number">2</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">1</span> / <span class="number">0</span>;</span><br><span class="line">        &#125;, <span class="number">1</span>, TimeUnit.SECONDS);</span><br><span class="line">        pool.schedule(() -&gt; &#123;</span><br><span class="line">            log.debug(<span class="string">&quot;task2&quot;</span>);</span><br><span class="line">        &#125;, <span class="number">1</span>, TimeUnit.SECONDS);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2021-05-01 22:46:23.053 [pool-1-thread-2] DEBUG NewScheduledThreadPool - task2</span><br><span class="line">2021-05-01 22:46:23.053 [pool-1-thread-1] DEBUG NewScheduledThreadPool - task1</span><br></pre></td></tr></table></figure>
+
+<p>task1出现延迟或者抛出异常都不会影响到task2的执行。</p>
+<p><code>scheduleAtFixedRate</code>：创建并执行周期性操作。该操作在给定的初始延迟initialDelay后首先启用，随后在给定的周期period内启用。</p>
+<p>作用：给一个执行的开始和下一个执行的开始加上给定的延迟period。</p>
+<p>异常：如果任务的任何执行遇到异常，则会抑制后续执行。否则，任务将仅通过取消或终止执行程序来终止。如果此任务的任何执行时间超过其周期，则后续执行可能会较晚开始，但不会并发执行。『任务的异常被catch则不影响后续执行』</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 延迟一秒执行，间隔时间为Max&#123;设置间隔时间，线程执行时间&#125;</span></span><br><span class="line">pool.scheduleAtFixedRate(() -&gt; &#123;</span><br><span class="line">    log.debug(<span class="string">&quot;running&quot;</span>);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="number">1</span>, <span class="number">1</span>, TimeUnit.SECONDS);</span><br></pre></td></tr></table></figure>
+
+<p><code>scheduleWithFixedDelay</code>：创建并执行周期性操作。该操作在给定的初始延迟initialDelay后首先启用，随后在给定的周期period内启用。</p>
+<p>作用：给一个执行的终止和下一个执行的开始加上给定的延迟period。</p>
+<p>异常：如果任务的任何执行遇到异常，则会抑制后续执行。否则，任务将仅通过取消或终止执行程序来终止。『任务的异常被catch则不影响后续执行』</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 延迟一秒执行，间隔时间为设置时间+线程睡眠时间</span></span><br><span class="line">pool.scheduleWithFixedDelay(() -&gt; &#123;</span><br><span class="line">    log.debug(<span class="string">&quot;running&quot;</span>);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, <span class="number">1</span>, <span class="number">1</span>, TimeUnit.SECONDS);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-3-4-正确处理异常"><a href="#6-3-4-正确处理异常" class="headerlink" title="6.3.4 正确处理异常"></a>6.3.4 正确处理异常</h3><p>线程池中的线程执行任务时，如果任务抛出了异常，默认是中断该任务而不是抛出异常或者打印异常信息。</p>
+<ul>
+<li>主动捕获异常</li>
+<li>使用Future</li>
+</ul>
+<h3 id="6-3-5-实现定时任务"><a href="#6-3-5-实现定时任务" class="headerlink" title="6.3.5 实现定时任务"></a>6.3.5 实现定时任务</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j(topic = &quot;Schedule&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ScheduleDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ScheduledExecutorService pool = Executors.newScheduledThreadPool(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 每周六15：16：00打印KHighness</span></span><br><span class="line">        solution(DayOfWeek.SUNDAY, <span class="number">15</span>, <span class="number">16</span>, <span class="number">00</span>, () -&gt; &#123; log.debug(<span class="string">&quot;KHighness&quot;</span>); &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 指定时间执行任务</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> day     周几</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> hour    几时</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> minute  几分</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> second  几秒</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> task    任务</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">solution</span><span class="params">(DayOfWeek day, <span class="keyword">int</span> hour, <span class="keyword">int</span> minute, <span class="keyword">int</span> second, Runnable task)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 当前时间</span></span><br><span class="line">        LocalDateTime now = LocalDateTime.now();</span><br><span class="line">        <span class="comment">// 目标时间</span></span><br><span class="line">        LocalDateTime tar = now.withHour(hour).withMinute(minute).withSecond(second).with(day);</span><br><span class="line">        <span class="comment">// 如果当前时间 &gt; 目标时间，则为下周</span></span><br><span class="line">        <span class="keyword">if</span> (now.compareTo(tar) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            tar.plusWeeks(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 间隔时间</span></span><br><span class="line">        <span class="keyword">long</span> initialDelay = Duration.between(now, tar).toMillis();</span><br><span class="line">        <span class="comment">// 循环周期</span></span><br><span class="line">        <span class="keyword">long</span> period = <span class="number">7</span> * <span class="number">24</span> * <span class="number">3600</span> * <span class="number">1000</span>;</span><br><span class="line">        <span class="comment">// 执行任务</span></span><br><span class="line">        pool.scheduleAtFixedRate(task, initialDelay, period, TimeUnit.MILLISECONDS);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-4-Tomcat线程池"><a href="#6-4-Tomcat线程池" class="headerlink" title="6.4 Tomcat线程池"></a>6.4 Tomcat线程池</h2><h3 id="6-4-1-总体结构"><a href="#6-4-1-总体结构" class="headerlink" title="6.4.1 总体结构"></a>6.4.1 总体结构</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62082/image-20210502151900797.png" class="" title="image-20210502151900797">
+
+<ul>
+<li>LimitLatch用来限流，可以控制最大连接个数，类似JUC中的Semaphore</li>
+<li>Acceptor只负责接收新的socket连接</li>
+<li>Poller只负责监听socket channel是否有新的可读的I/O事件</li>
+<li>一旦可读，封装一个任务对象socketProcessor，提交给Executor线程池处理</li>
+<li>Executor线程池中的工作线程最终负责处理请求</li>
+</ul>
+<h3 id="6-4-2-不同之处"><a href="#6-4-2-不同之处" class="headerlink" title="6.4.2 不同之处"></a>6.4.2 不同之处</h3><p>Tomcat线程池扩展了ThreadPoolExecutor，行为稍有不同</p>
+<ul>
+<li>如果总线程数达到<code>maximumPoolSize</code><ul>
+<li>这时不会立刻抛<code>RejectedExecutionException</code></li>
+<li>而是尝试将任务放入队列，如果还失败，才抛出<code>RejectedExecutionException</code></li>
+</ul>
+</li>
+</ul>
+<p><code>tomcat-7.0.42</code>源码 </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable command, <span class="keyword">long</span> timeout, TimeUnit unit)</span> </span>&#123;</span><br><span class="line">    submittedCount.incrementAndGet();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.execute(command);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (RejectedExecutionException rx) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">super</span>.getQueue() <span class="keyword">instanceof</span> TaskQueue) &#123;</span><br><span class="line">            <span class="keyword">final</span> TaskQueue queue = (TaskQueue)<span class="keyword">super</span>.getQueue();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="comment">// 尝试将任务重新加入阻塞队列</span></span><br><span class="line">                <span class="keyword">if</span> (!queue.force(command, timeout, unit)) &#123;</span><br><span class="line">                    submittedCount.decrementAndGet();</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> RejectedExecutionException(<span class="string">&quot;Queue capacity is full.&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException x) &#123;</span><br><span class="line">                <span class="comment">// 依然失败，抛出异常</span></span><br><span class="line">                submittedCount.decrementAndGet();</span><br><span class="line">                Thread.interrupted();</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> RejectedExecutionException(x);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            submittedCount.decrementAndGet();</span><br><span class="line">            <span class="keyword">throw</span> rx;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public boolean force(Runnable o, long timeout, TimeUnit unit) throws InterruptedException &#123;</span><br><span class="line">    if ( parent.isShutdown() )</span><br><span class="line">        throw new RejectedExecutionException(</span><br><span class="line">                &quot;Executor not running, can&#39;t force a command into the queue&quot;</span><br><span class="line">        );</span><br><span class="line">    return super.offer(o,timeout,unit); &#x2F;&#x2F;forces the item onto the queue, to be used if the task is rejected</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6-4-3-可配置项"><a href="#6-4-3-可配置项" class="headerlink" title="6.4.3 可配置项"></a>6.4.3 可配置项</h3><p>Connector配置</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>acceptorThreadCount</td>
+<td>1</td>
+<td>accter线程数量</td>
+</tr>
+<tr>
+<td>pollerThreadCount</td>
+<td>1</td>
+<td>poller线程数量</td>
+</tr>
+<tr>
+<td>minSpareThreads</td>
+<td>10</td>
+<td>核心线程数，即corePoolSize</td>
+</tr>
+<tr>
+<td>maxThreads</td>
+<td>200</td>
+<td>最大线程数，即maximumPoolSize</td>
+</tr>
+<tr>
+<td>executor</td>
+<td>-</td>
+<td>Executor名称，用来引用下面的Executor</td>
+</tr>
+</tbody></table>
+<p>Executor配置</p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>threadPriority</td>
+<td>5</td>
+<td>线程优先级</td>
+</tr>
+<tr>
+<td>daemon</td>
+<td>true</td>
+<td>是否守护线程</td>
+</tr>
+<tr>
+<td>minSpareThreads</td>
+<td>25</td>
+<td>核心线程数，即corePoolSize</td>
+</tr>
+<tr>
+<td>maxThreads</td>
+<td>200</td>
+<td>最大线程数，即maximumPoolSize</td>
+</tr>
+<tr>
+<td>maxIdleTime</td>
+<td>60000</td>
+<td>线程生存时间，单位是毫秒，默认值即1分钟</td>
+</tr>
+<tr>
+<td>maxQueueSize</td>
+<td>Integer.MAX_VALUE</td>
+<td>队列长度</td>
+</tr>
+<tr>
+<td>prestartminSpareThreads</td>
+<td>false</td>
+<td>核心线程是否在服务器启动时启动</td>
+</tr>
+</tbody></table>
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62082/image-20210502155938527.png" class="" title="image-20210502155938527">
+
+
+
+<h2 id="6-5-Fork-Join"><a href="#6-5-Fork-Join" class="headerlink" title="6.5 Fork/Join"></a>6.5 Fork/Join</h2><h3 id="6-5-1-概述"><a href="#6-5-1-概述" class="headerlink" title="6.5.1 概述"></a>6.5.1 概述</h3><p>Fork/Join是JDK1.7加入的新的线程池实现，它体现的是一种分治思想，适用于能够进行任务拆分的CPU密集型运算。</p>
+<p>所谓的任务拆分，是将一个大任务拆分成算法上相同的小人物，直至不能拆分成可以直接求解。跟递归相关的一些计算，如归并排序、斐波那契数列，都可以用分治思想进行求解。</p>
+<p>Fork/Join在分治的基础上加入了多线程，可以把每个任务的分解和合并交给不同的线程来完成，进一步提升了运算效率。</p>
+<p>Fork/Join默认会创建与CPU核心数大小相同的线程池。</p>
+<h3 id="6-5-2-使用"><a href="#6-5-2-使用" class="headerlink" title="6.5.2 使用"></a>6.5.2 使用</h3><p>提交给Fork/Join线程池的任务需要继承<code>RecursiveTask</code>（有返回值）或<code>RecuisiveAction</code>（没有返回值），例如下面定义了一个对1~n之间的整数求和的任务。</p>
+<p>如下面定义了一个对1~n之间的整数求和的任务</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j(topic = &quot;ForkJoin&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ForkJoinDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ForkJoinPool pool = <span class="keyword">new</span> ForkJoinPool(<span class="number">4</span>);</span><br><span class="line">        System.out.println(pool.invoke(<span class="keyword">new</span> Task(<span class="number">5</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Slf4j(topic = &quot;Task&quot;)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Task</span> <span class="keyword">extends</span> <span class="title">RecursiveTask</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Task</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.n = n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;『&quot;</span> + n +  <span class="string">&quot;』&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Integer <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        Task tas = <span class="keyword">new</span> Task(n - <span class="number">1</span>);</span><br><span class="line">        tas.fork();</span><br><span class="line">        log.debug(<span class="string">&quot;fork: &#123;&#125; &#123;&#125;&quot;</span>, n, tas);</span><br><span class="line">        <span class="keyword">int</span> res = n + tas.join();</span><br><span class="line">        log.debug(<span class="string">&quot;join: &#123;&#125; + &#123;&#125; = &#123;&#125;&quot;</span>, n, tas, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2021-05-02 17:04:41.631 [ForkJoinPool-1-worker-2] DEBUG Task - fork: 4 『3』</span><br><span class="line">2021-05-02 17:04:41.631 [ForkJoinPool-1-worker-1] DEBUG Task - fork: 5 『4』</span><br><span class="line">2021-05-02 17:04:41.631 [ForkJoinPool-1-worker-0] DEBUG Task - fork: 2 『1』</span><br><span class="line">2021-05-02 17:04:41.631 [ForkJoinPool-1-worker-3] DEBUG Task - fork: 3 『2』</span><br><span class="line">2021-05-02 17:04:41.634 [ForkJoinPool-1-worker-0] DEBUG Task - join: 2 + 『1』 &#x3D; 3</span><br><span class="line">2021-05-02 17:04:41.634 [ForkJoinPool-1-worker-3] DEBUG Task - join: 3 + 『2』 &#x3D; 6</span><br><span class="line">2021-05-02 17:04:41.634 [ForkJoinPool-1-worker-2] DEBUG Task - join: 4 + 『3』 &#x3D; 10</span><br><span class="line">2021-05-02 17:04:41.634 [ForkJoinPool-1-worker-1] DEBUG Task - join: 5 + 『4』 &#x3D; 15</span><br><span class="line">15</span><br></pre></td></tr></table></figure>
+
+<p>流程：</p>
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62082/image-20210502171007613.png" class="" title="image-20210502171007613">
+
+<p>改进：任务拆分</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j(topic = &quot;AddTask&quot;)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AddTask</span> <span class="keyword">extends</span> <span class="title">RecursiveTask</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> begin;</span><br><span class="line">    <span class="keyword">int</span> end;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AddTask</span><span class="params">(<span class="keyword">int</span> begin, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.begin = begin;</span><br><span class="line">        <span class="keyword">this</span>.end = end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;『&quot;</span> + begin + <span class="string">&quot;, &quot;</span> + end + <span class="string">&quot;』&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Integer <span class="title">compute</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (begin == end) &#123;</span><br><span class="line">            log.debug(<span class="string">&quot;join: &#123;&#125;&quot;</span>, begin);</span><br><span class="line">            <span class="keyword">return</span> begin;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (end - begin == <span class="number">1</span>) &#123;</span><br><span class="line">            log.debug(<span class="string">&quot;join: &#123;&#125; + &#123;&#125; = &#123;&#125;&quot;</span>, begin, end, begin + end);</span><br><span class="line">            <span class="keyword">return</span> begin + end;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> mid = begin + (end - begin &gt;&gt; <span class="number">1</span>);</span><br><span class="line">        AddTask task1 = <span class="keyword">new</span> AddTask(begin, mid);</span><br><span class="line">        task1.fork();</span><br><span class="line">        AddTask task2 = <span class="keyword">new</span> AddTask(mid + <span class="number">1</span>, end);</span><br><span class="line">        task2.fork();</span><br><span class="line">        log.debug(<span class="string">&quot;fork: &#123;&#125; + &#123;&#125; = ?&quot;</span>, task1, task2);</span><br><span class="line">        <span class="keyword">int</span> res = task1.join() + task2.join();</span><br><span class="line">        log.debug(<span class="string">&quot;join: &#123;&#125; + &#123;&#125; = &#123;&#125;&quot;</span>, task1, task2, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>流程：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">2021-05-02 17:39:00.721 [ForkJoinPool-1-worker-0] DEBUG AddTask - join: 1 + 2 &#x3D; 3</span><br><span class="line">2021-05-02 17:39:00.721 [ForkJoinPool-1-worker-2] DEBUG AddTask - fork: 『1, 2』 + 『3, 3』 &#x3D; ?</span><br><span class="line">2021-05-02 17:39:00.721 [ForkJoinPool-1-worker-3] DEBUG AddTask - join: 4 + 5 &#x3D; 9</span><br><span class="line">2021-05-02 17:39:00.721 [ForkJoinPool-1-worker-1] DEBUG AddTask - fork: 『1, 3』 + 『4, 5』 &#x3D; ?</span><br><span class="line">2021-05-02 17:39:00.724 [ForkJoinPool-1-worker-0] DEBUG AddTask - join: 3</span><br><span class="line">2021-05-02 17:39:00.724 [ForkJoinPool-1-worker-2] DEBUG AddTask - join: 『1, 2』 + 『3, 3』 &#x3D; 6</span><br><span class="line">2021-05-02 17:39:00.724 [ForkJoinPool-1-worker-1] DEBUG AddTask - join: 『1, 3』 + 『4, 5』 &#x3D; 15</span><br><span class="line">15</span><br></pre></td></tr></table></figure>
+
+<p>流程：</p>
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62082/image-20210502174452155.png" class="" title="image-20210502174452155">
+
+]]></content>
+      <categories>
+        <category>JUC</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JUC-5(共享模型之不可变)</title>
     <url>/posts/53165/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>不可变：如果一个对象子不能够修改其内部状态（属性），那么它就是线程安全的，因为不存在并发修改。</p>
@@ -2642,11 +3099,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart4918" style="height: 120px"></canvas>
+    <canvas id="chart2876" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart4918').getContext('2d');
+    var ctx = document.getElementById('chart2876').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -2682,11 +3139,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart3615" style="height: 100px"></canvas>
+    <canvas id="chart3069" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart3615').getContext('2d');
+    var ctx = document.getElementById('chart3069').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -2710,11 +3167,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart6665" style="height: 100px"></canvas>
+    <canvas id="chart4276" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart6665').getContext('2d');
+    var ctx = document.getElementById('chart4276').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -6358,10 +6815,10 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/f8cdfd0a/MyCD.jpg" class="" title="MyCD">
 
 
-        <div id="aplayer-IpPOVtXt" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-LYQnHZjx" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-IpPOVtXt");
+				  options.element = document.getElementById("aplayer-LYQnHZjx");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
