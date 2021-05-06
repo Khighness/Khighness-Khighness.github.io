@@ -2871,9 +2871,7 @@
   <entry>
     <title>RMI &amp; RPC</title>
     <url>/posts/18721/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a name="a35Xi"></a></p>
-<h2 id="RMI"><a href="#RMI" class="headerlink" title="RMI"></a>RMI</h2><p>Remote Method Invocation：远程方法调用<br /></p>
-<p><a name="f5ijZ"></a></p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="RMI"><a href="#RMI" class="headerlink" title="RMI"></a>RMI</h2><p>Remote Method Invocation：远程方法调用</p>
 <h3 id="调用过程"><a href="#调用过程" class="headerlink" title="调用过程"></a>调用过程</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/18721/rmi.png" class="" title="rmi">
 
 <ul>
@@ -2889,9 +2887,8 @@
 </ul>
 <br />
 
-<p><a name="bxgrO"></a></p>
-<h2 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h2><p>Remote Procedure Call：远程过程调用<br /></p>
-<p><a name="zBw3W"></a></p>
+
+<h2 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h2><p>Remote Procedure Call：远程过程调用</p>
 <h3 id="框架组成"><a href="#框架组成" class="headerlink" title="框架组成"></a>框架组成</h3><ul>
 <li>客户端（Client）：服务调用方</li>
 <li>客户端存根（Client Stub）：存放服务端地址信息，将客户端的请求参数数据信息打包成网络消息，再通过网络传输发送给服务端</li>
@@ -2899,10 +2896,7 @@
 <li>服务端（Server）：服务的真正提供者</li>
 <li>Network Service：底层传输，可以是 TCP 或 HTTP</li>
 </ul>
-<br />
-
-<p><a name="40eNr"></a></p>
-<h3 id="调用过程-1"><a href="#调用过程-1" class="headerlink" title="调用过程"></a>调用过程</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/18721/rpc.png" class="" title="rpc"><br />
+<h3 id="调用过程-1"><a href="#调用过程-1" class="headerlink" title="调用过程"></a>调用过程</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/18721/rpc.png" class="" title="rpc">
 
 <ul>
 <li>Client通过本地调用的方式调用服务</li>
@@ -2917,7 +2911,6 @@
 <li>Client Stub接收到消息，并进行解码</li>
 <li>Client得到最终结果</li>
 </ul>
-<p><a name="iDmiD"></a></p>
 <h3 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h3><ul>
 <li>服务寻址</li>
 <li>数据流的序列化和反序列化</li>
@@ -2925,7 +2918,7 @@
 </ul>
 <br />
 
-<p><a name="z05rV"></a></p>
+
 <h2 id="RPC-VS-PMI"><a href="#RPC-VS-PMI" class="headerlink" title="RPC VS PMI"></a>RPC VS PMI</h2><p>不同点：<br />（1）方法调用方式不同<br />RMI中是通过在客户端的Stub对象作为远程接口进行远程方法的调用。每个远程方法都具有方法签名。如果服务器上添加了一个可执行方法，但是没有相匹配的签名被添加到这个远程接口Stub对象上，那么这个新方法就不能被客户端调用。<br />RPC是通过网络服务协议向远程主机发送请求，请求包含了一个参数集和文本值，通常形成”classname.methodname”的形式，服务器就去搜索与之相匹配的类和方法，找到后就执行方法并把结果编码，通过网络协议返回。<br />（2）使用语言范围不同<br />RMI是J2EE的13大规范之一，只适用于Java；RPC是网络协议，与操作系统和语言无关。<br />（5）调用结果的返回形式不同<br />RMI的调用结果可以是Java的对象类型或者基本数据类型；RPC的调用结果统一由外部数据表示。</p>
 ]]></content>
       <categories>
@@ -3097,11 +3090,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart7721" style="height: 120px"></canvas>
+    <canvas id="chart9686" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart7721').getContext('2d');
+    var ctx = document.getElementById('chart9686').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -3137,11 +3130,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart6793" style="height: 100px"></canvas>
+    <canvas id="chart683" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart6793').getContext('2d');
+    var ctx = document.getElementById('chart683').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -3165,11 +3158,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart9934" style="height: 100px"></canvas>
+    <canvas id="chart443" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart9934').getContext('2d');
+    var ctx = document.getElementById('chart443').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -6812,10 +6805,10 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/f8cdfd0a/MyCD.jpg" class="" title="MyCD">
 
 
-        <div id="aplayer-dzuVIRuH" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-zwSieXDU" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-dzuVIRuH");
+				  options.element = document.getElementById("aplayer-zwSieXDU");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
