@@ -242,7 +242,7 @@
 <h3 id="7-3-2-内部类Sync概述"><a href="#7-3-2-内部类Sync概述" class="headerlink" title="7.3.2 内部类Sync概述"></a>7.3.2 内部类Sync概述</h3><p>读写锁的内部维护了一个<code>ReadLock</code>和一个<code>WriteLock</code>，它们依赖<code>Sync</code>实现具体功能，<code>Sync</code>继承自AQS，并且也提供了公平锁和非公平锁的实现。</p>
 <p>AQS中只维护了一个<code>state</code>状态，那么如何表示读和写两种状态呢？</p>
 <p><code>Sync</code>巧妙地使用<code>state</code>的高16位表示读获取到读锁的次数，低16位表示获取到写锁的线程的可重入次数。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SHARED_SHIFT   = <span class="number">16</span>;</span><br><span class="line"><span class="comment">// 共享锁（读锁）撞他单位值65536</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SHARED_UNIT    = (<span class="number">1</span> &lt;&lt; SHARED_SHIFT);</span><br><span class="line"><span class="comment">// 共享锁线程最大个数65535</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_COUNT      = (<span class="number">1</span> &lt;&lt; SHARED_SHIFT) - <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 排它锁（写锁）掩码</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> EXCLUSIVE_MASK = (<span class="number">1</span> &lt;&lt; SHARED_SHIFT) - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 返回读锁线程数  */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sharedCount</span><span class="params">(<span class="keyword">int</span> c)</span>    </span>&#123; <span class="keyword">return</span> c &gt;&gt;&gt; SHARED_SHIFT; &#125;</span><br><span class="line"><span class="comment">/** 返回写锁可重入个数 */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">exclusiveCount</span><span class="params">(<span class="keyword">int</span> c)</span> </span>&#123; <span class="keyword">return</span> c &amp; EXCLUSIVE_MASK; &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SHARED_SHIFT   = <span class="number">16</span>;</span><br><span class="line"><span class="comment">// 共享锁（读锁）状态单位值65536</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SHARED_UNIT    = (<span class="number">1</span> &lt;&lt; SHARED_SHIFT);</span><br><span class="line"><span class="comment">// 共享锁线程最大个数65535</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_COUNT      = (<span class="number">1</span> &lt;&lt; SHARED_SHIFT) - <span class="number">1</span>;</span><br><span class="line"><span class="comment">// 排它锁（写锁）掩码</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> EXCLUSIVE_MASK = (<span class="number">1</span> &lt;&lt; SHARED_SHIFT) - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 返回读锁线程数  */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sharedCount</span><span class="params">(<span class="keyword">int</span> c)</span>    </span>&#123; <span class="keyword">return</span> c &gt;&gt;&gt; SHARED_SHIFT; &#125;</span><br><span class="line"><span class="comment">/** 返回写锁可重入个数 */</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">exclusiveCount</span><span class="params">(<span class="keyword">int</span> c)</span> </span>&#123; <span class="keyword">return</span> c &amp; EXCLUSIVE_MASK; &#125;</span><br></pre></td></tr></table></figure>
 
 <p><code>Sync</code>的成员：</p>
 <ul>
@@ -504,7 +504,7 @@
 <ul>
 <li>Dubbo：在抛出<code>RejectedExecutionException</code>异常之前会记录日志和dump线程栈信息，方便定位问题</li>
 <li>Netty：创建一个新的线程来执行任务</li>
-<li>ActiveMQ：带超市等待(60s)尝试放入队列</li>
+<li>ActiveMQ：超时等待(60s)，尝试放入队列</li>
 <li>PinPoint：使用了一种拒绝策略链，会逐一尝试策略链中每种拒绝策略</li>
 </ul>
 </blockquote>
@@ -3451,11 +3451,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart6819" style="height: 120px"></canvas>
+    <canvas id="chart4566" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart6819').getContext('2d');
+    var ctx = document.getElementById('chart4566').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -3491,11 +3491,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart6626" style="height: 100px"></canvas>
+    <canvas id="chart880" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart6626').getContext('2d');
+    var ctx = document.getElementById('chart880').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -3519,11 +3519,11 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart8623" style="height: 100px"></canvas>
+    <canvas id="chart7595" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart8623').getContext('2d');
+    var ctx = document.getElementById('chart7595').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -7166,10 +7166,10 @@ CURL测试（windows下建议使用cmd进行测试，用powershell会到导致PO
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/f8cdfd0a/MyCD.jpg" class="" title="MyCD">
 
 
-        <div id="aplayer-XptkjHGa" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-hfRAwxKL" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-XptkjHGa");
+				  options.element = document.getElementById("aplayer-hfRAwxKL");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
