@@ -9,46 +9,52 @@
 
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 16px;
+  font-size: 21px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-qq1:before {
-  content: "\e69b";
-  color: orange;
-  font-size: 17px;
-}
-
 .icon-ziyuan:before {
   content: "\e61a";
   color: coral;
+  font-size: 16px;
 }
 
 .icon-sousuo:before {
   content: "\e609";
   color: fuchsia;
+  font-size: 16px;
 }
 
 .icon-fenlei:before {
   content: "\e654";
   color: skyblue;
+  font-size: 16px;
 }
 
 .icon-tianchongxing-:before {
   content: "\e63c";
   color: springgreen;
+  font-size: 16px;
 }
 
 .icon-tianchongxing-1:before {
   content: "\e646";
   color: pink;
+  font-size: 16px;
 }
 
 .icon-index:before {
   content: "\e60f";
   color:deepskyblue;
+  font-size: 16px;
+}
+
+.icon-K:before {
+  content: "\e622";
+  color: orange;
+  font-size: 16px;
 }
 
 .icon-ball-01:before {
@@ -61,46 +67,50 @@
   color: burlywood;
 }
 
-.icon-K:before {
-  content: "\e622";
-  color: orange;
-}
-
 .icon-rss:before {
   content: "\e6eb";
-  color: gray;
-}
-
-.icon-gmail:before {
-  content: "\e95f";
-  color: red;
-  font-size: 18px;
+  color: pink;
+  font-size: 23px;
 }
 
 .icon-bilibili-fill:before {
   content: "\e62a";
   color: cornflowerblue;
+  font-size: 23px;
 }
 
 .icon-wechat:before {
   content: "\e6ca";
-  color: burlywood;
+  /*color: burlywood;*/
+  color: rgb(60, 176, 53);
 }
 
 .icon-qq:before {
   content: "\e626";
   color: orange;
-  font-size: 15px;
+}
+
+.icon-qq1:before {
+  content: "\e69b";
+  color: orange;
+  font-size: 23px;
 }
 
 .icon-zhihu:before {
   content: "\e600";
   color: dodgerblue;
+  font-size: 23px;
 }
 
 .icon-tubiaozhizuomoban:before {
   content: "\e625";
   color: aquamarine;
+  font-size: 24px;
+}
+
+.icon-github:before {
+  content: "\e629";
+  color: black;
 }
 
 .icon-leetcode:before {
@@ -108,7 +118,8 @@
   color: gray;
 }
 
-.icon-github:before {
-  content: "\e629";
-  color: black;
+.icon-gmail:before {
+  content: "\e95f";
+  color: red;
+  font-size: 22px;
 }
