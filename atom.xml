@@ -356,11 +356,11 @@
 &lt;p&gt;示例：&lt;a href=&quot;https://shen-yu.gitee.io/2020/chartjs&quot;&gt;沈宇大佬博客&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;文档：&lt;a href=&quot;https://chartjs.bootcss.com/&quot;&gt;中文官方文档&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;每月明细&quot;&gt;&lt;a href=&quot;#每月明细&quot; class=&quot;headerlink&quot; title=&quot;每月明细&quot;&gt;&lt;/a&gt;每月明细&lt;/h3&gt;&lt;div style=&quot;width: 80%;margin: 0 auto&quot;&gt;
-    &lt;canvas id=&quot;chart2264&quot; style=&quot;height: 120px&quot;&gt;&lt;/canvas&gt;
+    &lt;canvas id=&quot;chart8256&quot; style=&quot;height: 120px&quot;&gt;&lt;/canvas&gt;
 &lt;/div&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot;&gt;
-    var ctx = document.getElementById(&#39;chart2264&#39;).getContext(&#39;2d&#39;);
+    var ctx = document.getElementById(&#39;chart8256&#39;).getContext(&#39;2d&#39;);
     var options = {
     type: &#39;line&#39;,
     data: {
