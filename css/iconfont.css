@@ -7,6 +7,13 @@
   url('iconfont.svg?t=1618837405600#iconfont') format('svg'); /* iOS 4.1- */
 }
 
+/*@font-face {*/
+/*  font-family: "iconfont"; !* Project id 2495273 *!*/
+/*  src: url('iconfont.woff2?t=1620816533702') format('woff2'),*/
+/*  url('iconfont.woff?t=1620816533702') format('woff'),*/
+/*  url('iconfont.ttf?t=1620816533702') format('truetype');*/
+/*}*/
+
 .iconfont {
   font-family: "iconfont" !important;
   font-size: 21px;
@@ -15,46 +22,52 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-index:before {
+  content: "\e60f";
+  color:deepskyblue;
+  font-size: 15px;
+}
+
 .icon-ziyuan:before {
   content: "\e61a";
   color: coral;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .icon-sousuo:before {
   content: "\e609";
   color: fuchsia;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .icon-fenlei:before {
   content: "\e654";
   color: skyblue;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .icon-tianchongxing-:before {
   content: "\e63c";
   color: springgreen;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .icon-tianchongxing-1:before {
   content: "\e646";
   color: pink;
-  font-size: 16px;
+  font-size: 15px;
 }
 
-.icon-index:before {
-  content: "\e60f";
-  color:deepskyblue;
-  font-size: 16px;
+.icon-icon-test:before {
+  content: "\e61b";
+  color: #00c4b6;
+  font-size: 15px;
 }
 
 .icon-K:before {
   content: "\e622";
   color: orange;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .icon-ball-01:before {
