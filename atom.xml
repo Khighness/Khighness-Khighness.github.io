@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2021-05-10T12:17:27.364Z</updated>
+  <updated>2021-05-18T08:53:44.626Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -17,11 +17,386 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>JUC-8(共享模型之同步器)</title>
+    <title>JVM-15(垃圾回收器)</title>
+    <link href="https://www.parak.top/posts/11567/"/>
+    <id>https://www.parak.top/posts/11567/</id>
+    <published>2021-05-31T16:00:00.000Z</published>
+    <updated>2021-05-18T08:53:44.626Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-14(垃圾回收概念)</title>
+    <link href="https://www.parak.top/posts/31658/"/>
+    <id>https://www.parak.top/posts/31658/</id>
+    <published>2021-05-30T16:00:00.000Z</published>
+    <updated>2021-05-18T08:45:08.483Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-13(垃圾回收算法)</title>
+    <link href="https://www.parak.top/posts/25/"/>
+    <id>https://www.parak.top/posts/25/</id>
+    <published>2021-05-29T16:00:00.000Z</published>
+    <updated>2021-05-18T08:39:34.911Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-12(String Table)</title>
+    <link href="https://www.parak.top/posts/59786/"/>
+    <id>https://www.parak.top/posts/59786/</id>
+    <published>2021-05-28T16:00:00.000Z</published>
+    <updated>2021-05-18T08:27:50.252Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-11(执行引擎)</title>
+    <link href="https://www.parak.top/posts/58113/"/>
+    <id>https://www.parak.top/posts/58113/</id>
+    <published>2021-05-27T16:00:00.000Z</published>
+    <updated>2021-05-18T08:22:35.952Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-10(直接内存)</title>
+    <link href="https://www.parak.top/posts/6513/"/>
+    <id>https://www.parak.top/posts/6513/</id>
+    <published>2021-05-26T16:00:00.000Z</published>
+    <updated>2021-05-18T08:17:08.797Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-9(对象)</title>
+    <link href="https://www.parak.top/posts/37633/"/>
+    <id>https://www.parak.top/posts/37633/</id>
+    <published>2021-05-25T16:00:00.000Z</published>
+    <updated>2021-05-18T08:12:11.219Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-8(方法区)</title>
+    <link href="https://www.parak.top/posts/19997/"/>
+    <id>https://www.parak.top/posts/19997/</id>
+    <published>2021-05-24T16:00:00.000Z</published>
+    <updated>2021-05-18T08:12:24.202Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-7(堆)</title>
+    <link href="https://www.parak.top/posts/11581/"/>
+    <id>https://www.parak.top/posts/11581/</id>
+    <published>2021-05-23T16:00:00.000Z</published>
+    <updated>2021-05-18T07:21:32.394Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-6(本地方法接口)</title>
+    <link href="https://www.parak.top/posts/31917/"/>
+    <id>https://www.parak.top/posts/31917/</id>
+    <published>2021-05-22T16:00:00.000Z</published>
+    <updated>2021-05-18T06:34:05.548Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-5(虚拟机栈)</title>
+    <link href="https://www.parak.top/posts/31700/"/>
+    <id>https://www.parak.top/posts/31700/</id>
+    <published>2021-05-21T16:00:00.000Z</published>
+    <updated>2021-05-18T06:28:37.138Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-4(程序计数器)</title>
+    <link href="https://www.parak.top/posts/28643/"/>
+    <id>https://www.parak.top/posts/28643/</id>
+    <published>2021-05-20T16:00:00.000Z</published>
+    <updated>2021-05-18T06:22:50.497Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-3(运行时数据区)</title>
+    <link href="https://www.parak.top/posts/2398/"/>
+    <id>https://www.parak.top/posts/2398/</id>
+    <published>2021-05-19T16:00:00.000Z</published>
+    <updated>2021-05-18T06:21:55.955Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-2(类加载子系统)</title>
+    <link href="https://www.parak.top/posts/22607/"/>
+    <id>https://www.parak.top/posts/22607/</id>
+    <published>2021-05-18T16:00:00.000Z</published>
+    <updated>2021-05-18T06:02:48.286Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JVM-1(JVM概述)</title>
+    <link href="https://www.parak.top/posts/21157/"/>
+    <id>https://www.parak.top/posts/21157/</id>
+    <published>2021-05-17T16:00:00.000Z</published>
+    <updated>2021-05-18T06:02:58.443Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JUC-8(并发工具之同步器)</title>
     <link href="https://www.parak.top/posts/23706/"/>
     <id>https://www.parak.top/posts/23706/</id>
     <published>2021-05-07T16:00:00.000Z</published>
-    <updated>2021-05-10T12:17:27.364Z</updated>
+    <updated>2021-05-18T04:24:54.779Z</updated>
     
     
       
@@ -67,11 +442,11 @@
   </entry>
   
   <entry>
-    <title>JUC-6(共享模型之线程池)</title>
+    <title>JUC-6(并发工具之线程池)</title>
     <link href="https://www.parak.top/posts/62082/"/>
     <id>https://www.parak.top/posts/62082/</id>
     <published>2021-04-30T16:00:00.000Z</published>
-    <updated>2021-05-11T06:36:45.661Z</updated>
+    <updated>2021-05-18T04:25:10.709Z</updated>
     
     
       
@@ -138,427 +513,6 @@
     
     
     <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUC-3(共享模型之内存)</title>
-    <link href="https://www.parak.top/posts/37386/"/>
-    <id>https://www.parak.top/posts/37386/</id>
-    <published>2021-04-25T16:00:00.000Z</published>
-    <updated>2021-05-05T14:39:59.668Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JUC" scheme="https://www.parak.top/categories/JUC/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUC-2(共享模型之管程)</title>
-    <link href="https://www.parak.top/posts/62531/"/>
-    <id>https://www.parak.top/posts/62531/</id>
-    <published>2021-04-24T16:00:00.000Z</published>
-    <updated>2021-05-05T14:39:43.447Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JUC" scheme="https://www.parak.top/categories/JUC/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JUC-1(线程基础)</title>
-    <link href="https://www.parak.top/posts/9175/"/>
-    <id>https://www.parak.top/posts/9175/</id>
-    <published>2021-04-22T16:00:00.000Z</published>
-    <updated>2021-05-05T14:39:28.201Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JUC" scheme="https://www.parak.top/categories/JUC/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java-Serilizable</title>
-    <link href="https://www.parak.top/posts/29446/"/>
-    <id>https://www.parak.top/posts/29446/</id>
-    <published>2021-04-21T16:00:00.000Z</published>
-    <updated>2021-05-05T14:39:11.839Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Golang-MySQL</title>
-    <link href="https://www.parak.top/posts/52018/"/>
-    <id>https://www.parak.top/posts/52018/</id>
-    <published>2021-04-20T16:00:00.000Z</published>
-    <updated>2021-05-10T12:20:28.319Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.parak.top/categories/Golang/"/>
-    
-    
-    <category term="Golang" scheme="https://www.parak.top/tags/Golang/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Golang-Module</title>
-    <link href="https://www.parak.top/posts/58003/"/>
-    <id>https://www.parak.top/posts/58003/</id>
-    <published>2021-04-19T16:00:00.000Z</published>
-    <updated>2021-05-05T14:38:29.182Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.parak.top/categories/Golang/"/>
-    
-    
-    <category term="Golang" scheme="https://www.parak.top/tags/Golang/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RMI &amp; RPC</title>
-    <link href="https://www.parak.top/posts/18721/"/>
-    <id>https://www.parak.top/posts/18721/</id>
-    <published>2021-04-16T16:00:00.000Z</published>
-    <updated>2021-05-06T13:57:33.139Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="web" scheme="https://www.parak.top/categories/web/"/>
-    
-    
-    <category term="RPC" scheme="https://www.parak.top/tags/RPC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Springboot-json</title>
-    <link href="https://www.parak.top/posts/22416/"/>
-    <id>https://www.parak.top/posts/22416/</id>
-    <published>2021-04-15T16:00:00.000Z</published>
-    <updated>2021-05-10T10:09:59.533Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="web" scheme="https://www.parak.top/categories/web/"/>
-    
-    
-    <category term="json" scheme="https://www.parak.top/tags/json/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Chartjs</title>
-    <link href="https://www.parak.top/posts/50163/"/>
-    <id>https://www.parak.top/posts/50163/</id>
-    <published>2021-04-12T16:00:00.000Z</published>
-    <updated>2021-05-05T14:37:46.155Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;前言&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;四月了，水一篇博客吧，关于&lt;code&gt;hexo-tag-chart&lt;/code&gt;插件的使用，文档只有一个案例，官方文档只给出&lt;code&gt;js&lt;/code&gt;用法，至于怎么使用以及用到何种程度，就看自己的造化吧。&lt;/p&gt;
-&lt;p&gt;示例：&lt;a href=&quot;https://shen-yu.gitee.io/2020/chartjs&quot;&gt;沈宇大佬博客&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;文档：&lt;a href=&quot;https://chartjs.bootcss.com/&quot;&gt;中文官方文档&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;每月明细&quot;&gt;&lt;a href=&quot;#每月明细&quot; class=&quot;headerlink&quot; title=&quot;每月明细&quot;&gt;&lt;/a&gt;每月明细&lt;/h3&gt;&lt;div style=&quot;width: 80%;margin: 0 auto&quot;&gt;
-    &lt;canvas id=&quot;chart5115&quot; style=&quot;height: 120px&quot;&gt;&lt;/canvas&gt;
-&lt;/div&gt;
-&lt;script src=&quot;https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-    var ctx = document.getElementById(&#39;chart5115&#39;).getContext(&#39;2d&#39;);
-    var options = {
-    type: &#39;line&#39;,
-    data: {
-        labels: [&#39;1月&#39;, &#39;2月&#39;, &#39;3月&#39;, &#39;4月&#39;, &#39;5月&#39;, &#39;6月&#39;, &#39;7月&#39;, &#39;8月&#39;, &#39;9月&#39;, &#39;10月&#39;, &#39;11月&#39;, &#39;12月&#39;],
-        datasets: [{
-        	label: &#39;2020&#39;,
-            borderColor: &#39;orange&#39;,
-            backgroundColor: &#39;yellow&#39;,
-			data: [0, 0, 0, 0, 0, 1, 0, 0, 1, 6, 5, 1], 
-		},{
-			label: &#39;2021&#39;,
-            borderColor: &#39;blue&#39;,
-            backgroundColor: &#39;lightBlue&#39;,
-			data: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-		}]
-    },
-    options: {
-        responsive: true,
-        title: {
-            display: true,
-            text: &#39;每月明细&#39;
-        }
-    }
-};;
-    new Chart(ctx, options);
-&lt;/script&gt;</summary>
-    
-    
-    
-    <category term="Frontend" scheme="https://www.parak.top/categories/Frontend/"/>
-    
-    
-    <category term="Chartjs" scheme="https://www.parak.top/tags/Chartjs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL</title>
-    <link href="https://www.parak.top/posts/c24675b4/"/>
-    <id>https://www.parak.top/posts/c24675b4/</id>
-    <published>2021-03-26T02:51:00.000Z</published>
-    <updated>2021-05-05T14:42:57.531Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;MySQL概述&quot;&gt;&lt;a href=&quot;#MySQL概述&quot; class=&quot;headerlink&quot; title=&quot;MySQL概述&quot;&gt;&lt;/a&gt;MySQL概述&lt;/h2&gt;&lt;h3 id=&quot;CentOS7安装&quot;&gt;&lt;a href=&quot;#CentOS7安装&quot; class=&quot;headerlink&quot; title=&quot;CentOS7安装&quot;&gt;&lt;/a&gt;CentOS7安装&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;下载RPM安装包&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;下载: &lt;a href=&quot;https://downloads.mysql.com/archives/community/&quot;&gt;mysql download&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;将四个包下载后移动到opt文件夹下&lt;/p&gt;
-&lt;img src=&quot;/posts/c24675b4/image-20210314104200636.png&quot; class=&quot;&quot; title=&quot;s&quot;&gt;</summary>
-    
-    
-    
-    <category term="MySQL" scheme="https://www.parak.top/categories/MySQL/"/>
-    
-    
-    <category term="MySQL" scheme="https://www.parak.top/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker</title>
-    <link href="https://www.parak.top/posts/f5f9fa9b/"/>
-    <id>https://www.parak.top/posts/f5f9fa9b/</id>
-    <published>2020-12-01T16:00:00.000Z</published>
-    <updated>2021-05-07T09:57:35.895Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;📖概述&quot;&gt;&lt;a href=&quot;#📖概述&quot; class=&quot;headerlink&quot; title=&quot;📖概述&quot;&gt;&lt;/a&gt;📖概述&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;故事&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;2010年，几个搞 IT 的年轻人，在美国旧金山成立了一家名叫 &lt;code&gt;dotCloud &lt;/code&gt;的公司。&lt;code&gt;dotCloud &lt;/code&gt;的平台即服务（Platform-as-a-Service）提供商。底层技术上，&lt;code&gt;dotCloud&lt;/code&gt; 平台利用了&lt;code&gt;Linux&lt;/code&gt;的 &lt;code&gt;LXC &lt;/code&gt;容器技术。为了方便创建和管理这些容器，&lt;code&gt;dotCloud &lt;/code&gt;基于 Google 公司推出的 &lt;code&gt;Go &lt;/code&gt;语言开发了一套内部工具，之后被命名为 &lt;code&gt;Docker&lt;/code&gt;。&lt;code&gt;Docker &lt;/code&gt;就是这样诞生的。&lt;/p&gt;
-&lt;p&gt;2013年的后端技术领域已经太久没有出现让人振奋的东西了。当然&lt;code&gt;Docker&lt;/code&gt;在发行之后也没用引起行业的关注。在开源之后才爆火。&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Docker&lt;/code&gt;定义容器技术标砖使得容器技术的落地变得十分简单，应用可以稳定便携的运行在容器中。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="DevOps" scheme="https://www.parak.top/categories/DevOps/"/>
-    
-    
-    <category term="Docker" scheme="https://www.parak.top/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>负距离</title>
-    <link href="https://www.parak.top/posts/33422a09/"/>
-    <id>https://www.parak.top/posts/33422a09/</id>
-    <published>2020-11-22T16:00:00.000Z</published>
-    <updated>2021-05-05T14:44:40.232Z</updated>
-    
-    
-    <summary type="html">&lt;img src=&quot;/posts/33422a09/bg.jpg&quot; class=&quot;&quot; title=&quot;bg&quot;&gt;
-
-
-
-&lt;p&gt;想是因为久了所以记不起了，想是因为空气湿了不是眼眶红了。&lt;/p&gt;
-&lt;p&gt;我看见凋零的枫，天空的颜色比油彩更凝重，大块白色的浮云掠过，那栋灰色的建筑闪烁香槟色的光芒，我从未怀疑过自己在梦里。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JWT</title>
-    <link href="https://www.parak.top/posts/1bb08f7a/"/>
-    <id>https://www.parak.top/posts/1bb08f7a/</id>
-    <published>2020-11-19T16:00:00.000Z</published>
-    <updated>2021-04-22T08:43:13.100Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;📖官方文档&quot;&gt;&lt;a href=&quot;#📖官方文档&quot; class=&quot;headerlink&quot; title=&quot;📖官方文档&quot;&gt;&lt;/a&gt;📖官方文档&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;🌐官方文档&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;👉&lt;a href=&quot;https://jwt.io/introduction/&quot;&gt;JWT&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;💰JWT概述&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;JSON Web Token&lt;/strong&gt;是一个开放标准（RFC 7519），它定义了一种紧凑且包含的方式，用于在各方之间安全地传输信息作为JSON对象。由于此信息是经过数字签名的，用于在各方面之间安全地传输信息作为JSON对象。由于此信息是经过数字签名地，因此可以被验证和信任。可以使用秘密（或者&lt;strong&gt;HMAC&lt;/strong&gt;算法）或使用&lt;strong&gt;RSA&lt;/strong&gt;或&lt;strong&gt;ECDSA&lt;/strong&gt;的公钥/私钥对对JWT进行签名。&lt;/p&gt;
-&lt;p&gt;尽管可以对JWT进行加密以提供双方之间的保密性，但我们将重点关注已签名的令牌。签名的令牌可以验证其中包含的声明的完整性，而加密的令牌则将这些声明隐藏在其他方的面前。当使用公钥/私钥对对令牌进行签名时，签名还证明只有持有私钥的一方才是对其进行签名的一方。&lt;/p&gt;
-&lt;br&gt;</summary>
-    
-    
-    
-    <category term="Web" scheme="https://www.parak.top/categories/Web/"/>
-    
-    
-    <category term="JWT" scheme="https://www.parak.top/tags/JWT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mybatis-plus</title>
-    <link href="https://www.parak.top/posts/fd1960c6/"/>
-    <id>https://www.parak.top/posts/fd1960c6/</id>
-    <published>2020-11-11T16:00:00.000Z</published>
-    <updated>2021-05-05T14:42:34.186Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;📖-官方文档&quot;&gt;&lt;a href=&quot;#📖-官方文档&quot; class=&quot;headerlink&quot; title=&quot;📖 官方文档&quot;&gt;&lt;/a&gt;📖 官方文档&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;🌐文档&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;👉 &lt;a href=&quot;https://mybatis.plus/&quot;&gt;mybatis-plus&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;☄️特性&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;润物无声：只做增强不做改变，引入它不会对现有工程产生影响，如丝般顺滑。&lt;/li&gt;
-&lt;li&gt;效率至上：只需简单配置，即可快速进行单表 CRUD 操作，从而节省大量时间。&lt;/li&gt;
-&lt;li&gt;丰富功能：代码生成、物理分页、性能分析等功能一应俱全。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;⛓结构&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;img src=&quot;/posts/fd1960c6/mybatis-plus-framework.jpg&quot; class=&quot;&quot; title=&quot;mybatis-plus-framework&quot;&gt;
-
-&lt;br&gt;</summary>
-    
-    
-    
-    <category term="Web" scheme="https://www.parak.top/categories/Web/"/>
-    
-    
-    <category term="Mybatis-plus" scheme="https://www.parak.top/tags/Mybatis-plus/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式</title>
-    <link href="https://www.parak.top/posts/41682/"/>
-    <id>https://www.parak.top/posts/41682/</id>
-    <published>2020-11-10T16:00:00.000Z</published>
-    <updated>2021-05-05T14:37:57.176Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;可扩展性的本质是找到系统的变化点，并隔离变化点。 &lt;/p&gt;
-&lt;p&gt;世间众多设计模式其实就是一种设计模式即隔离变化点的模式。&lt;/p&gt;
-&lt;p&gt;极致扩展性的标志，就是需求的新增，不会在原有代码交付物上进行任何形式的修改。&lt;/p&gt;
-&lt;p&gt;——《阿里巴巴Java开发手册》&lt;/p&gt;
-&lt;br&gt;
-
-&lt;h2 id=&quot;1-设计原则&quot;&gt;&lt;a href=&quot;#1-设计原则&quot; class=&quot;headerlink&quot; title=&quot;1. 设计原则&quot;&gt;&lt;/a&gt;1. 设计原则&lt;/h2&gt;&lt;br&gt;
-
-&lt;img src=&quot;/posts/41682/image-20210413121732627.png&quot; class=&quot;&quot; title=&quot;DesignPrinciple&quot;&gt;</summary>
-    
-    
-    
-    <category term="Software Engineering" scheme="https://www.parak.top/categories/Software-Engineering/"/>
-    
-    
-    <category term="Design Pattern" scheme="https://www.parak.top/tags/Design-Pattern/"/>
     
   </entry>
   
