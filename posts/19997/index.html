@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Khighness/cdn/top/bg-37.jpg">
 <meta property="article:published_time" content="2021-05-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-05-18T08:12:24.202Z">
+<meta property="article:modified_time" content="2021-05-19T13:03:56.747Z">
 <meta property="article:author" content="Khighness">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -64,7 +64,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2021-05-18 16:12:24'
+  postUpdate: '2021-05-19 21:03:56'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -147,7 +147,7 @@
         }
       }
     })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/cdn/avatar/Khighness.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Khighness/cdn/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Khighness/cdn/top/bg-37.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-8(方法区)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-24T16:00:00.000Z" title="发表于 2021-05-25 00:00:00">2021-05-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-18T08:12:24.202Z" title="更新于 2021-05-18 16:12:24">2021-05-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-8(方法区)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="8-1-📓-理解"><a href="#8-1-📓-理解" class="headerlink" title="8.1 📓 理解"></a>8.1 📓 理解</h2><blockquote>
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/cdn/avatar/Khighness.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Khighness/cdn/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Khighness/cdn/top/bg-37.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-8(方法区)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-24T16:00:00.000Z" title="发表于 2021-05-25 00:00:00">2021-05-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-19T13:03:56.747Z" title="更新于 2021-05-19 21:03:56">2021-05-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-8(方法区)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="8-1-📓-理解"><a href="#8-1-📓-理解" class="headerlink" title="8.1 📓 理解"></a>8.1 📓 理解</h2><blockquote>
 <p>📚规范</p>
 </blockquote>
 <p>《Java虚拟机规范》中明确说明：“尽管所有的方法区在逻辑上是属于堆的一部分，但一些简单的实现可能不会选择去进行垃圾收集或者进行压缩。”但对于HotSpotJVM而言，方法区还有一个别名叫做Non-Heap（非堆），目的就是要和堆分开。</p>
@@ -240,19 +240,12 @@
 </blockquote>
 <p>JVM必须保存所有的以下信息以及声明顺序：</p>
 <ul>
-<li><p>方法名称</p>
-</li>
-<li><p>方法的返回类型</p>
-</li>
-<li><p>方法参数的数量和类型</p>
-</li>
-<li><p>方法的修饰符（public、private、protected、static、final、synchronized、native、abstract的某个子集）</p>
-</li>
-<li><p>方法的字节码、操作数栈、局部变量表及大小（abstract和native方法除外）</p>
-</li>
-<li><p>异常表（abstract和native方法除外）</p>
-</li>
-<li><ul>
+<li>方法名称</li>
+<li>方法的返回类型</li>
+<li>方法参数的数量和类型</li>
+<li>方法的修饰符（public、private、protected、static、final、synchronized、native、abstract的某个子集）</li>
+<li>方法的字节码、操作数栈、局部变量表及大小（abstract和native方法除外）</li>
+<li>异常表（abstract和native方法除外）<ul>
 <li>每个异常处理的开始位置、结束位置、代码处理在程序计数器中的偏移地址、被捕获的异常类的常量池索引</li>
 </ul>
 </li>
@@ -294,24 +287,16 @@
 <p>📃运行时常量池</p>
 </blockquote>
 <ul>
-<li><p>运行时常量池是方法区的一部分。</p>
-</li>
-<li><p>常量池表示Class文件的一部分，用于存放编译期生成的各种字面量与符号引用，这部分内容将在类加载后存放到方法区的运行时常量池中。</p>
-</li>
-<li><p>运行时常量池，在加载类和接口到虚拟机后，就会创建对应的运行时常量池。</p>
-</li>
-<li><p>JVM为每个已加载的类型（类或接口）都维护一个常量池。池中的数据项像数据项一样，是通过索引访问的。</p>
-</li>
-<li><p>运行时常量池中内含多种不同的常量，包括编译期就已经明确的数值字面量，也包括到运行期解析后才能够获得的方法或者字段引用。此时不再是常量池中的符号地址，这里换为真实地址。</p>
-</li>
-<li><ul>
+<li>运行时常量池是方法区的一部分。</li>
+<li>常量池表示Class文件的一部分，用于存放编译期生成的各种字面量与符号引用，这部分内容将在类加载后存放到方法区的运行时常量池中。</li>
+<li>运行时常量池，在加载类和接口到虚拟机后，就会创建对应的运行时常量池。</li>
+<li>JVM为每个已加载的类型（类或接口）都维护一个常量池。池中的数据项像数据项一样，是通过索引访问的。</li>
+<li>运行时常量池中内含多种不同的常量，包括编译期就已经明确的数值字面量，也包括到运行期解析后才能够获得的方法或者字段引用。此时不再是常量池中的符号地址，这里换为真实地址。<ul>
 <li>运行时常量池，相对于Class文件常量池的另一种重要特征是：具备动态性。</li>
 </ul>
 </li>
-<li><p>运行时常量池类似于传统编程语言中的符号表，但是它所包含的数据却比符号表要更加丰富一些。</p>
-</li>
-<li><p>当创建类或接口的运行时常量池时，如果构造运行时常量池所需的内存空间超过了方法区所能提供的最大值，则JVM会抛出OOM异常。</p>
-</li>
+<li>运行时常量池类似于传统编程语言中的符号表，但是它所包含的数据却比符号表要更加丰富一些。</li>
+<li>当创建类或接口的运行时常量池时，如果构造运行时常量池所需的内存空间超过了方法区所能提供的最大值，则JVM会抛出OOM异常。</li>
 </ul>
 <blockquote>
 <p>🔰总结</p>
