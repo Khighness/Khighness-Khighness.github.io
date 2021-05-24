@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Regex | Khighness</title><meta name="keywords" content="Regex"><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 简介   Regex  正则表达式，Regular Expression    为什么需要正则表达式？  文本的复杂处理    正则表达式的优势和用途？   一种强大而灵活的文本处理工具 大部分编程语言、数据库、文本编辑器、开发环境都支持正则表达式     正则表达式定义：  一种字符串匹配的模式    开发中使用   分析所要匹配的数据，写出测试用的典型数据 在工具软件中进行匹配测试 在程">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Regex | Khighness</title><meta name="keywords" content="Regex"><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 简介正则表达式，Regular Expression，一种字符串匹配的模式。 用途：文本的复杂处理，大部分编程语言、数据库、文本编辑器、开发环境都支持正则表达式。  开发中使用   分析所要匹配的数据，写出测试用的典型数据 在工具软件中进行匹配测试 在程序中调用测试的正则表达式  2. 语法2.1 标准字符集合 能够与”多种字符”匹配的表达式 注意区分大小写，大写是相反的意思     字符">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Regex">
 <meta property="og:url" content="https://www.parak.top/posts/83c5d7ce/index.html">
 <meta property="og:site_name" content="Khighness">
-<meta property="og:description" content="1. 简介   Regex  正则表达式，Regular Expression    为什么需要正则表达式？  文本的复杂处理    正则表达式的优势和用途？   一种强大而灵活的文本处理工具 大部分编程语言、数据库、文本编辑器、开发环境都支持正则表达式     正则表达式定义：  一种字符串匹配的模式    开发中使用   分析所要匹配的数据，写出测试用的典型数据 在工具软件中进行匹配测试 在程">
+<meta property="og:description" content="1. 简介正则表达式，Regular Expression，一种字符串匹配的模式。 用途：文本的复杂处理，大部分编程语言、数据库、文本编辑器、开发环境都支持正则表达式。  开发中使用   分析所要匹配的数据，写出测试用的典型数据 在工具软件中进行匹配测试 在程序中调用测试的正则表达式  2. 语法2.1 标准字符集合 能够与”多种字符”匹配的表达式 注意区分大小写，大写是相反的意思     字符">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Khighness/cdn/top/bg-6.jpg">
 <meta property="article:published_time" content="2020-10-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-05-05T14:43:53.396Z">
+<meta property="article:modified_time" content="2021-05-24T02:48:18.123Z">
 <meta property="article:author" content="Khighness">
 <meta property="article:tag" content="Regex">
 <meta name="twitter:card" content="summary">
@@ -64,7 +64,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2021-05-05 22:43:53'
+  postUpdate: '2021-05-24 10:48:18'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -147,35 +147,8 @@
         }
       }
     })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/cdn/avatar/Khighness.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Khighness/cdn/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Khighness/cdn/top/bg-6.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Regex</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-05T16:00:00.000Z" title="发表于 2020-10-06 00:00:00">2020-10-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-05T14:43:53.396Z" title="更新于 2021-05-05 22:43:53">2021-05-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Algorithm/">Algorithm</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Regex"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><br>
-
-<blockquote>
-<p>Regex</p>
-</blockquote>
-<p><strong>正则表达式，Regular Expression</strong></p>
-<br>
-
-<blockquote>
-<p>为什么需要正则表达式？</p>
-</blockquote>
-<p><strong>文本的复杂处理</strong></p>
-<br>
-
-<blockquote>
-<p>正则表达式的优势和用途？</p>
-</blockquote>
-<ul>
-<li><strong>一种强大而灵活的文本处理工具</strong></li>
-<li><strong>大部分编程语言、数据库、文本编辑器、开发环境都支持正则表达式</strong></li>
-</ul>
-<br>
-
-<blockquote>
-<p>正则表达式定义：</p>
-</blockquote>
-<p><strong>一种字符串匹配的模式</strong></p>
-<br>
-
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/cdn/avatar/Khighness.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Khighness/cdn/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">44</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Khighness/cdn/top/bg-6.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Regex</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-05T16:00:00.000Z" title="发表于 2020-10-06 00:00:00">2020-10-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-24T02:48:18.123Z" title="更新于 2021-05-24 10:48:18">2021-05-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Algorithm/">Algorithm</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Regex"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>正则表达式，Regular Expression，一种字符串匹配的模式。</p>
+<p>用途：文本的复杂处理，大部分编程语言、数据库、文本编辑器、开发环境都支持正则表达式。</p>
 <blockquote>
 <p>开发中使用</p>
 </blockquote>
@@ -184,13 +157,7 @@
 <li>在工具软件中进行匹配测试</li>
 <li>在程序中调用测试的正则表达式</li>
 </ul>
-<br>
-
-<a id="more"></a>
-
-<h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h2><br>
-
-<h3 id="2-1-标准字符集合"><a href="#2-1-标准字符集合" class="headerlink" title="2.1 标准字符集合"></a>2.1 标准字符集合</h3><ul>
+<h2 id="2-语法"><a href="#2-语法" class="headerlink" title="2. 语法"></a>2. 语法</h2><h3 id="2-1-标准字符集合"><a href="#2-1-标准字符集合" class="headerlink" title="2.1 标准字符集合"></a>2.1 标准字符集合</h3><ul>
 <li>能够与”多种字符”匹配的表达式</li>
 <li>注意区分大小写，大写是相反的意思</li>
 </ul>
@@ -219,8 +186,6 @@
 </tr>
 </tbody></table>
 <p>如果要匹配真正的’.’、’+’、’-‘、’\&#39; ， 就要转义，用<code>\.</code>、<code>\+</code>、<code>\-</code>、<code>\\</code></p>
-<br>
-
 <h3 id="2-2-自定义字符集合"><a href="#2-2-自定义字符集合" class="headerlink" title="2.2 自定义字符集合"></a>2.2 自定义字符集合</h3><ul>
 <li>[]方括号匹配方式，能够匹配方括号中任意一个字符</li>
 <li>正则表达式的特殊符号，被包含到中括号中，则失去了特殊意义，除了^、-之外</li>
@@ -253,8 +218,6 @@
 <td align="center">匹配”A”-“F”、”0”-“3”之外的任意一个字符</td>
 </tr>
 </tbody></table>
-<br>
-
 <h3 id="2-3-量词"><a href="#2-3-量词" class="headerlink" title="2.3 量词"></a>2.3 量词</h3><ul>
 <li>修饰匹配次数的特殊符号</li>
 <li>匹配次数中的贪婪模式(匹配字符越多越好，默认)</li>
@@ -314,7 +277,7 @@
 <p><code>a\d-b</code>的匹配结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ab</span><br><span class="line">a1b</span><br><span class="line">a12b</span><br><span class="line">a123b</span><br><span class="line">a1234b</span><br><span class="line">a12345b</span><br></pre></td></tr></table></figure>
 
-<br>
+
 
 <h3 id="2-4-字符边界"><a href="#2-4-字符边界" class="headerlink" title="2.4 字符边界"></a>2.4 字符边界</h3><table>
 <thead>
@@ -337,8 +300,6 @@
 </tr>
 </tbody></table>
 <p><code>\b</code>匹配这样一个位置：前面的字符和后面的字符不全是\w。</p>
-<br>
-
 <p>例如文本:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Khighness </span><br><span class="line">Khighness1 Khighness2</span><br><span class="line">3Khighness </span><br><span class="line">4Khighness </span><br><span class="line">Khighness5 Khighness6</span><br><span class="line">7Khighness </span><br><span class="line">8Khighness</span><br></pre></td></tr></table></figure>
 
@@ -346,8 +307,6 @@
 <p><code>Khighness\b</code>匹配第1、3、4、6、7行的”Khighness”；</p>
 <p><code>\bKhighness</code>匹配第1、2、5行的”Khighness”；</p>
 <p><code>\bKhighness\b</code>匹配第1行的”Khighness”。</p>
-<br>
-
 <h3 id="2-5-匹配模式"><a href="#2-5-匹配模式" class="headerlink" title="2.5 匹配模式"></a>2.5 匹配模式</h3><ul>
 <li>IGNORECASE-忽略大小写模式<ul>
 <li>匹配时忽略大小写</li>
@@ -365,8 +324,6 @@
 </ul>
 </li>
 </ul>
-<br>
-
 <h3 id="2-7-选择符和分组"><a href="#2-7-选择符和分组" class="headerlink" title="2.7 选择符和分组"></a>2.7 选择符和分组</h3><table>
 <thead>
 <tr>
@@ -387,15 +344,8 @@
 <td align="center">一些表达式中，不得不使用()，但又不需要保存()中子表达式匹配的内容，这时可以用非捕获组来抵消使用()带来的副作用</td>
 </tr>
 </tbody></table>
-<ul>
-<li>反向引用(\num)<ul>
-<li>每一对()会分配一个编号，使用()的捕获模式</li>
-</ul>
-</li>
-</ul>
-<p>例如<code>([a-z]&#123;2&#125;)\1</code>可以匹配类似”abab”、”gogo”、”toto”的字符串</p>
-<br>
-
+<p>反向引用(\num)：每一对()会分配一个编号，使用()的捕获模式</p>
+<p>例如<code>([a-z]&#123;2&#125;)\1</code>可以匹配类似”abab”、”gogo”、”toto”的字符串。</p>
 <h3 id="2-8-预搜索-零宽断言"><a href="#2-8-预搜索-零宽断言" class="headerlink" title="2.8 预搜索(零宽断言)"></a>2.8 预搜索(零宽断言)</h3><ul>
 <li>只进行子表达式的匹配，匹配内容不计入最终的匹配结果，是零宽度</li>
 <li>这个位置应该符合某个条件。判断当前位置的前后字符，是否符合指定的条件，但不匹配前后的字符。是对位置的匹配</li>
@@ -432,11 +382,7 @@
 <li><p><code>(?&lt;=in)[A-Za-z]+</code>可以匹配所有以”in”为前缀的单词(匹配结果不包含”in”，<code>in[A-Za-z]+</code>的匹配结果包含”in”)</p>
 </li>
 </ul>
-<br>
-
-<h2 id="3-验证"><a href="#3-验证" class="headerlink" title="3. 验证"></a>3. 验证</h2><br>
-
-<h3 id="3-1-电话号码验证"><a href="#3-1-电话号码验证" class="headerlink" title="3.1 电话号码验证"></a>3.1 电话号码验证</h3><blockquote>
+<h2 id="3-验证"><a href="#3-验证" class="headerlink" title="3. 验证"></a>3. 验证</h2><h3 id="3-1-电话号码验证"><a href="#3-1-电话号码验证" class="headerlink" title="3.1 电话号码验证"></a>3.1 电话号码验证</h3><blockquote>
 <p>要求</p>
 </blockquote>
 <ul>
@@ -444,8 +390,6 @@
 <li>如果固定电话号码中包含有区号，那么区号为三位或四位，首位是0，区号用”-“和其他部分隔开</li>
 <li>移动电话号码为11位，第一位和第二位为”13”、”14”、15”、”17”、18”、”19”</li>
 </ul>
-<br>
-
 <blockquote>
 <p>分析：</p>
 </blockquote>
@@ -454,8 +398,6 @@
 <li>移动电话号码: <code>1[3|4|5|7|8|9]\d&#123;9&#125;</code></li>
 <li>合起来就是：<code>^0\d&#123;2,3&#125;-\d&#123;7,9&#125;|1[3|4|5|7|8|9]\d&#123;9&#125;$</code></li>
 </ul>
-<br>
-
 <h3 id="3-3-电子邮箱验证"><a href="#3-3-电子邮箱验证" class="headerlink" title="3.3 电子邮箱验证"></a>3.3 电子邮箱验证</h3><blockquote>
 <p>要求</p>
 </blockquote>
@@ -464,8 +406,6 @@
 <li>邮箱名称部分：允许汉字、字母、数字、中划线和下划线</li>
 <li>邮箱域名部分：允许字母、数字、英语句号</li>
 </ul>
-<br>
-
 <blockquote>
 <p>分析</p>
 </blockquote>
@@ -512,8 +452,6 @@
 </ul>
 </li>
 </ul>
-<br>
-
 <h3 id="4-1-基本操作"><a href="#4-1-基本操作" class="headerlink" title="4.1 基本操作"></a>4.1 基本操作</h3><blockquote>
 <p>代码</p>
 </blockquote>
@@ -524,7 +462,7 @@
 </blockquote>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">----------完整匹配----------</span><br><span class="line">匹配结果：false，匹配字符串：NULL</span><br><span class="line">----------子串匹配----------</span><br><span class="line">匹配结果：true，匹配字符串：KHighness</span><br><span class="line">匹配结果：true，匹配字符串：ParaK</span><br><span class="line">匹配结果：true，匹配字符串：FlowerK</span><br><span class="line">匹配结果：true，匹配字符串：<span class="number">18236763</span></span><br><span class="line">匹配结果：false，匹配字符串：NULL</span><br><span class="line">----------循环匹配----------</span><br><span class="line">KHighness</span><br><span class="line">ParaK</span><br><span class="line">FlowerK</span><br><span class="line"><span class="number">18236763</span></span><br></pre></td></tr></table></figure>
 
-<br>
+
 
 <h3 id="4-2-分组操作"><a href="#4-2-分组操作" class="headerlink" title="4.2 分组操作"></a>4.2 分组操作</h3><blockquote>
 <p>代码</p>
@@ -536,7 +474,7 @@
 </blockquote>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-----第<span class="number">1</span>组-----</span><br><span class="line"><span class="built_in">group</span>[<span class="number">0</span>]: KHighness18</span><br><span class="line"><span class="built_in">group</span>[<span class="number">1</span>]: KHighness</span><br><span class="line">-----第<span class="number">2</span>组-----</span><br><span class="line"><span class="built_in">group</span>[<span class="number">0</span>]: ParaK23</span><br><span class="line"><span class="built_in">group</span>[<span class="number">1</span>]: ParaK</span><br><span class="line">-----第<span class="number">3</span>组-----</span><br><span class="line"><span class="built_in">group</span>[<span class="number">0</span>]: FlowerK67</span><br><span class="line"><span class="built_in">group</span>[<span class="number">1</span>]: FlowerK</span><br><span class="line">-----第<span class="number">4</span>组-----</span><br><span class="line"><span class="built_in">group</span>[<span class="number">0</span>]: KAG63</span><br><span class="line"><span class="built_in">group</span>[<span class="number">1</span>]: KAG</span><br><span class="line">-----第<span class="number">5</span>组-----</span><br><span class="line"><span class="built_in">group</span>[<span class="number">0</span>]: KAG72</span><br><span class="line"><span class="built_in">group</span>[<span class="number">1</span>]: KAG</span><br></pre></td></tr></table></figure>
 
-<br>
+
 
 <h3 id="4-3-替换操作"><a href="#4-3-替换操作" class="headerlink" title="4.3 替换操作"></a>4.3 替换操作</h3><blockquote>
 <p>代码</p>
@@ -548,7 +486,7 @@
 </blockquote>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KHighness<span class="comment">##||ParaK##||FlowerK##||KAG##||KAG##</span></span><br></pre></td></tr></table></figure>
 
-<br>
+
 
 <h3 id="4-4-分割操作"><a href="#4-4-分割操作" class="headerlink" title="4.4 分割操作"></a>4.4 分割操作</h3><blockquote>
 <p>代码</p>
@@ -560,7 +498,7 @@
 </blockquote>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">K</span>, <span class="type">H</span>, <span class="type">I</span>, <span class="type">G</span>, <span class="type">H</span>, <span class="type">N</span>, <span class="type">E</span>, <span class="type">S</span>, <span class="type">S</span>]</span><br></pre></td></tr></table></figure>
 
-<br>
+
 
 <h3 id="4-5-爬取腾讯官网所有的超链接"><a href="#4-5-爬取腾讯官网所有的超链接" class="headerlink" title="4.5 爬取腾讯官网所有的超链接"></a>4.5 爬取腾讯官网所有的超链接</h3><blockquote>
 <p>代码</p>
