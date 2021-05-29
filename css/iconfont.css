@@ -7,13 +7,6 @@
   url('iconfont.svg?t=1618837405600#iconfont') format('svg'); /* iOS 4.1- */
 }
 
-/*@font-face {*/
-/*  font-family: "iconfont"; !* Project id 2495273 *!*/
-/*  src: url('iconfont.woff2?t=1620816533702') format('woff2'),*/
-/*  url('iconfont.woff?t=1620816533702') format('woff'),*/
-/*  url('iconfont.ttf?t=1620816533702') format('truetype');*/
-/*}*/
-
 .iconfont {
   font-family: "iconfont" !important;
   font-size: 21px;
