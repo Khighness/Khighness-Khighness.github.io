@@ -65,13 +65,16 @@
 <p>当然，2D渲染3D，画风精致优美，情感细腻真实，纯爱融合科幻，想象瑰丽奇谲，跨越时空的救赎引人共情。</p>
 <p>多重世界，多重解读，你可以选择任意合理的角度去理解。</p>
 <p>以上。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>电影是昨晚看的，影评没来得及写完。</p>
-<p>今天去医院体检回来的路上被诈骗700现金。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>电影是11号看的，回到宿舍影评没来得及写完。</p>
+<p>12号，去医院体检回来的路上被诈骗700现金。</p>
 <p>向社会交了700学费，或许这是我成长的必经之事。</p>
 <p>还是不自我安慰了，就是自己笨，给一直以来自认为理性的自己扇了一耳光。</p>
 <p>大家遇到这种事还是要警觉，学会拒绝。</p>
 <p>陌生人寻助送他110，救死扶伤送他120。</p>
 <p>希望天下所有的善良都不被辜负，所有的骗子都早点进大牢，全家ICU预警。</p>
+<p>13号，两个室友哥哥带我去警察局做笔录，询问叔叔好凶，笔录小哥还不错。</p>
+<p>中午，他们请我吃饭饭，徽菜不行，真的不行，真的咸，咸的要命，不推荐。</p>
+<p>大一吃过一次臭桂鱼留下阴影，今天的鱼又是又腥又咸，直接给我永久劝退。</p>
 ]]></content>
       <categories>
         <category>影评</category>
@@ -8697,11 +8700,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart3374" style="height: 120px"></canvas>
+    <canvas id="chart5435" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart3374').getContext('2d');
+    var ctx = document.getElementById('chart5435').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -8737,11 +8740,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart1804" style="height: 100px"></canvas>
+    <canvas id="chart7728" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart1804').getContext('2d');
+    var ctx = document.getElementById('chart7728').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -8765,11 +8768,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart4386" style="height: 100px"></canvas>
+    <canvas id="chart4998" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart4386').getContext('2d');
+    var ctx = document.getElementById('chart4998').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -12419,10 +12422,10 @@ H --&gt; I</div>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/f8cdfd0a/MyCD.jpg" class="" title="MyCD">
 
 
-        <div id="aplayer-WaohQqNg" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-egeQaFHa" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-WaohQqNg");
+				  options.element = document.getElementById("aplayer-egeQaFHa");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
