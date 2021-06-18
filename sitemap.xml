@@ -410,13 +410,6 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Game/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.parak.top/tags/Golang/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -425,6 +418,13 @@
   
   <url>
     <loc>https://www.parak.top/tags/%E5%BD%B1%E8%AF%84/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.parak.top/tags/Game/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -508,14 +508,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Regex/</loc>
+    <loc>https://www.parak.top/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</loc>
+    <loc>https://www.parak.top/tags/Regex/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -594,13 +594,6 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/Algorithm/</loc>
-    <lastmod>2021-06-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.parak.top/categories/Golang/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
@@ -609,6 +602,13 @@
   
   <url>
     <loc>https://www.parak.top/categories/%E5%BD%B1%E8%AF%84/</loc>
+    <lastmod>2021-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.parak.top/categories/Algorithm/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -629,14 +629,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/Web/</loc>
+    <loc>https://www.parak.top/categories/Java/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/Java/</loc>
+    <loc>https://www.parak.top/categories/Web/</loc>
     <lastmod>2021-06-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
