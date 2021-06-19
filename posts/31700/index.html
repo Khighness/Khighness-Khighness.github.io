@@ -24,7 +24,7 @@
   localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
   translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
   noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: undefined,
   copy: {
     success: '复制成功',
     error: '复制错误',
@@ -188,7 +188,15 @@
 <p>Java虚拟机规范允许Java栈的大小是动态的或者固定不变的。</p>
 <ul>
 <li><p>如果采用固定大小的Java虚拟机栈，那每一个线程的Java虚拟机栈容量可以在线程创建的时候独立选定。如果线程请求分配的栈容量超过Java虚拟机栈允许的最大容量，Java虚拟机将会抛出一个StackOverflowError异常。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 栈溢出典型实例</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StackOverflow</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> StackOverflow().keep();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">keep</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        keep();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">// 栈溢出典型实例
+public class StackOverflow &#123;
+    public static void main(String[] args) &#123;
+        new StackOverflow().keep();
+    &#125;
+    public void keep() &#123;
+        keep();
+    &#125;
+&#125;</code></pre>
 </li>
 <li><p>如果Java虚拟机可以动态扩展，并且在尝试扩展的时候无法申请到足够的内存，或者在创建新的线程时没有足够的内存去创建对应的虚拟机栈，那Java虚拟机将会抛出一个OutOfMemoryError异常。</p>
 </li>
@@ -329,10 +337,22 @@
 <h2 id="5-5-📡-代码追踪"><a href="#5-5-📡-代码追踪" class="headerlink" title="5.5 📡 代码追踪"></a>5.5 📡 代码追踪</h2><blockquote>
 <p>⌨️代码</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OperandStackTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">int</span> n = <span class="number">20</span>;</span><br><span class="line">        <span class="keyword">int</span> k = m + n;</span><br><span class="line">        <span class="keyword">return</span> k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetSum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 获取上一个栈帧返回的结果，并保存在操作数栈中</span></span><br><span class="line">        <span class="keyword">int</span> i = getSum();</span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">public class OperandStackTest &#123;
 
+    public int getSum() &#123;
+        int m = 10;
+        int n = 20;
+        int k = m + n;
+        return k;
+    &#125;
 
+    public void testGetSum() &#123;
+        // 获取上一个栈帧返回的结果，并保存在操作数栈中
+        int i = getSum();
+        int j = 10;
+    &#125;
 
+&#125;</code></pre>
 <blockquote>
 <p>🔍解析</p>
 </blockquote>
@@ -340,26 +360,50 @@
 <ul>
 <li>getSum函数</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">指令地址 操作指令</span><br><span class="line">     <span class="number">0</span> bipush <span class="number">10</span>  <span class="comment">// 将10压入操作数栈</span></span><br><span class="line">     <span class="number">2</span> istore_1   <span class="comment">// 操作数栈出栈，存入局部变量表索引为1的位置</span></span><br><span class="line">     <span class="number">3</span> bipush <span class="number">20</span>  <span class="comment">// 将20压入操作数栈</span></span><br><span class="line">     <span class="number">5</span> istore_2   <span class="comment">// 操作数栈出栈，存入局部变量表索引为2的位置</span></span><br><span class="line">     <span class="number">6</span> iload_1    <span class="comment">// 从局部变量表中取出索引为1的数据，压入操作数栈</span></span><br><span class="line">     <span class="number">7</span> iload_2    <span class="comment">// 从局部变量表中取出索引为2的数据，压入操作数栈</span></span><br><span class="line">     <span class="number">8</span> iadd       <span class="comment">// 将栈顶的两个数出栈并相加，压回操作数栈</span></span><br><span class="line">     <span class="number">9</span> istore_3   <span class="comment">// 操作数栈出栈，存入局部变量表</span></span><br><span class="line">    <span class="number">10</span> ireturn    <span class="comment">// 从当前帧的操作数栈弹出值，并将其压入调用者的帧的操作数栈，当前方法的操作数堆栈上的任何其他值都将被丢弃</span></span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">指令地址 操作指令
+     0 bipush 10  // 将10压入操作数栈
+     2 istore_1   // 操作数栈出栈，存入局部变量表索引为1的位置
+     3 bipush 20  // 将20压入操作数栈
+     5 istore_2   // 操作数栈出栈，存入局部变量表索引为2的位置
+     6 iload_1    // 从局部变量表中取出索引为1的数据，压入操作数栈
+     7 iload_2    // 从局部变量表中取出索引为2的数据，压入操作数栈
+     8 iadd       // 将栈顶的两个数出栈并相加，压回操作数栈
+     9 istore_3   // 操作数栈出栈，存入局部变量表
+    10 ireturn    // 从当前帧的操作数栈弹出值，并将其压入调用者的帧的操作数栈，当前方法的操作数堆栈上的任何其他值都将被丢弃</code></pre>
 <ul>
 <li>testGetSum函数</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">指令地址 操作指令   </span><br><span class="line">	<span class="number">0</span> aload_0      <span class="comment">// 加载this变量，将this的引用压入操作数栈</span></span><br><span class="line">    1 invokevirtual #2 &lt;top/parak/OperandStackTest.getSum&gt; // 调用this.getSum方法</span><br><span class="line">    <span class="number">4</span> istore_1     <span class="comment">// 将方法返回值存储到局部变量表索引为1的位置</span></span><br><span class="line">    <span class="number">5</span> bipush <span class="number">10</span>    <span class="comment">// 将10压入操作数栈</span></span><br><span class="line">    <span class="number">7</span> istore_2     <span class="comment">// 操作数栈出栈，存入局部变量表索引为2的位置</span></span><br><span class="line">    <span class="number">8</span> <span class="keyword">return</span>       <span class="comment">// 直接返回</span></span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code class="java">指令地址 操作指令   
+    0 aload_0      // 加载this变量，将this的引用压入操作数栈
+    1 invokevirtual #2 &lt;top/parak/OperandStackTest.getSum&gt; // 调用this.getSum方法
+    4 istore_1     // 将方法返回值存储到局部变量表索引为1的位置
+    5 bipush 10    // 将10压入操作数栈
+    7 istore_2     // 操作数栈出栈，存入局部变量表索引为2的位置
+    8 return       // 直接返回</code></pre>
 <blockquote>
 <p>i++ 🆚 ++i</p>
 </blockquote>
 <p>源代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i1 = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> i3 = i1++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i2 = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> i4 = ++i2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">public void add() &#123;
+    int i1 = 10;
+    int i3 = i1++;
 
+    int i2 = 10;
+    int i4 = ++i2;
+&#125;</code></pre>
 <p>字节码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">指令地址 操作指令 </span><br><span class="line">     <span class="number">0</span> bipush <span class="number">10</span>    <span class="comment">// 将10压入操作数栈</span></span><br><span class="line">     <span class="number">2</span> istore_1     <span class="comment">// 操作数栈出栈，存入局部变量表索引为1的位置 </span></span><br><span class="line">     <span class="number">3</span> iload_1      <span class="comment">// 从局部变量表索引为1位置加载变量到栈帧中</span></span><br><span class="line">     <span class="number">4</span> iinc <span class="number">1</span> by <span class="number">1</span>  <span class="comment">// 对索引为1位置的变量进行+1操作 </span></span><br><span class="line">     <span class="number">7</span> istore_2     <span class="comment">// 操作数栈出栈，存入局部变量表索引为2的位置 </span></span><br><span class="line">     <span class="number">8</span> bipush <span class="number">10</span>    <span class="comment">// 将10压入操作数栈</span></span><br><span class="line">    <span class="number">10</span> istore_3     <span class="comment">// 操作数栈出栈，存入局部变量表索引为3的位置 </span></span><br><span class="line">    <span class="number">11</span> iinc <span class="number">3</span> by <span class="number">1</span>  <span class="comment">// 对索引为3位置的变量进行+1操作 </span></span><br><span class="line">    <span class="number">14</span> iload_3      <span class="comment">// 从局部变量表索引为3位置加载变量到栈帧中</span></span><br><span class="line">    <span class="number">15</span> istore <span class="number">4</span>     <span class="comment">// 将栈帧的值保存到局部变量表索引为4的位置</span></span><br><span class="line">    <span class="number">17</span> <span class="keyword">return</span>	    <span class="comment">// 返回</span></span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code class="java">指令地址 操作指令 
+     0 bipush 10    // 将10压入操作数栈
+     2 istore_1     // 操作数栈出栈，存入局部变量表索引为1的位置 
+     3 iload_1      // 从局部变量表索引为1位置加载变量到栈帧中
+     4 iinc 1 by 1  // 对索引为1位置的变量进行+1操作 
+     7 istore_2     // 操作数栈出栈，存入局部变量表索引为2的位置 
+     8 bipush 10    // 将10压入操作数栈
+    10 istore_3     // 操作数栈出栈，存入局部变量表索引为3的位置 
+    11 iinc 3 by 1  // 对索引为3位置的变量进行+1操作 
+    14 iload_3      // 从局部变量表索引为3位置加载变量到栈帧中
+    15 istore 4     // 将栈帧的值保存到局部变量表索引为4的位置
+    17 return        // 返回</code></pre>
 <h2 id="5-6-📤-栈顶缓存技术"><a href="#5-6-📤-栈顶缓存技术" class="headerlink" title="5.6 📤 栈顶缓存技术"></a>5.6 📤 栈顶缓存技术</h2><blockquote>
 <p>🔘背景</p>
 </blockquote>

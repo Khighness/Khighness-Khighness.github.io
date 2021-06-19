@@ -24,7 +24,7 @@
   localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
   translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
   noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: undefined,
   copy: {
     success: '复制成功',
     error: '复制错误',
@@ -151,7 +151,7 @@
         }
       }
     })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont/iconfont.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/cdn/avatar/Khighness.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Khighness/cdn/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Khighness/cdn/top/bg-43.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-14(垃圾回收概念)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-30T16:00:00.000Z" title="发表于 2021-05-31 00:00:00">2021-05-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-02T07:30:07.207Z" title="更新于 2021-06-02 15:30:07">2021-06-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-14(垃圾回收概念)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="14-1-💻-System-gc"><a href="#14-1-💻-System-gc" class="headerlink" title="14.1 💻 System.gc()"></a>14.1 💻 System.gc()</h2><blockquote>
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/Khighness/cdn/avatar/Khighness.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/Khighness/cdn/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">51</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/Khighness/cdn/top/bg-43.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-14(垃圾回收概念)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-30T16:00:00.000Z" title="发表于 2021-05-31 00:00:00">2021-05-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-02T07:30:07.207Z" title="更新于 2021-06-02 15:30:07">2021-06-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-14(垃圾回收概念)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="14-1-💻-System-gc"><a href="#14-1-💻-System-gc" class="headerlink" title="14.1 💻 System.gc()"></a>14.1 💻 System.gc()</h2><blockquote>
 <p>💬说明</p>
 </blockquote>
 <ul>
@@ -162,12 +162,59 @@
 <blockquote>
 <p>⌨️测试</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">public class LocalVarGC &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 触发Minor GC没有回收对象，然后在Full GC将该对象存入old区</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void localVarGC1() &#123;</span><br><span class="line">        byte[] buffer &#x3D; new byte[10 * 1024 * 1024]; &#x2F;&#x2F; 10MB</span><br><span class="line">        System.gc(); &#x2F;&#x2F; 无法回收</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 触发Young GC的时候，已经被回收了</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void localVarGC2() &#123;</span><br><span class="line">        byte[] buffer &#x3D; new byte[10 * 1024 * 1024]; &#x2F;&#x2F; 10MB</span><br><span class="line">        buffer &#x3D; null;</span><br><span class="line">        System.gc(); &#x2F;&#x2F; 可以回收</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 不会回收，因为它还存放在局部变量表索引为1的槽中</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void localVarGC3() &#123;</span><br><span class="line">        &#123;</span><br><span class="line">            byte[] buffer &#x3D; new byte[10 * 1024 * 1024]; &#x2F;&#x2F; 10MB</span><br><span class="line">        &#125;</span><br><span class="line">        System.gc(); &#x2F;&#x2F; 不会回收</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 会被回收，因为它还存放在局部变量表索引为1的槽中，但是后面定义的value把这个槽给替换了</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void localVarGC4() &#123;</span><br><span class="line">        &#123;</span><br><span class="line">            byte[] buffer &#x3D; new byte[10 * 1024 * 1024]; &#x2F;&#x2F; 10MB</span><br><span class="line">        &#125;</span><br><span class="line">        int value &#x3D; 10;</span><br><span class="line">        System.gc(); &#x2F;&#x2F; 可以回收</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 回收localVarGC1中的buffer</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void localVarGC5() &#123;</span><br><span class="line">        localVarGC1();</span><br><span class="line">        System.gc(); &#x2F;&#x2F; 可以回收</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        LocalVarGC localVarGC &#x3D; new LocalVarGC();</span><br><span class="line">        localVarGC.localVarGC5();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>public class LocalVarGC &#123;
 
+    /**
+     * 触发Minor GC没有回收对象，然后在Full GC将该对象存入old区
+     */
+    public void localVarGC1() &#123;
+        byte[] buffer = new byte[10 * 1024 * 1024]; // 10MB
+        System.gc(); // 无法回收
+    &#125;
 
+    /**
+     * 触发Young GC的时候，已经被回收了
+     */
+    public void localVarGC2() &#123;
+        byte[] buffer = new byte[10 * 1024 * 1024]; // 10MB
+        buffer = null;
+        System.gc(); // 可以回收
+    &#125;
 
+    /**
+     * 不会回收，因为它还存放在局部变量表索引为1的槽中
+     */
+    public void localVarGC3() &#123;
+        &#123;
+            byte[] buffer = new byte[10 * 1024 * 1024]; // 10MB
+        &#125;
+        System.gc(); // 不会回收
+    &#125;
 
+    /**
+     * 会被回收，因为它还存放在局部变量表索引为1的槽中，但是后面定义的value把这个槽给替换了
+     */
+    public void localVarGC4() &#123;
+        &#123;
+            byte[] buffer = new byte[10 * 1024 * 1024]; // 10MB
+        &#125;
+        int value = 10;
+        System.gc(); // 可以回收
+    &#125;
 
+    /**
+     * 回收localVarGC1中的buffer
+     */
+    public void localVarGC5() &#123;
+        localVarGC1();
+        System.gc(); // 可以回收
+    &#125;
+
+    public static void main(String[] args) &#123;
+        LocalVarGC localVarGC = new LocalVarGC();
+        localVarGC.localVarGC5();
+    &#125;
+&#125;</code></pre>
 <h2 id="14-2-🎊内存溢出"><a href="#14-2-🎊内存溢出" class="headerlink" title="14.2 🎊内存溢出"></a>14.2 🎊内存溢出</h2><blockquote>
 <p>📖概述</p>
 </blockquote>
@@ -293,13 +340,16 @@
 <p>对于一个普通的对象，如果没有其他的引用关系，只要超过了引用的作用域或者显示地将相应强引用赋值为null，就是可以当作垃圾被了，当然具体回收时机还是要看垃圾策略。</p>
 <p>相对的，软引用、弱引和虚对象是软可触及、弱可触及和虚可触及的，在一定条件下，都是可以被回收的。所以，强引用是造成Java内存泄漏的主要原因之一。</p>
 <p>实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class StrongReferenceTest &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * -Xmx1m -Xms1m</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Object[] objs &#x3D; new Object[1000 * 1000];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code>public class StrongReferenceTest &#123;
+    /**
+     * -Xmx1m -Xms1m
+     */
+    public static void main(String[] args) &#123;
+        Object[] objs = new Object[1000 * 1000];
+    &#125;
+&#125;</code></pre>
 <p>结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception in thread &quot;main&quot; java.lang.OutOfMemoryError: Java heap space</span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code>Exception in thread &quot;main&quot; java.lang.OutOfMemoryError: Java heap space</code></pre>
 <blockquote>
 <p>2️⃣软引用（Soft Reference/溢出回收）</p>
 </blockquote>
@@ -308,13 +358,39 @@
 <p>垃圾回收器在某个时刻决定回收软可达的对象的时候，会清理软引用，并可选地把引用存放到一个引用队列。</p>
 <p>类似弱引用，只不过Java虚拟机会尽量让软引用的存活时间长一点，迫不得已才清理。</p>
 <p>实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class SoftReferenceTest &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * -Xmx10m -Xms10m</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        &#x2F;* 声明强引用 *&#x2F;</span><br><span class="line">        Object obj &#x3D; new Object();</span><br><span class="line">        System.out.println(obj);</span><br><span class="line">        SoftReference&lt;Object&gt; softReference &#x3D; new SoftReference&lt;Object&gt;(obj);</span><br><span class="line">        &#x2F;* 销毁强引用 *&#x2F;</span><br><span class="line">        obj &#x3D; null;</span><br><span class="line">        System.out.println(softReference.get());</span><br><span class="line">        &#x2F;* 主动进行GC *&#x2F;</span><br><span class="line">        System.gc();</span><br><span class="line">        System.out.println(softReference.get());</span><br><span class="line"></span><br><span class="line">        &#x2F;* 让系统资源紧张 *&#x2F;</span><br><span class="line">        try &#123;</span><br><span class="line">            byte[] bytes &#x3D; new byte[1024 * 1024 * 7]; &#x2F;&#x2F; 7m</span><br><span class="line">        &#125; catch (Throwable e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            System.out.println(softReference.get()); &#x2F;&#x2F; null代表已经被回收</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>public class SoftReferenceTest &#123;
+    /**
+     * -Xmx10m -Xms10m
+     */
+    public static void main(String[] args) &#123;
+        /* 声明强引用 */
+        Object obj = new Object();
+        System.out.println(obj);
+        SoftReference&lt;Object&gt; softReference = new SoftReference&lt;Object&gt;(obj);
+        /* 销毁强引用 */
+        obj = null;
+        System.out.println(softReference.get());
+        /* 主动进行GC */
+        System.gc();
+        System.out.println(softReference.get());
 
+        /* 让系统资源紧张 */
+        try &#123;
+            byte[] bytes = new byte[1024 * 1024 * 7]; // 7m
+        &#125; catch (Throwable e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+            System.out.println(softReference.get()); // null代表已经被回收
+        &#125;
+    &#125;
+&#125;</code></pre>
 <p>结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">java.lang.Object@1b6d3586</span><br><span class="line">java.lang.Object@1b6d3586</span><br><span class="line">java.lang.Object@1b6d3586</span><br><span class="line">java.lang.OutOfMemoryError: Java heap space</span><br><span class="line">    at top.parak.SoftReferenceTest.main(SoftReferenceTest.java:35)</span><br><span class="line">null</span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code>java.lang.Object@1b6d3586
+java.lang.Object@1b6d3586
+java.lang.Object@1b6d3586
+java.lang.OutOfMemoryError: Java heap space
+    at top.parak.SoftReferenceTest.main(SoftReferenceTest.java:35)
+null</code></pre>
 <blockquote>
 <p>3️⃣弱引用（Weak Reference/发现回收）</p>
 </blockquote>
@@ -323,13 +399,21 @@
 <p>弱引用和软引用一样，在构造弱引用时，也可以指定一个引用队列，当弱引用对象被回收时，就会加入指定的引用队列，通过这个队列可以跟踪对象的回收情况。</p>
 <p>软引用、弱引用都非常适合来保存那些可有可无的缓存数据。如果这么做，当系统内存不足时，这些缓存数据会被回收，不会导致内存溢出。而当内存资源充足时，这些缓存又可以存在相当长的时间，从而起到加速系统的作用。</p>
 <p>实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class WeakReferenceTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Object obj &#x3D; new Object();</span><br><span class="line">        WeakReference&lt;Object&gt; weakReference &#x3D; new WeakReference&lt;Object&gt;(obj);</span><br><span class="line">        System.out.println(weakReference.get());</span><br><span class="line">       &#x2F;* 解除强引用 *&#x2F;</span><br><span class="line">        obj &#x3D; null;</span><br><span class="line">        &#x2F;* 主动GC *&#x2F;</span><br><span class="line">        System.gc();</span><br><span class="line">        System.out.println(weakReference.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code>public class WeakReferenceTest &#123;
+    public static void main(String[] args) &#123;
+        Object obj = new Object();
+        WeakReference&lt;Object&gt; weakReference = new WeakReference&lt;Object&gt;(obj);
+        System.out.println(weakReference.get());
+       /* 解除强引用 */
+        obj = null;
+        /* 主动GC */
+        System.gc();
+        System.out.println(weakReference.get());
+    &#125;
+&#125;</code></pre>
 <p>结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java.lang.Object@1b6d3586</span><br><span class="line">null</span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code>java.lang.Object@1b6d3586
+null</code></pre>
 <blockquote>
 <p>4️⃣虚引用（Phantom Reference/回收跟踪）</p>
 </blockquote>
@@ -338,13 +422,80 @@
 <p>它不能单独使用，也无法通过虚引用来获取被引用的对象。当试图通过虚引用的get()方法取得对象时，总是null。</p>
 <p>为一个对象设置虚引用关联的唯一目的在于跟踪垃圾回收过程。比如：能在这个对象被器回收时收到一个系统通知。</p>
 <p>实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">public class PhantomReferenceTest &#123;</span><br><span class="line">    public static PhantomReferenceTest obj;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 引用队列</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public static ReferenceQueue&lt;PhantomReferenceTest&gt; phantomQueue &#x3D; null;</span><br><span class="line"></span><br><span class="line">    public static class CheckRefQueue extends Thread &#123;</span><br><span class="line">        @Override</span><br><span class="line">        public void run() &#123;</span><br><span class="line">            while (true) &#123;</span><br><span class="line">                if (phantomQueue !&#x3D; null) &#123;</span><br><span class="line">                    PhantomReference&lt;PhantomReferenceTest&gt; objt &#x3D; null;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        objt &#x3D; (PhantomReference&lt;PhantomReferenceTest&gt;) phantomQueue.remove();</span><br><span class="line">                    &#125; catch (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (objt !&#x3D; null) &#123;</span><br><span class="line">                        System.out.println(&quot;追踪垃圾回收过程：PhantRefernceTest实例被GC了&quot;);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void finalize() throws Throwable &#123;</span><br><span class="line">        super.finalize();</span><br><span class="line">        System.out.println(&quot;调用当前类的finalize()方法&quot;);</span><br><span class="line">        obj &#x3D; this;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Thread t &#x3D; new CheckRefQueue();</span><br><span class="line">        t.setDaemon(true);  &#x2F;&#x2F; 守护线程</span><br><span class="line">        t.start();</span><br><span class="line"></span><br><span class="line">        phantomQueue &#x3D; new ReferenceQueue&lt;PhantomReferenceTest&gt;();</span><br><span class="line">        obj &#x3D; new PhantomReferenceTest();</span><br><span class="line">        &#x2F;&#x2F; 构造了PhantomReference对象的虚引用，并指定了引用队列</span><br><span class="line">        PhantomReference&lt;PhantomReferenceTest&gt; phantomRef &#x3D; new PhantomReference&lt;&gt;(obj, phantomQueue);</span><br><span class="line">        try &#123;</span><br><span class="line">            &#x2F;&#x2F; 不可获取虚引用中的对象</span><br><span class="line">            System.out.println(&quot;phantomRef.get() &#x3D; &quot; + phantomRef.get());</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 第一次GC，由于对象可复活，并指定了引用队列</span><br><span class="line">            System.out.println(&quot;&#x3D;&gt;&gt;&gt; 第一次GC操作&quot;);</span><br><span class="line">            obj &#x3D; null; &#x2F;&#x2F; 解除强引用</span><br><span class="line">            System.gc();</span><br><span class="line">            Thread.sleep(1000);</span><br><span class="line">            System.out.println(obj &#x3D;&#x3D; null ? &quot;obj &#x3D;&#x3D; null&quot; : &quot;obj !&#x3D; null&quot;);</span><br><span class="line"></span><br><span class="line">            System.out.println(&quot;&#x3D;&gt;&gt;&gt; 第二次GC&quot;);</span><br><span class="line">            obj &#x3D; null; &#x2F;&#x2F; 解除强引用</span><br><span class="line">            System.gc();</span><br><span class="line">            Thread.sleep(1000);</span><br><span class="line">            System.out.println(obj &#x3D;&#x3D; null ? &quot;obj &#x3D;&#x3D; null&quot; : &quot;obj !&#x3D; null&quot;);</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>public class PhantomReferenceTest &#123;
+    public static PhantomReferenceTest obj;
+    /**
+     * 引用队列
+     */
+    public static ReferenceQueue&lt;PhantomReferenceTest&gt; phantomQueue = null;
 
+    public static class CheckRefQueue extends Thread &#123;
+        @Override
+        public void run() &#123;
+            while (true) &#123;
+                if (phantomQueue != null) &#123;
+                    PhantomReference&lt;PhantomReferenceTest&gt; objt = null;
+                    try &#123;
+                        objt = (PhantomReference&lt;PhantomReferenceTest&gt;) phantomQueue.remove();
+                    &#125; catch (InterruptedException e) &#123;
+                        e.printStackTrace();
+                    &#125;
+                    if (objt != null) &#123;
+                        System.out.println(&quot;追踪垃圾回收过程：PhantRefernceTest实例被GC了&quot;);
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+
+    @Override
+    protected void finalize() throws Throwable &#123;
+        super.finalize();
+        System.out.println(&quot;调用当前类的finalize()方法&quot;);
+        obj = this;
+    &#125;
+
+    public static void main(String[] args) &#123;
+        Thread t = new CheckRefQueue();
+        t.setDaemon(true);  // 守护线程
+        t.start();
+
+        phantomQueue = new ReferenceQueue&lt;PhantomReferenceTest&gt;();
+        obj = new PhantomReferenceTest();
+        // 构造了PhantomReference对象的虚引用，并指定了引用队列
+        PhantomReference&lt;PhantomReferenceTest&gt; phantomRef = new PhantomReference&lt;&gt;(obj, phantomQueue);
+        try &#123;
+            // 不可获取虚引用中的对象
+            System.out.println(&quot;phantomRef.get() = &quot; + phantomRef.get());
+
+            // 第一次GC，由于对象可复活，并指定了引用队列
+            System.out.println(&quot;=&gt;&gt;&gt; 第一次GC操作&quot;);
+            obj = null; // 解除强引用
+            System.gc();
+            Thread.sleep(1000);
+            System.out.println(obj == null ? &quot;obj == null&quot; : &quot;obj != null&quot;);
+
+            System.out.println(&quot;=&gt;&gt;&gt; 第二次GC&quot;);
+            obj = null; // 解除强引用
+            System.gc();
+            Thread.sleep(1000);
+            System.out.println(obj == null ? &quot;obj == null&quot; : &quot;obj != null&quot;);
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+        &#125; finally &#123;
+
+        &#125;
+    &#125;
+
+&#125;</code></pre>
 <p>结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">phantomRef.get() &#x3D; null</span><br><span class="line">&#x3D;&gt;&gt;&gt; 第一次GC操作</span><br><span class="line">调用当前类的finalize()方法</span><br><span class="line">obj !&#x3D; null</span><br><span class="line">&#x3D;&gt;&gt;&gt; 第二次GC</span><br><span class="line">追踪垃圾回收过程：PhantRefernceTest实例被GC了</span><br><span class="line">obj &#x3D;&#x3D; null</span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code>phantomRef.get() = null
+=&gt;&gt;&gt; 第一次GC操作
+调用当前类的finalize()方法
+obj != null
+=&gt;&gt;&gt; 第二次GC
+追踪垃圾回收过程：PhantRefernceTest实例被GC了
+obj == null</code></pre>
 <blockquote>
 <p>5️⃣终结器引用</p>
 </blockquote>

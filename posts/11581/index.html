@@ -24,7 +24,7 @@
   localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
   translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
   noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: undefined,
   copy: {
     success: '复制成功',
     error: '复制错误',
@@ -338,22 +338,32 @@
 <p>⌨️示例</p>
 </blockquote>
 <p>不断创建大对象，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HeapInstanceTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span> * <span class="number">3000</span>];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ArrayList&lt;HeapInstanceTest&gt; list = <span class="keyword">new</span> ArrayList&lt;HeapInstanceTest&gt;();</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            list.add(<span class="keyword">new</span> HeapInstanceTest());</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">10</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">public class HeapInstanceTest &#123;
+    byte[] buffer = new byte[1024 * 3000];
 
+    public static void main(String[] args) &#123;
+        ArrayList&lt;HeapInstanceTest&gt; list = new ArrayList&lt;HeapInstanceTest&gt;();
+        while (true) &#123;
+            list.add(new HeapInstanceTest());
+            try &#123;
+                Thread.sleep(10);
+            &#125; catch (InterruptedException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
 <p>IDEA Configuration设置JVM参数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Xms600m -Xmx600m</span><br></pre></td></tr></table></figure>
-
+<pre><code>-Xms600m -Xmx600m</code></pre>
 <p>CMD输入指令，打开VisualVM：</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jvisualvm</span><br></pre></td></tr></table></figure>
-
+<pre><code class="powershell">jvisualvm</code></pre>
 <p>结果如下：</p>
 <img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/11581/HeapInstanceTest.gif" class="" title="HeapInstanceTest">
 
 <p>最终老年代和新生代都满了，出现OOM</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Exception <span class="keyword">in</span> thread <span class="string">&quot;main&quot;</span> java.lang.OutOfMemoryError: Java heap space</span><br><span class="line">	at top.parak.HeapInstanceTest.&lt;init&gt;(HeapInstanceTest.java:<span class="number">18</span>)</span><br><span class="line">	at top.parak.HeapInstanceTest.main(HeapInstanceTest.java:<span class="number">23</span>)</span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code class="powershell">Exception in thread &quot;main&quot; java.lang.OutOfMemoryError: Java heap space
+    at top.parak.HeapInstanceTest.&lt;init&gt;(HeapInstanceTest.java:18)
+    at top.parak.HeapInstanceTest.main(HeapInstanceTest.java:23)</code></pre>
 <blockquote>
 <p>🔧调优工具</p>
 </blockquote>
@@ -546,34 +556,97 @@
 <blockquote>
 <p>⌨️代码示例</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2021/2/12</span></span><br><span class="line"><span class="comment"> * 逃逸分析：就看new的对象是否有可能在方法外被调用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EscapeAnalysis</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> EscapeAnalysis obj;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 方法返回EscapeAnalysis对象，发生逃逸</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> EscapeAnalysis <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> obj == <span class="keyword">null</span> ? <span class="keyword">new</span> EscapeAnalysis() : obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 为成员属性赋值，发生逃逸</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setObj</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.obj = <span class="keyword">new</span> EscapeAnalysis();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 对象的作用域仅在当前方法中有效，没有发生逃逸</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">useEscapeAnalysis</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        EscapeAnalysis escapeAnalysis = <span class="keyword">new</span> EscapeAnalysis();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 引用成员变量的值，发生逃逸</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">useEscapeAnalysis1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        EscapeAnalysis escapeAnalysis = getInstance();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">/**
+ * @author KHighness
+ * @since 2021/2/12
+ * 逃逸分析：就看new的对象是否有可能在方法外被调用
+ */
+public class EscapeAnalysis &#123;
 
+    public EscapeAnalysis obj;
 
+    /**
+     * 方法返回EscapeAnalysis对象，发生逃逸
+     */
+    public EscapeAnalysis getInstance() &#123;
+        return obj == null ? new EscapeAnalysis() : obj;
+    &#125;
 
+    /**
+     * 为成员属性赋值，发生逃逸
+     */
+    public void setObj() &#123;
+        this.obj = new EscapeAnalysis();
+    &#125;
+
+    /**
+     * 对象的作用域仅在当前方法中有效，没有发生逃逸
+     */
+    public void useEscapeAnalysis() &#123;
+        EscapeAnalysis escapeAnalysis = new EscapeAnalysis();
+    &#125;
+
+    /**
+     * 引用成员变量的值，发生逃逸
+     */
+    public void useEscapeAnalysis1() &#123;
+        EscapeAnalysis escapeAnalysis = getInstance();
+    &#125;
+
+&#125;</code></pre>
 <blockquote>
 <p>1️⃣栈上分配</p>
 </blockquote>
 <p>JIT编译器在编译期间根据逃逸分析的结果，发现如果一个对象并没有逃逸出方法的话，就可能被优化成栈上分配。分配完成后，继续在调用栈内执行，最后线程结束，栈空间被回收，局部变量对象也被回收。这样就无须进行垃圾回收了。</p>
 <p>场景：成员变量赋值、方法返回值、实例引用传递。</p>
 <p>举例：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> KHighness</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 2021/2/22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String age;</span><br><span class="line">    <span class="keyword">private</span> String gender;</span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StackAllocation</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">        <span class="comment">// 分配一百万个对象</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000000</span>; i++) &#123;</span><br><span class="line">            alloc();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line">        <span class="comment">// 查看执行时间</span></span><br><span class="line">        System.out.println(<span class="string">&quot;执行时间 =&gt; [&quot;</span> + (end - start)+ <span class="string">&quot;ms]&quot;</span>);</span><br><span class="line">        <span class="comment">// 休眠以查看内存</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">1000000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">alloc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 未发生逃逸</span></span><br><span class="line">        User user = <span class="keyword">new</span> User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="java">/**
+ * @author KHighness
+ * @since 2021/2/22
+ */
+class User &#123;
+    private String name;
+    private String age;
+    private String gender;
+    private String phone;
+&#125;
 
+public class StackAllocation &#123;
+    public static void main(String[] args) &#123;
+        long start = System.currentTimeMillis();
+        // 分配一百万个对象
+        for (int i = 0; i &lt; 100000000; i++) &#123;
+            alloc();
+        &#125;
+        long end = System.currentTimeMillis();
+        // 查看执行时间
+        System.out.println(&quot;执行时间 =&gt; [&quot; + (end - start)+ &quot;ms]&quot;);
+        // 休眠以查看内存
+        try &#123;
+            Thread.sleep(1000000);
+        &#125; catch (InterruptedException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+
+    private static void alloc() &#123;
+        // 未发生逃逸
+        User user = new User();
+    &#125;
+&#125;
+</code></pre>
 <p>不开启逃逸分析：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Xmx1G -Xms1G -XX:-DoEscapeAnalysis -XX:+PrintGCDetails</span><br></pre></td></tr></table></figure>
-
+<pre><code>-Xmx1G -Xms1G -XX:-DoEscapeAnalysis -XX:+PrintGCDetails</code></pre>
 <p>运行结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">执行时间 &#x3D;&gt; [4ms]</span><br></pre></td></tr></table></figure>
-
+<pre><code>执行时间 =&gt; [4ms]</code></pre>
 <p>通过抽样器查看内存情况：</p>
 <img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/11581/image-20210222170206155.png" class="" title="image-20210222170206155">
 
 <p>发现内存中有8w+的User实例。</p>
 <p>开启逃逸分析：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Xmx1G -Xms1G -XX:-DoEscapeAnalysis -XX:+PrintGCDetails</span><br></pre></td></tr></table></figure>
-
+<pre><code>-Xmx1G -Xms1G -XX:-DoEscapeAnalysis -XX:+PrintGCDetails</code></pre>
 <p>运行结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">执行时间 &#x3D;&gt; [5ms]</span><br></pre></td></tr></table></figure>
-
+<pre><code>执行时间 =&gt; [5ms]</code></pre>
 <p>通过抽样器查看内存情况：</p>
 <img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/11581/image-20210222170124218.png" class="" title="image-20210222170124218">
 
@@ -585,13 +658,17 @@
 <p>线程同步的代价是相当高的，同步的后果是降低并发性和性能。</p>
 <p>在动态编译同步块的时候，JIT编译器可以借助逃逸分析同步块所使用的锁对象是否能够被一个线程访问而没有被发布到其他线程。如果没有，那么JIT编译器在编译这个同步块的时候就会取消对这个代码块的同步。这样就能大大提高并发性和性能。这个取消同步的过程就叫同步省略，也叫锁消除。</p>
 <p>如以下代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">    <span class="keyword">synchronized</span>(obj) &#123;</span><br><span class="line">        System.out.println(obj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">public void f() &#123;
+    Object obj = new Object();
+    synchronized(obj) &#123;
+        System.out.println(obj);
+    &#125;
+&#125;</code></pre>
 <p>代码块对<code>obj</code>这个对象加锁，但是<code>obj</code>对象的生命周期只在方法中，并不会被其他线程锁访问到，所以在JIT编译阶段就会被优化掉，优化成：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Object obj = <span class="keyword">new</span> Object();</span><br><span class="line">    System.out.println(obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+<pre><code class="java">public void f() &#123;
+    Object obj = new Object();
+    System.out.println(obj);
+&#125;</code></pre>
 <blockquote>
 <p>3️⃣分离对象和标量替换</p>
 </blockquote>
@@ -599,11 +676,23 @@
 <p>相对的，那么还可以分解的数据叫做聚合量（Aggregate），Java中的对象就是聚合量，因为他可以分解成其他聚合量和标量。</p>
 <p>在JIT阶段，如何经过逃逸分析，发现一个对象不会被外界访问的话，那么经过JIT优化，就会把这个对象拆解成若干个其中包含的若干个成员变量来代替。这个过程就是标量替换。</p>
 <p>如以下代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">    alloc();</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> x;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">alloc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Point point = <span class="keyword">new</span> Point(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;point.x&quot;</span> + point.x + <span class="string">&quot;;point.y&quot;</span> + point.y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">public static void main(String args[]) &#123;
+    alloc();
+&#125;
+class Point &#123;
+    private int x;
+    private int y;
+&#125;
+private static void alloc() &#123;
+    Point point = new Point(1,2);
+    System.out.println(&quot;point.x&quot; + point.x + &quot;;point.y&quot; + point.y);
+&#125;</code></pre>
 <p>经过标量替换后，就会变成：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">alloc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> y = <span class="number">2</span>;</span><br><span class="line">    System.out.println(<span class="string">&quot;point.x = &quot;</span> + x + <span class="string">&quot;; point.y=&quot;</span> + y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">private static void alloc() &#123;
+    int x = 1;
+    int y = 2;
+    System.out.println(&quot;point.x = &quot; + x + &quot;; point.y=&quot; + y);
+&#125;</code></pre>
 <p>可以看到，<code>Point</code>这个聚合量经过逃逸分析后，发现它并没有逃逸，就被替换成两个标量了。那么标量替换有什么好处呢？就是可以大大减少内存的占用。因为一旦不需要创建对象了，那么久不再需要分配内存了。标量替换为栈上分配提供了很好的基础。</p>
 <blockquote>
 <p>📋代码优化</p>

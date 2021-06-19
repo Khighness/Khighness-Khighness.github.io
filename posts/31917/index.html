@@ -24,7 +24,7 @@
   localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
   translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
   noticeOutdate: undefined,
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: undefined,
   copy: {
     success: '复制成功',
     error: '复制错误',
@@ -177,8 +177,17 @@
 <blockquote>
 <p>⌨️举例</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IHaveNatives</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">Native1</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">native</span> <span class="keyword">static</span> <span class="keyword">public</span> <span class="keyword">long</span> <span class="title">Native2</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">native</span> <span class="keyword">synchronized</span> <span class="keyword">private</span> <span class="keyword">float</span> <span class="title">Native3</span><span class="params">(Object obj)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">native</span> <span class="keyword">void</span> <span class="title">Native4</span><span class="params">(<span class="keyword">int</span>[] array)</span> <span class="keyword">throws</span> Exception</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="java">public class IHaveNatives &#123;
 
+    public native void Native1(int x);
+
+    native static public long Native2();
+
+    native synchronized private float Native3(Object obj);
+
+    native void Native4(int[] array) throws Exception;
+
+&#125;</code></pre>
 <p>标识符<code>native</code>可以与所有其他的Java标识符连用，但是<code>abstract</code>除外。</p>
 <h2 id="6-2-🏨本地方法栈"><a href="#6-2-🏨本地方法栈" class="headerlink" title="6.2 🏨本地方法栈"></a>6.2 🏨本地方法栈</h2><blockquote>
 <p>📖概述</p>
