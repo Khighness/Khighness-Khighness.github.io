@@ -1057,6 +1057,8 @@
     <url>/posts/7340/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-Zookeeper概述"><a href="#1-Zookeeper概述" class="headerlink" title="1. Zookeeper概述"></a>1. Zookeeper概述</h2><h3 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/7340/Zookeeper.jpg" class="" title="Zookeeper">
 
+<br />
+
 <p>Zookeeper是Apache软件基金会的一个软件项目，它为大型分布式计算提供开源的分布式配置服务、同步服务和命名注册。</p>
 <h3 id="1-2-架构"><a href="#1-2-架构" class="headerlink" title="1.2 架构"></a>1.2 架构</h3><p>通过冗余服务实现高可用性。</p>
 <h3 id="1-3-设计目标"><a href="#1-3-设计目标" class="headerlink" title="1.3 设计目标"></a>1.3 设计目标</h3><p>将复杂且容易出错的分布式一致性服务封装起来，构成一个高效可靠的原语集，并以一系列简单易用的接口提供给用户使用。</p>
@@ -1125,7 +1127,7 @@
 
 <h2 id="3-Zookeeper数据模型"><a href="#3-Zookeeper数据模型" class="headerlink" title="3. Zookeeper数据模型"></a>3. Zookeeper数据模型</h2><h3 id="3-1-模型结构"><a href="#3-1-模型结构" class="headerlink" title="3.1 模型结构"></a>3.1 模型结构</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/7340/structure.jpg" class="" title="structure">
 
-<br>
+<br />
 
 <h3 id="3-2-模型特点"><a href="#3-2-模型特点" class="headerlink" title="3.2 模型特点"></a>3.2 模型特点</h3><ul>
 <li>每个子目录如/app1都被称作一个znode(节点)，这个znode是被它所在的路径唯一标识</li>
@@ -1206,6 +1208,8 @@
 
 
 <h2 id="6-Zookeeper集群搭建"><a href="#6-Zookeeper集群搭建" class="headerlink" title="6. Zookeeper集群搭建"></a>6. Zookeeper集群搭建</h2><h3 id="6-1-docker搭建伪集群"><a href="#6-1-docker搭建伪集群" class="headerlink" title="6.1 docker搭建伪集群"></a>6.1 docker搭建伪集群</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/7340/cluster.jpg" class="" title="cluster">
+
+<br />
 
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看最小容器ip</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker network inspect bridge</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建三个zk的ip分别在这个最小的ip上加上1，2，3</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> zk1: 172.17.0.7</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> zk2: 172.17.0.8</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> zk3: 172.17.0.9</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建集群的挂载目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir -p /opt/zookeeper/cluster/</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建配置和数据目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir -p node1/conf node1/data node2/conf node2/data node3/conf node3/data</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建配置文件和myid</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> touch node1/conf/zoo.cfg node2/conf/zoo.cfg node3/conf/zoo.cfg node1/data/myid node2/data/myid node3/data/myid</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑配置文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 三个文件相同，内容如下</span></span><br><span class="line">dataDir=/data</span><br><span class="line">dataLogDir=/data/log</span><br><span class="line">tickTime=2000</span><br><span class="line">initLimit=5</span><br><span class="line">syncLimit=2</span><br><span class="line">autopurge.snapRetainCount=3</span><br><span class="line">autopurge.purgeInterval=0</span><br><span class="line">maxClientCnxns=60</span><br><span class="line">standaloneEnabled=true</span><br><span class="line">admin.enableServer=true</span><br><span class="line">4lw.commands.whitelist=*</span><br><span class="line">clientPort=2181</span><br><span class="line">server.1=172.17.0.7:2888:3888</span><br><span class="line">server.2=172.17.0.8:2888:3888</span><br><span class="line">server.3=172.17.0.9:2888:3888</span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑myid</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&quot;1&quot;</span> &gt;&gt; node1/data/myid</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&quot;2&quot;</span> &gt;&gt; node2/data/myid</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">echo</span> <span class="string">&quot;3&quot;</span> &gt;&gt; node3/data/myid</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动三个容器</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker run -d -p 2182:2181 -v /opt/zookeeper/cluster/node1/conf:/conf -v /opt/zookeeper/cluster/node1/data:/data --name zk1 zookeeper:3.4.14</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker run -d -p 2183:2181 -v /opt/zookeeper/cluster/node2/conf:/conf -v /opt/zookeeper/cluster/node2/data:/data --name zk2 zookeeper:3.4.14</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> docker run -d -p 2184:2181 -v /opt/zookeeper/cluster/node3/conf:/conf -v /opt/zookeeper/cluster/node3/data:/data --name zk3 zookeeper:3.4.14</span></span><br></pre></td></tr></table></figure>
 
@@ -1327,6 +1331,8 @@
 <h3 id="4-1-Hello-World模型"><a href="#4-1-Hello-World模型" class="headerlink" title="4.1 Hello World模型"></a>4.1 Hello World模型</h3><p><strong>特点：点到点</strong></p>
 <img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/33708/one.png" class="" title="one">
 
+<br />
+
 <p>在上图的模型中，有以下概念：</p>
 <ul>
 <li>P：生产者，也就是要发送消息的程序</li>
@@ -1356,6 +1362,8 @@
 </ul>
 <h3 id="4-2-Work-Queues模型"><a href="#4-2-Work-Queues模型" class="headerlink" title="4.2 Work Queues模型"></a>4.2 Work Queues模型</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/33708/two.png" class="" title="two">
 
+<br />
+
 <p>Work Queues，任务模型。当消息处理比较耗时的时候，可能生产消息的速度会远远大于消息的消费速度。长此以往，消息就会堆积越来越多，无法及时处理。此时就可以使用Work Queues：让多个消费者绑定到一个队列，共同消费消息队列中的消息。队列中的消息一旦消费，就会消失，因此任务是不会被重复执行的。</p>
 <p><strong>演示：平均分配</strong></p>
 <p>MQ准备：</p>
@@ -1382,7 +1390,9 @@
 
 <h3 id="4-3-Publish-Subscribe模型"><a href="#4-3-Publish-Subscribe模型" class="headerlink" title="4.3 Publish/Subscribe模型"></a>4.3 Publish/Subscribe模型</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/33708/three.png" class="" title="three">
 
-<p>Publish/Subscribe模型，也称为fanout模型，即发布-订阅模型或者广播模型。</p>
+<br />
+
+<p>Publish/Subscribe模型，也称为Fanout模型，即发布-订阅模型或者广播模型。</p>
 <p>流程：</p>
 <ul>
 <li>每个消费者都有自己的队列</li>
@@ -1399,7 +1409,7 @@
 
 
 
-<h3 id="4-4-Routing模型"><a href="#4-4-Routing模型" class="headerlink" title="4.4 Routing模型"></a>4.4 Routing模型</h3><p>在fanout模型中，一条消息会被所有订阅的队列都消费，但是，在某些场景下，我们希望不同的消息被不同的队列消费，这时就要用Routing的Direct类型的交换机。</p>
+<h3 id="4-4-Routing模型"><a href="#4-4-Routing模型" class="headerlink" title="4.4 Routing模型"></a>4.4 Routing模型</h3><p>在Fanout模型中，一条消息会被所有订阅的队列都消费，但是，在某些场景下，我们希望不同的消息被不同的队列消费，这时就要用Routing的Direct类型的交换机。</p>
 <p>在Direct模型中：</p>
 <ul>
 <li>队列与交换机的绑定，不能是任意绑定了，而是要指定一个RoutingKey。</li>
@@ -1408,6 +1418,8 @@
 </ul>
 <p>图解：</p>
 <img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/33708/four.png" class="" title="four">
+
+<br />
 
 <ul>
 <li>P：生产者，向Exchange发送消息，发送消息时，会指定一个routing key</li>
@@ -1426,6 +1438,8 @@
 <h3 id="4-5-Topics模型"><a href="#4-5-Topics模型" class="headerlink" title="4.5 Topics模型"></a>4.5 Topics模型</h3><p>Topics模型与Direct模型相比，都是可以根据RoutingKey把消息路由到不同的队列，只不过Topic类型Exchange可以让队列在绑定RoutingKey的时候使用通配符。</p>
 <img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/33708/five.png" class="" title="five">
 
+<br />
+
 <p>Topics模型的RoutingKey是由一个或者多个单词组成，多个单词之间以<code>.</code>分隔，有两种通配符：</p>
 <ul>
 <li><code>*</code>：匹配一个单词</li>
@@ -1439,7 +1453,7 @@
 
 
 
-<h2 id="5-RabbitMQ整合SprigBoot"><a href="#5-RabbitMQ整合SprigBoot" class="headerlink" title="5. RabbitMQ整合SprigBoot"></a>5. RabbitMQ整合SprigBoot</h2><p>引入依赖：</p>
+<h2 id="5-RabbitMQ整合SpringBoot"><a href="#5-RabbitMQ整合SpringBoot" class="headerlink" title="5. RabbitMQ整合SpringBoot"></a>5. RabbitMQ整合SpringBoot</h2><p>引入依赖：</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-amqp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>配置文件：</p>
@@ -8697,11 +8711,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart2869" style="height: 120px"></canvas>
+    <canvas id="chart8369" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart2869').getContext('2d');
+    var ctx = document.getElementById('chart8369').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -8737,11 +8751,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart7920" style="height: 100px"></canvas>
+    <canvas id="chart6370" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart7920').getContext('2d');
+    var ctx = document.getElementById('chart6370').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -8765,11 +8779,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart5869" style="height: 100px"></canvas>
+    <canvas id="chart9325" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart5869').getContext('2d');
+    var ctx = document.getElementById('chart9325').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -12419,10 +12433,10 @@ H --&gt; I</div>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/f8cdfd0a/MyCD.jpg" class="" title="MyCD">
 
 
-        <div id="aplayer-ZGkZySxw" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-knzycMjY" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-ZGkZySxw");
+				  options.element = document.getElementById("aplayer-knzycMjY");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
