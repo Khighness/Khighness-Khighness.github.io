@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>/posts/0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-  </entry>
-  <entry>
     <title>ArrayBlockingQueue</title>
     <url>/posts/62562/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>🔍 基于JDK1.8的ArrayBlockingQueue源码分析。</p>
@@ -19,7 +14,7 @@
 <li><p>结构：数组</p>
 </li>
 <li><p>类图：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/ArrayBlockingQueue.png" class="" title="ArrayBlockingQueue">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62562/ArrayBlockingQueue.png" class="" title="ArrayBlockingQueue">
 
 
 
@@ -66,7 +61,7 @@
 <p><code>size</code>方法比较简单，上锁后直接返回<code>count</code>，并在返回前释放锁。</p>
 <p>因为<code>count</code>并没有被声明为<code>volatile</code>，所以无法保证线程可见性。</p>
 <h2 id="最后小结"><a href="#最后小结" class="headerlink" title="最后小结"></a>最后小结</h2><p><code>ArrayBlockingQueue</code>通过全局独占锁实现了同时只有一个线程进行入队或者出队操作，这个锁的粒度比较大，有点类似于在方法上添加<code>synchronized</code>的意思。</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/operate.svg" class="" title="ArrayBlockingQueue">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/62562/operate.svg" class="" title="ArrayBlockingQueue">
 
 <p>其中<code>offer</code>和<code>poll</code>操作通过简单的加速搜进行入队、出队操作，而<code>put</code>、<code>take</code>操作则使用条件变量实现，如果队列满则等待，如果队列空则等待，然后分别在出队和入队操作中发送信号激活等待线程实现同步。另外，相比<code>LinkedBlockingQueue</code>，<code>ArrayBlockingQueue</code>的<code>size</code>操作的结果是精确的。</p>
 ]]></content>
@@ -91,7 +86,7 @@
 <li><p>结构：单向链表</p>
 </li>
 <li><p>类图：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/LinkedBlockingQueue.png" class="" title="LinkedBlockingQueue">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/33015/LinkedBlockingQueue.png" class="" title="LinkedBlockingQueue">
 
 
 
@@ -134,7 +129,7 @@
 <p>因为使用原子变量保存队列节点个数需要保证入队、出队操作和原子变量操作都是原子性操作，而<code>ConcurrentLinkedQueue</code>使用的是CAS无锁算法，无法保证。</p>
 </blockquote>
 <h2 id="最后小结"><a href="#最后小结" class="headerlink" title="最后小结"></a>最后小结</h2><p><code>LinkedBlockingQueue</code>的内部是通过单向链表实现的，使用头、尾节点来进行入队和出队操作，即入队操作都是对头节点进行操作，出队操作都是对尾节点进行操作。</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/operate.svg" class="" title="operate">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/33015/operate.svg" class="" title="operate">
 
 
 
@@ -161,7 +156,7 @@
 <li><p>结构：单向链表</p>
 </li>
 <li><p>类图：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/ConcurrentLinkedQueue.png" class="" title="ConcurrentLinkedQueue">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/ConcurrentLinkedQueue.png" class="" title="ConcurrentLinkedQueue">
 
 
 
@@ -181,57 +176,57 @@
 <p>（1）单线程执行<code>offer(item)</code></p>
 <p>首先进行参数判空，空则抛出NPE异常，使用item作为参数构造一个新节点<code>item</code>。</p>
 <p>执行代码（1），这时候<code>head</code>、<code>tail</code>、<code>p</code>、<code>t</code>同时指向了哨兵节点。同时<code>q</code>指向哨兵节点的后继。队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/offer-1.svg" class="" title="offer-1">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/offer-1.svg" class="" title="offer-1">
 
 
 
 <p>执行代码（2），发现 <code>q == null</code>则执行代码（3），通过CAS操作将<code>p.next</code>设置为<code>item</code>。</p>
 <p>这里 <code>p == t</code>成功，所以没有设置尾节点，直接返回<code>true</code>。队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/offer-2.svg" class="" title="offer-2">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/offer-2.svg" class="" title="offer-2">
 
 
 
 <p>（2）双线程执行</p>
 <p>假设两个线程同时执行代码（3），线程1调用<code>offer(item1)</code>，线程2调用<code>offer(item2)</code>。</p>
 <p>假设线程1先执行CAS操作，那么更新<code>p</code>的<code>next</code>节点为<code>item1</code>，那么线程2执行CAS操作的时候，发现<code>p</code>的<code>next</code>节点并不是<code>null</code>，然后执行重新循环，执行代码（1）。队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/offer-3.svg" class="" title="offer-3">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/offer-3.svg" class="" title="offer-3">
 
 
 
 <p>线程2执行代码（2），由于<code>q != null</code>，于是线程2执行代码（6），<code>p = q</code>。队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/offer-4.svg" class="" title="offer-4">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/offer-4.svg" class="" title="offer-4">
 
 
 
 <p>线程2重新循环，执行代码（1）。队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/offer-5.svg" class="" title="offer-5">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/offer-5.svg" class="" title="offer-5">
 
 
 
 <p>线程执行代码（2），由于<code>q == null</code>，接着执行代码（3），通过CAS操作更新<code>p</code>的<code>next</code>节点为<code>item2</code>。</p>
 <p>然后执行代码（4），由于<code>p != t</code>，所以通过CAS操作重新设置尾节点为<code>item2</code>。队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/offer-6.svg" class="" title="offer-6">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/offer-6.svg" class="" title="offer-6">
 
 <p>（3）第三情况</p>
 <p>在以上的两种情况中，还差代码（5）的执行情况没有出现。</p>
 <p>在<code>poll</code>操作后可能会存在的一种情况。如下图所示：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/offer-7.svg" class="" title="offer-7">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/offer-7.svg" class="" title="offer-7">
 
 
 
 <p>执行代码（2）时，队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/offer-8.svg" class="" title="offer-8">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/offer-8.svg" class="" title="offer-8">
 
 
 
 <p>此时<code>q != null </code>并且<code>p == q</code>（<code>tail</code>结点的<code>item</code>为空，但是<code>tail</code>不为空），所以执行代码（5），由于<code>t == tail</code>，所以<code>p = head</code>。</p>
 <p>然后重新循环，执行代码（1），并且执行到（2）。队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/offer-9.svg" class="" title="offer-9">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/offer-9.svg" class="" title="offer-9">
 
 
 
 <p>此时由于<code>q == null</code>，执行代码（3）进行CAS操作，如果没有竞争线程，则CAS成功，<code>p</code>的<code>next</code>结点设置为新节点，然后执行代码（4），由于<code>p != t</code>，所以设置新节点为新的尾节点。队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/offer-10.svg" class="" title="offer-10">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/offer-10.svg" class="" title="offer-10">
 
 
 
@@ -241,61 +236,61 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">poll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// goto标记</span></span><br><span class="line">    restartFromHead:</span><br><span class="line">    <span class="comment">// (1) 无限循环</span></span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">        <span class="comment">// (2) 从头节点开始遍历</span></span><br><span class="line">        <span class="keyword">for</span> (Node&lt;E&gt; h = head, p = h, q;;) &#123;</span><br><span class="line">            <span class="comment">// (3) 保存当前节点值</span></span><br><span class="line">            E item = p.item;</span><br><span class="line">			<span class="comment">// (4) 当前节点值不为空，则通过CAS操作将其设置为null</span></span><br><span class="line">            <span class="keyword">if</span> (item != <span class="keyword">null</span> &amp;&amp; p.casItem(item, <span class="keyword">null</span>)) &#123;</span><br><span class="line">                <span class="comment">// (5) CAS成功则标记当前节点并从链表中移除</span></span><br><span class="line">                <span class="keyword">if</span> (p != h)</span><br><span class="line">                    updateHead(h, ((q = p.next) != <span class="keyword">null</span>) ? q : p);</span><br><span class="line">                <span class="keyword">return</span> item;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// (6) 当前队列为空，则返回null</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> ((q = p.next) == <span class="keyword">null</span>) &#123;</span><br><span class="line">                updateHead(h, p);</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// (7) 当前节点自引用，重新寻找头节点</span></span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (p == q)</span><br><span class="line">                <span class="keyword">continue</span> restartFromHead;</span><br><span class="line">            <span class="comment">// (8) 当前节点指向下个节点</span></span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                p = q;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 更新头节点</span></span><br><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">updateHead</span><span class="params">(Node&lt;E&gt; h, Node&lt;E&gt; p)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (h != p &amp;&amp; casHead(h, p))</span><br><span class="line">        <span class="comment">// 自引用，从而孤立，被GC</span></span><br><span class="line">        h.lazySetNext(h);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>（1）<code>poll</code>操作从队列头获取元素，所以循环从<code>head</code>节点开始，执行代码（3）获取当前队列的头节点。队列开始为空的时候状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/poll-1.svg" class="" title="poll-1">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/poll-1.svg" class="" title="poll-1">
 
 
 
 <p>由于<code>head</code>节点为空，所以会执行到代码（6），如果这个过程中没有线程调用<code>offer</code>方法，则此时<code>q == null</code>。队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/poll-2.svg" class="" title="poll-2">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/poll-2.svg" class="" title="poll-2">
 
 
 
 <p>所以会执行<code>updateHead</code>方法，由于<code>h == p</code>，所以不会执行<code>casHead</code>，直接返回null。</p>
 <p>（2）假设执行到代码（6）时已经有其他线程调用了<code>offer</code>方法并成功添加一个元素到队列，这时候<code>q</code>指向的是新增元素的节点。队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/poll-3.svg" class="" title="poll-3">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/poll-3.svg" class="" title="poll-3">
 
 
 
 <p>执行代码（6），<code>q != null</code>，继续执行代码（7），<code>p != q</code>，最后执行代码（8），<code>p = q</code>。队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/poll-4.svg" class="" title="poll-4">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/poll-4.svg" class="" title="poll-4">
 
 
 
 <p>继续循环，执行代码（3）后执行代码（4），此时<code>p.item</code>不为null，于是通过CAS操作尝试将<code>p.item</code>设置为null，假设此时没有其他线程进行<code>poll</code>操作，则CAS操作成功后执行代码（5），由于此时<code>p != h</code>，所以设置头节点为<code>p</code>，并且设置<code>h</code>的<code>next</code>节点为<code>h</code>自己，返回从移除节点值<code>item</code>。队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/poll-5.svg" class="" title="poll-5">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/poll-5.svg" class="" title="poll-5">
 
 
 
 <p>这个状态就是<code>offer</code>操作执行代码（5）的状态。</p>
 <p>（3）假设现在一个线程调用了<code>poll</code>操作，则在执行代码（4）时队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/poll-6.svg" class="" title="poll-6">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/poll-6.svg" class="" title="poll-6">
 
 
 
 <p>这时候执行代码（6）返回。</p>
 <p>（4）现在还有代码分支（7）没有执行过。</p>
 <p>假设线程1执行<code>poll</code>操作时当前队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/poll-7.svg" class="" title="poll-7">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/poll-7.svg" class="" title="poll-7">
 
 
 
 <p>那么执行代码（4）时，通过CAS操作设置<code>p.item</code>为null，假设CAS设置成功则标记该节点并从队列中将其清除，队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/poll-8.svg" class="" title="poll-8">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/poll-8.svg" class="" title="poll-8">
 
 
 
 <p>然后，由于<code>p != h</code>，所以会执行<code>uploadHead</code>方法，假如线程1执行<code>uploadHead</code>方法前，另外一个线程2开始<code>poll</code>操作，这时候线程2的<code>p</code>指向<code>head</code>节点，但是还未执行到代码（6），队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/poll-9.svg" class="" title="poll-9">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/poll-9.svg" class="" title="poll-9">
 
 
 
 <p>然后线程1执行<code>updateHead</code>方法，执行完毕后线程1退出，队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/poll-10.svg" class="" title="poll-10">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/poll-10.svg" class="" title="poll-10">
 
 
 
 <p>然后线程2继续执行代码（6），由于<code>p</code>自引用，所以<code>p == q</code>，于是跳转到外层循环<code>restartFromHead</code>，重新获取<code>head</code>，队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/poll-11.svg" class="" title="poll-11">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/poll-11.svg" class="" title="poll-11">
 
 
 
@@ -305,23 +300,23 @@
 
 <p>第一次循环时会发现<code>item</code> 为空，第二次循环时<code>p</code>指向队列第一个元素，执行代码（4），<code>q == null</code>成立。</p>
 <p>（1）队列为空时，队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/peek-1.svg" class="" title="peek-1">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/peek-1.svg" class="" title="peek-1">
 
 
 
 <p>这时候执行<code>updateHead</code>方法，由于<code>p == h</code>，所以不进行任何操作，直接返回null。</p>
 <p>（2）队列至少有一个元素时，队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/peek-2.svg" class="" title="peek-2">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/peek-2.svg" class="" title="peek-2">
 
 
 
 <p>这时候执行代码（6），<code>p = q</code>，队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/peek-3.svg" class="" title="peek-3">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/peek-3.svg" class="" title="peek-3">
 
 
 
 <p>重新循环，执行代码（4）时，<code>item != null</code>，所以执行<code>updateHead</code>方法，由于<code>h != p</code>，所以重新头节点为<code>p</code>，队列状态如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/peek-4.svg" class="" title="peek-4">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/peek-4.svg" class="" title="peek-4">
 
 
 
@@ -339,7 +334,7 @@
 
 <h2 id="最后小结"><a href="#最后小结" class="headerlink" title="最后小结"></a>最后小结</h2><p><code>ConcurrentLinkedQueue</code>的底层使用单向链表来保存队列元素，每个元素给封装成节点。队列靠头尾节点来维护，创建队列时头尾节点都指向一个<code>item</code>为null的哨兵节点。第一次执行<code>peek</code>或者<code>first</code>时会把删除哨兵节点，把头节点指向第一个真正的节点。由于使用非阻塞CAS算法，没有加锁，所以在计算<code>size</code>时有可能进行了<code>offer</code>、<code>poll</code>或者<code>remove</code>操作，导致计算的元素个数不精确，所以在并发情况下<code>size</code>方法不推荐使用。</p>
 <p>入队、出队都是操作<code>volatile</code>修饰的<code>tail</code>和<code>head</code>节点，要保证在多线程下出入队线程安全，只需要保证这个两个节点操作的可见性和原子性即可。<code>volatile</code>保证操作可见性，CASS保证操作原子性。</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/operate.svg" class="" title="operate">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/29870/operate.svg" class="" title="operate">
 
 <p><code>offer</code>操作是在<code>tail</code>后面增加元素，也就是调用<code>tail.cadNext</code>方法，而这个方法使用的是CAS操作，只有一个线程会成功，然后失败的线程会循环，重新获取<code>tail</code>，再执行<code>casNext</code>方法。<code>poll</code>操作也通过类似CAS的算法保证出队时移除节点操作的原子性。</p>
 ]]></content>
@@ -354,7 +349,7 @@
     <title>HashMap</title>
     <url>/posts/48482/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>🔍基于JDK1.8的HashMap源码分析。</p>
-<h2 id="1-基本知识"><a href="#1-基本知识" class="headerlink" title="1. 基本知识"></a>1. 基本知识</h2><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/java8-HashMap.jpg" class="" title="java8-HashMap">
+<h2 id="1-基本知识"><a href="#1-基本知识" class="headerlink" title="1. 基本知识"></a>1. 基本知识</h2><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/java8-HashMap.jpg" class="" title="java8-HashMap">
 
 
 
@@ -432,19 +427,19 @@
 <p>当<code>loadFactor </code>= 1时，hash数组中的16个值全部填充的时候才会扩容，造成链表或者红黑树的长度变大，hash碰撞的次数变多；</p>
 <p>当<code>loadFactor </code>= 0.5时，hash数组中的值填充一半开始扩容，造成空间利用率降低。</p>
 <p><strong>证明</strong></p>
-<p>通过预测桶是否为空，桶空与非空的概率为**<em>0.5**</em>。</p>
-<p>设*<strong>s**<em>表示哈希桶的长度，</em></strong>n*<strong>表示已添加的元素个数，负载因子**<em>loadFactor = n / s</em></strong>；</p>
-<p>对于每个元素，桶非空的概率为*<strong>1/s**<em>，桶空的概率为</em></strong>1 -  1/s***；</p>
+<p>通过预测桶是否为空，桶空与非空的概率为<strong>0.5</strong>。</p>
+<p>设<strong>s</strong>表示哈希桶的长度，<strong>n</strong>表示已添加的元素个数，负载因子<strong>loadFactor = n / s</strong>；</p>
+<p>对于每个元素，桶非空的概率为<strong>1/s</strong>，桶空的概率为<strong>1 -  1/s</strong>；</p>
 <p>根据二项式定理，桶空的概率：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">P(0) &#x3D; C(n, 0) * [(1 &#x2F; s) ^ 0] * [(1 - 1 &#x2F; s) ^ (n - 0)] </span><br><span class="line">&#x3D;&gt; P(0) &#x3D; (1 - 1 &#x2F; s) ^ n</span><br></pre></td></tr></table></figure>
 
-<p>令这个概率值等于 <strong><em>1/2</em></strong>，那么：</p>
+<p>令这个概率值等于 <strong>1/2</strong>，那么：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(1 - 1 &#x2F; s) ^ n &#x3D; 1 &#x2F; 2</span><br></pre></td></tr></table></figure>
 
 <p>然后进行极限变换求值：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(1 - 1 &#x2F; s) ^ n</span><br><span class="line">&#x3D; [1 + 1&#x2F; (-s)] ^ [(-s) * (- n &#x2F; s)]</span><br><span class="line">&#x3D; 1 &#x2F; 2</span><br><span class="line">当s -&gt; +∞时，[1 + 1 &#x2F; (-s)] ^ (-s) -&gt; e</span><br><span class="line">即 e ^ (- n &#x2F; s) &#x3D; 1 &#x2F; 2</span><br><span class="line">两边同时取对数，n &#x2F; s &#x3D; ln 2</span><br></pre></td></tr></table></figure>
 
-<p>从而，**<em>loadFactor = ln2 =  0.69314718056**</em>。</p>
+<p>从而，<strong>loadFactor = ln2 =  0.69314718056</strong>。</p>
 <p>个人猜测，负载因子在[ln2, 0.75]这个区间内都可以保证良好的性能。</p>
 <h2 id="9-树化阈值"><a href="#9-树化阈值" class="headerlink" title="9. 树化阈值"></a>9. 树化阈值</h2><p>在理想情况下，使用随机哈希码，节点出现的频率在哈希桶中遵循泊松分布，同时给出了桶中元素个数（链表长度）和命中概率的对照表：</p>
 <ul>
@@ -469,7 +464,7 @@
       </tags>
   </entry>
   <entry>
-    <title>HashMap</title>
+    <title>CopyOnWriteArrayList</title>
     <url>/posts/48481/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>🔍 基于JDK1.8的CopyOnWriteArrayList源码解析。</p>
 <p>⚡ 涉及的API：<code>System#copyArray(Object src, int srcPos,Object dest, int destPos, int length)</code></p>
@@ -492,7 +487,7 @@
 <p>写时复制是CS领域的一种优化策略，核心思想是，如果有多个调用者同时请求相同的资源，它们会获取相同的指针指向的资源；如果某个调用者试图修改资源的内容时，复制一份副本给该调用者，该调用者修改的便是副本，其他调用者所见的依然是最初的资源，当修改完毕时，使用副本替换原始资源。</p>
 </li>
 <li><p>类图：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/CopyOnWriteArrayList.png" class="" title="image-20210611111106058">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48481/CopyOnWriteArrayList.png" class="" title="image-20210611111106058">
 
 
 
@@ -617,7 +612,7 @@
 </ul>
 </li>
 <li><p>类图：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/ArrayList.png" class="" title="ArrayList">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/55122/ArrayList.png" class="" title="ArrayList">
 
 
 
@@ -668,10 +663,10 @@
 </ul>
 </li>
 <li><p>类图：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/LinkedList.png" class="" title="LinkedList">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/55122/LinkedList.png" class="" title="LinkedList">
 </li>
 <li><p>结构：双向链表</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/undefined/LinkedList-structure.svg" class="" title="LinkedList-structure">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/55122/LinkedList-structure.svg" class="" title="LinkedList-structure">
 
 
 
@@ -9420,11 +9415,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart944" style="height: 120px"></canvas>
+    <canvas id="chart3264" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart944').getContext('2d');
+    var ctx = document.getElementById('chart3264').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -9460,11 +9455,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart714" style="height: 100px"></canvas>
+    <canvas id="chart1431" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart714').getContext('2d');
+    var ctx = document.getElementById('chart1431').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -9488,11 +9483,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart2529" style="height: 100px"></canvas>
+    <canvas id="chart1257" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart2529').getContext('2d');
+    var ctx = document.getElementById('chart1257').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -13142,10 +13137,10 @@ H --&gt; I</div>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/f8cdfd0a/MyCD.jpg" class="" title="MyCD">
 
 
-        <div id="aplayer-WhSodMEo" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-xsvucaoR" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-WhSodMEo");
+				  options.element = document.getElementById("aplayer-xsvucaoR");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
