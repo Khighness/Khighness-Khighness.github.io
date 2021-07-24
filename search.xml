@@ -81,7 +81,15 @@
 </table>
 
 
-
+<h2 id="世面"><a href="#世面" class="headerlink" title="世面"></a>世面</h2><p>没见过世面的少年，普普通通。</p>
+<p>在乡镇与城市的交涉中，需要更强大的心理力量。</p>
+<p>在各种与别人对照的小事中，一眼就瞥见自身的贫瘠习性和固陋视野。</p>
+<p>他常常要消化这种震惊，要按耐住不安，让这种茫然尽可能习以为常。</p>
+<p>不管是第一次做露天轻轨还是推开星巴克的门。</p>
+<p>他讨厌那些让他紧张的东西，让他数次出糗。</p>
+<p>他在搜索引擎中有难以示人的好奇，包括第一次做飞机需要哪些流程，同事的潮牌是什么来历。</p>
+<p>他没有自卑到觉得自己一辈子都跟这些东西无缘，也没有自信到花花世界丝毫不影响自己的生活。</p>
+<p>他不至于去冒充什么，就是尽力避免自己格格不。</p>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>或许我再也没有暑假了吧，但是我还拥有七月。</p>
 <p>爱或者不爱，太阳就在那里，不悲不喜；</p>
 <p>念或者不念，雪糕就在那里，不多不少；</p>
@@ -7114,7 +7122,7 @@ H --&gt; I</div>
 
 
 
-<h3 id="4-4-3-AtomMarkableReference"><a href="#4-4-3-AtomMarkableReference" class="headerlink" title="4.4.3 AtomMarkableReference"></a>4.4.3 AtomMarkableReference</h3><p>不关心引用变量更改了几次，只是单纯的关心是否更改过。</p>
+<h3 id="4-4-3-AtomicMarkableReference"><a href="#4-4-3-AtomicMarkableReference" class="headerlink" title="4.4.3 AtomicMarkableReference"></a>4.4.3 AtomicMarkableReference</h3><p>不关心引用变量更改了几次，只是单纯的关心是否更改过。</p>
 <p>案例：</p>
 <p>家里有清洁机器人和保洁阿姨，垃圾袋满时，需要更换，机器人换了阿姨则不需要换，反之亦然。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Slf4j(topic = &quot;ABAAtomicMarkableReference&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ABAAtomicMarkableReferenceDemo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> GarbageBag bag = <span class="keyword">new</span> GarbageBag(<span class="string">&quot;装满垃圾&quot;</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AtomicMarkableReference&lt;GarbageBag&gt; ref = <span class="keyword">new</span> AtomicMarkableReference&lt;&gt;(bag, <span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        log.debug(<span class="string">&quot;家里需要换垃圾袋...&quot;</span>);</span><br><span class="line">        GarbageBag prev = ref.getReference();</span><br><span class="line">        robot();</span><br><span class="line">        TimeUnit.MILLISECONDS.sleep(<span class="number">10</span>);</span><br><span class="line">        aunt();</span><br><span class="line">        TimeUnit.MILLISECONDS.sleep(<span class="number">10</span>);</span><br><span class="line">        log.debug(ref.getReference().toString());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 清洁机器人</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">robot</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            log.debug(<span class="string">&quot;清洁机器人开始打扫卫生...&quot;</span>);</span><br><span class="line">            <span class="keyword">boolean</span> res = ref.compareAndSet(ref.getReference(), <span class="keyword">new</span> GarbageBag(<span class="string">&quot;新垃圾袋&quot;</span>),</span><br><span class="line">                    <span class="keyword">true</span>, <span class="keyword">false</span>);</span><br><span class="line">            log.debug(<span class="string">&quot;机器人是否换了垃圾袋 ? &#123;&#125;&quot;</span>, res);</span><br><span class="line">        &#125;, <span class="string">&quot;robot&quot;</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 保洁阿姨</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">aunt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread(() -&gt; &#123;</span><br><span class="line">            log.debug(<span class="string">&quot;保洁阿姨开始打扫卫生...&quot;</span>);</span><br><span class="line">            bag.setDesc(<span class="string">&quot;空垃圾袋&quot;</span>);</span><br><span class="line">            <span class="keyword">boolean</span> res = ref.compareAndSet(ref.getReference(), <span class="keyword">new</span> GarbageBag(<span class="string">&quot;新垃圾袋&quot;</span>),</span><br><span class="line">                    <span class="keyword">true</span>, <span class="keyword">false</span>);</span><br><span class="line">            log.debug(<span class="string">&quot;阿姨是否换了垃圾袋 ? &#123;&#125;&quot;</span>, res);</span><br><span class="line">        &#125;, <span class="string">&quot;aunt&quot;</span>).start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GarbageBag</span> </span>&#123;</span><br><span class="line">    String desc;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GarbageBag</span><span class="params">(String desc)</span> </span>&#123; <span class="keyword">this</span>.desc = desc; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDesc</span><span class="params">(String desc)</span> </span>&#123; <span class="keyword">this</span>.desc = desc; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">&quot;GarbageBag[desc=&#x27;&quot;</span> + desc + <span class="string">&quot;&#x27;]&quot;</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -9535,11 +9543,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart4192" style="height: 120px"></canvas>
+    <canvas id="chart5355" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart4192').getContext('2d');
+    var ctx = document.getElementById('chart5355').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -9575,11 +9583,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart8178" style="height: 100px"></canvas>
+    <canvas id="chart1161" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart8178').getContext('2d');
+    var ctx = document.getElementById('chart1161').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -9603,11 +9611,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart9454" style="height: 100px"></canvas>
+    <canvas id="chart6493" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart9454').getContext('2d');
+    var ctx = document.getElementById('chart6493').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -13259,10 +13267,10 @@ H --&gt; I</div>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/f8cdfd0a/MyCD.jpg" class="" title="MyCD">
 
 
-        <div id="aplayer-LNTLURvA" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-qVLSnWYp" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-LNTLURvA");
+				  options.element = document.getElementById("aplayer-qVLSnWYp");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
