@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.parak.top/posts/3705/</loc>
+    
+    <lastmod>2021-08-13</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.parak.top/posts/24559/</loc>
+    
+    <lastmod>2021-08-13</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.parak.top/posts/24560/</loc>
     
     <lastmod>2021-08-13</lastmod>
@@ -17,13 +31,6 @@
   
   <url>
     <loc>https://www.parak.top/posts/64315/</loc>
-    
-    <lastmod>2021-08-13</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.parak.top/posts/24559/</loc>
     
     <lastmod>2021-08-13</lastmod>
     
@@ -655,14 +662,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/%E7%BC%93%E5%AD%98/</loc>
+    <loc>https://www.parak.top/tags/Server/</loc>
     <lastmod>2021-08-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Server/</loc>
+    <loc>https://www.parak.top/tags/%E7%BC%93%E5%AD%98/</loc>
     <lastmod>2021-08-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
