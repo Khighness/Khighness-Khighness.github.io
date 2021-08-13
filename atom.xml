@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2021-07-29T14:55:36.737Z</updated>
+  <updated>2021-08-13T15:07:32.593Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -15,6 +15,131 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spring-组件注册</title>
+    <link href="https://www.parak.top/posts/24559/"/>
+    <id>https://www.parak.top/posts/24559/</id>
+    <published>2021-08-13T15:11:00.695Z</published>
+    <updated>2021-08-13T15:07:32.593Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring-aop原理</title>
+    <link href="https://www.parak.top/posts/3705/"/>
+    <id>https://www.parak.top/posts/3705/</id>
+    <published>2021-08-13T15:11:00.694Z</published>
+    <updated>2021-08-13T15:10:40.914Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring-组件注册</title>
+    <link href="https://www.parak.top/posts/24560/"/>
+    <id>https://www.parak.top/posts/24560/</id>
+    <published>2021-08-13T15:11:00.535Z</published>
+    <updated>2021-08-13T15:10:48.811Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring-循环依赖</title>
+    <link href="https://www.parak.top/posts/50719/"/>
+    <id>https://www.parak.top/posts/50719/</id>
+    <published>2021-08-13T15:11:00.533Z</published>
+    <updated>2021-08-13T15:08:13.039Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring-事务原理</title>
+    <link href="https://www.parak.top/posts/64315/"/>
+    <id>https://www.parak.top/posts/64315/</id>
+    <published>2021-08-13T15:11:00.532Z</published>
+    <updated>2021-08-13T15:10:37.781Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>七月</title>
@@ -374,131 +499,6 @@
     <id>https://www.parak.top/posts/11567/</id>
     <published>2021-05-31T16:00:00.000Z</published>
     <updated>2021-08-04T15:36:04.500Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM-14(垃圾回收概念)</title>
-    <link href="https://www.parak.top/posts/31658/"/>
-    <id>https://www.parak.top/posts/31658/</id>
-    <published>2021-05-30T16:00:00.000Z</published>
-    <updated>2021-06-02T07:30:07.207Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM-13(垃圾回收算法)</title>
-    <link href="https://www.parak.top/posts/25/"/>
-    <id>https://www.parak.top/posts/25/</id>
-    <published>2021-05-29T16:00:00.000Z</published>
-    <updated>2021-05-20T05:07:22.792Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM-12(String Table)</title>
-    <link href="https://www.parak.top/posts/59786/"/>
-    <id>https://www.parak.top/posts/59786/</id>
-    <published>2021-05-28T16:00:00.000Z</published>
-    <updated>2021-05-18T08:27:50.252Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM-11(执行引擎)</title>
-    <link href="https://www.parak.top/posts/58113/"/>
-    <id>https://www.parak.top/posts/58113/</id>
-    <published>2021-05-27T16:00:00.000Z</published>
-    <updated>2021-05-18T08:22:35.952Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="JVM" scheme="https://www.parak.top/categories/JVM/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM-10(直接内存)</title>
-    <link href="https://www.parak.top/posts/6513/"/>
-    <id>https://www.parak.top/posts/6513/</id>
-    <published>2021-05-26T16:00:00.000Z</published>
-    <updated>2021-05-18T08:17:08.797Z</updated>
     
     
       
