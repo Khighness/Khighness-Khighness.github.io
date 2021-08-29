@@ -1272,13 +1272,13 @@
 <p>（3）最后把元素从旧数组中迁移到新数组中。</p>
 <p>在<code>JDK1.7</code>中，迁移数据的时候所有元素都重新计算了hash，并根据新的hash重新计算数组中的位置</p>
 <p>在<code>JDK1.8</code>中，这个过程进行了优化：</p>
-<p>如果当前节点是单独节点（后面没有接着链表），则根据该节点的hash值与新容量减一的值按位与得到新的地址</p>
-<p>如果当前节点后面带有链表，则根据每个节点的hash值与旧数组容量进行按位与的结果进行划分</p>
+<p>如果当前节点是单独节点（后面没有接着链表），则根据该节点的hash值与新容量减一的值按位与得到新的地址。</p>
+<p>如果当前节点后面带有链表，则根据每个节点的hash值与旧数组容量进行按位与的结果进行划分：</p>
 <ul>
 <li>如果得到的值为0，这些元素会被分配回原来的位置</li>
 <li>如果得到的结果不为0，则分配到新位置，新位置的下标为当前位置下标加上旧数组容量</li>
 </ul>
-<p>还有一种情况是当前节点是树节点，那么会调用一个专门的拆分方法进行拆分</p>
+<p>还有一种情况是当前节点是树节点，那么会调用一个专门的拆分方法进行拆分。</p>
 <div class="note flat"><p>HashMap支持动态扩容，但是不支持动态缩容。</p>
 <p>动态缩容就需要写在<code>remove</code>方法中，这样可能会导致<code>remove</code>方法的时间复杂度从<code>O(1)</code>上升为<code>O(N)</code>。</p>
 </div>
@@ -1980,7 +1980,7 @@
 </ol>
 <p>在C步骤中，服务器回应客户端的URI，包含以下参数：</p>
 <ol>
-<li><p><code>code</code>：表示授权码，必选项。该码的有效期应该很短，通常设为10分钟，客户端只能使用该码一次，否则会被授权服务器拒绝。该码与客户端ID和重定向URI，是一一对应关</p>
+<li><p><code>code</code>：表示授权码，必选项。该码的有效期应该很短，通常设为10分钟，客户端只能使用该码一次，否则会被授权服务器拒绝。该码与客户端ID和重定向URI，是一一对应关系。</p>
 </li>
 <li><p><code>state</code>：如果客户端的请求中包含这个参数，认证服务器的回应也必须一模一样包含这个参数。</p>
 </li>
@@ -2193,7 +2193,7 @@
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">security:</span></span><br><span class="line">  <span class="attr">oauth2:</span></span><br><span class="line">    <span class="attr">client:</span></span><br><span class="line">      <span class="attr">client-id:</span> <span class="string">k</span></span><br><span class="line">      <span class="attr">client-secret:</span> <span class="string">parak</span></span><br><span class="line">      <span class="attr">registered-redirect-uri:</span> <span class="string">http://parak.top</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">KAG1823</span></span><br><span class="line">    <span class="attr">database:</span> <span class="number">0</span></span><br><span class="line">  <span class="comment"># 邮箱这样配置一般不会出现问题</span></span><br><span class="line">  <span class="attr">mail:</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">&lt;邮箱&gt;</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">&lt;邮箱授权码&gt;</span></span><br><span class="line">    <span class="attr">host:</span> <span class="string">&lt;邮件STMP服务器&gt;</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">465</span></span><br><span class="line">    <span class="attr">properties:</span></span><br><span class="line">      <span class="attr">mail:</span></span><br><span class="line">        <span class="attr">ssl:</span></span><br><span class="line">          <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">        <span class="attr">smtp:</span></span><br><span class="line">          <span class="attr">auth:</span> <span class="literal">true</span></span><br><span class="line">          <span class="attr">starttls:</span></span><br><span class="line">            <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">            <span class="attr">required:</span> <span class="literal">true</span></span><br><span class="line">          <span class="attr">socketFactory:</span></span><br><span class="line">            <span class="attr">port:</span> <span class="number">465</span></span><br><span class="line">            <span class="attr">class:</span> <span class="string">javax.net.ssl.SSLSocketFactory</span></span><br><span class="line">            <span class="attr">fallback:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 
 <p>在Spring Security中，使用用户名密码认证的过程大致如下图左流程所示。</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/52913/image-20210602181133567.png" class="" title="image-20210602181133567">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/52913/image-20210602181133567.svg" class="" title="image-20210602181133567">
 
 <p>Spring Security使用<code>UsernamePasswordAuthenticationFilter</code>过滤器来拦截用户名密码认证请求，将用户名和密码封装成一个<code>UsernamePasswordAuthenticationToken</code>对象交给<code>AuthenticationManager</code>处理。<code>AuthenticationManager</code>将抛出一个支持该类型Token的<code>AuthenticationProvider</code>来进行认证，认证过程中<code>DaoAuthenticationProvider</code>将调用<code>UserDetailService</code>的<code>loadUserByUsername</code>来获取<code>UserDetails</code>对象，如果<code>UserDetails</code>不为空并且密码和用户输入的密码匹配一致的话，则将认证信息保存到session中，认证后我们便可以通过<code>Authentication</code>对象获取到认证的信息。</p>
 <p>由于Spring Security并没有提供验证码认证的流程，所以我需要仿照上图左边的流程实现，如右图所示。</p>
@@ -2291,7 +2291,7 @@
 <p>启动项目，使用密码模式获取令牌，注意请求头中添加<code>Basic Base54(k:parak)</code>：</p>
 <img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/52913/image-20210603162437693.png" class="" title="image-20210603162437693">
 
-<p>可以看到<code>expires_in</code>是我们定义的3600妙。</p>
+<p>可以看到<code>expires_in</code>是我们定义的3600秒。</p>
 <p>测试一下将scope指定为k会有什么结果：</p>
 <img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/52913/image-20210603162742562.png" class="" title="image-20210603162742562">
 
@@ -10306,11 +10306,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart753" style="height: 120px"></canvas>
+    <canvas id="chart9153" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart753').getContext('2d');
+    var ctx = document.getElementById('chart9153').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -10346,11 +10346,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart8750" style="height: 100px"></canvas>
+    <canvas id="chart865" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart8750').getContext('2d');
+    var ctx = document.getElementById('chart865').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -10374,11 +10374,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart1863" style="height: 100px"></canvas>
+    <canvas id="chart3837" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart1863').getContext('2d');
+    var ctx = document.getElementById('chart3837').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -14030,10 +14030,10 @@ H --&gt; I</div>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/f8cdfd0a/MyCD.jpg" class="" title="MyCD">
 
 
-        <div id="aplayer-lwmAaoBd" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-gGfvthCR" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-lwmAaoBd");
+				  options.element = document.getElementById("aplayer-gGfvthCR");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
