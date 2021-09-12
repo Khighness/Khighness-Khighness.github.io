@@ -328,18 +328,28 @@
 <img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/54880/spring-aop.svg" class="" title="spring-aop"><br />
 
 
-<h2 id="最终总结"><a href="#最终总结" class="headerlink" title="最终总结"></a>最终总结</h2><p>（1）生成代理对象<br><code>@EnableAspectJAutoProxy</code>模块驱动注解用于开启AspectJ自动代理，这个注解使用<code>@Import</code>导入一个<code>AspectJAutoProxyRegistrar</code>AspectJ自动代理注册器，这个类的作用是向IOC容器中注册<code>AnnotationAwareAspectJAutoProxyCreator</code>。</p>
-<p><code>AnnotationAwareAspectJAutoProxyCreator</code>的父类<code>AbstractAutoProxyCreator</code>重写了<code>InstantiationAwareBeanProcessor</code>的<code>postProcessBeforeInstantiation</code>方法和<code>BeanPostProcessor</code>的<code>postProcessAfterInitialization</code>方法。自定义Bean的实例化前逻辑中包含五个核心步骤，主要目的是进行一些校验，如果Bean本身就是切面类，那么就不会被代理了；如果我们自定义了TargetClass，则返回代理后的Bean。自定义Bean的初始化后逻辑中，主要进行<code>wrapIfNecessary</code>方法，先通过<code>getAdvicesAndAdvisors</code>方法获取Bean的通知方法集合并且进行排序，如果集合不为空，则通过<code>createProxy</code>创建该Bean的代理对象，最终会调用<code>DefaultAopProxyFactory</code>的<code>createAopProxy</code>方法，这个方法会判断使用CGLIB还是JDK动态代理。<br>（如果代理对象没有实现接口或者实现的都是空接口，则使用CGLIB动态代理；默认使用JDK动态代理）</p>
-<p>（2）生成拦截器链<br>目标方法会被<code>CglibAopProxy</code>的<code>intercept</code>方法拦截，方法里会通过<code>getInterceptorsAndDynamicInterceptionAdvice</code>方法获取目标对象的拦截器链，创建目标方法的缓存key，首先从<code>methodCache</code>缓存中获取拦截器链，第一次调用时获取到的必然为空，那么则调用<code>advisorChainFactory</code>的<code>getInterceptorsAndDynamicInterceptionAdvice</code>方法封装拦截器链，并且将拦截器链存入缓存，此后调用直接从缓存中获取，提高AOP的性能。</p>
+<h2 id="最终总结"><a href="#最终总结" class="headerlink" title="最终总结"></a>最终总结</h2><p>（1）生成代理对象</p>
+<p><code>@EnableAspectJAutoProxy</code>模块驱动注解用于开启AspectJ自动代理，这个注解使用<code>@Import</code>导入一个<code>AspectJAutoProxyRegistrar</code>AspectJ自动代理注册器，这个类的作用是向IOC容器中注册<code>AnnotationAwareAspectJAutoProxyCreator</code>组件。</p>
+<p><code>AnnotationAwareAspectJAutoProxyCreator</code>的父类<code>AbstractAutoProxyCreator</code>重写了<code>InstantiationAwareBeanPostProcessor</code>的<code>postProcessBeforeInstantiation</code>方法和<code>BeanPostProcessor</code>的<code>postProcessAfterInitialization</code>方法。自定义Bean的实例化前逻辑中包含五个核心步骤，主要目的是进行一些校验，如果Bean本身就是切面类，那么就不会被代理了；如果我们自定义了TargetClass，则返回代理后的Bean。自定义Bean的初始化后逻辑中，主要进行<code>wrapIfNecessary</code>方法，先通过<code>getAdvicesAndAdvisors</code>方法获取Bean的通知方法集合并且进行排序，如果集合不为空，则通过<code>createProxy</code>创建该Bean的代理对象，最终会调用<code>DefaultAopProxyFactory</code>的<code>createAopProxy</code>方法，这个方法会判断使用CGLIB还是JDK动态代理。</p>
+<p>（如果代理对象没有实现接口或者实现的都是空接口，则使用CGLIB动态代理；默认使用JDK动态代理）</p>
+<p>（2）生成拦截器链</p>
+<p>目标方法会被<code>CglibAopProxy</code>的<code>intercept</code>方法拦截，方法里会通过<code>getInterceptorsAndDynamicInterceptionAdvice</code>方法获取目标对象的拦截器链，创建目标方法的缓存key，首先从<code>methodCache</code>缓存中获取拦截器链，第一次调用时获取到的必然为空，那么则调用<code>advisorChainFactory</code>的<code>getInterceptorsAndDynamicInterceptionAdvice</code>方法封装拦截器链，并且将拦截器链存入缓存，此后调用直接从缓存中获取，提高AOP的性能。</p>
 <p>『springboot2.4.0』(之前的版本后面四个拦截器顺序反转)最终生成的拦截器链的类型顺序：</p>
 <ol>
-<li><code>ExposeInvocationInterceptor</code>(默认拦截器)</li>
-<li><code>MethodBeforeAdviceInterceptor</code>(方法执行前拦截器)</li>
-<li><code>AspectJAfterAdvice</code>(方法执行完成拦截器)</li>
-<li><code>AfterReturningAdviceInterceptor</code>(方法执行成功拦截器)</li>
-<li><code>AspectJAfterThrowingAdvice</code>(方法执行异常拦截器)</li>
+<li><p><code>ExposeInvocationInterceptor</code>(默认拦截器)</p>
+</li>
+<li><p><code>MethodBeforeAdviceInterceptor</code>(方法执行前拦截器)</p>
+</li>
+<li><p><code>AspectJAfterAdvice</code>(方法执行完成拦截器)</p>
+</li>
+<li><p><code>AfterReturningAdviceInterceptor</code>(方法执行成功拦截器)</p>
+</li>
+<li><p><code>AspectJAfterThrowingAdvice</code>(方法执行异常拦截器)</p>
+</li>
 </ol>
-<p>（3）链式调用通知<br>如果拦截器链为空，则直接通过反射执行目标方法；不为空则创建一个<code>CglibMethodInvocation</code>对象，它是<code>ReflectiveMethodInvocation</code>的子类，内部的<code>proceed</code>方法主要逻辑调用父类方法，内部维护了一个索引<code>currentInterceptorIndex</code>，初始值为-1，一步步取出拦截器链中的拦截器，并执行<code>invoke</code>方法，<code>invoke</code>方法中会通过参数<code>this</code>继续调用<code>ReflectiveMethodInvocation</code>的<code>proceed</code>方法实现链式调用。<br>对于拦截器，<code>ExposeInterceptorInvocation</code>直接调用<code>proceed</code>，<code>MethodBeforeAdviceInterceptor</code>先执行<code>before</code>再执行<code>proceed</code>，<code>AspectJAfterAdvice</code>先调用<code>proceed</code>再执行<code>invokeAdviceMethod</code>，<code>AfterReturningAdviceInterceptor</code>先调用<code>proceed</code>再执行<code>afterReturning</code>，<code>AspectJAfterThrowingAdvice</code>先调用<code>proceed</code>再执行<code>invokeAdviceMethod</code>，先链式调用然后方法出栈，最后回到<code>CglibAopProxy</code>的<code>intercept</code>方法，执行完毕后，拦截器链调用随之结束。</p>
+<p>（3）链式调用通知</p>
+<p>如果拦截器链为空，则直接通过反射执行目标方法；不为空则创建一个<code>CglibMethodInvocation</code>对象，它是<code>ReflectiveMethodInvocation</code>的子类，内部的<code>proceed</code>方法主要逻辑调用父类方法，内部维护了一个索引<code>currentInterceptorIndex</code>，初始值为-1，一步步取出拦截器链中的拦截器，并执行<code>invoke</code>方法，<code>invoke</code>方法中会通过参数<code>this</code>继续调用<code>ReflectiveMethodInvocation</code>的<code>proceed</code>方法实现链式调用。</p>
+<p>对于拦截器，<code>ExposeInterceptorInvocation</code>直接调用<code>proceed</code>，<code>MethodBeforeAdviceInterceptor</code>先执行<code>before</code>再执行<code>proceed</code>，<code>AspectJAfterAdvice</code>先调用<code>proceed</code>再执行<code>invokeAdviceMethod</code>，<code>AfterReturningAdviceInterceptor</code>先调用<code>proceed</code>再执行<code>afterReturning</code>，<code>AspectJAfterThrowingAdvice</code>先调用<code>proceed</code>再执行<code>invokeAdviceMethod</code>，先链式调用然后方法出栈，最后回到<code>CglibAopProxy</code>的<code>intercept</code>方法，执行完毕后，拦截器链调用随之结束。</p>
 ]]></content>
       <categories>
         <category>Spring</category>
@@ -10175,7 +10185,7 @@ H --&gt; I</div>
 <p>RMI的调用结果可以是Java的对象类型或者基本数据类型；RPC的调用结果统一由外部数据表示。</p>
 ]]></content>
       <categories>
-        <category>web</category>
+        <category>RPC</category>
       </categories>
       <tags>
         <tag>RPC</tag>
@@ -10321,7 +10331,7 @@ H --&gt; I</div>
 <p><strong>参考</strong><br>[1] 🐦 SpringBoot中的JSON技术: <a href="https://mrbird.cc/Spring-Boot%20JSON.html">https://mrbird.cc/Spring-Boot%20JSON.html</a><br>[2] ☁️ 自定义Jackson ObjectMapper：<a href="https://www.kancloud.cn/ahutchen/spring-boot-reference-guide/333370">https://www.kancloud.cn/ahutchen/spring-boot-reference-guide/333370</a></p>
 ]]></content>
       <categories>
-        <category>web</category>
+        <category>Web</category>
       </categories>
       <tags>
         <tag>json</tag>
@@ -10337,11 +10347,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart4299" style="height: 120px"></canvas>
+    <canvas id="chart5577" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart4299').getContext('2d');
+    var ctx = document.getElementById('chart5577').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -10377,11 +10387,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart9107" style="height: 100px"></canvas>
+    <canvas id="chart9399" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart9107').getContext('2d');
+    var ctx = document.getElementById('chart9399').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -10405,11 +10415,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart4816" style="height: 100px"></canvas>
+    <canvas id="chart3889" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart4816').getContext('2d');
+    var ctx = document.getElementById('chart3889').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -14061,10 +14071,10 @@ H --&gt; I</div>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/f8cdfd0a/MyCD.jpg" class="" title="MyCD">
 
 
-        <div id="aplayer-lquenOCK" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-ygNggJmF" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-lquenOCK");
+				  options.element = document.getElementById("aplayer-ygNggJmF");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
