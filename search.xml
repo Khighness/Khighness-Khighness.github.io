@@ -1258,6 +1258,8 @@
 <p>个人猜测，负载因子在[ln2, 0.75]这个区间内都可以保证良好的性能。</p>
 </div>
 
+
+
 <h2 id="9-树化阈值"><a href="#9-树化阈值" class="headerlink" title="9. 树化阈值"></a>9. 树化阈值</h2><p>在理想情况下，使用随机哈希码，节点出现的频率在哈希桶中遵循泊松分布，同时给出了桶中元素个数（链表长度）和命中概率的对照表：</p>
 <ul>
 <li>0:    0.60653066</li>
@@ -1273,45 +1275,50 @@
 </ul>
 <p>从上可以看出当桶中元素长度达到8的时候，每个碰撞位置的链表长度为8的概率为一千万分之六，超过8的概率小于一千万分之一。</p>
 <p>也就是说，当哈希码分布均匀时，同一个位置上出现8个元素的概率为千万分之六，侧面说明如果链表长度达到了8，key的<code>hashcode()</code>出现了问题，这个时候需要红黑树来保证性能。</p>
-<h2 id="10-扩容原理"><a href="#10-扩容原理" class="headerlink" title="10. 扩容原理"></a>10. 扩容原理</h2><h3 id="JDK1-7扩容"><a href="#JDK1-7扩容" class="headerlink" title="JDK1.7扩容"></a>JDK1.7扩容</h3><p>扩容，创建新的哈希桶数组，进行数据迁移。源码如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void resize(int newCapacity) &#123;</span><br><span class="line">    Entry[] oldTable &#x3D; table;</span><br><span class="line">    int oldCapacity &#x3D; oldTable.length;</span><br><span class="line">    if (oldCapacity &#x3D;&#x3D; MAXIMUM_CAPACITY) &#123;</span><br><span class="line">        threshold &#x3D; Integer.MAX_VALUE;</span><br><span class="line">        return;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;创建新的table</span><br><span class="line">    Entry[] newTable &#x3D; new Entry[newCapacity];</span><br><span class="line">    &#x2F;&#x2F; 判断新的table中的元素是否需要重新求hash值，源码在下面</span><br><span class="line">    transfer(newTable, initHashSeedAsNeeded(newCapacity));</span><br><span class="line">    table &#x3D; newTable;&#x2F;&#x2F;数组扩容赋值给table</span><br><span class="line">    &#x2F;&#x2F; 计算新的扩容阈值</span><br><span class="line">    threshold &#x3D; (int)Math.min(newCapacity * loadFactor, MAXIMUM_CAPACITY + 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="10-扩容原理"><a href="#10-扩容原理" class="headerlink" title="10. 扩容原理"></a>10. 扩容原理</h2><h3 id="JDK1-7扩容"><a href="#JDK1-7扩容" class="headerlink" title="JDK1.7扩容"></a>JDK1.7扩容</h3><h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><p>扩容，创建新的哈希桶数组，进行数据迁移。源码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void resize(int newCapacity) &#123;</span><br><span class="line">    Entry[] oldTable &#x3D; table;</span><br><span class="line">    int oldCapacity &#x3D; oldTable.length;</span><br><span class="line">    if (oldCapacity &#x3D;&#x3D; MAXIMUM_CAPACITY) &#123;</span><br><span class="line">        threshold &#x3D; Integer.MAX_VALUE;</span><br><span class="line">        return;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 创建新的table</span><br><span class="line">    Entry[] newTable &#x3D; new Entry[newCapacity];</span><br><span class="line">    &#x2F;&#x2F; 判断新的table中的元素是否需要重新求hash值，源码在下面</span><br><span class="line">    transfer(newTable, initHashSeedAsNeeded(newCapacity));</span><br><span class="line">    table &#x3D; newTable;&#x2F;&#x2F;数组扩容赋值给table</span><br><span class="line">    &#x2F;&#x2F; 计算新的扩容阈值</span><br><span class="line">    threshold &#x3D; (int)Math.min(newCapacity * loadFactor, MAXIMUM_CAPACITY + 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>数据迁移，将旧元素重新计算hash值然后放入到新的table里面。源码如下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">void transfer(Entry[] newTable, boolean rehash) &#123;</span><br><span class="line">    int newCapacity &#x3D; newTable.length;</span><br><span class="line">    &#x2F;&#x2F; 遍历桶</span><br><span class="line">    for (Entry&lt;K,V&gt; e : table) &#123;</span><br><span class="line">        &#x2F;&#x2F; 采用头插法</span><br><span class="line">        while(null !&#x3D; e) &#123;</span><br><span class="line">            &#x2F;&#x2F; 记录当前节点的下一个节点</span><br><span class="line">            Entry&lt;K,V&gt; next &#x3D; e.next; &#x2F;&#x2F; sign A</span><br><span class="line">            &#x2F;&#x2F; 重新计算哈希</span><br><span class="line">            if (rehash) &#123;</span><br><span class="line">                e.hash &#x3D; null &#x3D;&#x3D; e.key ? 0 : hash(e.key);</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F; 新的哈希值对应的数组下标</span><br><span class="line">            int i &#x3D; indexFor(e.hash, newCapacity);</span><br><span class="line">            &#x2F;&#x2F; 插入新的节点</span><br><span class="line">            e.next &#x3D; newTable[i];</span><br><span class="line">            newTable[i] &#x3D; e;</span><br><span class="line">            &#x2F;&#x2F; 迭代</span><br><span class="line">            e &#x3D; next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-<p><strong>原始情况</strong></p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-1.svg" class="" title="HashMap-java7-1">
+<p>总结：</p>
+<ol>
+<li>创建新的数组newTable；</li>
+<li>遍历桶，将table中的节点全部重新计算hash值，采用头插法插入到newTable中；</li>
+<li>将newTable赋值给table；</li>
+<li>重新计算扩容阈值 = 新的容量 * 负载因子。</li>
+</ol>
+<h4 id="并发问题"><a href="#并发问题" class="headerlink" title="并发问题"></a>并发问题</h4><p><strong>原始情况</strong></p>
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-1.svg" class="" title="HashMap-java7-1"><br />
 
 
 
 <p><strong>死链情况</strong></p>
 <p>两个线程：线程A和线程B</p>
 <p>（1）假设线程A指定到sign A，情况如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-a.svg" class="" title="HashMap-java7-a">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-a.svg" class="" title="HashMap-java7-a"><br />
 
 <p>（2）此时，穿插线程B执行，执行完了整个迁移过程，结果如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-b1.svg" class="" title="HashMap-java7-b1">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-b1.svg" class="" title="HashMap-java7-b1"><br />
 
 <p>（3）线程A继续执行，使用头插法插入5节点，那么就会导致5节点和6节点相互引用导致链表成环：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-a1.svg" class="" title="HashMap-java7-a1">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-a1.svg" class="" title="HashMap-java7-a1"><br />
 
 
 
 <p><strong>数据丢失</strong></p>
 <p>两个线程：线程A和线程B</p>
 <p>（1）假设线程A指定到sign A，情况如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-a.svg" class="" title="HashMap-java7-a">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-a.svg" class="" title="HashMap-java7-a"><br />
 
 <p>（2）此时，穿插线程B，执行完了整个迁移过程，结果如下：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-b2.svg" class="" title="HashMap-java7-b2">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-b2.svg" class="" title="HashMap-java7-b2"><br />
 
 <p>（3）线程A继续执行，使用头插法插入5节点，然后继续插入next节点，由于6节点的next为null，会导致7节点丢失：</p>
-<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-a2.svg" class="" title="HashMap-java7-a2">
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/48482/HashMap-java7-a2.svg" class="" title="HashMap-java7-a2"><br />
 
 <p>最后扩容结束，由于线程B先执行了<code>table = newTable</code>，线程A后执行，那么A丢失的<code>newTable</code>最终成为真正的哈希桶，丢失数据。</p>
-<h3 id="JDK1-8扩容"><a href="#JDK1-8扩容" class="headerlink" title="JDK1.8扩容"></a>JDK1.8扩容</h3><p>扩容，创建新数组，数据迁移采用尾插法。源码如下：</p>
+<h3 id="JDK1-8扩容"><a href="#JDK1-8扩容" class="headerlink" title="JDK1.8扩容"></a>JDK1.8扩容</h3><h4 id="源码分析-1"><a href="#源码分析-1" class="headerlink" title="源码分析"></a>源码分析</h4><p>扩容，创建新数组，数据迁移采用尾插法。源码如下：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">final Node&lt;K,V&gt;[] resize() &#123;</span><br><span class="line">    Node&lt;K,V&gt;[] oldTab &#x3D; table;</span><br><span class="line">    &#x2F;&#x2F; 扩容前的数组长度和扩容阈值</span><br><span class="line">    int oldCap &#x3D; (oldTab &#x3D;&#x3D; null) ? 0 : oldTab.length;</span><br><span class="line">    int oldThr &#x3D; threshold;</span><br><span class="line">    &#x2F;&#x2F; 扩容后的数组长度和扩容阈值</span><br><span class="line">    int newCap, newThr &#x3D; 0;</span><br><span class="line">    if (oldCap &gt; 0) &#123;</span><br><span class="line">        &#x2F;&#x2F; 超过最大，无能为力</span><br><span class="line">        if (oldCap &gt;&#x3D; MAXIMUM_CAPACITY) &#123;</span><br><span class="line">            threshold &#x3D; Integer.MAX_VALUE;</span><br><span class="line">            return oldTab;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;&#x2F; 长度和阈值都扩大两倍</span><br><span class="line">        else if ((newCap &#x3D; oldCap &lt;&lt; 1) &lt; MAXIMUM_CAPACITY &amp;&amp;</span><br><span class="line">                 oldCap &gt;&#x3D; DEFAULT_INITIAL_CAPACITY)</span><br><span class="line">            newThr &#x3D; oldThr &lt;&lt; 1; &#x2F;&#x2F; double threshold</span><br><span class="line">    &#125;</span><br><span class="line">    else if (oldThr &gt; 0) &#x2F;&#x2F; initial capacity was placed in threshold</span><br><span class="line">        newCap &#x3D; oldThr;</span><br><span class="line">    else &#123;               &#x2F;&#x2F; zero initial threshold signifies using defaults</span><br><span class="line">        newCap &#x3D; DEFAULT_INITIAL_CAPACITY;</span><br><span class="line">        newThr &#x3D; (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);</span><br><span class="line">    &#125;</span><br><span class="line">    if (newThr &#x3D;&#x3D; 0) &#123;</span><br><span class="line">        float ft &#x3D; (float)newCap * loadFactor;</span><br><span class="line">        newThr &#x3D; (newCap &lt; MAXIMUM_CAPACITY &amp;&amp; ft &lt; (float)MAXIMUM_CAPACITY ?</span><br><span class="line">                  (int)ft : Integer.MAX_VALUE);</span><br><span class="line">    &#125;</span><br><span class="line">    threshold &#x3D; newThr;</span><br><span class="line">    &#x2F;&#x2F; 创建新的哈希桶数组</span><br><span class="line">    @SuppressWarnings(&#123;&quot;rawtypes&quot;,&quot;unchecked&quot;&#125;)</span><br><span class="line">    Node&lt;K,V&gt;[] newTab &#x3D; (Node&lt;K,V&gt;[])new Node[newCap];</span><br><span class="line">    table &#x3D; newTab;</span><br><span class="line">    if (oldTab !&#x3D; null) &#123;</span><br><span class="line">        &#x2F;&#x2F; 遍历原始数组下标</span><br><span class="line">        for (int j &#x3D; 0; j &lt; oldCap; ++j) &#123;</span><br><span class="line">            Node&lt;K,V&gt; e;</span><br><span class="line">            &#x2F;&#x2F; 如果原始数组下标对应位置有元素</span><br><span class="line">            if ((e &#x3D; oldTab[j]) !&#x3D; null) &#123;</span><br><span class="line">                oldTab[j] &#x3D; null;</span><br><span class="line">                &#x2F;&#x2F; 当前节点是个独狼</span><br><span class="line">                if (e.next &#x3D;&#x3D; null)</span><br><span class="line">                    &#x2F;&#x2F; 直接计算新数组中的位置</span><br><span class="line">                    newTab[e.hash &amp; (newCap - 1)] &#x3D; e;</span><br><span class="line">                &#x2F;&#x2F; 当前节点为红黑树节点</span><br><span class="line">                else if (e instanceof TreeNode)</span><br><span class="line">                    &#x2F;&#x2F; 单独处理，进行节点拆分</span><br><span class="line">                    ((TreeNode&lt;K,V&gt;)e).split(this, newTab, j, oldCap);</span><br><span class="line">                &#x2F;&#x2F; 当前节点为链表节点</span><br><span class="line">                else &#123; &#x2F;&#x2F; preserve order</span><br><span class="line">                   &#x2F;&#x2F; 根据hash值和原始数组长度重新计算索引值</span><br><span class="line">                    Node&lt;K,V&gt; loHead &#x3D; null, loTail &#x3D; null;</span><br><span class="line">                    Node&lt;K,V&gt; hiHead &#x3D; null, hiTail &#x3D; null;</span><br><span class="line">                    Node&lt;K,V&gt; next;</span><br><span class="line">                    do &#123;</span><br><span class="line">                        next &#x3D; e.next;</span><br><span class="line">                        &#x2F;&#x2F; 如果索引值为0，那么新数组下标等于原数组下标</span><br><span class="line">                        if ((e.hash &amp; oldCap) &#x3D;&#x3D; 0) &#123;</span><br><span class="line">                            if (loTail &#x3D;&#x3D; null)</span><br><span class="line">                                loHead &#x3D; e;</span><br><span class="line">                            else</span><br><span class="line">                                loTail.next &#x3D; e;</span><br><span class="line">                            loTail &#x3D; e;</span><br><span class="line">                        &#125;</span><br><span class="line">                        &#x2F;&#x2F; 如果索引值不为0，新数组下标为原数组下标+原数组长度</span><br><span class="line">                        else &#123;</span><br><span class="line">                            if (hiTail &#x3D;&#x3D; null)</span><br><span class="line">                                hiHead &#x3D; e;</span><br><span class="line">                            else</span><br><span class="line">                                hiTail.next &#x3D; e;</span><br><span class="line">                            hiTail &#x3D; e;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125; while ((e &#x3D; next) !&#x3D; null);</span><br><span class="line">                    if (loTail !&#x3D; null) &#123;</span><br><span class="line">                        loTail.next &#x3D; null;</span><br><span class="line">                        newTab[j] &#x3D; loHead;</span><br><span class="line">                    &#125;</span><br><span class="line">                    if (hiTail !&#x3D; null) &#123;</span><br><span class="line">                        hiTail.next &#x3D; null;</span><br><span class="line">                        newTab[j + oldCap] &#x3D; hiHead;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return newTab;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>总结：</p>
@@ -1324,7 +1331,7 @@
 </ol>
 </li>
 </ol>
-<p>采用尾插法可以防止在多线程情况下链表成环的产生，但是依然非线程安全。</p>
+<h4 id="并发问题-1"><a href="#并发问题-1" class="headerlink" title="并发问题"></a>并发问题</h4><p>采用尾插法可以防止在多线程情况下链表成环的产生，但是依然非线程安全。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">final V putVal(int hash, K key, V value, boolean onlyIfAbsent,</span><br><span class="line">               boolean evict) &#123;</span><br><span class="line">    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; int n, i;</span><br><span class="line">    if ((tab &#x3D; table) &#x3D;&#x3D; null || (n &#x3D; tab.length) &#x3D;&#x3D; 0)</span><br><span class="line">        n &#x3D; (tab &#x3D; resize()).length;</span><br><span class="line">    if ((p &#x3D; tab[i &#x3D; (n - 1) &amp; hash]) &#x3D;&#x3D; null)</span><br><span class="line">        tab[i] &#x3D; newNode(hash, key, value, null);</span><br><span class="line">    &#x2F;&#x2F; ... </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在<code>putVal</code>的第六行代码中判断是否出现哈希碰撞，如果线程A和线程B都在进行put操作，并且hash函数计算出的插入下标是相同的的，当线程A执行完后被挂起，而线程B在该下标处插入了元素，完成了正常的插入，这样数据就悄无声息的覆盖掉了，从而线程不安全。</p>
@@ -10359,11 +10366,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart544" style="height: 120px"></canvas>
+    <canvas id="chart6687" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart544').getContext('2d');
+    var ctx = document.getElementById('chart6687').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -10399,11 +10406,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart6067" style="height: 100px"></canvas>
+    <canvas id="chart7801" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart6067').getContext('2d');
+    var ctx = document.getElementById('chart7801').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -10427,11 +10434,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart8483" style="height: 100px"></canvas>
+    <canvas id="chart3447" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart8483').getContext('2d');
+    var ctx = document.getElementById('chart3447').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -14083,10 +14090,10 @@ H --&gt; I</div>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/f8cdfd0a/MyCD.jpg" class="" title="MyCD">
 
 
-        <div id="aplayer-aDmvAjuZ" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-sMBObuRB" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-aDmvAjuZ");
+				  options.element = document.getElementById("aplayer-sMBObuRB");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
