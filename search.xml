@@ -1,6 +1,607 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>RAFT</title>
+    <url>/posts/13171/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>📖 文档：<a href="https://raft.github.io/">https://raft.github.io</a><br>📓 翻译：<a href="https://github.com/maemual/raft-zh_cn">https://github.com/maemual/raft-zh_cn</a><br>📘 参考：<a href="https://hardcore.feishu.cn/docs/doccnMRVFcMWn1zsEYBrbsDf8De#">https://hardcore.feishu.cn/docs/doccnMRVFcMWn1zsEYBrbsDf8De#</a><br>​</p>
+<h2 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h2><h3 id="引入问题"><a href="#引入问题" class="headerlink" title="引入问题"></a>引入问题</h3><blockquote>
+<p>如何多快好省的对大规模数据集进行存储和计算？</p>
+<ol>
+<li>更好的机器</li>
+<li>更多的机器</li>
+</ol>
+</blockquote>
+<p>如果让跨网络的机器之间协调一致的工作？</p>
+<blockquote>
+<ol>
+<li>状态的立即一致</li>
+<li>状态的最终一致</li>
+</ol>
+</blockquote>
+<p>如何应对网络的不可靠以及节点的失效？</p>
+<blockquote>
+<ol>
+<li>可读写</li>
+<li>可读</li>
+<li>不可用</li>
+</ol>
+</blockquote>
+<ul>
+<li>组织机器使其状态最终一致并允许局部失败的算法称之为一致性算法。</li>
+<li>Paxos算法由来已久，目前时功能和性能最完善的一致性算法，但是难以理解和实现。</li>
+<li>Raft算法简化了Paxos算法，以易于理解为目标，尽量提供与Paxos一样的功能与性能。</li>
+</ul>
+<h3 id="复制状态机"><a href="#复制状态机" class="headerlink" title="复制状态机"></a>复制状态机</h3><p>一致性算法时从复制状态机的背景下提出的。在这种方法中，一组服务器上的状态机产生相同状态的副本，并且在一些机器宕掉的情况下也可以继续运行。复制状态机在分布式系统中被用于解决很多容错的问题。例如，大规模的系统中通常都有一个集群领导者，像GFS、HDFS和RAMCloud，典型应用就是一个独立的复制状态机去管理领导选举和存储配置信息并且在领导人宕机的情况下也要存活下来，比如Chubby和Zookeeper。</p>
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/13171/raft-%E5%9B%BE1.png" class="" title="raft-图1"><br />
+<p>复制状态机通常都是基于复制日志实现的，如图1。每一个服务器存储一个包含一系列指令的日志，并且按照日志的顺序执行。每一个日志都按照相同的顺序包含相同的指令，所以每一个服务器都执行相同的指令序列。因为每个状态机都是确定的，每一次执行操作都产生相同的状态和同样的序列。</p>
+<p>保证复制日志相同就是一致性算法的工作了。在一台服务器上，一致性模块接受客户端发送来的指令然后增加到自己的日志上去。它和其他服务器上的一致性模块进行通信类保证每一个服务器上的日志最终以相同的顺序包含相同的请求，尽管有些服务器会宕机。一旦指令被正确的复制，每一个服务器的状态机按照日志顺序处理他们，然后输出结果白返回给客户端。因此，服务器集群看起来形成一个高可靠的状态机。<br>​</p>
+<p>过程：</p>
+<ol>
+<li>Client发送一个写操作命令<code>set x = 3</code>到一个Server节点；</li>
+<li>该Server节点把数据同步到本地日志库中，记录<code>set x = 3</code>；</li>
+<li>同时并行请求其他Server节点，其他节点收到请求同样把数据同步到本地日志库中；</li>
+<li>其他节点写入成功之后会回复一个消息告诉该Server节点；</li>
+<li>该Server节点收到所有节点的成功回复之后，返回Client写入成功的消息；</li>
+<li>最后异步将消息同步到状态机。</li>
+</ol>
+<p>实际系统中使用的一致性算法通常含有以下特性：</p>
+<ul>
+<li>安全性保证：在非拜占庭错误情况下，包括网络延迟、分区、丢包、冗余和乱序等错误都可以保证正确。</li>
+<li>可用性：集群中只要有大多数的机器可运行并且能够相互通信、和客户端通信，就可以保证可用。因此，一个典型的包含5个节点的集群可以容忍两个节点的失败。服务器被停止就认为时失败。他们当有稳定的存储的时候可以从状态中恢复回来并重新加入集群。</li>
+<li>不依赖时序来保证一致性：物理时钟错误或者极端的消息延迟只有在最坏情况下才会导致可用性问题。</li>
+<li>通常情况下，一条指令可以尽可能快的在集群中大多数节点响应一轮远程过程调用时完成。小部分比较慢的节点不会影响系统整体的性能。</li>
+</ul>
+<div class="note icon simple"><i class="note-icon fas fa-question"></i><h3 id="定义问题"><a href="#定义问题" class="headerlink" title="定义问题"></a>定义问题</h3><ol>
+<li>输入：写入命令</li>
+<li>输出：所有节点最终处于相同的状态</li>
+<li>约束<ol>
+<li>安全性：在非拜占庭情况下，出现网络延迟/分区/丢包/乱序等问题下要保证正确。</li>
+<li>可用性：集群中大部分节点能够保持相互通信，那么集群就应该能够正确响应客户端。</li>
+<li>不依赖时序：不依赖物理始终或极端的消息延迟来保证一致性。</li>
+<li>快速响应：对客户端请求的响应不能依赖集群中最慢的节点。</li>
+</ol>
+</li>
+</ol>
+</div>
+
+
+
+<div class="note icon simple"><i class="note-icon fas fa-plane-departure"></i><h3 id="一个可行解"><a href="#一个可行解" class="headerlink" title="一个可行解"></a>一个可行解</h3><ol>
+<li>初始化的时候有一个领导者节点，复制发送日志到其他跟随者，并决定日志的顺序。</li>
+<li>当读请求倒来时，在任意节点都可以读，而写请求只能重定向到领导者进行。</li>
+<li>领导者先写入自己的日志，然后同步给半数以上节点，跟随者表示都OK了，领导者才提交日志。</li>
+<li>日志最终由领导者先按顺序应用于状态机，其他跟随者随机应用到状态机。</li>
+<li>当领导者崩溃后，其他跟随者通过心跳感知并选举出新的领导者继续集群的正常运转。</li>
+<li>当有新的节点加入或退出集群，需要将配置信息同步给整个集群。</li>
+</ol>
+</div>
+
+
+
+<h2 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h2><p>通过领导人的方式，Raft将一致性问题分解成了三个相对独立的子问题：</p>
+<ul>
+<li><strong>领导选举</strong>：当现存的领导人宕机的时候，一个新的领导人需要被选举出来。</li>
+<li><strong>日志复制</strong>：领导人必须从客户端接受日志条目然后复制到集群中的其他节点，并且强制要求其他节点的日志保持和自己相同。</li>
+<li><strong>安全性</strong>：Raft安全性的关键是状态机安全。如果有任何的服务器节点已经应用了一个确定的日志条目到它的状态机中，那么其他服务器节点不能再同一个日志索引位置应用一个不同的指令。</li>
+</ul>
+<h3 id="状态机"><a href="#状态机" class="headerlink" title="状态机"></a>状态机</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/13171/raft-%E5%9B%BE4.png" class="" title="raft-图4"><br />
+
+
+<p>对应一个RAFT集群来说，存在三种角色：</p>
+<ol>
+<li>Leader：领导者</li>
+<li>Candidate：候选者</li>
+<li>Follower：跟随者</li>
+</ol>
+<p><strong>节点变更流程</strong></p>
+<ol>
+<li>所有的节点在启动的时候，只有一个领导者，其他都是跟随者。</li>
+<li>启动一个心跳超时计时器，等待领导者发送心跳，如果在超时时间内没有接收到领导者的心跳，跟随者的状态就会变为候选者。</li>
+<li>成为候选者之后，会立刻发起投票请求，投票请求也有一个选举超时计时器，自己会给自己投票，值要获得超过半数以上的票数，那么就选举成功，变更自己的状态为领导者，继续发送心跳，同步日志。</li>
+<li>选举失败的情况：<ol>
+<li>选举超时计时器超时，或者选举票数不够。</li>
+<li>在等待投票的时候，收到了领导者的心跳回复。</li>
+</ol>
+</li>
+</ol>
+<p><strong>集群脑裂问题</strong><br>由于网络分区故障，集群中的不同分区出现了各自的领导者，当网络恢复正常后，集群中出现了多个领导者。RAFT为了解决脑裂问题，给整个集群设置一个任期计数器，每当一个候选者成为领导者，让任期计数器递增。</p>
+<p><strong>选票瓜分问题</strong><br>所有都没有收到领导者的心跳，同时成为候选者，发起投票请求，但是全都给自己投票，导致没有节点的票数超过半数以上。<br>RAFT为了解决选票给瓜分的问题，给各个节点的心跳超时计时器和选举超时计时器的过期时间设置了随机范围，这样尽可能地错开各个节点的选举时间，让集群更大可能一次性选举出新的领导人。</p>
+<h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><p><strong>所有服务器上的持久性状态</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>解释</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>currentTerm</td>
+<td>服务器已知的最新的任期（在服务器首次启动的时候初始化为0，单调递增）</td>
+</tr>
+<tr>
+<td>votedFor</td>
+<td>当前任期内收到选票的候选者id，如果没有投给任何候选者则为空</td>
+</tr>
+<tr>
+<td>log[]</td>
+<td>日志条目，每个条目包含了用于状态机的命令，以及领导者接收到该条目的任期</td>
+</tr>
+</tbody></table>
+<p><strong>所有服务器上的易失性状态</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>解释</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>commitIndex</td>
+<td>已知已提交的最高的日志条目的索引（初始值为0，单调递增）【已提交：命令已经同步给集群中半数以上的节点并且得到确认】</td>
+</tr>
+<tr>
+<td>lastApplied</td>
+<td>已经被应用到状态机的最高的日志条目的索引（初始值为0，单调递增）【lastApplied &lt;= commitIndex】</td>
+</tr>
+</tbody></table>
+<p><strong>领导者上的易失性状态</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>解释</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nextIndex[]</td>
+<td>对于每一台服务器，发送到该服务器的下一个日志条目的索引（初始值为领导者最后的日志条目的索引+1）</td>
+</tr>
+<tr>
+<td>matchIndex[]</td>
+<td>对于每一台服务器，已知的已经复制到该服务器的最高日志条目的索引（初始值为0，单调递增）【跟随者同步到领导者】</td>
+</tr>
+</tbody></table>
+<p><strong>追加条目RPC</strong></p>
+<blockquote>
+<p>被领导者调用：用于日志条目的复制，同时也被当做心跳使用</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>解释</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>term</td>
+<td>领导者的任期</td>
+</tr>
+<tr>
+<td>leaderId</td>
+<td>领导者ID 因此跟随者可以对客户端进行重定向（译者注：跟随者根据领导者id把客户端的请求重定向到领导者，比如有时客户端把请求发给了跟随者而不是领导者）</td>
+</tr>
+<tr>
+<td>prevLogIndex</td>
+<td>紧邻新日志条目之前的那个日志条目的索引</td>
+</tr>
+<tr>
+<td>prevLogTerm</td>
+<td>紧邻新日志条目之前的那个日志条目的任期</td>
+</tr>
+<tr>
+<td>entries[]</td>
+<td>需要被保存的日志条目（被当做心跳使用是 则日志条目内容为空；为了提高效率可能一次性发送多个）</td>
+</tr>
+<tr>
+<td>leaderCommit</td>
+<td>领导者的已知已提交的最高的日志条目的索引</td>
+</tr>
+</tbody></table>
+<p><strong>结果</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>返回值</strong></th>
+<th><strong>解释</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>term</td>
+<td>当前任期，对于领导者而言 它会更新自己的任期</td>
+</tr>
+<tr>
+<td>success</td>
+<td>结果为真，如果跟随者所含有的条目和prevLogIndex以及prevLogTerm匹配上了</td>
+</tr>
+</tbody></table>
+<h3 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h3><p>主要分为三种：</p>
+<ol>
+<li>候选者发起选举投票RPC到跟随者或者候选者</li>
+<li>领导者发起日志追加RPC到跟随者</li>
+<li>领导者发起心跳通知RPC到跟随者</li>
+</ol>
+<h4 id="选举投票"><a href="#选举投票" class="headerlink" title="选举投票"></a>选举投票</h4><p>请求投票：</p>
+<ol>
+<li>跟随者变更为候选人后</li>
+<li>选举超时后</li>
+</ol>
+<p>请求参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>term</td>
+<td>候选人的任期号</td>
+</tr>
+<tr>
+<td>candidateId</td>
+<td>请求选票的候选人的id</td>
+</tr>
+<tr>
+<td>lastLogIndex</td>
+<td>候选人的最后日志条目的索引值</td>
+</tr>
+<tr>
+<td>lastLogTerm</td>
+<td>候选人最后日志条目的任期号</td>
+</tr>
+</tbody></table>
+<p>返回值：</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>term</td>
+<td>当前任期号，以便于候选人去更新自己的任期号</td>
+</tr>
+<tr>
+<td>voteGranted</td>
+<td>候选人赢得了此张选票时为真</td>
+</tr>
+</tbody></table>
+<p>投票逻辑：</p>
+<ol>
+<li>在转变为候选人后立即开始选举过程<ol>
+<li>自增当前的任期号（currentTerm）</li>
+<li>给自己投票</li>
+<li>重置选举超时计时器</li>
+<li>发送请求投票的RPC给其他所有服务器</li>
+</ol>
+</li>
+<li>如果接收到大多数服务器的选票，那么就变成领导者</li>
+<li>如果接收到来自新的领导者的附加日志RPC，转变为跟随者</li>
+<li>如果选举过程超时，再次发起一次选举</li>
+</ol>
+<p>选举规则：</p>
+<ol>
+<li>如果term &lt; currentTerm，返回false</li>
+<li>如果votedFor为空（还未投票）或者candidateId（已经投票），并且与候选人的日志最后一题日志与自己最后一条日志的任期比较大小，大于自己则直接投票，小于自己则拒绝，等于自己则比较索引大小</li>
+</ol>
+<h4 id="日志追加-amp-心跳"><a href="#日志追加-amp-心跳" class="headerlink" title="日志追加&amp;心跳"></a>日志追加&amp;心跳</h4><p>发送日志/心跳：</p>
+<ol>
+<li>客户端发起写命令请求</li>
+<li>发送心跳时</li>
+<li>日志匹配失败时</li>
+</ol>
+<p>请求参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解析</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>term</td>
+<td>当前领导者的任期</td>
+</tr>
+<tr>
+<td>leaderId</td>
+<td>领导者ID</td>
+</tr>
+<tr>
+<td>prevLogIndex</td>
+<td>紧邻新日志条目之前的那个日志条目的索引</td>
+</tr>
+<tr>
+<td>prevLogTerm</td>
+<td>紧邻新日志条目之前的那个日志条目的任期</td>
+</tr>
+<tr>
+<td>entries</td>
+<td>需要被保存的日志条目</td>
+</tr>
+<tr>
+<td>leaderCommit</td>
+<td>领导者的已知已提交的最高的日志条目的索引</td>
+</tr>
+</tbody></table>
+<p>返回值：</p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>term</td>
+<td>当前任期</td>
+</tr>
+<tr>
+<td>success</td>
+<td>如果跟随者所含的条目prevLogIndex以及prevLogTerm匹配上了，结果为真</td>
+</tr>
+</tbody></table>
+<p>日志追加：</p>
+<ol>
+<li>一旦成为领导人：发送空的附加日志RPC（心跳）给所有的服务器：在一定的空余时间之后不停的重复发送，以阻止跟随者超时</li>
+<li>如果接收到来自客户端的请求：附加条目到本地日志，在条目被应用到状态机后响应客户端</li>
+<li>如果对于一个跟随者，最后日志条目的索引值大于等于nextIndex，那么：发送从nextIndex开始的所有日志条目：<ol>
+<li>如果成功，更新相应跟随者的nextIndex和matchIndex</li>
+<li>如果因为日志不一致而失败，减少nextIndex重试</li>
+</ol>
+</li>
+<li>如果存在一个满足N &gt; commitIndex的N，并且大多数的matchIndex[i] &gt;= N成立，并且log[N].term == currentTerm成立，那么令commitIndex等于这个N</li>
+</ol>
+<h2 id="算法原理与证明"><a href="#算法原理与证明" class="headerlink" title="算法原理与证明"></a>算法原理与证明</h2><div class="note icon simple"><i class="note-icon fab fa-korvue"></i><h3 id="五条公理"><a href="#五条公理" class="headerlink" title="五条公理"></a>五条公理</h3><ol>
+<li>选举安全特性：对于一个给定的任期号，最多只会有一个领导人被选举出来。</li>
+<li>领导人只附加原则：领导人绝对不会删除或者覆盖自己的日志，只会增加。</li>
+<li>日志匹配规则：如果两个日志在相同的索引位置的日志条目的任期号，那么我们就认为这个日志从头到这个索引位置之间全部完全相同。</li>
+<li>领导人完全特性：如果某个日志条目在某个任期号中已经被提交，那么这个条目必然出现在更大任期号的所有领导人中。</li>
+<li>状态机安全特性：如果一个领导人已经将给定的索引值位置的日志条目应用到状态机中，那么其他任何的服务器在这个索引位置不会应用一个不同的日志。</li>
+</ol>
+</div>
+
+
+
+
+<h3 id="选举安全特性"><a href="#选举安全特性" class="headerlink" title="选举安全特性"></a>选举安全特性</h3><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/13171/raft-%E5%9B%BE5.png" class="" title="raft-图5"><br />
+<blockquote>
+<p>在一个任期内半数以上的票数才能当选，保证每个任期要么0个领导要么1个领导。</p>
+</blockquote>
+<h3 id="日志复制过程的完全匹配"><a href="#日志复制过程的完全匹配" class="headerlink" title="日志复制过程的完全匹配"></a>日志复制过程的完全匹配</h3><ol>
+<li><strong>因为</strong> 集群在任意时刻最多有一个leader存在，leader在一个任期内只会在同一个索引处写入一次日志</li>
+<li><strong>又因为</strong> 领导者从来不会删除或者覆盖自己的日志，并且日志一旦写入就不允许修改</li>
+<li><strong>所以</strong> 只要任期和索引相同，那么在任何节点上的日志也都相同</li>
+<li><strong>因为</strong> 跟随者每次只会从与leader的PreLog匹配处追加日志，如果不匹配则nextIndex - 1重试</li>
+<li><strong>所以</strong> 由递归的性质可知 一旦跟随者和leader在PreLog处匹配，那么之前的所有日志就都是匹配的</li>
+<li><strong>所以</strong> 只要把PreLog之后的日志全部按此次Leader同步RPC的日志顺序覆盖即可保证二者的一致性</li>
+</ol>
+<h3 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h3><h4 id="选举限制"><a href="#选举限制" class="headerlink" title="选举限制"></a>选举限制</h4><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/13171/raft-%E5%9B%BE8.png" class="" title="raft-图8"><br />
+
+<ol>
+<li>时刻a：S1是任期2的领导人并且向部分节点(S1和S2)复制了2号位置的日志条目，然后宕机。</li>
+<li>时刻b：S5获得了S3、S4(S5的日志与S3和S4的一样新，最新的日志的任期号都是1)和自己的选票赢得了选举，成了3号的日志条目。在新日志条目复制到其他节点之前，S5宕机。</li>
+<li>时刻c：S1重启，并且通过S2、S3、S4和自己的选票赢得了选举，成了4号任期的领导人，并且继续向S3复制2号位置的日志。此时，任期2的日志条目已经在大多数节点上完成了复制。</li>
+<li>时刻d：S1发生故障，S5通过S2、S3的选票再次成为领导人（因为S5最后一条日志目的任期号是3，比S2、S3、S4中任意一个节点上的日志都更加新），任期号为5。然后S5用自己的本地日志也写了其他节点上的日志。</li>
+</ol>
+<p>这个例子说明：即使日志条目被半数以上的节点写盘（复制）了，也并不代表它已经被提交（commited）到Raft集群了——因为一旦某条日志被提交，那么它将永远没法被删除或修改。同时说明，领导人无法单纯地依靠之前任期的日志条目信息判断它的提交状态。<br>​</p>
+<p><strong>因此，针对以上场景，Raft算法对日志提交条件增加了额外限制：要求Leader在当前任期至少有一条日志被提交，即被超过半数的节点写盘。</strong></p>
+<p><strong>所以，新上任的领导者在接受客户端写入命令之前需要提交一个no-op(空命令)，携带自己任期号的日志复制到大多数集群节点上才能真正的保证选举限制的成立。</strong><br>​</p>
+<h4 id="状态机安全性"><a href="#状态机安全性" class="headerlink" title="状态机安全性"></a>状态机安全性</h4><p>（1）三段论<br>定义A为上个任期最后一条已提交日志，B为当前任期的Leader</p>
+<ol>
+<li><strong>因为</strong> A必然同步到了集群中的半数以上节点</li>
+<li><strong>又因为</strong> B只有获得集群中半数以上节点的选票才能成为Leader</li>
+<li><strong>所以</strong> B的选民中必然存在拥有A日志的节点</li>
+<li><strong>又因为</strong> 选举限制，B成为Leader的前提是比给它投票的所有选民都要新</li>
+<li><strong>所以</strong> B的日志中必然要包含A</li>
+<li><strong>又因为</strong> 日志完全匹配规则，如果A被B包含，那么比A小的所以日志都被B包含</li>
+<li><strong>因为</strong> lastApplied &lt;= commitIndex</li>
+<li><strong>又因为</strong> Raft保证已提交日志在所有集群节点上的顺序一致</li>
+<li><strong>所以</strong> 应用日志必然在所有节点上顺序一致</li>
+<li><strong>因为</strong> 状态机只能按序执行应用日志部分</li>
+<li><strong>得证</strong> 状态机在整个集群所有节点上必然最终一致</li>
+</ol>
+<p>（2）反证法</p>
+<ol>
+<li>当日志条目L被同步给半数以上节点时，LeaderA会移动commitIndex指针提交日志，此时的日志被提交。</li>
+<li>当Leader崩溃后，由一个新节点成为LeaderB是第一个未包含LeaderA最后提交日志的领导者。</li>
+<li>选举过程中，只有获得半数以上节点任课才能成为Leader，因此至少有一个投票给当前LeaderB的节点中含有已经提交的那条日志。</li>
+<li>那么根据选举限制，节点只会将选票投给至少与自己一样新的节点：<ol>
+<li>节点C作为包含LeaderA最后提交日志条目的投票者，如果LeaderB与节点C的最后一条日志的任期号一样大时，节点C的条目数一定大于LeaderB，因为LeaderB是第一个未包含最后一条LeaderA日志的领导者。这与选举限制相矛盾，节点C不会投票给LeaderB。</li>
+<li>如果LeaderB最后一条日志的任期号大于节点C最后一条日志的任期号，那么LeaderB的前任领导中必然包含了LeaderA已经提交的日志(LeaderB是第一个不包含LeaderA已提交日志的领导者这一假设根绝日志匹配特性，LeaderB也必须包含LeaderA最后的已提交日志，这与假设矛盾。</li>
+</ol>
+</li>
+<li>所以证明：未来所有的领导者必然包含过去领导者已提交的日志，并且日志匹配原则，所有已提交日志的顺序一定是一致的。</li>
+<li>又因为任意节点仅会将已提交日志按顺序应用于自身的状态机，更新lastApplied指针，因此所有节点的状态机都会最终顺序一致。</li>
+</ol>
+<h2 id="工程优化"><a href="#工程优化" class="headerlink" title="工程优化"></a>工程优化</h2><h3 id="容错性"><a href="#容错性" class="headerlink" title="容错性"></a>容错性</h3><ol>
+<li><p>领导者崩溃同选举可以解决，但跟随者与候选人崩溃呢？</p>
+<blockquote>
+<p>基础的raft算法，通过无限次幂等的附加复制rpc进行重试来解决。</p>
+</blockquote>
+</li>
+<li><p>当平均故障时间大于信息交换时间，系统将没有一个稳定的领导者，集群无法工作。</p>
+<blockquote>
+<p>广播时间 &lt;&lt; 心跳超时时间 &lt;&lt; 平均故障时间</p>
+</blockquote>
+</li>
+<li><p>客户端如何连接raft的server节点？</p>
+<blockquote>
+<p>客户端随机选择一个节点去访问，如果是跟随着，跟随着会把自己知道的领导者告知客户端。</p>
+</blockquote>
+</li>
+<li><p>领导者提交后返回时崩溃，客户端重试不就导致相同的命令反复执行了吗？</p>
+<blockquote>
+<p>客户端为每次请求标记唯一序列号，服务端在状态中维护客户端最新的序列号标记进行幂等处理。</p>
+</blockquote>
+</li>
+<li><p>客户端给领导者set a = 3并进行了提交，此时客户端如果从一个未被同步的节点读取a读不到写后的值。</p>
+<blockquote>
+<p>每个客户端应该维持一个lastestldx值，每个节点在接受读请求的时候与自己的lastAppied值比较，如果这个值大于自己的lastApplied，则拒绝此次读取请求都会返回这个节点的lastApplied值，客户端将lastestidx更新为此值，保证读取的线性一致。</p>
+</blockquote>
+</li>
+<li><p>如果Leader被孤立，其他跟随者选举出Leader，但是当前Leader还是向外提供脏数据怎么办？</p>
+<blockquote>
+<p>写入数据由于无法提交，因此会立即失败，但无法防止读到脏数据。<br>解决办法是心跳超出半数失败，Leader感知到自己处于半数分区而被孤立进而拒绝提供读写服务。</p>
+</blockquote>
+</li>
+<li><p>当出现网络分区后，被孤立少数集合的节点无法选举，只会不断的增加自己的任期，分区恢复后由于失联的节点任期更大，会强行更新所有节点的任期，触发一次重新选举，而又因为其日志不够新，被孤立的节点不可能成为新的Leader，所以，其状态机是安全的，只是触发了一次重新选举，使得集群有一定时间的不可用。这是完全可以避免的。</p>
+<blockquote>
+<p>在跟随者成为候选人时，先发送一轮pre-vote rpc来判断自己是否在大多数分区内（是否有半数节点回应自己），如果是则任期加1进行选举。否则的话就不断尝试pre-vote请求。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="扩展性"><a href="#扩展性" class="headerlink" title="扩展性"></a>扩展性</h3><ol>
+<li>集群的成员发生变化时，存在某一时刻新老配置共存，进而有选举出两个领导者的可能<blockquote>
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/13171/raft-%E5%9B%BE10.png" class="" title="raft-图10"><br />
+<ol>
+<li>新集群节点在配置变更期间必须获得老配置的多数派投票才能成为Leader</li>
+<li>发送新配置c-new给集群的领导者</li>
+<li>领导者将自己的c-old配置与c-new合并为一个c-old-new配置【123-45】</li>
+<li>然后下发给其他跟随者<ol>
+<li>当c-old-new被同步给半数以上节点后，那么此配置已经提交，遵循raft安全性机制</li>
+<li>当leader在将c-old-new写入半数以上跟随者之前崩溃了，那么选举出来的心leader会退回到老的配置，此时重新更新配置即可</li>
+</ol>
+</li>
+<li>当c-old-new被提交之后，leader会真正的提交c-new配置<ol>
+<li>如果提交了半数结点，则c-new真正的被提交</li>
+<li>如果未提交给半数结点时崩溃，则新选举的leader必定包含已提交的c-old-new，那么接着更新配置即可</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<p>集群变更过于复杂，因此可以简化这一流程，私用单节点变更机制，即每一次只添加或删除一个节点</p>
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/13171/single.png" class="" title="single"><br />
+
+<ol start="2">
+<li><p>单节点变更时，如果leader挂了，造成一致性问题（丢失已提交日志）如何处理？</p>
+<blockquote>
+<p>新leader先发一条no-op日志再开始配置变更<br><a href="https://mp.weixin.qq.com/s/VKu7fBLliztx3tzvzYDkqw">阿里技术：Raft成员变更的工程实践</a>​</p>
+</blockquote>
+</li>
+<li><p>新的服务器没有存储任何日志，领导要复制很长一段时间，此时不能参加选举会使得整体不可用。</p>
+<blockquote>
+<p>新加入的节点设置一个保护期，在此保护期内不会参加选举与日志提交决策，只用来同步日志。</p>
+</blockquote>
+</li>
+<li><p>如果集群的领导不是新集群中的一员，该如何处理？</p>
+<blockquote>
+<p>在提交c-new时，不降自己算作半数提交，并且在提交后要主动退位。</p>
+</blockquote>
+</li>
+<li><p>被移除的节点如果不及时关闭，会导致选举超时后强行发起投票请求干扰在线集群。</p>
+<blockquote>
+<p>每个节点如果未到达最小心跳超时时间，则不会进行投票。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><h4 id="1-生成快照"><a href="#1-生成快照" class="headerlink" title="1. 生成快照"></a>1. 生成快照</h4><ul>
+<li>日志如果无限增长会将本地磁盘打满，这会造成可用性问题。<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/13171/raft-%E5%9B%BE12.png" class="" title="raft-图12"><br /><blockquote>
+<p>定时的将状态机中的状态生成快照，而将之前的日志全部删除，是一种常见的压缩方式。</p>
+<ol>
+<li>将节点的状态保存为LSM Tree，然后存储最后应用日志的索引与任期，以保证日志匹配特性</li>
+<li>为支持集群的配置更新，快照中也要将最后应用的集群配置也当做状态保存下来</li>
+<li>当跟随者需要的日志已经在领导者上面被删除时，需要将快照通过RPC发送过</li>
+</ol>
+</blockquote>
+注意：由领导人调用以将快照的分块发送给跟随者。领导者总是按顺序发送分块。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>term</td>
+<td>领导人的任期号</td>
+</tr>
+<tr>
+<td>leaderId</td>
+<td>领导人的Id，以便于跟随者重定向请求</td>
+</tr>
+<tr>
+<td>lastIncluedIndex</td>
+<td>快照中包含的最后日志条目的索引值</td>
+</tr>
+<tr>
+<td>lastIncludedTerm</td>
+<td>快照中包含的最后日志条目的任期号</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>分块在快照中的字节偏移量</td>
+</tr>
+<tr>
+<td>data[]</td>
+<td>从偏移量开始的快照分块的原始字节</td>
+</tr>
+<tr>
+<td>done</td>
+<td>如果这是最后一个</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>结果</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>term</td>
+<td>当前任期号（currentTerm），便于领导人更新自己</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">如果term &lt; currentTerm就立即拒绝</span><br><span class="line">如果是第一个分块（offset &#x3D; 0）就创建一个新的快照</span><br><span class="line">在指定偏移量写入数据</span><br><span class="line">如果 done 是 false，则继续等待更多的数据 ack</span><br><span class="line">保存快照文件，丢弃具有较小索引的任何现有或部分快照</span><br><span class="line">如果现存的日志条目与快照中最后包含的日志条目具有相同的索引值和任期号，则保留</span><br><span class="line">否则，丢弃整个日志</span><br><span class="line">使用快照重置状态机，并架子啊快照的集群配置</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>快照何时创建？过于频繁会浪费性能，过于低频则日志占用磁盘的量更大，重建时间更长。</p>
+<blockquote>
+<p>限定日志文件大小到达某一个阈值后立刻生成快照。</p>
+</blockquote>
+</li>
+<li><p>写入快照花费的时间昂贵如何处理？如何保证不影响节点的正常工作？</p>
+<blockquote>
+<p>使用写时复制技术，状态机的函数式顺序性天然支持。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-调节参数"><a href="#2-调节参数" class="headerlink" title="2. 调节参数"></a>2. 调节参数</h4><blockquote>
+<ol>
+<li>心跳的随机时间，过快会增加网络负载，过慢则导致感知领导者崩溃的时间更长</li>
+<li>选举的随机时间，如果大部分跟随者同时变为候选人则会导致选票被瓜分</li>
+</ol>
+</blockquote>
+<h4 id="3-流批结合"><a href="#3-流批结合" class="headerlink" title="3. 流批结合"></a>3. 流批结合</h4><blockquote>
+<p>首先可以做的就是batch，在很多情况下面，使用batch能明显提高性能，譬如对于RocksDB的写入来说，我们通过不会每次写入一个值，而是会用一个WriteBatch缓存一批修改，然后再整个写入。对于Raft来说，Leader可以一次手机多个requests，然后一批发送给Follower。当然，我们也需要有一个最大发送size来限制每次最多可以发送多少数据。<br>如果只是用batch，Leader还是需要等待Follower返回才能继续后面的流程，我们这里还可以使用Pipeline来进行加速。Leader会维护一个NextIndex的变量来表示下一个给Follower发送的log位置，通常情况下，只要Leader跟Follower建立起了连接，我们都会认为网络是稳定互通的。所以当Leader给Follower发送了一批log之后，它可以直接更新NextIndex，并且立刻发送后面的log，不需要等待Follower的返回。如果网络出现了错误，或者Follower返回一些错误，Leader就需要重新调整NextIndex，然后重新发送log。</p>
+</blockquote>
+<h4 id="4-并行追加"><a href="#4-并行追加" class="headerlink" title="4. 并行追加"></a>4. 并行追加</h4><blockquote>
+<p>对于上面提到的一次request简易Raft流程来说，Leader可以先并行的将log发送给Followers，然后再将log append。为什么可以这么做，主要是因为在Raft里面，如果一个log被大多数的结点append，我们就可以认为这个log是被committed了，所以即使Leader再给Follower发送log之后，自己append log失败panic了，只要<code>N / 2 + 1</code>个Follower能接收到这个log并成功append，我们仍可以认为这个log是被committed了，被committed了，被committed的log后续就一定能被成功apply。<br>原因：主要是因为append log会涉及到落盘，有开销，所以我们完全可以在Leader落盘的同时让Follower也尽快的收到log是被committed了，这样系统就有丢失数据的风险了。<br>这里我们还需要注意，虽然 Leader 能在 append log 之前给 Follower 发 log，但是 Follower 却不能在 append log 之前告诉 Leader 已经成功 append 这个 log。如果 Follower 提前告诉 Leader 说已经成功 append，但实际后面 append log 的时候失败了，Leader 仍然会认为这个 log 是被 committed 了，这样系统就有丢失数据的风险了。</p>
+</blockquote>
+<h4 id="5-异步应用"><a href="#5-异步应用" class="headerlink" title="5. 异步应用"></a>5. 异步应用</h4><blockquote>
+<p>当一个log被大部分节点append之后，我们就可以认为这个log被committed了，被committed的log在什么时候apply都不会再影响数据的一致性。所以当一个log被committed之后，我么可以用另一个线程去异步的apply这个log。<br>所以整个Raft流程就可以变成：</p>
+<ol>
+<li>Leader接受一个client发送的request。</li>
+<li>Leader将对应的log发送给其他Follower并本地append。</li>
+<li>Leader继续接受其他client的requests，持续进行步骤2。</li>
+<li>Leader发现log已经被committed，在另一个线程apply。</li>
+<li>Leader异步apply log之后，返回结果给对应的client。</li>
+</ol>
+</blockquote>
+<p>使用 asychronous apply的好处在于我们现在可以安全的并行处理append log和apply log，虽然对于一个client来说，它的一次request仍然要走完完整的Raft流程，但对于多个clients来说，整体的并发和吞吐量是上去了。</p>
+]]></content>
+      <categories>
+        <category>Paper</category>
+      </categories>
+      <tags>
+        <tag>Distributed</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring-事务原理</title>
     <url>/posts/15536/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="事务使用"><a href="#事务使用" class="headerlink" title="事务使用"></a>事务使用</h2><p>引入依赖：</p>
@@ -2880,10 +3481,10 @@
 <p>暂时完结，后面分布式锁的话，待更~</p>
 ]]></content>
       <categories>
-        <category>分布式</category>
+        <category>MiddleWare</category>
       </categories>
       <tags>
-        <tag>分布式</tag>
+        <tag>Distributed</tag>
       </tags>
   </entry>
   <entry>
@@ -3482,10 +4083,10 @@
 <p>想要保证消息成功被exchange路由到队列，可以采用<code>mandatory</code>参数和备份交换机两种方式，两者可以同时启用，备份交换机的处理优先级会更高。</p>
 ]]></content>
       <categories>
-        <category>中间件</category>
+        <category>MiddleWare</category>
       </categories>
       <tags>
-        <tag>消息队列</tag>
+        <tag>MQ</tag>
       </tags>
   </entry>
   <entry>
@@ -10727,11 +11328,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart7986" style="height: 120px"></canvas>
+    <canvas id="chart2144" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart7986').getContext('2d');
+    var ctx = document.getElementById('chart2144').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -10767,11 +11368,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart3336" style="height: 100px"></canvas>
+    <canvas id="chart6071" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart3336').getContext('2d');
+    var ctx = document.getElementById('chart6071').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -10795,11 +11396,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart5794" style="height: 100px"></canvas>
+    <canvas id="chart9342" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart5794').getContext('2d');
+    var ctx = document.getElementById('chart9342').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -14449,10 +15050,10 @@ H --&gt; I</div>
     <title>叶惠美</title>
     <url>/posts/f8cdfd0a/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-unBtVkmq" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-lJDcXPBF" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-unBtVkmq");
+				  options.element = document.getElementById("aplayer-lJDcXPBF");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -16463,10 +17064,10 @@ graph TD;
 <p>在即将发生大并发访问写入key的时候，设置不同的缓存时间，让缓存失效的时间点尽量均匀。</p>
 ]]></content>
       <categories>
-        <category>中间件</category>
+        <category>MiddleWare</category>
       </categories>
       <tags>
-        <tag>缓存</tag>
+        <tag>Cache</tag>
       </tags>
   </entry>
   <entry>
