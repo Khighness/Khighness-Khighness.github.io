@@ -11267,11 +11267,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart6234" style="height: 120px"></canvas>
+    <canvas id="chart8024" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart6234').getContext('2d');
+    var ctx = document.getElementById('chart8024').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -11307,11 +11307,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart9766" style="height: 100px"></canvas>
+    <canvas id="chart6005" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart9766').getContext('2d');
+    var ctx = document.getElementById('chart6005').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -11335,11 +11335,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart3356" style="height: 100px"></canvas>
+    <canvas id="chart121" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart3356').getContext('2d');
+    var ctx = document.getElementById('chart121').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -14989,79 +14989,15 @@ H --&gt; I</div>
     <title>叶惠美</title>
     <url>/posts/f8cdfd0a/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-UhZqAvoL" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-LdzrJife" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-UhZqAvoL");
+				  options.element = document.getElementById("aplayer-LdzrJife");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
 			  </script>
 
-
-
-<br />
-
-<a id="more"></a>
-
-
-
-<center>
-<p>听妈妈的话，你比从前快乐；</p>
-<p>听爸爸的话，爸，我回来了。</p>
-<p>我把爷爷泡的茶，送给天台的外婆；</p>
-<p>她加了点麦芽糖，味道变得甜甜的。</p>
-<p>枫林夜曲诉琴伤，梯田花海七里香。</p>
-<p>大笨钟迷魂曲在我的地盘，合奏止战之殇。</p>
-<p>稻香中窃爱当梦想启动，你却说了再见，</p>
-<p>不爱我就拉倒我要夏天，填满手写的从前，</p>
-<p>发如雪的娘子用断了的弦弹奏东风破，</p>
-<p>在红尘客栈写兰亭序，送天涯过客，</p>
-<p>烟花易冷天下无双的英雄也会落寞。</p>
-<p>身披黄金甲的将军，在菊花台四面楚歌，</p>
-<p>大侠霍元甲在上海1943复活，</p>
-<p>用龙拳双截棍击败了拿双刀的忍者，</p>
-<p>龙战骑士以父之名发动最后的战役，</p>
-<p>困兽之斗半兽人在蓝色风暴中战栗，</p>
-<p>流浪诗人送可爱女人一件黑色毛衣，</p>
-<p>阳光宅男与超跑女神在阳明山漂移，</p>
-<p>牛仔很忙却与米兰的小铁匠跳起蛇舞，</p>
-<p>魔术先生劝乔克叔叔不要当懦夫。</p>
-<p>安静离开爱情悬崖，我落泪情绪零碎，</p>
-<p>一路向北的后退，哦对不起是我不配，</p>
-<p>就像水手怕水，就像超人不会飞，</p>
-<p>这表白的话我无法一口气全念对，</p>
-<p>你明明就喜欢她，却为何开不了口，</p>
-<p>你算什么男人，总是转身说走就走，</p>
-<p>不该找借口退后，Mojito来一点点，</p>
-<p>自导自演对她说你好吗？好久不见。</p>
-<p>拨动反方向的钟，想回到过去说好不哭，</p>
-<p>爱就像是龙卷风，夹杂心雨何时停住，</p>
-<p>跟免费教学录音带学手语怎么了，</p>
-<p>我不想当爱情废柴，说好的幸福呢？</p>
-<p>园游会中我牵着告白气球在傻笑，</p>
-<p>晴天的彩虹下你听得到我的暗号，</p>
-<p>坐四季列车去千里之外的伊斯坦堡，</p>
-<p>爱你没差你我用同一种调调。</p>
-<p>坐在三年二班门口看白色风车，</p>
-<p>雨下一整晚了，我在等你下课，</p>
-<p>在秘密花园里送你半岛铁盒，</p>
-<p>给我一首歌的时间，简单爱要对你说，</p>
-<p>为你弹乌克丽丽，陪你看最长的电影，</p>
-<p>沿着时光机的轨迹，写爱的飞行日记，</p>
-<p>遵从你的完美主义，守护不能说的秘密，</p>
-<p>Now you see me，哪里都是你的公主病。</p>
-<p>与你吃土耳其冰淇淋听见下雨的声音，</p>
-<p>在布拉格广场一起听比较大的大提琴。</p>
-<p>床边故事夜的第七章讲着爱在西元前，</p>
-<p>前世情人逆鳞美人鱼搁浅在珊瑚海边，</p>
-<p>嘻哈空姐放下浪漫手机吃疗伤烧肉粽，</p>
-<p>波爷翻开本草纲目治好了公公偏头痛，</p>
-<p>印第安老斑鸠在威廉古堡看蜗牛斗牛，</p>
-<p>青花瓷旁周大侠看皮影戏里乱舞春秋。</p>
-<p>我是如此相信有天你还会出新歌，</p>
-<p>世界末日、世界未末日都会等着。</p>
-</center>
 
 
 
