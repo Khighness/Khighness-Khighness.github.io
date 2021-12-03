@@ -1,6 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>双蛋问题</title>
+    <url>/posts/53991/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>谷歌的一道经典面试题 ——「双蛋问题」。</p>
+<p>一个百层高大楼，从低层往下扔鸡蛋的时候，鸡蛋不会碎；从高层往下扔鸡蛋的时候，鸡蛋才会碎。<br>中间有一个临界楼层，在这个临界楼层以下的楼层扔，鸡蛋不会碎，超过这个楼层扔，鸡蛋会碎掉。</p>
+<p>问题：如果拥有N个鸡蛋，最少要扔多少次，记为M，才能找出临界层？<br>​</p>
+<h2 id="思路解析"><a href="#思路解析" class="headerlink" title="思路解析"></a>思路解析</h2><p>（1）N = 1<br>如果只有1个鸡蛋，那么只能从1层开始尝试，逐层尝试：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1、2、3、4、... 100</span><br></pre></td></tr></table></figure>
+
+<p>最坏的情况就是在第100层扔鸡蛋，鸡蛋才碎掉。<br>因此，N = 1的时候，M=100。<br>​</p>
+<p>（2）N = +⚮<br>如果有无限个鸡蛋，这时候可以采用二分法进行尝试：<br>$$<br>2^{M} \ge 100 \<br>$$</p>
+<p>$$<br>M \ge \log_{2}{100} \<br>$$</p>
+<p>$$<br>M \ge = 6.64 \<br>$$</p>
+<p>$$<br>M = 7<br>$$</p>
+<p>因此，N=+⚮的时候，M=7。<br>​</p>
+<p>（3）N = 2<br>如果只有2个鸡蛋，让第一个鸡蛋A分别逐层尝试：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">10、20、30、40、50、60、70、80、90、100</span><br></pre></td></tr></table></figure>
+
+<p>如果A在第「X」层没碎，但是在第「X+10」层碎了，那么让第二个鸡蛋B在区间(X, X+10)尝试：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X+1、X+2、X+3、X+4、X+5、X+6、X+7、X+8、X+9</span><br></pre></td></tr></table></figure>
+
+<p>这个方法，最好情况下只需要扔10（A1+B9）次，最坏情况下需要扔19（A10+B9）次。<br>它不平均，原因是因为A它确定的间隔是等间隔的，B的尝试次数就是一样的，临界楼层越靠后，A的尝试次数就越多。<br>​</p>
+<p>所以，我们需要思考，能不能让间隔变得不等，就是说，A每多扔一次，B的搜索区间就缩小一点，这样一来让A和B的总次数平均一点。<br>下面，调整A每次扔鸡蛋的间隔，第一次间隔为n，第二次间隔为n-1，第三次间隔为n-2，最后一次间隔为1层，尝试楼层如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">n、n+(n-1)、n+(n-1)+(n-2)、...、n(n+1)&#x2F;2</span><br></pre></td></tr></table></figure>
+
+<p>从而，B的搜索区间长度就会呈现线性递减趋势：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(n, n+(n-1))、(n+(n-1), n+(n-1)+(n-2))、...(n(n+1)&#x2F;2-1, n(n+1)&#x2F;2)</span><br></pre></td></tr></table></figure>
+
+<p>这样，A每多扔一次，B就少搜索一次，可以达到A和B的权衡。</p>
+<p>$$<br>\frac{n \times {(n+1)}} {2} = 100 \<br>$$</p>
+<p>$$<br>n \ge {13.65} \<br>$$</p>
+<p>$$<br>n = 14 \<br>$$</p>
+<p>这种方法，可以让M稳定在14。</p>
+<h2 id="问题拓展"><a href="#问题拓展" class="headerlink" title="问题拓展"></a>问题拓展</h2><p>将问题拓展到更具有一般性的情况，可以参考「<a href="https://leetcode-cn.com/problems/super-egg-drop/">leetcode 887. 鸡蛋掉落</a>」。<br>简单描述：给定「n」层楼和「m」个鸡蛋，要求找到临界楼层「c」，最少需要尝试几次？<br>​</p>
+<h2 id="数学建模"><a href="#数学建模" class="headerlink" title="数学建模"></a>数学建模</h2><p>求最值，不难想到经典DP（Dynamic Planning），打表格。<br>设尝试次数为「f」，F(i，j) 表示在「i」层楼和「j」个鸡蛋下找临界楼层的尝试次数。</p>
+<p>只有1层楼或者只有1个鸡蛋的时候都只需要尝试1次，初始化表格如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">i \ f \ j</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">1</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>无论如何，我们总要选择一层「k」，然后扔下去：</p>
+<ul>
+<li>如果碎了，那么「c」一定在「k」前面，同时鸡蛋数量减少一个，此时求解 f(k - 1，j - 1) ；</li>
+<li>如果不碎，那么「c」一定在「k」后面，但是鸡蛋数量没有变化，此时求解 f(n - k，j)。</li>
+</ul>
+<p>在这两种情况下，我们需要取一个最大值，即：</p>
+<p>$$<br>\max_{}(f(k-1, j-1), f(i-k, j)) \<br>$$</p>
+<p>再加上这一次扔的次数，于是得到：</p>
+<p>$$<br>f(i, j) = \max_{}(f(k-1, j-1), f(i-k, j)) + 1 \<br>$$</p>
+<p>这个「k」无法确定，于是我们通过枚举取值方案，取最小值：<br>​<br>$$<br>f(i, j) = \min_{1 \le k \le i }(\max_{}(f(k-1, j-1), f(i-k, j)) + 1) \<br>$$</p>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p>根据上面的状态转移方程，可以写出动态规划对应的代码：</p>
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/53991/code1.png" class="" title="code1">
+
+<br />
+
+<p>这样写的话，时间复杂度达到O(KN^2)，空间复杂度是O(KN)。</p>
+<h2 id="二分优化"><a href="#二分优化" class="headerlink" title="二分优化"></a>二分优化</h2><p>再看这个状态转移方程：<br>​</p>
+<p>$$<br>f[i, j] = \min_{1 \le k \le i }(\max_{}(f[k-1, j-1], f[i-k, j]) + 1) \<br>$$</p>
+<p>设碎蛋函数f1 = f(k - 1, j - 1)，未碎函数f2 = f(i - k, j)，那么f=min(f1, f2)。<br>方程最外层的变量是「k」，它枚举了扔下鸡蛋的楼层的高度，这里它是函数的自变量，将「i」和「j」视为常数，那么：</p>
+<ul>
+<li>对于f1：k增大的时候，楼层大小越大，它的值就越大，所以碎蛋函数是个单调递增函数；</li>
+<li>对于f2：k增大的时候，楼层大小越小，它的值就越小，是个未碎函数是个单调递减函数。</li>
+</ul>
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/53991/f.svg" class="" title="f">
+
+<br />
+这就类似于寻找数据峰值问题，可以参考「leetcode 162. 寻找峰值」。
+
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/53991/code2.png" class="" title="code2">
+
+<br />
+
+
+<p>最终，代码便可以优化成如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> K 鸡蛋数量</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> N 楼层数量</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">superEggDrop</span><span class="params">(<span class="keyword">int</span> K, <span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">     <span class="comment">// dp[i][j]表示i层楼j个鸡蛋，需要扔的次数</span></span><br><span class="line">     <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[N + <span class="number">1</span>][K + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">     <span class="comment">/* 初始化 */</span></span><br><span class="line">     <span class="comment">// 求最小值，初始化取一个较大值</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= N; i++) &#123;</span><br><span class="line">         Arrays.fill(dp[i], i);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">// 楼层数量为0，扔0次</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= K; j++) &#123;</span><br><span class="line">         dp[<span class="number">0</span>][j] = <span class="number">0</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">// 楼层为0，没有鸡蛋，扔0次</span></span><br><span class="line">     dp[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">     <span class="comment">// 楼层为1，鸡蛋足够，扔1次</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= K; j++) &#123;</span><br><span class="line">         dp[<span class="number">1</span>][j] = <span class="number">1</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">// 鸡蛋为0，无法测试，扔0次</span></span><br><span class="line">     <span class="comment">// 鸡蛋为1，需要进行逐层尝试</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= N; i++) &#123;</span><br><span class="line">         dp[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">         dp[i][<span class="number">1</span>] = i;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/* 递推状态 */</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= N; i++) &#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span>; j &lt;= K; j++) &#123;</span><br><span class="line">             <span class="comment">// 在区间[1, i]里确定一个最优值</span></span><br><span class="line">             <span class="keyword">int</span> l = <span class="number">1</span>, r = i;</span><br><span class="line">             <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">                 <span class="keyword">int</span> m = l + ((r - l + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">                 <span class="comment">// 碎蛋函数，递增</span></span><br><span class="line">                 <span class="keyword">int</span> f1 = dp[m - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">                 <span class="comment">// 不碎函数，递减</span></span><br><span class="line">                 <span class="keyword">int</span> f2 = dp[i - m][j];</span><br><span class="line">                 <span class="keyword">if</span> (f1 &gt; f2) &#123;</span><br><span class="line">                     r = m - <span class="number">1</span>;</span><br><span class="line">                 &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                     l = m;</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">             dp[i][j] = Math.max(dp[l - <span class="number">1</span>][j - <span class="number">1</span>], dp[i - l][j]) + <span class="number">1</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> dp[N][K];</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] 📺 <a href="https://www.bilibili.com/video/BV1KE41137PK">李永乐老师B站视频</a><br>[2] 📄 <a href="https://leetcode-cn.com/problems/super-egg-drop/solution/dong-tai-gui-hua-zhi-jie-shi-guan-fang-ti-jie-fang/">李维维哥哥力扣题解</a><br>[3] 💤 <a href="https://zhuanlan.zhihu.com/p/92288604">labuladong知乎专栏</a></p>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>DP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>秋招</title>
     <url>/posts/18127/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>至此，10月末，我的秋招告一段落。</p>
@@ -531,8 +665,8 @@
 <li>Leader异步apply log之后，返回结果给对应的client。</li>
 </ol>
 <p>使用 asychronous apply的好处在于我们现在可以安全的并行处理append log和apply log，虽然对于一个client来说，它的一次request仍然要走完完整的Raft流程，但对于多个clients来说，整体的并发和吞吐量是上去了。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://book.douban.com/subject/30386518/">云原生分布式存储基石</a></p>
-<p>[2] <a href="https://github.com/maemual/raft-zh_cn">RAFT论文中文翻译</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] 📓 <a href="https://book.douban.com/subject/30386518/">云原生分布式存储基石</a></p>
+<p>[2] 📑 <a href="https://github.com/maemual/raft-zh_cn">RAFT论文中文翻译</a></p>
 ]]></content>
       <categories>
         <category>Paper</category>
@@ -2490,10 +2624,10 @@
 
 
 
-<h3 id="4-3-后端逻辑"><a href="#4-3-后端逻辑" class="headerlink" title="4.3 后端逻辑"></a>4.3 后端逻辑</h3><p>在配置文件中配置token持久化对象：</p>
+<h3 id="4-3-后端逻辑"><a href="#4-3-后端逻辑" class="headerlink" title="4.3 后端逻辑"></a>4.3 后端逻辑</h3><p>在配置类中配置token持久化对象：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableGlobalMethodSecurity(prePostEnabled = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BrowserSecurityConfig</span> <span class="keyword">extends</span> <span class="title">WebSecurityConfigurerAdapter</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Qualifier(&quot;customUserDetailService&quot;)</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserDetailsService userDetailsService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> DataSource dataSource;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> PersistentTokenRepository <span class="title">persistentTokenRepository</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        JdbcTokenRepositoryImpl jdbcTokenRepository = <span class="keyword">new</span> JdbcTokenRepositoryImpl();</span><br><span class="line">        jdbcTokenRepository.setDataSource(dataSource);</span><br><span class="line">        jdbcTokenRepository.setCreateTableOnStartup(<span class="keyword">false</span>);</span><br><span class="line">        <span class="keyword">return</span> jdbcTokenRepository;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>最后在Spring Security的认证流程中启用记住我的功能，即在配置文件的<code>configure</code>方法中开启：</p>
+<p>最后在Spring Security的认证流程中启用记住我的功能，即在配置类的<code>configure</code>方法中开启：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(HttpSecurity httpSecurity)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    httpSecurity</span><br><span class="line">        ...</span><br><span class="line">        .and()</span><br><span class="line">        <span class="comment">// 记住我设置</span></span><br><span class="line">        .rememberMe()</span><br><span class="line">        .tokenValiditySeconds(<span class="number">3600</span>)                    <span class="comment">// 过期时间，单位秒</span></span><br><span class="line">        .tokenRepository(persistentTokenRepository())  <span class="comment">// token持久化仓库</span></span><br><span class="line">        .userDetailsService(userDetailsService)        <span class="comment">// 处理自动登录逻辑</span></span><br><span class="line">        ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -2516,7 +2650,7 @@
 <li>JSR-250的<code>@RolesAllowed</code></li>
 <li>表达式驱动注解：<code>@PreAuthrize</code>、<code>@PostAuthorize</code>、<code>@PreFilter</code>和<code>@PostFilter</code>。</li>
 </ol>
-<h3 id="5-2-相关配置"><a href="#5-2-相关配置" class="headerlink" title="5.2 相关配置"></a>5.2 相关配置</h3><p>要开启这些注解，只需要在Spring Security配置文件中添加如下注解：</p>
+<h3 id="5-2-相关配置"><a href="#5-2-相关配置" class="headerlink" title="5.2 相关配置"></a>5.2 相关配置</h3><p>要开启这些注解，只需要在Spring Security配置类中添加如下注解：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableGlobalMethodSecurity(prePostEnabled = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BrowserSecurityConfig</span> <span class="keyword">extends</span> <span class="title">WebSecurityConfigurerAdapter</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>自定义一个处理器，处理权限不足的情况：</p>
@@ -11267,11 +11401,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart1197" style="height: 120px"></canvas>
+    <canvas id="chart8465" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart1197').getContext('2d');
+    var ctx = document.getElementById('chart8465').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -11307,11 +11441,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart8128" style="height: 100px"></canvas>
+    <canvas id="chart1997" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart8128').getContext('2d');
+    var ctx = document.getElementById('chart1997').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -11335,11 +11469,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart2016" style="height: 100px"></canvas>
+    <canvas id="chart8104" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart2016').getContext('2d');
+    var ctx = document.getElementById('chart8104').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -14989,10 +15123,10 @@ H --&gt; I</div>
     <title>叶惠美</title>
     <url>/posts/f8cdfd0a/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-BDWHDGuA" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-xyPwkvjG" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-BDWHDGuA");
+				  options.element = document.getElementById("aplayer-xyPwkvjG");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

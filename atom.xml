@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2021-10-28T23:20:15.818Z</updated>
+  <updated>2021-12-03T16:31:05.633Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>双蛋问题</title>
+    <link href="https://www.parak.top/posts/53991/"/>
+    <id>https://www.parak.top/posts/53991/</id>
+    <published>2021-12-02T16:00:00.000Z</published>
+    <updated>2021-12-03T16:31:05.633Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Algorithm" scheme="https://www.parak.top/categories/Algorithm/"/>
+    
+    
+    <category term="DP" scheme="https://www.parak.top/tags/DP/"/>
+    
+  </entry>
   
   <entry>
     <title>秋招</title>
@@ -46,7 +71,7 @@
     <link href="https://www.parak.top/posts/13171/"/>
     <id>https://www.parak.top/posts/13171/</id>
     <published>2021-10-09T16:00:00.000Z</published>
-    <updated>2021-11-17T11:56:52.406Z</updated>
+    <updated>2021-12-03T13:19:14.038Z</updated>
     
     
       
@@ -421,7 +446,7 @@
     <link href="https://www.parak.top/posts/52913/"/>
     <id>https://www.parak.top/posts/52913/</id>
     <published>2021-06-05T16:00:00.000Z</published>
-    <updated>2021-08-26T10:16:39.595Z</updated>
+    <updated>2021-12-03T06:21:24.077Z</updated>
     
     
       
@@ -490,31 +515,6 @@
     
     
     <category term="Distributed" scheme="https://www.parak.top/tags/Distributed/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RabbitMQ</title>
-    <link href="https://www.parak.top/posts/33708/"/>
-    <id>https://www.parak.top/posts/33708/</id>
-    <published>2021-06-02T16:00:00.000Z</published>
-    <updated>2021-10-10T01:59:54.602Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="MiddleWare" scheme="https://www.parak.top/categories/MiddleWare/"/>
-    
-    
-    <category term="MQ" scheme="https://www.parak.top/tags/MQ/"/>
     
   </entry>
   
