@@ -125,6 +125,7 @@
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> K 鸡蛋数量</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> N 楼层数量</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">superEggDrop</span><span class="params">(<span class="keyword">int</span> K, <span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">     <span class="comment">// dp[i][j]表示i层楼j个鸡蛋，需要扔的次数</span></span><br><span class="line">     <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[N + <span class="number">1</span>][K + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">     <span class="comment">/* 初始化 */</span></span><br><span class="line">     <span class="comment">// 求最小值，初始化取一个较大值</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= N; i++) &#123;</span><br><span class="line">         Arrays.fill(dp[i], i);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">// 楼层数量为0，扔0次</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= K; j++) &#123;</span><br><span class="line">         dp[<span class="number">0</span>][j] = <span class="number">0</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">// 楼层为0，没有鸡蛋，扔0次</span></span><br><span class="line">     dp[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">     <span class="comment">// 楼层为1，鸡蛋足够，扔1次</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= K; j++) &#123;</span><br><span class="line">         dp[<span class="number">1</span>][j] = <span class="number">1</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="comment">// 鸡蛋为0，无法测试，扔0次</span></span><br><span class="line">     <span class="comment">// 鸡蛋为1，需要进行逐层尝试</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= N; i++) &#123;</span><br><span class="line">         dp[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">         dp[i][<span class="number">1</span>] = i;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/* 递推状态 */</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= N; i++) &#123;</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">2</span>; j &lt;= K; j++) &#123;</span><br><span class="line">             <span class="comment">// 在区间[1, i]里确定一个最优值</span></span><br><span class="line">             <span class="keyword">int</span> l = <span class="number">1</span>, r = i;</span><br><span class="line">             <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">                 <span class="keyword">int</span> m = l + ((r - l + <span class="number">1</span>) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">                 <span class="comment">// 碎蛋函数，递增</span></span><br><span class="line">                 <span class="keyword">int</span> f1 = dp[m - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">                 <span class="comment">// 不碎函数，递减</span></span><br><span class="line">                 <span class="keyword">int</span> f2 = dp[i - m][j];</span><br><span class="line">                 <span class="keyword">if</span> (f1 &gt; f2) &#123;</span><br><span class="line">                     r = m - <span class="number">1</span>;</span><br><span class="line">                 &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                     l = m;</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">             dp[i][j] = Math.max(dp[l - <span class="number">1</span>][j - <span class="number">1</span>], dp[i - l][j]) + <span class="number">1</span>;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">return</span> dp[N][K];</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 
+
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] 📺 <a href="https://www.bilibili.com/video/BV1KE41137PK">李永乐老师B站视频</a><br>[2] 📄 <a href="https://leetcode-cn.com/problems/super-egg-drop/solution/dong-tai-gui-hua-zhi-jie-shi-guan-fang-ti-jie-fang/">李维维哥哥力扣题解</a><br>[3] 💤 <a href="https://zhuanlan.zhihu.com/p/92288604">labuladong知乎专栏</a></p>
 ]]></content>
       <categories>
@@ -11401,11 +11402,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart8465" style="height: 120px"></canvas>
+    <canvas id="chart9813" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart8465').getContext('2d');
+    var ctx = document.getElementById('chart9813').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -11441,11 +11442,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart1997" style="height: 100px"></canvas>
+    <canvas id="chart1277" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart1997').getContext('2d');
+    var ctx = document.getElementById('chart1277').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -11469,11 +11470,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart8104" style="height: 100px"></canvas>
+    <canvas id="chart2286" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart8104').getContext('2d');
+    var ctx = document.getElementById('chart2286').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -15123,10 +15124,10 @@ H --&gt; I</div>
     <title>叶惠美</title>
     <url>/posts/f8cdfd0a/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-xyPwkvjG" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-JHvHduJI" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-xyPwkvjG");
+				  options.element = document.getElementById("aplayer-JHvHduJI");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
