@@ -536,14 +536,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Game/</loc>
+    <loc>https://www.parak.top/tags/Golang/</loc>
     <lastmod>2022-01-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Golang/</loc>
+    <loc>https://www.parak.top/tags/Game/</loc>
     <lastmod>2022-01-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -748,14 +748,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/JVM/</loc>
+    <loc>https://www.parak.top/categories/JUC/</loc>
     <lastmod>2022-01-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/JUC/</loc>
+    <loc>https://www.parak.top/categories/JVM/</loc>
     <lastmod>2022-01-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
