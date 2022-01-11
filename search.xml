@@ -3,13 +3,13 @@
   <entry>
     <title>疫念</title>
     <url>/posts/12327/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><br />
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/12327/p1.jpg" class="" title="p1"><br />
 
 <p>新时代的浩瀚，未来的乌托邦，我们未谋其面，铸剑台就被病毒摧毁。</p>
 <p>不平凡的一年里，在线教育受国家制裁，互联网行业诸如OPPO、爱奇艺和蘑菇街等大幅裁员，还有教培转行、房企暴雷、平台经济反垄断等消息搅动市场。</p>
 <p>与此同时，“双碳”目标下的新能源和新能源车产业蓬勃发展；硬科技站上风口成为资本眼中的香饽饽；元宇宙爆火，人类开始畅享创建一个虚拟的世界。</p>
 <hr>
-<br />
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/12327/p2.jpg" class="" title="p2"><br />
 
 <p>一个世纪前，世界爆发的流感感染了世界上四分之一的人口，这比第一次世界大战造成的死亡人数还要多。但是从客观上来讲，疫情和世界大战，在经济上产生了这样一个逻辑链条：</p>
 <ol>
@@ -22,13 +22,13 @@
 <p>在一战之前，美国已经高速发展，在疫情和一战结束以后，美国不仅没有因为灾难一蹶不振，反而进入了第二波高速发展期，也就是所谓的咆哮的20年代。</p>
 <p>时至今日，我们进入了一个新的20年代，虽然我们在很大范围上，解决了有没有的问题，而我们也到了要解决好不好的时候。这个时候，我们需要的不是更多的洛克菲特建立更多大平台，跟菜市场或者小商贩抢生意，打外卖小哥五险一金的主意，而是需要更多的福特和亚历桑德森，来发展核心竞争力，推动社会的发展。</p>
 <hr>
-<br />
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/12327/p3.jpg" class="" title="p3"><br />
 
 <p>有一个词，叫作「向死而生」，就是做最坏的打算，过好自己的生活。</p>
 <p>疫情当下，我觉得也要怀着一个充满希望的态度，去看待这个时代和我们的生活。</p>
 <p>我们可以像规划任期一样规划自己的生活，计划虽然赶不上变化，但是希望我们可以朝着那个方向去努力，同时，很期待这条路上的所有意外。</p>
 <hr>
-<br />
+<img src= "https://cdn.jsdelivr.net/gh/Khighness/cdn/common/loading.gif" data-lazy-src="/posts/12327/p4.jpg" class="" title="p4"><br />
 
 <p>寒假了，我的大学从鹰击长空的开始，最终也只是掠过了一片原野。</p>
 <p>大学教会了我很多，比如留长发？更重要的是，学会「跳出圈子看世界」。</p>
@@ -11559,11 +11559,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart6714" style="height: 120px"></canvas>
+    <canvas id="chart8638" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart6714').getContext('2d');
+    var ctx = document.getElementById('chart8638').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -11599,11 +11599,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart1329" style="height: 100px"></canvas>
+    <canvas id="chart8844" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart1329').getContext('2d');
+    var ctx = document.getElementById('chart8844').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -11627,11 +11627,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart4334" style="height: 100px"></canvas>
+    <canvas id="chart7162" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart4334').getContext('2d');
+    var ctx = document.getElementById('chart7162').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -15281,10 +15281,10 @@ H --&gt; I</div>
     <title>叶惠美</title>
     <url>/posts/f8cdfd0a/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-dMwiLwex" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-AmHHuKLS" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-dMwiLwex");
+				  options.element = document.getElementById("aplayer-AmHHuKLS");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
