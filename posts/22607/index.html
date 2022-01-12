@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JVM-2(类加载子系统) | Khighness</title><meta name="keywords" content="Java"><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="2.1 📓类加载子系统 📷类加载子系统图示       🔨类加载子系统作用   类加载子系统负责从文件系统或者网络中加载class文件，class文件在文件开头有特定的文件标识。 ClassLoader只负责class文件的加载，至于它是否可以运行，则由Execution Engine(执行引擎)决定。 加载的类信息存放于一块称为方法区的内存空间。除了类的信息以外，方法区中还会有存放运行时常">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JVM-2(类加载子系统) | 炒菜K殿下</title><meta name="keywords" content="Java"><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="初步熟悉类加载子系统和类的加载过程，学习了三大类加载器和双亲委派机制。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM-2(类加载子系统)">
 <meta property="og:url" content="https://www.parak.top/posts/22607/index.html">
-<meta property="og:site_name" content="Khighness">
-<meta property="og:description" content="2.1 📓类加载子系统 📷类加载子系统图示       🔨类加载子系统作用   类加载子系统负责从文件系统或者网络中加载class文件，class文件在文件开头有特定的文件标识。 ClassLoader只负责class文件的加载，至于它是否可以运行，则由Execution Engine(执行引擎)决定。 加载的类信息存放于一块称为方法区的内存空间。除了类的信息以外，方法区中还会有存放运行时常">
+<meta property="og:site_name" content="炒菜K殿下">
+<meta property="og:description" content="初步熟悉类加载子系统和类的加载过程，学习了三大类加载器和双亲委派机制。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-31.jpg">
 <meta property="article:published_time" content="2021-05-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-11T16:20:24.761Z">
+<meta property="article:modified_time" content="2022-01-12T12:59:36.355Z">
 <meta property="article:author" content="Khighness">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -42,7 +42,7 @@
     day: '天前',
     month: '个月前'
   },
-  copyright: {"limitCount":50,"languages":{"author":"作者: Khighness","link":"链接: ","source":"来源: Khighness","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  copyright: {"limitCount":50,"languages":{"author":"作者: Khighness","link":"链接: ","source":"来源: 炒菜K殿下","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
   lightbox: 'fancybox',
   Snackbar: undefined,
   source: {
@@ -64,7 +64,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2022-01-12 00:20:24'
+  postUpdate: '2022-01-12 20:59:36'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -155,16 +155,16 @@
     if (fontSizeVal !== undefined) {
       document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
     }
-    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont/iconfont.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/avatar/Khighness.jpg" onerror="onerror=null;src='https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-31.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-2(类加载子系统)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-18T16:00:00.000Z" title="发表于 2021-05-19 00:00:00">2021-05-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-11T16:20:24.761Z" title="更新于 2022-01-12 00:20:24">2022-01-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-2(类加载子系统)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="2-1-📓类加载子系统"><a href="#2-1-📓类加载子系统" class="headerlink" title="2.1 📓类加载子系统"></a>2.1 📓类加载子系统</h2><blockquote>
-<p>📷类加载子系统图示</p>
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont/iconfont.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="炒菜K殿下" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/avatar/Khighness.jpg" onerror="onerror=null;src='https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-31.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">炒菜K殿下</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-2(类加载子系统)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-18T16:00:00.000Z" title="发表于 2021-05-19 00:00:00">2021-05-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-12T12:59:36.355Z" title="更新于 2022-01-12 20:59:36">2022-01-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-2(类加载子系统)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="2-1-📓类加载子系统"><a href="#2-1-📓类加载子系统" class="headerlink" title="2.1 📓类加载子系统"></a>2.1 📓类加载子系统</h2><blockquote>
+<p>📷 类加载子系统图示</p>
 </blockquote>
 <img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/22607/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%AD%90%E7%B3%BB%E7%BB%9F.svg" class="" title="类加载子系统"><br />
 
 
 
 <blockquote>
-<p>🔨类加载子系统作用</p>
+<p>🔨 类加载子系统作用</p>
 </blockquote>
 <ul>
 <li>类加载子系统负责从文件系统或者网络中加载class文件，class文件在文件开头有特定的文件标识。</li>
@@ -172,7 +172,7 @@
 <li>加载的类信息存放于一块称为方法区的内存空间。除了类的信息以外，方法区中还会有存放运行时常量池信息，可能还包括字符串面量和数字常量。</li>
 </ul>
 <h2 id="2-2-🚀类的加载过程"><a href="#2-2-🚀类的加载过程" class="headerlink" title="2.2 🚀类的加载过程"></a>2.2 🚀类的加载过程</h2><blockquote>
-<p>📄类的加载器-ClassLoader</p>
+<p>📄 类的加载器-ClassLoader</p>
 </blockquote>
 <ol>
 <li>class file存在于本地硬盘上，可以理解为设计师画在纸上的模板，而最终这个模板在执行的时候是要加载到JVM当中来根据这个文件实例化出n个一模一样的实例。</li>
@@ -180,7 +180,7 @@
 <li>在.class文件 -&gt; JVM -&gt; 最终成为元数据模板，此过程就要一个运输工具(类装载器ClassLoader)，扮演一个快递员的角色。</li>
 </ol>
 <blockquote>
-<p>⏰类的加载过程</p>
+<p>⏰ 类的加载过程</p>
 </blockquote>
 <div class="mermaid">graph LR
 A(开始)
@@ -239,7 +239,7 @@ G --&gt; |No| H</div>
 </li>
 </ol>
 <h2 id="2-3-📑类加载器详解"><a href="#2-3-📑类加载器详解" class="headerlink" title="2.3 📑类加载器详解"></a>2.3 📑类加载器详解</h2><blockquote>
-<p>⏬类加载器的分类</p>
+<p>⏬ 类加载器的分类</p>
 </blockquote>
 <ul>
 <li>JVM支持两种类型的类加载器，分别为引导类加载器(BootStrap ClassLoader)和自定义类加载器(User-Defined ClassLoader)。</li>
@@ -268,7 +268,7 @@ H --&gt; I</div>
 
 
 <blockquote>
-<p>⚡️关于ClassLoader </p>
+<p>⚡️ 关于ClassLoader </p>
 </blockquote>
 <p>ClassLoader类，是一个抽象类，其后所有的类加载器都继承自ClassLoader。</p>
 <div class="mermaid">classDiagram
@@ -343,7 +343,7 @@ abstract ClassLoader : defineClass(byte[], int, int)</div>
 </tr>
 </tbody></table>
 <blockquote>
-<p>🎀虚拟机自带的加载器</p>
+<p>🎀 虚拟机自带的加载器</p>
 </blockquote>
 <ul>
 <li>启动类加载器(Bootstrap ClassLoader)<ul>
@@ -371,7 +371,7 @@ abstract ClassLoader : defineClass(byte[], int, int)</div>
 </li>
 </ul>
 <blockquote>
-<p>🎀用户自定义类加载器</p>
+<p>🎀 用户自定义类加载器</p>
 </blockquote>
 <p>应用场景：</p>
 <ul>
@@ -387,7 +387,7 @@ abstract ClassLoader : defineClass(byte[], int, int)</div>
 <li>在编写自定义类加载器时，如果没有太过于复杂的需求，可以直接继承URLClassLoader类，这样就可以避免自己去编写findClass()方法及其获取字节码流的方式，使自定义类加载器编写更加简洁。</li>
 </ul>
 <h2 id="2-5-💑双亲委派机制"><a href="#2-5-💑双亲委派机制" class="headerlink" title="2.5 💑双亲委派机制"></a>2.5 💑双亲委派机制</h2><blockquote>
-<p>🕵️工作原理</p>
+<p>🕵️ 工作原理</p>
 </blockquote>
 <img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/22607/%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%9C%BA%E5%88%B6.svg" class="" title="双亲委派机制"><br />
 
@@ -398,19 +398,19 @@ abstract ClassLoader : defineClass(byte[], int, int)</div>
 <li>如果父类加载器可以完成类加载任务，就成功返回，倘若父类加载器无法完成此加载任务，子加载器才会尝试自己去加载。</li>
 </ul>
 <blockquote>
-<p>🌠优势</p>
+<p>🌠 优势</p>
 </blockquote>
 <ul>
 <li>避免类的重复加载</li>
 <li>保护程序安全，防止核心AP被随意篡改</li>
 </ul>
 <blockquote>
-<p>📘沙箱安全机制</p>
+<p>📘 沙箱安全机制</p>
 </blockquote>
 <p>假如在java.lang包下自定义String类，程序会报错。</p>
 <p>因为在加载自定义String类的时候回率先使用引导类加载器加载，而引导类加载器在加载的过程中会先加载jdk自带的文件(rt.jar包中java/lang/String.class)，报错信息是找不到main方法，就是因为加载的是rt.jar中的String类。这样可以保证对Java核心源代码的保护。</p>
 <h2 id="2-6-🔰其他"><a href="#2-6-🔰其他" class="headerlink" title="2.6 🔰其他"></a>2.6 🔰其他</h2><blockquote>
-<p>⚓在JVM中表示两个class对象是否为同一个类存在的两个必要条件</p>
+<p>⚓ 在JVM中表示两个class对象是否为同一个类存在的两个必要条件</p>
 </blockquote>
 <ul>
 <li>类的完整类名必须一致，包括包名</li>
@@ -418,11 +418,11 @@ abstract ClassLoader : defineClass(byte[], int, int)</div>
 </ul>
 <p>换句话说，在JVM中，即使这两个类对象来源于同一个class文件，被同一个虚拟机所加载，但只要加载它们的ClassLoader实例对象不同，那么这两个类对象也是不相等的。</p>
 <blockquote>
-<p>⚓对类加载器的引用</p>
+<p>⚓ 对类加载器的引用</p>
 </blockquote>
 <p>JVM必须知道一个类型是由启动加载器加载的还是由用户类加载器加载的。如果一个类型是由用户类加载器加载的，那么JVM会将这个类加载器的一个引用作为类型信息的一部分保存在方法区中。当解析一个类型到另一个类型的引用的时候，JVM需要保证这两个类型的类加载器是相同的。</p>
 <blockquote>
-<p>⚓类的主动使用和被动使用</p>
+<p>⚓ 类的主动使用和被动使用</p>
 </blockquote>
 <p>Java程序对类的使用方式分为：主动使用和被动使用</p>
 <p>主动使用，分为七种情况：</p>

@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JVM-9(对象) | Khighness</title><meta name="keywords" content="Java"><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="9.1 🤦‍♂️对象实例化 📷思维导图       ⌨️对象创建主流方式  实体类： 1234567891011121314151617181920212223package top.parak.easy;import lombok.AllArgsConstructor;import lombok.Data;import lombok.NoArgsConstructor;import java">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JVM-9(对象) | 炒菜K殿下</title><meta name="keywords" content="Java"><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习对象的创建方式和在JVM的创建流程，深入学习对象的内存布局(对象头、实例数据和对齐填充)和两种访问方式(句柄访问和直接指针)。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM-9(对象)">
 <meta property="og:url" content="https://www.parak.top/posts/37633/index.html">
-<meta property="og:site_name" content="Khighness">
-<meta property="og:description" content="9.1 🤦‍♂️对象实例化 📷思维导图       ⌨️对象创建主流方式  实体类： 1234567891011121314151617181920212223package top.parak.easy;import lombok.AllArgsConstructor;import lombok.Data;import lombok.NoArgsConstructor;import java">
+<meta property="og:site_name" content="炒菜K殿下">
+<meta property="og:description" content="学习对象的创建方式和在JVM的创建流程，深入学习对象的内存布局(对象头、实例数据和对齐填充)和两种访问方式(句柄访问和直接指针)。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-38.jpg">
 <meta property="article:published_time" content="2021-05-25T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-11T16:20:24.794Z">
+<meta property="article:modified_time" content="2022-01-12T13:08:09.128Z">
 <meta property="article:author" content="Khighness">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -42,7 +42,7 @@
     day: '天前',
     month: '个月前'
   },
-  copyright: {"limitCount":50,"languages":{"author":"作者: Khighness","link":"链接: ","source":"来源: Khighness","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  copyright: {"limitCount":50,"languages":{"author":"作者: Khighness","link":"链接: ","source":"来源: 炒菜K殿下","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
   lightbox: 'fancybox',
   Snackbar: undefined,
   source: {
@@ -64,7 +64,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2022-01-12 00:20:24'
+  postUpdate: '2022-01-12 21:08:09'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -155,16 +155,16 @@
     if (fontSizeVal !== undefined) {
       document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
     }
-    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont/iconfont.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/avatar/Khighness.jpg" onerror="onerror=null;src='https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-38.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-9(对象)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-25T16:00:00.000Z" title="发表于 2021-05-26 00:00:00">2021-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-11T16:20:24.794Z" title="更新于 2022-01-12 00:20:24">2022-01-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-9(对象)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="9-1-🤦‍♂️对象实例化"><a href="#9-1-🤦‍♂️对象实例化" class="headerlink" title="9.1 🤦‍♂️对象实例化"></a>9.1 🤦‍♂️对象实例化</h2><blockquote>
-<p>📷思维导图</p>
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont/iconfont.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="炒菜K殿下" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/avatar/Khighness.jpg" onerror="onerror=null;src='https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-38.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">炒菜K殿下</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-9(对象)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-25T16:00:00.000Z" title="发表于 2021-05-26 00:00:00">2021-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-12T13:08:09.128Z" title="更新于 2022-01-12 21:08:09">2022-01-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-9(对象)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="9-1-🤦‍♂️对象实例化"><a href="#9-1-🤦‍♂️对象实例化" class="headerlink" title="9.1 🤦‍♂️对象实例化"></a>9.1 🤦‍♂️对象实例化</h2><blockquote>
+<p>📷 思维导图</p>
 </blockquote>
 <img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/37633/image-20210518160044708.png" class="" title="image-20210518160044708"><br />
 
 
 
 <blockquote>
-<p>⌨️对象创建主流方式</p>
+<p>⌨️ 对象创建主流方式</p>
 </blockquote>
 <p>实体类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> top.parak.easy;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.AllArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> lombok.Data;</span><br><span class="line"><span class="keyword">import</span> lombok.NoArgsConstructor;</span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Data</span> </span><br><span class="line"><span class="meta">@AllArgsConstructor</span> </span><br><span class="line"><span class="meta">@NoArgsConstructor</span> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoData</span> <span class="keyword">implements</span> <span class="title">Serializable</span>, <span class="title">Cloneable</span> </span>&#123; </span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> String stringData; </span><br><span class="line">    <span class="keyword">private</span> Date dateData; </span><br><span class="line">    <span class="keyword">private</span> Integer intData; </span><br><span class="line">    <span class="keyword">private</span> Double douData; </span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span> </span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Object <span class="title">clone</span><span class="params">()</span> <span class="keyword">throws</span> CloneNotSupportedException </span>&#123; </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.clone(); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -178,7 +178,7 @@
 
 
 <blockquote>
-<p>🎨对象创建六大步骤</p>
+<p>🎨 对象创建六大步骤</p>
 </blockquote>
 <p>（1）判断对象对应的类是否加载、链接、初始化</p>
 <p>虚拟机遇到一条new指令，首先去检查这个指令的参数能否在Metaspace的常量池中定位到一个类的符合引用，并且检查这个符号引用代表的类已经被加载、解析和初始化（即判断类元信息是否存在）。如果没有，那么在双亲委派模式下，使用当前类加载器以ClassLoader+包名+类名为key进行查找对应的.class文件，如果没有找到文件，则抛出ClassNotFoundException异常；如果找到则进行类加载，并生成响应的Class对象。</p>
@@ -213,7 +213,7 @@
 <p>在Java程序的视角来看，初始化才正式开始。初始化成员变量，执行实例化代码块，调用类的构造方法，并把堆内对象的首地址复制给引用变量。</p>
 <p>因此一般来说（由字节码中跟随invokespecial指令所决定），new指令之后就是执行方法，把对象按照程序员的意愿进行初始化，这样一个真正可用的对象才算完整创建出来。</p>
 <h2 id="9-2-🔳-对象内存布局"><a href="#9-2-🔳-对象内存布局" class="headerlink" title="9.2 🔳 对象内存布局"></a>9.2 🔳 对象内存布局</h2><blockquote>
-<p>📷思维导图</p>
+<p>📷 思维导图</p>
 </blockquote>
 <img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/37633/image-20210518160117665.png" class="" title="image-20210518160117665"><br />
 
@@ -249,14 +249,14 @@
 </thead>
 </table>
 <h2 id="9-3-🛰️-对象访问定位"><a href="#9-3-🛰️-对象访问定位" class="headerlink" title="9.3 🛰️ 对象访问定位"></a>9.3 🛰️ 对象访问定位</h2><blockquote>
-<p>❔JVM是如何通过栈帧中的对象引用访问到其内部的对象实例的呢？</p>
+<p>❔ JVM是如何通过栈帧中的对象引用访问到其内部的对象实例的呢？</p>
 </blockquote>
 <img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/37633/image-20210307115251686.png" class="" title="image-20210307115251686"><br />
 
 
 
 <blockquote>
-<p>1️⃣句柄访问</p>
+<p>1️⃣ 句柄访问</p>
 </blockquote>
 <p>栈的局部变量表中，记录的对象的引用，然后在堆空间中开辟了一块空间，也就是句柄池。</p>
 <p>优点：reference中存储稳定句柄地址，对象被移动（垃圾收集时移动对象很普遍）时只会改变句柄中实例数据指针即可，reference本身不需要被修改。</p>
@@ -267,7 +267,7 @@
 
 
 <blockquote>
-<p>2️⃣直接指针</p>
+<p>2️⃣ 直接指针</p>
 </blockquote>
 <p>直接指针是局部变量表中的引用，直接指向堆中的实例，在对象实例中有类型指针，指向的是方法区中的对象类型数据。</p>
 <p>好处：节省空间，速度更快。</p>

@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JVM-1(JVM概述) | Khighness</title><meta name="keywords" content="Java"><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.1 📚 概述 📖定义  Java虚拟机就是二进制字节码的运行环境，负责装载字节码到其内部，解释&#x2F;便于为对应平台上的机器指令执行。  🌠特点   一次编译，到处运行 自动内存管理 垃圾自动回收  graph TD A[Java程序] B[字节码文件] C[Win版JVM] D[Linux版JVM] E[Ma版JVM] A --&gt; B B --&gt; C B --&gt; D B -">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JVM-1(JVM概述) | 炒菜K殿下</title><meta name="keywords" content="Java"><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习JVM的结构和生命周期。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM-1(JVM概述)">
 <meta property="og:url" content="https://www.parak.top/posts/21157/index.html">
-<meta property="og:site_name" content="Khighness">
-<meta property="og:description" content="1.1 📚 概述 📖定义  Java虚拟机就是二进制字节码的运行环境，负责装载字节码到其内部，解释&#x2F;便于为对应平台上的机器指令执行。  🌠特点   一次编译，到处运行 自动内存管理 垃圾自动回收  graph TD A[Java程序] B[字节码文件] C[Win版JVM] D[Linux版JVM] E[Ma版JVM] A --&gt; B B --&gt; C B --&gt; D B -">
+<meta property="og:site_name" content="炒菜K殿下">
+<meta property="og:description" content="学习JVM的结构和生命周期。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-30.jpg">
 <meta property="article:published_time" content="2021-05-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-11T16:15:40.457Z">
+<meta property="article:modified_time" content="2022-01-12T12:59:02.836Z">
 <meta property="article:author" content="Khighness">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -42,7 +42,7 @@
     day: '天前',
     month: '个月前'
   },
-  copyright: {"limitCount":50,"languages":{"author":"作者: Khighness","link":"链接: ","source":"来源: Khighness","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  copyright: {"limitCount":50,"languages":{"author":"作者: Khighness","link":"链接: ","source":"来源: 炒菜K殿下","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
   lightbox: 'fancybox',
   Snackbar: undefined,
   source: {
@@ -64,7 +64,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2022-01-12 00:15:40'
+  postUpdate: '2022-01-12 20:59:02'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -155,13 +155,13 @@
     if (fontSizeVal !== undefined) {
       document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
     }
-    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont/iconfont.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/avatar/Khighness.jpg" onerror="onerror=null;src='https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-30.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-1(JVM概述)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-17T16:00:00.000Z" title="发表于 2021-05-18 00:00:00">2021-05-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-11T16:15:40.457Z" title="更新于 2022-01-12 00:15:40">2022-01-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">681</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-1(JVM概述)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-1-📚-概述"><a href="#1-1-📚-概述" class="headerlink" title="1.1 📚 概述"></a>1.1 📚 概述</h2><blockquote>
-<p>📖定义</p>
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont/iconfont.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="炒菜K殿下" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/avatar/Khighness.jpg" onerror="onerror=null;src='https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-30.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">炒菜K殿下</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-1(JVM概述)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-17T16:00:00.000Z" title="发表于 2021-05-18 00:00:00">2021-05-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-12T12:59:02.836Z" title="更新于 2022-01-12 20:59:02">2022-01-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">681</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-1(JVM概述)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-1-📚-概述"><a href="#1-1-📚-概述" class="headerlink" title="1.1 📚 概述"></a>1.1 📚 概述</h2><blockquote>
+<p>📖 定义</p>
 </blockquote>
 <p>Java虚拟机就是二进制字节码的运行环境，负责装载字节码到其内部，解释/便于为对应平台上的机器指令执行。</p>
 <blockquote>
-<p>🌠特点</p>
+<p>🌠 特点</p>
 </blockquote>
 <ul>
 <li>一次编译，到处运行</li>
@@ -182,7 +182,7 @@ B --&gt; E</div>
 
 
 <blockquote>
-<p>🕵️Java代码的执行流程</p>
+<p>🕵️ Java代码的执行流程</p>
 </blockquote>
 <img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/21157/Java.svg" class="" title="Java"><br />
 
@@ -191,7 +191,7 @@ B --&gt; E</div>
 
 
 <blockquote>
-<p>🔰拓展</p>
+<p>🔰 拓展</p>
 </blockquote>
 <p>Java虚拟机不仅仅能用来解释Java语言。</p>
 <p>JVM根本不关心运行在其内部的程序到底是何种语言编写的，它只关心“字节码”文件。</p>
@@ -233,25 +233,25 @@ H --&gt; I</div>
 
 
 <h2 id="1-2-📂-结构"><a href="#1-2-📂-结构" class="headerlink" title="1.2 📂 结构"></a>1.2 📂 结构</h2><blockquote>
-<p>📘说明</p>
+<p>📘 说明</p>
 </blockquote>
 <ul>
 <li>HotSpot VM是目前市面上高性能虚拟机的代表作之一</li>
 <li>它采用解释器与即时编译器并存的架构</li>
 </ul>
 <blockquote>
-<p>📷JVM架构图</p>
+<p>📷 JVM架构图</p>
 </blockquote>
 <img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/21157/JVM.svg" class="" title="JVM"><br />
 
 
 
 <h2 id="1-3-⏳-生命周期"><a href="#1-3-⏳-生命周期" class="headerlink" title="1.3 ⏳ 生命周期"></a>1.3 ⏳ 生命周期</h2><blockquote>
-<p>🎏虚拟机的启动</p>
+<p>🎏 虚拟机的启动</p>
 </blockquote>
 <p>Java虚拟机的启动是通过引导类加载器(Bootstrap Class Loader)创建一个初始类(initial class)来完成的，这个类是由虚拟机的具体实现指定的。</p>
 <blockquote>
-<p>🎏虚拟机的执行</p>
+<p>🎏 虚拟机的执行</p>
 </blockquote>
 <ul>
 <li>一个运行中的Java虚拟机有着一个清晰的任务：执行Java程序</li>
@@ -259,7 +259,7 @@ H --&gt; I</div>
 <li>执行一个所谓的Java程序的时候，真真正正在执行的是一个叫做Java虚拟机的进程</li>
 </ul>
 <blockquote>
-<p>🎏虚拟机的退出</p>
+<p>🎏 虚拟机的退出</p>
 </blockquote>
 <ul>
 <li>程序正常执行结束</li>

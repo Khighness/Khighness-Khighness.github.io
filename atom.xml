@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Khighness</title>
+  <title>炒菜K殿下</title>
   
   
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2022-01-11T14:05:27.065Z</updated>
+  <updated>2022-01-12T13:17:32.355Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -17,20 +17,33 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>BloomFilter</title>
+    <link href="https://www.parak.top/posts/13354/"/>
+    <id>https://www.parak.top/posts/13354/</id>
+    <published>2022-01-11T16:00:00.000Z</published>
+    <updated>2022-01-12T13:17:32.355Z</updated>
+    
+    
+    <summary type="html">学习布隆过滤器，计算最小误差。</summary>
+    
+    
+    
+    <category term="BloomFilter" scheme="https://www.parak.top/categories/BloomFilter/"/>
+    
+    
+    <category term="BloomFilter" scheme="https://www.parak.top/tags/BloomFilter/"/>
+    
+  </entry>
+  
+  <entry>
     <title>疫念</title>
     <link href="https://www.parak.top/posts/12327/"/>
     <id>https://www.parak.top/posts/12327/</id>
     <published>2022-01-09T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:27.065Z</updated>
+    <updated>2022-01-12T13:15:42.319Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">无数行业被疫情重创，选择躺平也无可厚非。&lt;br /&gt;当世纷繁，以己正道；不必自忧，驭风而行。</summary>
     
     
     
@@ -46,16 +59,10 @@
     <link href="https://www.parak.top/posts/53991/"/>
     <id>https://www.parak.top/posts/53991/</id>
     <published>2021-12-02T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:27.457Z</updated>
+    <updated>2022-01-12T12:45:52.528Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">百层高的大楼，两个鸡蛋，求找到鸡蛋不碎的临街楼层的扔鸡蛋的最少次数。李永乐老师讲的确实是通俗易懂。</summary>
     
     
     
@@ -71,16 +78,10 @@
     <link href="https://www.parak.top/posts/18127/"/>
     <id>https://www.parak.top/posts/18127/</id>
     <published>2021-10-28T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:27.441Z</updated>
+    <updated>2022-01-12T12:54:58.589Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">8月初边实习边投递提前批，请假笔试和面试，实在过于麻烦。  9月初回家，全力准备算法和八股，记录炒菜少年的秋招结果。</summary>
     
     
     
@@ -96,16 +97,10 @@
     <link href="https://www.parak.top/posts/13171/"/>
     <id>https://www.parak.top/posts/13171/</id>
     <published>2021-10-09T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:27.155Z</updated>
+    <updated>2022-01-12T11:11:05.494Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">《云原生分布式存储基石 etcd深入解析》读书笔记，深入解读了Raft论文，并列举了集群的各种异常情况，最后附上Raft的性能优化。</summary>
     
     
     
@@ -121,16 +116,10 @@
     <link href="https://www.parak.top/posts/15536/"/>
     <id>https://www.parak.top/posts/15536/</id>
     <published>2021-08-19T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:26.912Z</updated>
+    <updated>2022-01-12T12:37:17.011Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">Spring事务是通过自动配置+AOP拦截器实现的，在拦截器中获取到事务的注解信息和事务管理器，通过invoke方法调用目标方法，出现异常则通过事务管理器进行回滚。</summary>
     
     
     
@@ -146,16 +135,10 @@
     <link href="https://www.parak.top/posts/54880/"/>
     <id>https://www.parak.top/posts/54880/</id>
     <published>2021-08-18T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:27.184Z</updated>
+    <updated>2022-01-12T12:36:41.169Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">对于Spring的源码确实不能一路往下debug，不然人容易迷失，很多地方是Spring的接口封装的太深，所以需要了解一些常见接口的作用，也要大胆猜测作者的思路。</summary>
     
     
     
@@ -171,16 +154,10 @@
     <link href="https://www.parak.top/posts/408/"/>
     <id>https://www.parak.top/posts/408/</id>
     <published>2021-08-18T04:00:00.000Z</published>
-    <updated>2022-01-11T14:05:26.974Z</updated>
+    <updated>2022-01-12T12:34:25.542Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">源码分析Spring如何解决循环依赖，还有一些Q&amp;A。</summary>
     
     
     
@@ -196,16 +173,10 @@
     <link href="https://www.parak.top/posts/55590/"/>
     <id>https://www.parak.top/posts/55590/</id>
     <published>2021-08-16T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:27.464Z</updated>
+    <updated>2022-01-12T12:33:36.332Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">没看源码，直接验证，大概就是：实例化、接口回调、初始化和销毁。</summary>
     
     
     
@@ -221,16 +192,10 @@
     <link href="https://www.parak.top/posts/39013/"/>
     <id>https://www.parak.top/posts/39013/</id>
     <published>2021-08-15T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:27.037Z</updated>
+    <updated>2022-01-12T12:38:09.783Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">学会使用使用@Import、ImportSelector和ImportBeanDefinitionRegistor等方式批量注册组件，掌握有助于定制化IOC容器开发。</summary>
     
     
     
@@ -246,16 +211,10 @@
     <link href="https://www.parak.top/posts/59926/"/>
     <id>https://www.parak.top/posts/59926/</id>
     <published>2021-07-06T13:36:25.505Z</published>
-    <updated>2022-01-11T17:07:05.339Z</updated>
+    <updated>2022-01-12T11:27:26.798Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">第一次一个人去陌生的城市，第一次实习，第一次租房，想要真正意义上的独立。</summary>
     
     
     
@@ -271,16 +230,10 @@
     <link href="https://www.parak.top/posts/62562/"/>
     <id>https://www.parak.top/posts/62562/</id>
     <published>2021-06-20T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:26.984Z</updated>
+    <updated>2022-01-12T12:57:25.088Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">有界并阻塞队列，底层采用数组保存数据，使用ReentrantLock保证线程安全，资源不足时，offer和poll操作直接返回false，put和take操作会进入条件队列等待资源，size方法的结果是准确的。</summary>
     
     
     
@@ -296,16 +249,10 @@
     <link href="https://www.parak.top/posts/33015/"/>
     <id>https://www.parak.top/posts/33015/</id>
     <published>2021-06-19T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:26.932Z</updated>
+    <updated>2022-01-12T12:39:48.376Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">有界并阻塞队列，底层采用单向队列保存数据，内部使用两个ReentrantLock实现线程安全，分别用于用于执行poll等消费性性操作和offer等生产性操作，size方法的结果是准确的。</summary>
     
     
     
@@ -321,16 +268,10 @@
     <link href="https://www.parak.top/posts/29870/"/>
     <id>https://www.parak.top/posts/29870/</id>
     <published>2021-06-18T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:27.339Z</updated>
+    <updated>2022-01-12T12:57:23.250Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">无界非阻塞队列，使用单向链表保存数据，使用volatile+CAS无锁操作保证线程安全，在并发情况下size方法统计可能不准确。</summary>
     
     
     
@@ -346,16 +287,10 @@
     <link href="https://www.parak.top/posts/48482/"/>
     <id>https://www.parak.top/posts/48482/</id>
     <published>2021-06-17T16:00:00.000Z</published>
-    <updated>2022-01-11T15:53:50.506Z</updated>
+    <updated>2022-01-12T13:04:30.127Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">🔍详细分析了JDK1.8 HashMap的源码，图示并发情况下的JDK1.7和JDK1.8 HashMap的问题，另外有负载因子的一些个人猜想和证明，</summary>
     
     
     
@@ -371,16 +306,10 @@
     <link href="https://www.parak.top/posts/48481/"/>
     <id>https://www.parak.top/posts/48481/</id>
     <published>2021-06-16T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:27.112Z</updated>
+    <updated>2022-01-12T12:54:03.073Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">写时复制思想，即COW。修改都是在ReentrantLock的保护下操作副本，完成时使用副本替换原始数组。因为读取的时候只能读旧数组，所以体现的是弱一致性。</summary>
     
     
     
@@ -396,16 +325,10 @@
     <link href="https://www.parak.top/posts/55122/"/>
     <id>https://www.parak.top/posts/55122/</id>
     <published>2021-06-15T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:27.103Z</updated>
+    <updated>2022-01-12T03:23:15.215Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">🔍 基于JDK1.8的ArrayList和LinkedList的源码解析。</summary>
     
     
     
@@ -421,16 +344,10 @@
     <link href="https://www.parak.top/posts/19577/"/>
     <id>https://www.parak.top/posts/19577/</id>
     <published>2021-06-12T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:27.046Z</updated>
+    <updated>2022-01-12T03:57:21.780Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">去年冬天跟室友看了新海诚的《天气之子》，让我对新海诚导演留下挺不错的印象。今年夏天，这部HelloWorld，因为片名加上计算机科班出身的关系，电影院直接冲。</summary>
     
     
     
@@ -446,16 +363,10 @@
     <link href="https://www.parak.top/posts/26035/"/>
     <id>https://www.parak.top/posts/26035/</id>
     <published>2021-06-10T16:00:00.000Z</published>
-    <updated>2022-01-11T17:05:57.477Z</updated>
+    <updated>2022-01-12T02:10:12.642Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">一个好女朋友的标准，舒适、正能量、反馈与包容。</summary>
     
     
     
@@ -471,16 +382,10 @@
     <link href="https://www.parak.top/posts/52913/"/>
     <id>https://www.parak.top/posts/52913/</id>
     <published>2021-06-05T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:27.417Z</updated>
+    <updated>2022-01-12T12:46:21.441Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
+    <summary type="html">学习spring-security和spring-security-oauth2.0。</summary>
     
     
     
@@ -488,33 +393,6 @@
     
     
     <category term="spring-security-oauth2" scheme="https://www.parak.top/tags/spring-security-oauth2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java-Excel</title>
-    <link href="https://www.parak.top/posts/57208/"/>
-    <id>https://www.parak.top/posts/57208/</id>
-    <published>2021-06-04T16:00:00.000Z</published>
-    <updated>2022-01-11T14:05:27.177Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
-    
-    
-    <category term="poi" scheme="https://www.parak.top/tags/poi/"/>
-    
-    <category term="easyexcel" scheme="https://www.parak.top/tags/easyexcel/"/>
     
   </entry>
   

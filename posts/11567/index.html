@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JVM-15(垃圾回收器) | Khighness</title><meta name="keywords" content="Java"><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="15.1 🚀GC分类与性能指标 💬垃圾回收器概述   垃圾器没有在规范中进行过多规定，可以由不同的厂商、不同版本的JVM来实现。 由于JDK的版本处于高速迭代过程中，因此Java发展至今已经衍生了众多的GC版本。 从不同角度分析垃圾回收器，可将GC分为不同的类型。   📓垃圾回收器分类  按照工作模式分：  并发式垃圾回收器：与应用程序线程交替工作，以尽可能减少应用程序的停顿时间。 独占式垃">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JVM-15(垃圾回收器) | 炒菜K殿下</title><meta name="keywords" content="Java"><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="学习JVM的垃圾回收器：Serial、ParNew、Parallel、CMS、G1、ZGC和Shenandoah GC。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM-15(垃圾回收器)">
 <meta property="og:url" content="https://www.parak.top/posts/11567/index.html">
-<meta property="og:site_name" content="Khighness">
-<meta property="og:description" content="15.1 🚀GC分类与性能指标 💬垃圾回收器概述   垃圾器没有在规范中进行过多规定，可以由不同的厂商、不同版本的JVM来实现。 由于JDK的版本处于高速迭代过程中，因此Java发展至今已经衍生了众多的GC版本。 从不同角度分析垃圾回收器，可将GC分为不同的类型。   📓垃圾回收器分类  按照工作模式分：  并发式垃圾回收器：与应用程序线程交替工作，以尽可能减少应用程序的停顿时间。 独占式垃">
+<meta property="og:site_name" content="炒菜K殿下">
+<meta property="og:description" content="学习JVM的垃圾回收器：Serial、ParNew、Parallel、CMS、G1、ZGC和Shenandoah GC。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-44.jpg">
 <meta property="article:published_time" content="2021-05-31T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-11T16:20:24.829Z">
+<meta property="article:modified_time" content="2022-01-12T13:03:50.174Z">
 <meta property="article:author" content="Khighness">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -42,7 +42,7 @@
     day: '天前',
     month: '个月前'
   },
-  copyright: {"limitCount":50,"languages":{"author":"作者: Khighness","link":"链接: ","source":"来源: Khighness","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  copyright: {"limitCount":50,"languages":{"author":"作者: Khighness","link":"链接: ","source":"来源: 炒菜K殿下","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
   lightbox: 'fancybox',
   Snackbar: undefined,
   source: {
@@ -64,7 +64,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2022-01-12 00:20:24'
+  postUpdate: '2022-01-12 21:03:50'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -155,9 +155,9 @@
     if (fontSizeVal !== undefined) {
       document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
     }
-    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont/iconfont.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/avatar/Khighness.jpg" onerror="onerror=null;src='https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-44.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-15(垃圾回收器)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-31T16:00:00.000Z" title="发表于 2021-06-01 00:00:00">2021-06-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-11T16:20:24.829Z" title="更新于 2022-01-12 00:20:24">2022-01-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">11.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>35分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-15(垃圾回收器)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="15-1-🚀GC分类与性能指标"><a href="#15-1-🚀GC分类与性能指标" class="headerlink" title="15.1 🚀GC分类与性能指标"></a>15.1 🚀GC分类与性能指标</h3><blockquote>
-<p>💬垃圾回收器概述</p>
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont/iconfont.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="炒菜K殿下" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/avatar/Khighness.jpg" onerror="onerror=null;src='https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-44.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">炒菜K殿下</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-15(垃圾回收器)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-31T16:00:00.000Z" title="发表于 2021-06-01 00:00:00">2021-06-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-12T13:03:50.174Z" title="更新于 2022-01-12 21:03:50">2022-01-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">11.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>34分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-15(垃圾回收器)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h3 id="15-1-🚀GC分类与性能指标"><a href="#15-1-🚀GC分类与性能指标" class="headerlink" title="15.1 🚀GC分类与性能指标"></a>15.1 🚀GC分类与性能指标</h3><blockquote>
+<p>💬 垃圾回收器概述</p>
 </blockquote>
 <ul>
 <li>垃圾器没有在规范中进行过多规定，可以由不同的厂商、不同版本的JVM来实现。</li>
@@ -165,7 +165,7 @@
 <li>从不同角度分析垃圾回收器，可将GC分为不同的类型。</li>
 </ul>
 <blockquote>
-<p>📓垃圾回收器分类</p>
+<p>📓 垃圾回收器分类</p>
 </blockquote>
 <p>按照工作模式分：</p>
 <ul>
@@ -183,7 +183,7 @@
 <li>老年代垃圾回收器</li>
 </ul>
 <blockquote>
-<p>📈评估GC的性能指标</p>
+<p>📈 评估GC的性能指标</p>
 </blockquote>
 <ul>
 <li>吞吐量：运行用户代码的时间占总运行时间的比例（总运行时间 = 程序的运行时间 + 内存回收的时间）</li>
@@ -197,17 +197,16 @@
 <p>由于高吞吐量和低暂停时间是两个对立的条件，一个GC算法只可能针对两个目标之一，或者尝试一个二者的折中。</p>
 <p>现在标准：在最大吞吐量优先的情况下，降低停顿时间。</p>
 <h3 id="15-2-📖-不同的垃圾回收器概述"><a href="#15-2-📖-不同的垃圾回收器概述" class="headerlink" title="15.2 📖 不同的垃圾回收器概述"></a>15.2 📖 不同的垃圾回收器概述</h3><blockquote>
-<p>🏛历史</p>
+<p>🏛 历史</p>
 </blockquote>
-<div class="hide-block"><button type="button" class="hide-button button--animated" style="background-color:  orange;color:  white">时间线
-    </button><div class="hide-content"></div></div>
+<div class="tabs" id="jvm-timeline"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#jvm-timeline-1">jvm-timeline 1</button></li><li class="tab"><button type="button" data-href="#jvm-timeline-2">jvm-timeline 2</button></li><li class="tab"><button type="button" data-href="#jvm-timeline-3">jvm-timeline 3</button></li><li class="tab"><button type="button" data-href="#jvm-timeline-4">jvm-timeline 4</button></li><li class="tab"><button type="button" data-href="#jvm-timeline-5">jvm-timeline 5</button></li><li class="tab"><button type="button" data-href="#jvm-timeline-6">jvm-timeline 6</button></li><li class="tab"><button type="button" data-href="#jvm-timeline-7">jvm-timeline 7</button></li><li class="tab"><button type="button" data-href="#jvm-timeline-8">jvm-timeline 8</button></li><li class="tab"><button type="button" data-href="#jvm-timeline-9">jvm-timeline 9</button></li><li class="tab"><button type="button" data-href="#jvm-timeline-10">jvm-timeline 10</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="jvm-timeline-1"><p><strong>2001-05-17[JDK1.3.1]：第一款GC——串行Serial GC发布。PerNew GC是Serial GC的多线程版本。</strong></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="jvm-timeline-2"><p><strong>2003-06-26[JDK1.4.2]: Parallel GC和Consurrent Mark Sweep GC发布。</strong></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="jvm-timeline-3"><p><strong>2006-12-11[JDK1.6]: Parallel GC生成Hotspot默认GC。</strong></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="jvm-timeline-4"><p><strong>2012[JDK1.7u4]: G1可用。</strong></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="jvm-timeline-5"><p><strong>2017-09-21[JDK9]: G1成为默认回收器，代替CMS。</strong></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="jvm-timeline-6"><p><strong>2018-03-21[JDK10]: G1垃圾回收器的并行完整垃圾回收，实现并行性来改善最坏情况下的延迟。</strong></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="jvm-timeline-7"><p><strong>2018-09-25[JDK11]: 引入Epsilon垃圾器，同时引入ZGC。</strong></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="jvm-timeline-8"><p><strong>2019-03-19[JDK12]: 增强G1（自动返回未用堆内存给操作系统）。同时，引入Shenandoah GC。</strong></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="jvm-timeline-9"><p><strong>2019-09-17[JDK13]: 增强ZGC（自动返回未用堆内存给操作系统）。</strong></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="jvm-timeline-10"><p><strong>2020-03-17[JDK14]: 删除CMS，扩展ZGC在macOS和Windows上的应用。</strong></p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">&#123;% timeline 时间线 %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% timenode 2001-05-17 JDK1.3.1 %&#125;</span><br><span class="line"></span><br><span class="line">第一款GC——串行Serial GC发布。PerNew GC是Serial GC的多线程版本。</span><br><span class="line"></span><br><span class="line">&#123;% endtimenode %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% timenode 2003-06-26 JDK1.4.2 %&#125;</span><br><span class="line"></span><br><span class="line">Parallel GC和Consurrent Mark Sweep GC发布。</span><br><span class="line"></span><br><span class="line">&#123;% endtimenode %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% timenode 2006-12-11 JDK1.6 %&#125;</span><br><span class="line"></span><br><span class="line">Parallel GC生成Hotspot默认GC。</span><br><span class="line"></span><br><span class="line">&#123;% endtimenode %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% timenode 2012 JDK1.7u4 %&#125;</span><br><span class="line"></span><br><span class="line">G1可用。</span><br><span class="line"></span><br><span class="line">&#123;% endtimenode %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% timenode 2017-09-21 JDK9 %&#125;</span><br><span class="line"></span><br><span class="line">G1成为默认回收器，代替CMS。</span><br><span class="line"></span><br><span class="line">&#123;% endtimenode %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% timenode 2018-03-21 JDK10 %&#125;</span><br><span class="line"></span><br><span class="line">G1垃圾回收器的并行完整垃圾回收，实现并行性来改善最坏情况下的延迟。</span><br><span class="line"></span><br><span class="line">&#123;% endtimenode %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% timenode 2018-09-25 JDK11 %&#125;</span><br><span class="line"></span><br><span class="line">引入Epsilon垃圾器，同时引入ZGC。</span><br><span class="line"></span><br><span class="line">&#123;% endtimenode %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% timenode 2019-03-19 JDK12 %&#125;</span><br><span class="line"></span><br><span class="line">增强G1（自动返回未用堆内存给操作系统）。同时，引入Shenandoah GC。</span><br><span class="line"></span><br><span class="line">&#123;% endtimenode %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% timenode 2019-09-17 JDK13 %&#125;</span><br><span class="line"></span><br><span class="line">增强ZGC（自动返回未用堆内存给操作系统）。</span><br><span class="line"></span><br><span class="line">&#123;% endtimenode %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% timenode 2020-03-17 JDK14 %&#125;</span><br><span class="line"></span><br><span class="line">删除CMS，扩展ZGC在macOS和Windows上的应用。</span><br><span class="line"></span><br><span class="line">&#123;% endtimenode %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% endtimeline %&#125;</span><br></pre></td></tr></table></figure>
+
 
 
 
 <blockquote>
-<p>🎨分类</p>
+<p>🎨 分类</p>
 </blockquote>
 <ul>
 <li>串行回收器：Serial、Serial Old</li>
@@ -215,7 +214,7 @@
 <li>并发回收器：CMS、G1</li>
 </ul>
 <blockquote>
-<p>📷图示</p>
+<p>📷 图示</p>
 </blockquote>
 <img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/11567/GC.svg" class="" title="GC"><br />
 
@@ -225,19 +224,19 @@
 <li>整堆回收器：G1</li>
 </ul>
 <blockquote>
-<p>❓为什么要有很多垃圾回收器，一个不够吗？</p>
+<p>❓ 为什么要有很多垃圾回收器，一个不够吗？</p>
 </blockquote>
 <p>因为Java的使用场景很多，移动端、服务端等。所以就需要针对不同的场景，提供不同的垃圾回收器，提高垃圾的性能。</p>
 <p>虽然我们会对各个器进行比较，但并非为了挑选一个最好的器出来。没有一种放之四海而皆准、任何场景都适用的完美器存在，更加没有万能的器。所以我们选择的只是对具体应用最合适的器。</p>
 <blockquote>
-<p>❓如何查看默认的垃圾器？</p>
+<p>❓ 如何查看默认的垃圾器？</p>
 </blockquote>
 <ul>
 <li>程序中：<code>-XX:+PrintCommandLineFlags</code></li>
 <li>命令行：<code>jinfo -flag &lt;参数&gt; &lt;进程ID&gt;</code></li>
 </ul>
 <h3 id="15-3-1️⃣-Serial回收器：串行回收"><a href="#15-3-1️⃣-Serial回收器：串行回收" class="headerlink" title="15.3 1️⃣ Serial回收器：串行回收"></a>15.3 1️⃣ Serial回收器：串行回收</h3><blockquote>
-<p>💬说明</p>
+<p>💬 说明</p>
 </blockquote>
 <ul>
 <li>Serial回收器是最基本、历史最悠久的垃圾回收器了。JDK1.3之前回收新生代的唯一选择。</li>
@@ -248,18 +247,18 @@
 <li>Serial Old在Server模式下主要有两个用途：与新生代的Parallel Scanvenge配合使用，作为老年代CMS回收器的后备垃圾方案。</li>
 </ul>
 <blockquote>
-<p>🌠特点</p>
+<p>🌠 特点</p>
 </blockquote>
 <p>Serial回收器是一个单线程的回收器，但它单线程的意义并不仅仅说明它只会使用一个CPU或一条回收线程去完成垃圾工作，更重要的是在它进行垃圾时，必须暂停其他所有的工作线程，直到它结束。</p>
 <p>优势：简单而高效，对于限定单个CPU的环境来说，Serial收集器由于没有线程交互的开销，专心做垃圾回收自然可以获得最高的单线程效率。运行在Client模式下的虚拟机是个不错的选择。</p>
 <p>在用户的桌面应用场景中，可用内存一般不大，可以在较短时间内完成垃圾，只要不频繁发生，使用串行回收器是可以接受的。</p>
 <p>对于交互性较强的应用而言，这种垃圾回收器是不能接受的。一般Java Web应用程序中是不会采用串行垃圾器的。</p>
 <blockquote>
-<p>⚙️配置</p>
+<p>⚙️ 配置</p>
 </blockquote>
 <p>在HotSpot虚拟机中，使用<code>-XX:+UseSerialGC</code>参数可以指定年轻代和老年代都使用串行器。等价于新生代使用Serial GC，且老年代还有那个Serial Old GC。</p>
 <h3 id="15-4-2️⃣-ParNew回收器：并行回收"><a href="#15-4-2️⃣-ParNew回收器：并行回收" class="headerlink" title="15.4 2️⃣ ParNew回收器：并行回收"></a>15.4 2️⃣ ParNew回收器：并行回收</h3><blockquote>
-<p>💬说明</p>
+<p>💬 说明</p>
 </blockquote>
 <ul>
 <li>如果说Serial GC是年轻代中的单线程垃圾回收器，那么ParNew收集器则是Serial回收器的多线程版本。（Par是Parallel的缩写，New只能处理新生代）</li>
@@ -269,7 +268,7 @@
 <li>对于老年代，回收次数少，使用串行方式节省资源。</li>
 </ul>
 <blockquote>
-<p>🌠特点</p>
+<p>🌠 特点</p>
 </blockquote>
 <ul>
 <li>在多CPU的环境下，ParNew由于可以充分利用多CPU、多核心等物理硬件等资源优势，可以更快速地完成垃圾收集，提升程序的吞吐量。</li>
@@ -277,14 +276,14 @@
 <li>除了Serial外，目前只有ParNew GC能与CMS收集器配合工作。</li>
 </ul>
 <blockquote>
-<p>⚙️配置</p>
+<p>⚙️ 配置</p>
 </blockquote>
 <ul>
 <li><code>-XX:+UseParNewGC</code>：手动指定使用ParNew回收器执行内存回收任务。（表示年轻代使用并行回收器，不影响老年代）</li>
 <li><code>-XX:ParallelGCThreads</code>：限制线程数量。（默认开启和CPU数据相同的线程数）</li>
 </ul>
 <h3 id="15-5-3️⃣-Parallel回收器：吞吐量优先"><a href="#15-5-3️⃣-Parallel回收器：吞吐量优先" class="headerlink" title="15.5 3️⃣ Parallel回收器：吞吐量优先"></a>15.5 3️⃣ Parallel回收器：吞吐量优先</h3><blockquote>
-<p>💬说明</p>
+<p>💬 说明</p>
 </blockquote>
 <ul>
 <li>HotSpot的年轻代除了拥有ParNew回收器是基于并行回收的以外，Parallel Scavenge同样也采用了复制算法、并行回收和STW机制。</li>
@@ -294,11 +293,11 @@
 <li>Parallel Old回收器采用了标记-压缩算法，但同样也是基于并行回收和STW机制。</li>
 </ul>
 <blockquote>
-<p>🌠特点</p>
+<p>🌠 特点</p>
 </blockquote>
 <p>在程序吞吐量优先的应用场景中，Parallel Old收集器的组合，在Server模式下的内存回收性能很不错。</p>
 <blockquote>
-<p>⚙️配置</p>
+<p>⚙️ 配置</p>
 </blockquote>
 <ul>
 <li><code>-XX:+UseParallelGC</code>：手动指定年轻代使用Parallel并行回收器。</li>
@@ -311,7 +310,7 @@
 <li>JDK8默认使用Parallel并行回收器，后期的JDK中年轻代和老年代任意一个开启Parallel并行回收器，另一个也会被开启，互相激活。</li>
 </ul>
 <h3 id="15-6-4️⃣-CMS回收器：低延迟"><a href="#15-6-4️⃣-CMS回收器：低延迟" class="headerlink" title="15.6 4️⃣ CMS回收器：低延迟"></a>15.6 4️⃣ CMS回收器：低延迟</h3><blockquote>
-<p>💬说明</p>
+<p>💬 说明</p>
 </blockquote>
 <ul>
 <li>在JDK1.5时期，HotSpot推出了一款在强交互应用中几乎可认为有划时代意义的垃圾回收器：CMS(Concurrent-Mark-Sweep)回收器，这款回收器是HotSpot虚拟机中第一款真正意义上的并发回收器，它第一次实现了让垃圾收集线程与用户线程同时工作。</li>
@@ -322,7 +321,7 @@
 <li>在G1出现之前，CMS的使用还是非常广泛的。一直到今天，仍然有很多系统使用CMS。</li>
 </ul>
 <blockquote>
-<p>🔍过程</p>
+<p>🔍 过程</p>
 </blockquote>
 <p>CMS整个过程比之前的收集器要复杂，整个过程分为4个主要阶段，即初始标记阶段、并发标记阶段、重新标记阶段和并发清除阶段。</p>
 <p>（1）初始标记（Initial-Mark）阶段：在这个阶段中，程序所有的工作线程都将会因为STW机制而出现短暂的暂停，这个阶段的主要任务仅仅只是标记出GC Roots能直接关联到的对象。一旦标记完成之后就会恢复之前被暂停的所有应用线程。由于直接关联对象比较小，所以这里的速度非常快。</p>
@@ -335,7 +334,7 @@
 <p>CMS收集器的垃圾收集算法采用的是标记清除算法，这意味着每次执行完内存回收后，由于被执行内存回收的无用对象所占用的内存空间极有可能是不连续的一些内存块，不可避免地将会产生一些内存碎片。那么CMS在为新对象分配内存空间时，将无法使用指针碰撞（Bump the Pointer）技术，而只能够选择空闲列表（Free List）执行内存分配。</p>
 <p>那么CMS为什么不采用标记整理算法呢？因为并发收集垃圾的时候，用户线程不会暂停，整理内存会导致用户线程的对象内存地址改变。</p>
 <blockquote>
-<p>🌠特点</p>
+<p>🌠 特点</p>
 </blockquote>
 <p>优点：</p>
 <ul>
@@ -349,7 +348,7 @@
 <li>CMS收集器无法处理浮动垃圾。在并发标记阶段由于程序的工作线程和垃圾收集线程是同时运行或者交叉运行的，那么在并发标记阶段如果产生新的垃圾对象，CMS将无法对这些垃圾对象进行标记，最终会导致这些新产生的垃圾对象没有被及时回收，从而只能在下一次执行GC时释放这些之前违背回收的内存空间。</li>
 </ul>
 <blockquote>
-<p>⚙️配置</p>
+<p>⚙️ 配置</p>
 </blockquote>
 <ul>
 <li><code>-XX:+UseConcMarkSweepGC</code>：手动指定使用CMS收集器执行内存回收任务。开启该参数后自动将<code>-XX:+UseParNewGC</code>打开，即：ParNew(Young) + CMS(Old) + Serial Old的组合。</li>
@@ -359,7 +358,7 @@
 <li><code>-XX:ParallelCMSThreads</code>：设置CMS的线程数量。CMS默认启动的线程数是（ParallelGCThreads + 3）/ 4，ParallelGCThreads是年轻代并行回收器的线程数。当CPU资源比较紧张时，受到CMS收集器线程的影响，应用程序的性能在垃圾回收阶段会非常糟糕。</li>
 </ul>
 <blockquote>
-<p>✨小结</p>
+<p>✨ 小结</p>
 </blockquote>
 <ul>
 <li>如果你最想要最小化地使用内存和并行开销，选择Serial GC</li>
@@ -367,13 +366,13 @@
 <li>如果你想要最小化GC的中断或者停顿时间，选择CMS GC</li>
 </ul>
 <h3 id="15-7-5️⃣-G1回收器：区域化分代式"><a href="#15-7-5️⃣-G1回收器：区域化分代式" class="headerlink" title="15.7 5️⃣ G1回收器：区域化分代式"></a>15.7 5️⃣ G1回收器：区域化分代式</h3><blockquote>
-<p>🌃背景</p>
+<p>🌃 背景</p>
 </blockquote>
 <p>随着应用程序所应对的业务越来越庞大、复杂，用户越来越多，没有GC就不能保证应用程序正常进行，而造成STW的GC又跟不上实际的需求，所以才会不断尝试对GC进行优化。G1(Garbage-First)垃圾回收器是在Java7 update 4之后引入的一个新的垃圾回收器，是当今回收器技术发展的最前沿成果之一。</p>
 <p>与此同时，为了适应现在不断扩大的内存和不断增加的处理器数量，进一步降低暂停时间，同时兼顾良好的吞吐量。</p>
 <p>官方给G1设定的目标是在延迟可控的情况下获得尽可能高的吞吐量，所以才担起“全功能收集器”的责任与期望。</p>
 <blockquote>
-<p>⚡名字</p>
+<p>⚡ 名字</p>
 </blockquote>
 <ul>
 <li>因为G1是一个并行回收器，它把堆内存分割为很多不相关的区域（Region）（物理上不连续的）。使用不同的Region来表示Eden、幸存者0区、幸存者1区，老年代等。</li>
@@ -381,12 +380,12 @@
 <li>由于这种方式的侧重点在于回收垃圾最大量的Region，所以我们给G1起一个名字：垃圾优先（Garbage-First）。</li>
 </ul>
 <blockquote>
-<p>💬说明</p>
+<p>💬 说明</p>
 </blockquote>
 <p>G1是一款面向服务端应用的垃圾回收器，主要针对配备多核CPU及大容量内存的机器，以极高概率满足GC停顿时间的同时，还兼具高吞吐量的性能特征。</p>
 <p>在JDK1.7版本正式启用，移除了Experimental的标识。在JDK8中还不是默认的垃圾回收器，需要使用<code>-XX:+UseG1GC</code>来启用。在JDK9以后成为默认垃圾回收器，取代了CMS回收器以及Parallel + Parallel Old组合，被Oracle官方称为全功能的垃圾收集器。</p>
 <blockquote>
-<p>🌠特点</p>
+<p>🌠 特点</p>
 </blockquote>
 <p>与其它的GC回收器相比，G1使用了全新的分区算法，特点如下：</p>
 <p>（1）并行与并发</p>
@@ -413,12 +412,12 @@
 <li>相比于CMS GC，G1未必能做到CMS在做好的情况下的延时停顿，但是最差情况要好很多。</li>
 </ul>
 <blockquote>
-<p>🌠缺点</p>
+<p>📛 缺点</p>
 </blockquote>
 <p>相较于CMS，G1还不具备全方位、压倒性优势。比如在用户程序运行过程中，G1无论是为了垃圾收集产生的内存占用还是程序运行时的额外执行负载都要比CMS要高。</p>
 <p>从经验上来说，在小内存应用上CMS的表现大概率会优于G1，而G1在大内存应用上则发挥其优势。平衡点在6~8GB之间。</p>
 <blockquote>
-<p>⚙️配置</p>
+<p>⚙️ 配置</p>
 </blockquote>
 <ul>
 <li><code>-XX:+UseG1GC</code>：手动指定使用G1收集器执行内存回收任务。</li>
@@ -429,7 +428,7 @@
 <li><code>-XX:InitiatingHeapOccupancyPercent</code>：设置触发并发GC周期的Java堆占用率阈值。超过此值，就触发GC。默认值是45。</li>
 </ul>
 <blockquote>
-<p>💻使用</p>
+<p>💻 使用</p>
 </blockquote>
 <p>G1的设计原则就是简化JVM性能调优，开发人员只需要简单的三步即可完成调优：</p>
 <p>（1）开启G1垃圾回收器</p>
@@ -437,7 +436,7 @@
 <p>（3）设置最大的停顿时间</p>
 <p>G1提供了三种垃圾回收模式：Young GC、Mixed GC和Full GC，在不同的条件下被触发。</p>
 <blockquote>
-<p>🔮适用场景</p>
+<p>🔮 适用场景</p>
 </blockquote>
 <ul>
 <li><p>面向服务端应用，针对具有大内存、多处理器的机器。</p>
@@ -455,14 +454,14 @@
 </li>
 </ul>
 <blockquote>
-<p>🔲分区region：化整为零</p>
+<p>🔲 分区region：化整为零</p>
 </blockquote>
 <p>使用G1回收器时，它将整个Java堆划分为约2048 个大小相同的独立region块，每个region块大小根据堆空间的实际大小而定，整体被控制在1MB到32MB之间，且为2的N次幂，即1MB，2MB，4MB，8MB，16MB，32MB。可以通过<code>-XX:G1HeapRegionSize</code>设定。所有的region大小都相同，且在JVM生命周期内不会被改变。</p>
 <p>虽然还保留着新生代和老年代的概念，但新生代和老年代不再是物理隔离的了，它们都是一部分region（不需要连续）的集合。通过region的动态分配方式实现逻辑上的连续。</p>
 <p>一个region有可能属于Eden，Survivor或者Old内存区域。但是一个region只可能属于一个角色。G1垃圾回收器还增加了一种新的内存区域，叫做Humongous内存区域。</p>
 <p>设置Humongous的原因：对于堆中的大对象，默认直接会被分配到老年代，但是如果它是一个短期存在的大对象，就会对垃圾收集器造成负面影响。为了解决这个问题，G1划分了一个Humongous区，它用来专门存放大对象。如果一个H区装不下一个大对象，那么G1会寻找连续的Humongous区来存储。为了能找到连续的Humongous区，有时候不得不启动Full GC。G1的大多数行为都把H区作为老年代的一部分来看待。</p>
 <blockquote>
-<p>⏳回收过程</p>
+<p>⏳ 回收过程</p>
 </blockquote>
 <p>G1 GC的垃圾回收过程主要包括如下三个环节：</p>
 <ul>
@@ -475,7 +474,7 @@
 <p>当堆内存使用达到一定值（默认45%）时，开始老年代并发标记过程。</p>
 <p>标记完成马上开始混合回收过程。对于一个混合回收期，G1 GC从老年区间移动存活对象到空闲区间，这些空闲区间也就成为了老年代的一部分。和年轻代不同，老年代的G1回收器和其他GC不同，G1的老年代回收器不需要整个老年代被回收，一次只需要扫描/回收一部分老年代的region就可以了。同时，这个老年代region是和年轻代一起被回收的。</p>
 <blockquote>
-<p>🟪Remembered Set</p>
+<p>🟪 Remembered Set</p>
 </blockquote>
 <p>一个对象被不同区域引用的问题</p>
 <p>一个region不可能是孤立的，一个region中的对象可能被其他任意region中对象引用，判断对象存活时，是否需要扫描整个Java堆才能保证准确？</p>
@@ -485,7 +484,7 @@
 <p>每个Region都有一个对应的Remembered Set；每次Reference类型数据写操作时，都会产生一个Write Barrier暂时中断操作；然后检查将要写入的引用指向的对象是否和该Regerence类型数据在不同的Region（其他回收器：检查老年代对象是否引用了新生代对象）。如果不同，通过CardTable把相关引用信息记录到引用指向对象的所在region对应的Remembered Set中。</p>
 <p>当进行垃圾收集时，在GC根节点的枚举范围加入Remembered Set；就可以保证不进行全局扫描，也不会遗漏。</p>
 <blockquote>
-<p>🔍回收细节</p>
+<p>🔍 回收细节</p>
 </blockquote>
 <p>（1）年轻代GC</p>
 <p>JVM启动时，G1先准备好Eden区，程序在运行过程中不断创造对象到Eden区，当Eden空间耗尽时，G1会启动一次年轻代垃圾回收过程。</p>
@@ -516,7 +515,7 @@
 <p>导致G1 Full GC的原因可能有两个：</p>
 <p>Evacuation的时候没有足够的to-space来存放晋升的对象；并发处理过程完成之前空间耗尽。</p>
 <blockquote>
-<p>🤞优化建议</p>
+<p>🤞 优化建议</p>
 </blockquote>
 <p>年轻代大小：</p>
 <ul>
@@ -529,7 +528,7 @@
 <li>评估G1 GC的吞吐量时，暂停时间目标不要太过严苛。目标太过严苛表示你原因承受更多的垃圾回收开销，而这些会直接影响到吞吐量。</li>
 </ul>
 <h3 id="15-8-🌈-垃圾回收器总结"><a href="#15-8-🌈-垃圾回收器总结" class="headerlink" title="15.8 🌈 垃圾回收器总结"></a>15.8 🌈 垃圾回收器总结</h3><blockquote>
-<p>🆚比较</p>
+<p>🆚 比较</p>
 </blockquote>
 <table>
 <thead>
@@ -600,21 +599,21 @@
 </tr>
 </tbody></table>
 <blockquote>
-<p>📷搭配</p>
+<p>📷 搭配</p>
 </blockquote>
 <img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/11567/image-20210601165415818.png" class="" title="image-20210601165415818"><br />
 
 
 
 <blockquote>
-<p>💡提示</p>
+<p>💡 提示</p>
 </blockquote>
 <ul>
 <li>没有最好的回收器，更没有万能的回收器。</li>
 <li>调优永远是针对特定场景、特定需求，不存在一劳永逸的回收器</li>
 </ul>
 <h3 id="15-9-📄-GC日志分析"><a href="#15-9-📄-GC日志分析" class="headerlink" title="15.9 📄 GC日志分析"></a>15.9 📄 GC日志分析</h3><blockquote>
-<p>⚙️参数</p>
+<p>⚙️ 参数</p>
 </blockquote>
 <p>通过阅读GC日志，我们可以了解Java虚拟机内存分配和回收策略。</p>
 <ul>
@@ -626,7 +625,7 @@
 <li><code>-Xloggc:..logs/gc.log</code>：日志文件的输出路径</li>
 </ul>
 <blockquote>
-<p>💬说明</p>
+<p>💬 说明</p>
 </blockquote>
 <ul>
 <li><code>GC</code>和<code>Full GC</code>说明了这次垃圾收集的停顿类型，如果有<code>Full</code>则说明GC发生了STW。</li>
@@ -640,27 +639,27 @@
 <li><code>user</code>用户态回收耗时，<code>sys</code>内核态回收耗时，<code>real</code>实际耗时。由于多核的原因，时间总和可能会超过real时间。</li>
 </ul>
 <blockquote>
-<p>📷实例</p>
+<p>📷 实例</p>
 </blockquote>
 <img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/11567/image-20210404181555136.png" class="" title="image-20210404181555136"><br />
 
 
 
 <blockquote>
-<p>🔨工具</p>
+<p>🔨 工具</p>
 </blockquote>
 <ul>
 <li>GC viewer：<a target="_blank" rel="noopener" href="https://github.com/chewiebug/GCViewer">https://github.com/chewiebug/GCViewer</a></li>
 <li>GC easy：<a target="_blank" rel="noopener" href="https://gceasy.io/">https://gceasy.io/</a></li>
 </ul>
 <h3 id="15-10-6️⃣-ZGC回收器：低延迟"><a href="#15-10-6️⃣-ZGC回收器：低延迟" class="headerlink" title="15.10 6️⃣ ZGC回收器：低延迟"></a>15.10 6️⃣ ZGC回收器：低延迟</h3><blockquote>
-<p>💬说明</p>
+<p>💬 说明</p>
 </blockquote>
 <p>GC仍然处于飞速发展中，目前的默认选项G1 GC在不断的进行改进，很多我们原来认为的缺点，例如串行的Full GC、Card Table扫描的低效等，都已经被大幅改进，例如，JDK 10以后，Full GC已经是并行运行，在很多场景下，其表现还优于Parallel GC的并行Full GC实现。</p>
 <p>即使是Serial GC，虽然比较古老，但是简单的设计和实现未必就是过时的，它本身的开销，不管是GC相关数据结构的开销，还是线程的开销，都是非常小的，所以随着云计算的兴起，在Serverless等新的应用场景下，Serial GC找到了新的舞台。</p>
 <p>比较不幸的是CMS GC，因为其算法的理论缺陷等原因，虽然现在还有非常大的用户群体，但在JDK9中已经被标记为废弃，并在JDK14版本中移除。</p>
 <blockquote>
-<p>💫Oracle JDK11的ZGC</p>
+<p>💫 Oracle JDK11的ZGC</p>
 </blockquote>
 <p>ZGC与G1都是基于Region，不分代。</p>
 <p>ZGC与Shenandoah目标高度相似，在尽可能对吞吐量影响不大的前提下，实现在任意堆内存大小下都可以把垃圾收集的停顿时间限制在10ms以内的低延迟。</p>
@@ -675,7 +674,7 @@
 <p><a class="btn-beautify button--animated " href="http://cr.openjdk.java.net/~pliden/slides" target="_blank" rel="noopener" title="所有文献"><i class="far fa-hand-point-right fa-fw"></i> 所有文献</a></p>
 <p><a class="btn-beautify button--animated " href="http://cr.openjdk.java.net/~pliden/slides/ZGC-OracleDevLive-2020.pdf" target="_blank" rel="noopener" title="开发者博客"><i class="far fa-hand-point-right fa-fw"></i> 2020年PDF</a></p>
 <blockquote>
-<p>🔍ZGC的黑技巧：染色指针+多重映射</p>
+<p>🔍 ZGC的黑技巧：染色指针+多重映射</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.baeldung.com/jvm-compressed-oops">压缩指针</a>：最初JVM是32位的，随着64位系统的兴起，JVM也迎来了转换。但是64位引用是32位引用的两倍，导致了空间浪费。通过<code>-XX:+UseCompressedOops</code>可以开启指针压缩，改变正常指针的随机地址分配特性<strong>，</strong>强制堆地址从零开始分配。通过对齐和偏移量，可以将64位指针压缩成32位。</p>
 <p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b6356e0ec63c">虚拟地址</a>：一个进程能够看到的地址空间叫做虚拟地址空间，对应着计算机的物理地址空间。多个虚拟地址可以对应一个物理地址。碎片化的物理内存可以映射成完整连续的虚拟内存，一个应用可以申请比物理内存更大的内存，从而使得多个进程互不干扰。</p>
@@ -688,7 +687,7 @@
 
 <p>这样做带来了一些问题：（1）不能使用OOPS（压缩指针），导致应用占用内存显著增大；（2）系统错误显示内存占用，占用了实际内存的3倍，可能导致Linux内核的OutOfMemory Killer。</p>
 <blockquote>
-<p>🔰读屏障Load Barrier</p>
+<p>🔰 读屏障Load Barrier</p>
 </blockquote>
 <p>由于染色指针的存在，在程序运行时访问对象的时候，可以轻易知道对象在内存的存储状态，若请求读的内存被染色了，则会触发读屏障，读屏障会更新指针再返回结果，此过程有一定的耗费，从而达到与用户线程并发的效果。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Object o &#x3D; obj.field;</span><br><span class="line">&lt;load_barrier&gt;</span><br><span class="line">    </span><br><span class="line">mov 0x10(%rax), $rbx</span><br><span class="line">test %rbx, 0x20(%r15)</span><br><span class="line">jne slow_path</span><br></pre></td></tr></table></figure>
@@ -702,7 +701,7 @@
 
 
 <h3 id="15-11-7️⃣Shenandoah-GC：低停顿、低吞吐"><a href="#15-11-7️⃣Shenandoah-GC：低停顿、低吞吐" class="headerlink" title="15.11 7️⃣Shenandoah GC：低停顿、低吞吐"></a>15.11 7️⃣Shenandoah GC：低停顿、低吞吐</h3><blockquote>
-<p>✈️Open JDK12的Shenandoah GC</p>
+<p>✈️ Open JDK12的Shenandoah GC</p>
 </blockquote>
 <p>Shenandoah ，无疑是众多GC中最孤独的一个。是第一款不由Oracle公司团队领导开发的HotSpot垃圾回收器，《深入理解Java虚拟机》中说它因此而不可避免地收到官方的排挤，但是实际上，如果Oracle将它发布到Oracle JDK的商业版本中，出现问题将难以维护。</p>
 <p>Shenandoah垃圾回收器最初由RedHat进行的一项垃圾回收器研究项目Pauseless GC的实现，旨在针对JVM上的内存回收实现低停顿的需求。在2014年贡献给Open JDK。</p>

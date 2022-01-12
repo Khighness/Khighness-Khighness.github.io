@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JVM-8(方法区) | Khighness</title><meta name="keywords" content="Java"><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="8.1 📓 理解 📚规范  《Java虚拟机规范》中明确说明：“尽管所有的方法区在逻辑上是属于堆的一部分，但一些简单的实现可能不会选择去进行垃圾收集或者进行压缩。”但对于HotSpotJVM而言，方法区还有一个别名叫做Non-Heap（非堆），目的就是要和堆分开。 所以，方法区看作是一块独立于Java堆的内存空间。  💬说明  方法区主要存放的是Class，而堆中主要存放的实例化的对象。">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JVM-8(方法区) | 炒菜K殿下</title><meta name="keywords" content="Java"><meta name="author" content="Khighness"><meta name="copyright" content="Khighness"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="理解方法区的存在意义，学习方法区的内部结构和参数设置，深入了解方法区的演进细节和垃圾回收。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM-8(方法区)">
 <meta property="og:url" content="https://www.parak.top/posts/19997/index.html">
-<meta property="og:site_name" content="Khighness">
-<meta property="og:description" content="8.1 📓 理解 📚规范  《Java虚拟机规范》中明确说明：“尽管所有的方法区在逻辑上是属于堆的一部分，但一些简单的实现可能不会选择去进行垃圾收集或者进行压缩。”但对于HotSpotJVM而言，方法区还有一个别名叫做Non-Heap（非堆），目的就是要和堆分开。 所以，方法区看作是一块独立于Java堆的内存空间。  💬说明  方法区主要存放的是Class，而堆中主要存放的实例化的对象。">
+<meta property="og:site_name" content="炒菜K殿下">
+<meta property="og:description" content="理解方法区的存在意义，学习方法区的内部结构和参数设置，深入了解方法区的演进细节和垃圾回收。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-37.jpg">
 <meta property="article:published_time" content="2021-05-24T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-01-11T14:05:27.208Z">
+<meta property="article:modified_time" content="2022-01-12T13:07:47.639Z">
 <meta property="article:author" content="Khighness">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -42,7 +42,7 @@
     day: '天前',
     month: '个月前'
   },
-  copyright: {"limitCount":50,"languages":{"author":"作者: Khighness","link":"链接: ","source":"来源: Khighness","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  copyright: {"limitCount":50,"languages":{"author":"作者: Khighness","link":"链接: ","source":"来源: 炒菜K殿下","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
   lightbox: 'fancybox',
   Snackbar: undefined,
   source: {
@@ -64,7 +64,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2022-01-11 22:05:27'
+  postUpdate: '2022-01-12 21:07:47'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -155,14 +155,14 @@
     if (fontSizeVal !== undefined) {
       document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
     }
-    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont/iconfont.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="Khighness" type="application/atom+xml">
-</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/avatar/Khighness.jpg" onerror="onerror=null;src='https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">18</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-37.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Khighness</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-8(方法区)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-24T16:00:00.000Z" title="发表于 2021-05-25 00:00:00">2021-05-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-11T14:05:27.208Z" title="更新于 2022-01-11 22:05:27">2022-01-11</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-8(方法区)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="8-1-📓-理解"><a href="#8-1-📓-理解" class="headerlink" title="8.1 📓 理解"></a>8.1 📓 理解</h2><blockquote>
-<p>📚规范</p>
+    })(window)</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/iconfont/iconfont.css"><link rel="stylesheet" href="/css/mouse.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-card-history/baiduhistory/css/main.css"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="炒菜K殿下" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://khighness-blog.oss-cn-shanghai.aliyuncs.com/avatar/Khighness.jpg" onerror="onerror=null;src='https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/404.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://khighness-blog.oss-cn-shanghai.aliyuncs.com/top/bg-37.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">炒菜K殿下</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-index"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw iconfont icon-tianchongxing-1"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw iconfont icon-tianchongxing-"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-ziyuan"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-K"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JVM-8(方法区)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-24T16:00:00.000Z" title="发表于 2021-05-25 00:00:00">2021-05-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-12T13:07:47.639Z" title="更新于 2022-01-12 21:07:47">2022-01-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/JVM/">JVM</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM-8(方法区)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="8-1-📓-理解"><a href="#8-1-📓-理解" class="headerlink" title="8.1 📓 理解"></a>8.1 📓 理解</h2><blockquote>
+<p>📚 规范</p>
 </blockquote>
 <p>《Java虚拟机规范》中明确说明：“尽管所有的方法区在逻辑上是属于堆的一部分，但一些简单的实现可能不会选择去进行垃圾收集或者进行压缩。”但对于HotSpotJVM而言，方法区还有一个别名叫做Non-Heap（非堆），目的就是要和堆分开。</p>
 <p>所以，方法区看作是一块独立于Java堆的内存空间。</p>
 <blockquote>
-<p>💬说明</p>
+<p>💬 说明</p>
 </blockquote>
 <p>方法区主要存放的是Class，而堆中主要存放的实例化的对象。</p>
 <ul>
@@ -186,7 +186,7 @@
 </li>
 </ul>
 <blockquote>
-<p>⏳演进</p>
+<p>⏳ 演进</p>
 </blockquote>
 <p>JDK7及以前，习惯上把方法区，称为永久代。jdk8开始，使用元空间取代了永久代。</p>
 <p>JDK8后，元空间存放在堆外内存中</p>
@@ -197,7 +197,7 @@
 <p>根据《Java虚拟机规范》的规定，如果方法区无法满足新的内存分配需求时，将抛出OOM异常。</p>
 <h2 id="8-2-⚙️设置方法区大小与OOM"><a href="#8-2-⚙️设置方法区大小与OOM" class="headerlink" title="8.2 ⚙️设置方法区大小与OOM"></a>8.2 ⚙️设置方法区大小与OOM</h2><p>方法区的大小是不必固定的，JVM可以根据应用的需要动态调整。</p>
 <blockquote>
-<p>7️⃣JDK7以前</p>
+<p>7️⃣ JDK7以前</p>
 </blockquote>
 <ul>
 <li>-XX:Permsize：设置永久代初始分配空间（默认值是20.75M）</li>
@@ -205,7 +205,7 @@
 <li>当JVM加载的类信息容量超过了这个值，会报异常OutofMemoryError。</li>
 </ul>
 <blockquote>
-<p>8️⃣JDK8以后</p>
+<p>8️⃣ JDK8以后</p>
 </blockquote>
 <ul>
 <li>-XX:MetaspaceSize：设置元空间初始分配空间</li>
@@ -216,7 +216,7 @@
 <li>如果初始化的高水位线设置过低，上述高水位调整情况会发生很多次。通过垃圾回收器的日志可以观察到Full GC多次调用。为了避免频发地GC，建议将-XX:MetaspaceSize设置为一个相对较高的值。</li>
 </ul>
 <blockquote>
-<p>✅解决OOM</p>
+<p>✅ 解决OOM</p>
 </blockquote>
 <ol>
 <li>要解决OOM异常或者heap space的异常，一般的手段是首先通过内存映像分析工具（如Eclipse Memory Analyzer）对dump出来的堆转储快照进行分析，重点是确认内存中的对象是否是必要的，也就是要分清楚到底是出现了内存泄露（Memory Leak）还是内存溢出（Memory Overflow）。</li>
@@ -224,11 +224,11 @@
 <li>如果不存在内存泄露，换句话说就是内存中的对象确实都还必须存活着，那就应当检查虚拟机的堆参数（-Xmx和-Xms），与机器物理内存对比看是否还可以调大，从代码上检查是否存在某些对象生命周期过长、持有状态时间过长的情况，尝试减少程序运行期的内存消耗。</li>
 </ol>
 <h2 id="8-3-📂方法区的内部结构"><a href="#8-3-📂方法区的内部结构" class="headerlink" title="8.3 📂方法区的内部结构"></a>8.3 📂方法区的内部结构</h2><blockquote>
-<p>🟦存储</p>
+<p>🟦 存储</p>
 </blockquote>
 <p>存储已被虚拟机加载的类型信息、常量、静态变量、即时编译器编译后的代码缓存等。</p>
 <blockquote>
-<p>1️⃣类型信息</p>
+<p>1️⃣ 类型信息</p>
 </blockquote>
 <p>对每个加载的类型（类class、接口interface、枚举enum、注解annotation），JVM必须在方法区中存储以下类型信息：</p>
 <ul>
@@ -238,14 +238,14 @@
 <li>这个类型直接接口的一个有序列表</li>
 </ul>
 <blockquote>
-<p>2️⃣域信息</p>
+<p>2️⃣ 域信息</p>
 </blockquote>
 <ul>
 <li>JVM必须在方法区保存类型的所有域相关信息以及域的声明顺序</li>
 <li>域相关信息包括：域名称、域类型、域修饰符（public、private、protected、static、final、volatile、transient的某个子集）</li>
 </ul>
 <blockquote>
-<p>3️⃣方法信息</p>
+<p>3️⃣ 方法信息</p>
 </blockquote>
 <p>JVM必须保存所有的以下信息以及声明顺序：</p>
 <ul>
@@ -260,20 +260,20 @@
 </li>
 </ul>
 <blockquote>
-<p>4️⃣static no-final的类变量</p>
+<p>4️⃣ static no-final的类变量</p>
 </blockquote>
 <ul>
 <li>静态变量和类关联在一起，随着类的加载而加载，它们称为类数据在逻辑上的一部分。</li>
 <li>类变量被类的所有实例共享，即使没有类实例时也可以访问。</li>
 </ul>
 <blockquote>
-<p>5️⃣static final的全局变量</p>
+<p>5️⃣ static final的全局变量</p>
 </blockquote>
 <ul>
 <li>全局变量在编译的时候就会被分配。</li>
 </ul>
 <blockquote>
-<p>运行时常量池🆚Class文件常量池</p>
+<p>运行时常量池 🆚 Class文件常量池</p>
 </blockquote>
 <ul>
 <li>方法区，内部包含了运行时常量池。</li>
@@ -282,7 +282,7 @@
 <li>需要弄清楚方法区的运行时常量池，需要理解清楚ClassFile中的常量池。</li>
 </ul>
 <blockquote>
-<p>📃Class文件常量池</p>
+<p>📃 Class文件常量池</p>
 </blockquote>
 <p>class文件中除了包含类的版本、字段、方法、接口等描述信息外，还有一项信息就是常量池，用于存放编译期生成的各种字面量和符号引用。</p>
 <p>字面量就是我们所说的常量概念，如文本字符串、被声明为final的常量值等。</p>
@@ -293,7 +293,7 @@
 <li>方法的名称和描述符</li>
 </ul>
 <blockquote>
-<p>📃运行时常量池</p>
+<p>📃 运行时常量池</p>
 </blockquote>
 <ul>
 <li>运行时常量池是方法区的一部分。</li>
@@ -308,14 +308,19 @@
 <li>当创建类或接口的运行时常量池时，如果构造运行时常量池所需的内存空间超过了方法区所能提供的最大值，则JVM会抛出OOM异常。</li>
 </ul>
 <blockquote>
-<p>🔰总结</p>
+<p>🔰 总结</p>
 </blockquote>
 <ul>
 <li>Class文件常量池是在编译的时候每个class就有的，存放的是常量和符号引用。</li>
 <li>运行时常量池是在类加载完成之后，将每个Class文件常量池中的符号引用值转存到运行时常量池中，</li>
 </ul>
-<h2 id="8-4-⌨️-方法区的使用举例"><a href="#8-4-⌨️-方法区的使用举例" class="headerlink" title="8.4 ⌨️ 方法区的使用举例"></a>8.4 ⌨️ 方法区的使用举例</h2><h2 id="8-5-🔭-方法区的演进细节"><a href="#8-5-🔭-方法区的演进细节" class="headerlink" title="8.5 🔭 方法区的演进细节"></a>8.5 🔭 方法区的演进细节</h2><blockquote>
-<p>〰如下</p>
+<h2 id="8-4-⌨️-方法区的使用举例"><a href="#8-4-⌨️-方法区的使用举例" class="headerlink" title="8.4 ⌨️ 方法区的使用举例"></a>8.4 ⌨️ 方法区的使用举例</h2> <span class="hide-inline"><button type="button" class="hide-button button--animated" style=""> 一点就看到了！
+  </button><span class="hide-content">我不认真，没记笔记，看下一节吧。</span></span>
+
+
+
+<h2 id="8-5-🔭-方法区的演进细节"><a href="#8-5-🔭-方法区的演进细节" class="headerlink" title="8.5 🔭 方法区的演进细节"></a>8.5 🔭 方法区的演进细节</h2><blockquote>
+<p>〰 如下</p>
 </blockquote>
 <ol>
 <li>首先明确。只有HotSpot才有永久代。BEA JRockit、IBM J9等不存在永久代。原则上如何实现方法区属于虚拟机实现细节，不受《Java虚拟机规范》管束，并不要求统一。</li>
@@ -342,7 +347,7 @@
 </tr>
 </tbody></table>
 <blockquote>
-<p>❓为什么永久代要被元空间替代</p>
+<p>❓ 为什么永久代要被元空间替代</p>
 </blockquote>
 <p>JRockit是和HotSpot融合后的结果，因为JRockit没有永久代，所以他们不需要配置永久代。</p>
 <p>随着Java8的到来，HotSpot VM中再也见不到永久代了。但是这并不意味着类的元数据信息也消失了。这些数据被移到了一个与堆不相连的本地内存区域，这个区域叫做元空间（Metaspace）。</p>
@@ -355,12 +360,12 @@
 <p>一般来说这个区域的回收效果比较令人难以满意，尤其是类型的卸载，条件相当苛刻。但是这部分区域的回收有时又确实是必要的。以前Sun公司的Bug列表中，曾出现过的若干个严重的Bug就是由于低版本的HotSpot虚拟机对此区域未完全回收而导致内存泄漏。</p>
 <p>方法区的垃圾收集主要收集两部分内容：常量池中废弃的常量和不再使用的类型。</p>
 <blockquote>
-<p>❓为什么StringTable调整位置</p>
+<p>❓ 为什么StringTable调整位置</p>
 </blockquote>
 <p>JDK7中将StringTable放到了堆空间中。因为永久代的回收效率很低，在full gc的时候才会触发。而full gc是老年代的空间不足、永久代不足时才会触发，这就导致StringTable回收效率不高。</p>
 <p>而我们开发中会有大量的字符串被创建，回收效率低，导致永久代内存不足。放到堆里，能及时回收内存。</p>
 <h2 id="8-6-♻-方法区的垃圾回收"><a href="#8-6-♻-方法区的垃圾回收" class="headerlink" title="8.6 ♻ 方法区的垃圾回收"></a>8.6 ♻ 方法区的垃圾回收</h2><blockquote>
-<p>📖概述</p>
+<p>📖 概述</p>
 </blockquote>
 <ul>
 <li>判定一个常量是否废弃还是相对简单，而要判定一个类型是否属于“不再被使用的类”的条件就比较苛刻了。需要同时满足下面三个条件：</li>
