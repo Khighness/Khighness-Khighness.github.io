@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2022-01-12T13:33:29.344Z</updated>
+  <updated>2022-01-13T04:01:56.830Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.parak.top/posts/13354/"/>
     <id>https://www.parak.top/posts/13354/</id>
     <published>2022-01-11T16:00:00.000Z</published>
-    <updated>2022-01-12T13:33:29.344Z</updated>
+    <updated>2022-01-13T04:01:56.830Z</updated>
     
     
     <summary type="html">学习布隆过滤器，计算最小误差。</summary>
@@ -40,7 +40,7 @@
     <link href="https://www.parak.top/posts/12327/"/>
     <id>https://www.parak.top/posts/12327/</id>
     <published>2022-01-09T16:00:00.000Z</published>
-    <updated>2022-01-12T13:15:42.319Z</updated>
+    <updated>2022-01-13T04:01:56.792Z</updated>
     
     
     <summary type="html">无数行业被疫情重创，选择躺平也无可厚非。&lt;br /&gt;当世纷繁，以己正道；不必自忧，驭风而行。</summary>
@@ -59,7 +59,7 @@
     <link href="https://www.parak.top/posts/53991/"/>
     <id>https://www.parak.top/posts/53991/</id>
     <published>2021-12-02T16:00:00.000Z</published>
-    <updated>2022-01-12T12:45:52.528Z</updated>
+    <updated>2022-01-13T04:01:56.082Z</updated>
     
     
     <summary type="html">百层高的大楼，两个鸡蛋，求找到鸡蛋不碎的临街楼层的扔鸡蛋的最少次数。李永乐老师讲的确实是通俗易懂。</summary>
@@ -78,7 +78,7 @@
     <link href="https://www.parak.top/posts/18127/"/>
     <id>https://www.parak.top/posts/18127/</id>
     <published>2021-10-28T16:00:00.000Z</published>
-    <updated>2022-01-12T12:54:58.589Z</updated>
+    <updated>2022-01-13T04:01:56.108Z</updated>
     
     
     <summary type="html">8月初边实习边投递提前批，请假笔试和面试，实在过于麻烦。  9月初回家，全力准备算法和八股，记录炒菜少年的秋招结果。</summary>
@@ -97,7 +97,7 @@
     <link href="https://www.parak.top/posts/13171/"/>
     <id>https://www.parak.top/posts/13171/</id>
     <published>2021-10-09T16:00:00.000Z</published>
-    <updated>2022-01-12T11:11:05.494Z</updated>
+    <updated>2022-01-13T04:01:56.397Z</updated>
     
     
     <summary type="html">《云原生分布式存储基石 etcd深入解析》读书笔记，深入解读了Raft论文，并列举了集群的各种异常情况，最后附上Raft的性能优化。</summary>
@@ -116,7 +116,7 @@
     <link href="https://www.parak.top/posts/15536/"/>
     <id>https://www.parak.top/posts/15536/</id>
     <published>2021-08-19T16:00:00.000Z</published>
-    <updated>2022-01-12T12:37:17.011Z</updated>
+    <updated>2022-01-13T04:01:56.628Z</updated>
     
     
     <summary type="html">Spring事务是通过自动配置+AOP拦截器实现的，在拦截器中获取到事务的注解信息和事务管理器，通过invoke方法调用目标方法，出现异常则通过事务管理器进行回滚。</summary>
@@ -135,7 +135,7 @@
     <link href="https://www.parak.top/posts/54880/"/>
     <id>https://www.parak.top/posts/54880/</id>
     <published>2021-08-18T16:00:00.000Z</published>
-    <updated>2022-01-12T12:36:41.169Z</updated>
+    <updated>2022-01-13T04:01:56.880Z</updated>
     
     
     <summary type="html">对于Spring的源码确实不能一路往下debug，不然人容易迷失，很多地方是Spring的接口封装的太深，所以需要了解一些常见接口的作用，也要大胆猜测作者的思路。</summary>
@@ -154,7 +154,7 @@
     <link href="https://www.parak.top/posts/408/"/>
     <id>https://www.parak.top/posts/408/</id>
     <published>2021-08-18T04:00:00.000Z</published>
-    <updated>2022-01-12T12:34:25.542Z</updated>
+    <updated>2022-01-13T04:01:56.437Z</updated>
     
     
     <summary type="html">源码分析Spring如何解决循环依赖，还有一些Q&amp;A。</summary>
@@ -173,7 +173,7 @@
     <link href="https://www.parak.top/posts/55590/"/>
     <id>https://www.parak.top/posts/55590/</id>
     <published>2021-08-16T16:00:00.000Z</published>
-    <updated>2022-01-12T12:33:36.332Z</updated>
+    <updated>2022-01-13T04:01:56.721Z</updated>
     
     
     <summary type="html">没看源码，直接验证，大概就是：实例化、接口回调、初始化和销毁。</summary>
@@ -192,7 +192,7 @@
     <link href="https://www.parak.top/posts/39013/"/>
     <id>https://www.parak.top/posts/39013/</id>
     <published>2021-08-15T16:00:00.000Z</published>
-    <updated>2022-01-12T12:38:09.783Z</updated>
+    <updated>2022-01-13T04:01:56.601Z</updated>
     
     
     <summary type="html">学会使用使用@Import、ImportSelector和ImportBeanDefinitionRegistor等方式批量注册组件，掌握有助于定制化IOC容器开发。</summary>
@@ -211,7 +211,7 @@
     <link href="https://www.parak.top/posts/59926/"/>
     <id>https://www.parak.top/posts/59926/</id>
     <published>2021-07-06T13:36:25.505Z</published>
-    <updated>2022-01-12T11:27:26.798Z</updated>
+    <updated>2022-01-13T04:01:56.168Z</updated>
     
     
     <summary type="html">第一次一个人去陌生的城市，第一次实习，第一次租房，想要真正意义上的独立。</summary>
@@ -230,7 +230,7 @@
     <link href="https://www.parak.top/posts/62562/"/>
     <id>https://www.parak.top/posts/62562/</id>
     <published>2021-06-20T16:00:00.000Z</published>
-    <updated>2022-01-13T02:26:19.394Z</updated>
+    <updated>2022-01-13T04:01:56.372Z</updated>
     
     
     <summary type="html">有界并阻塞，数组存储，ReentrantLock保证线程安全，资源不足时，offer和poll返回false，put和take会进入条件队列等待，size结果准确。</summary>
@@ -249,7 +249,7 @@
     <link href="https://www.parak.top/posts/33015/"/>
     <id>https://www.parak.top/posts/33015/</id>
     <published>2021-06-19T16:00:00.000Z</published>
-    <updated>2022-01-12T12:39:48.376Z</updated>
+    <updated>2022-01-13T04:01:56.758Z</updated>
     
     
     <summary type="html">有界并阻塞队列，底层采用单向队列保存数据，内部使用两个ReentrantLock实现线程安全，分别用于用于执行poll等消费性性操作和offer等生产性操作，size方法的结果是准确的。</summary>
@@ -268,7 +268,7 @@
     <link href="https://www.parak.top/posts/29870/"/>
     <id>https://www.parak.top/posts/29870/</id>
     <published>2021-06-18T16:00:00.000Z</published>
-    <updated>2022-01-13T02:18:00.063Z</updated>
+    <updated>2022-01-13T04:01:56.841Z</updated>
     
     
     <summary type="html">无界非阻塞，单向链表处处，volatile+CAS无锁操作保证线程安全，在并发情况下size结果可能不准确。</summary>
@@ -287,7 +287,7 @@
     <link href="https://www.parak.top/posts/48482/"/>
     <id>https://www.parak.top/posts/48482/</id>
     <published>2021-06-17T16:00:00.000Z</published>
-    <updated>2022-01-13T02:30:46.544Z</updated>
+    <updated>2022-01-13T04:01:56.588Z</updated>
     
     
     <summary type="html">🔍分析了JDK1.8 HashMap的源码，图示并发情况下的JDK1.7和JDK1.8 HashMap的问题，另外有负载因子的一些个人猜想和证明。</summary>
@@ -306,7 +306,7 @@
     <link href="https://www.parak.top/posts/48481/"/>
     <id>https://www.parak.top/posts/48481/</id>
     <published>2021-06-16T16:00:00.000Z</published>
-    <updated>2022-01-13T02:30:46.592Z</updated>
+    <updated>2022-01-13T04:01:56.934Z</updated>
     
     
     <summary type="html">写时复制思想，修改在ReentrantLock的保护下操作副本，完成时使用副本替换原始数组。读取的时候只能读旧数组，所以体现的是弱一致性。</summary>
@@ -325,7 +325,7 @@
     <link href="https://www.parak.top/posts/55122/"/>
     <id>https://www.parak.top/posts/55122/</id>
     <published>2021-06-15T16:00:00.000Z</published>
-    <updated>2022-01-12T03:23:15.215Z</updated>
+    <updated>2022-01-13T04:01:56.566Z</updated>
     
     
     <summary type="html">🔍 基于JDK1.8的ArrayList和LinkedList的源码解析。</summary>
@@ -344,7 +344,7 @@
     <link href="https://www.parak.top/posts/19577/"/>
     <id>https://www.parak.top/posts/19577/</id>
     <published>2021-06-12T16:00:00.000Z</published>
-    <updated>2022-01-13T02:30:46.566Z</updated>
+    <updated>2022-01-13T04:01:56.553Z</updated>
     
     
     <summary type="html">去年冬天跟室友看了新海诚的《天气之子》，让我对新海诚导演和日漫电影留下挺不错的印象。今年夏天，这部HelloWorld，电影院直接冲。</summary>
@@ -363,7 +363,7 @@
     <link href="https://www.parak.top/posts/26035/"/>
     <id>https://www.parak.top/posts/26035/</id>
     <published>2021-06-10T16:00:00.000Z</published>
-    <updated>2022-01-12T02:10:12.642Z</updated>
+    <updated>2022-01-13T04:01:56.200Z</updated>
     
     
     <summary type="html">一个好女朋友的标准，舒适、正能量、反馈与包容。</summary>
@@ -382,7 +382,7 @@
     <link href="https://www.parak.top/posts/52913/"/>
     <id>https://www.parak.top/posts/52913/</id>
     <published>2021-06-05T16:00:00.000Z</published>
-    <updated>2022-01-12T12:46:21.441Z</updated>
+    <updated>2022-01-13T04:01:56.249Z</updated>
     
     
     <summary type="html">学习spring-security和spring-security-oauth2.0。</summary>
