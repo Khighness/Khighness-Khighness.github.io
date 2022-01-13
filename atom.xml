@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2022-01-12T13:32:21.489Z</updated>
+  <updated>2022-01-12T13:33:29.344Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.parak.top/posts/13354/"/>
     <id>https://www.parak.top/posts/13354/</id>
     <published>2022-01-11T16:00:00.000Z</published>
-    <updated>2022-01-12T13:32:21.489Z</updated>
+    <updated>2022-01-12T13:33:29.344Z</updated>
     
     
     <summary type="html">学习布隆过滤器，计算最小误差。</summary>
@@ -230,10 +230,10 @@
     <link href="https://www.parak.top/posts/62562/"/>
     <id>https://www.parak.top/posts/62562/</id>
     <published>2021-06-20T16:00:00.000Z</published>
-    <updated>2022-01-12T12:57:25.088Z</updated>
+    <updated>2022-01-13T02:26:19.394Z</updated>
     
     
-    <summary type="html">有界并阻塞队列，底层采用数组保存数据，使用ReentrantLock保证线程安全，资源不足时，offer和poll操作直接返回false，put和take操作会进入条件队列等待资源，size方法的结果是准确的。</summary>
+    <summary type="html">有界并阻塞，数组存储，ReentrantLock保证线程安全，资源不足时，offer和poll返回false，put和take会进入条件队列等待，size结果准确。</summary>
     
     
     
@@ -268,10 +268,10 @@
     <link href="https://www.parak.top/posts/29870/"/>
     <id>https://www.parak.top/posts/29870/</id>
     <published>2021-06-18T16:00:00.000Z</published>
-    <updated>2022-01-12T12:57:23.250Z</updated>
+    <updated>2022-01-13T02:18:00.063Z</updated>
     
     
-    <summary type="html">无界非阻塞队列，使用单向链表保存数据，使用volatile+CAS无锁操作保证线程安全，在并发情况下size方法统计可能不准确。</summary>
+    <summary type="html">无界非阻塞，单向链表处处，volatile+CAS无锁操作保证线程安全，在并发情况下size结果可能不准确。</summary>
     
     
     
@@ -287,10 +287,10 @@
     <link href="https://www.parak.top/posts/48482/"/>
     <id>https://www.parak.top/posts/48482/</id>
     <published>2021-06-17T16:00:00.000Z</published>
-    <updated>2022-01-12T13:04:30.127Z</updated>
+    <updated>2022-01-13T02:30:46.544Z</updated>
     
     
-    <summary type="html">🔍详细分析了JDK1.8 HashMap的源码，图示并发情况下的JDK1.7和JDK1.8 HashMap的问题，另外有负载因子的一些个人猜想和证明，</summary>
+    <summary type="html">🔍分析了JDK1.8 HashMap的源码，图示并发情况下的JDK1.7和JDK1.8 HashMap的问题，另外有负载因子的一些个人猜想和证明。</summary>
     
     
     
@@ -306,10 +306,10 @@
     <link href="https://www.parak.top/posts/48481/"/>
     <id>https://www.parak.top/posts/48481/</id>
     <published>2021-06-16T16:00:00.000Z</published>
-    <updated>2022-01-12T12:54:03.073Z</updated>
+    <updated>2022-01-13T02:30:46.592Z</updated>
     
     
-    <summary type="html">写时复制思想，即COW。修改都是在ReentrantLock的保护下操作副本，完成时使用副本替换原始数组。因为读取的时候只能读旧数组，所以体现的是弱一致性。</summary>
+    <summary type="html">写时复制思想，修改在ReentrantLock的保护下操作副本，完成时使用副本替换原始数组。读取的时候只能读旧数组，所以体现的是弱一致性。</summary>
     
     
     
@@ -344,10 +344,10 @@
     <link href="https://www.parak.top/posts/19577/"/>
     <id>https://www.parak.top/posts/19577/</id>
     <published>2021-06-12T16:00:00.000Z</published>
-    <updated>2022-01-12T03:57:21.780Z</updated>
+    <updated>2022-01-13T02:30:46.566Z</updated>
     
     
-    <summary type="html">去年冬天跟室友看了新海诚的《天气之子》，让我对新海诚导演留下挺不错的印象。今年夏天，这部HelloWorld，因为片名加上计算机科班出身的关系，电影院直接冲。</summary>
+    <summary type="html">去年冬天跟室友看了新海诚的《天气之子》，让我对新海诚导演和日漫电影留下挺不错的印象。今年夏天，这部HelloWorld，电影院直接冲。</summary>
     
     
     
