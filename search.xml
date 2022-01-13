@@ -11528,11 +11528,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart3582" style="height: 120px"></canvas>
+    <canvas id="chart5458" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart3582').getContext('2d');
+    var ctx = document.getElementById('chart5458').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -11568,11 +11568,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart4688" style="height: 100px"></canvas>
+    <canvas id="chart9304" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart4688').getContext('2d');
+    var ctx = document.getElementById('chart9304').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -11596,11 +11596,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart1513" style="height: 100px"></canvas>
+    <canvas id="chart799" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart1513').getContext('2d');
+    var ctx = document.getElementById('chart799').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -15236,10 +15236,10 @@ H --&gt; I</div>
     <title>叶惠美</title>
     <url>/posts/f8cdfd0a/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-JqIOYTSm" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-HYhomcfN" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-JqIOYTSm");
+				  options.element = document.getElementById("aplayer-HYhomcfN");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
@@ -20304,16 +20304,12 @@ graph TD;
   <entry>
     <title>每个少年，既有幻想，也有悲伤</title>
     <url>/posts/140645a5/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>转载自《中国青年报》2014年12月23日 星期二。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>　　我不知道，是否每个人在孩童时代身处困境的时候，都会幻想出现一个人来改变这一切。<br>　　<br>　　我小的时候，讨厌父亲的不苟言笑，时常憧憬着换一个爸爸。比如我的舅舅，我固执地认为他有趣、幽默、能理解我的苦恼，期盼着他能把我带走。可是，我心里又很清楚：这是一件不可能的事情。<br>　　<br>　　所以，关于成长，其实是一个与命运交锋的过程。初次交锋，你学到：没有人可以改变自己的出生，只能接受。这个过程，充满着悲伤。这种悲伤，常常会被大人忽略，直到“那个神秘人”的出现。<br>　　<br>　　所以，看到电影《亚特兰蒂斯之心》，我总觉得它讲述的是每个少年脑子里都曾幻想出现过的一个故事——<br>　　<br>　　11岁的悲伤少年，隔壁突然搬来一位神秘老人。他似乎知道天下的一切秘密。他热衷与少年交谈，从来不把他当成一个孩子。他告诉他，不要小看阅读的力量，“千百年来，伟人带领我们走出黑暗”。他对少年说：“我们都是时间的俘虏，永恒的人质。”他甚至告诉少年：你会吻那个女孩，你一定会。多么可爱的女孩。在那个吻中，好好感受自己。<br>　　<br>　　最后，老人消失了。多年后，少年回到那个城市，分不清曾经的那段奇遇到底是真的还是假的。但他知道，也许老人并没有什么神秘的能量，只是半生的经历让他对人世太过洞察。</p>
+<p>　　每个少年都有幻想，因为他们都有悲伤。那悲伤来自大人总是不屑与他们交谈，其实他们什么都明白。他们看得到悲伤，他们懂得什么是爱。<br>　　<br>　　每个少年都有悲伤。区别在于，有人把悲伤培养成一种阿Q精神，有人把悲伤转化成叛逆和愤怒，有人把自己埋在悲伤里再也走不出来。幸运的话，要到很久之后，才有人渐渐开始懂得，如果遇到悲伤，放轻松，它会慢慢走开。<br>　　<br>　　这个少年，是我们当中的幸运儿。神秘老人消失了。他们再也不曾见过。望着老人的背影，他觉得年少时光也一并离他远去了。<br>　　<br>　　“知道吗？在你年轻的时候，有许多这样美好的瞬间，你觉得自己生活在一个神奇的地方，以为亚特兰蒂斯一定存在。然后我们就长大了，于是我们的心碎了。”<br>　　<br>　　亚特兰蒂斯，据传是由波塞冬的子孙掌管的史前古国，大陆文明的巅峰之国，却在一场灾难之后，举国沉入水底。<br>　　<br>　　我们的童年，就如陷落的亚特兰蒂斯，曾经幻想过无数神奇的故事，可是，最后都没有发生。我们变成了平凡的普通人，没有传奇，没有自由，没有主宰；相反的是，接受平淡，接受束缚，接受命运。<br>　　<br>　　唯一的好处是，我们都曾经以为心碎了，就再也不会好了。后来等到第二次心碎，才知道，原来还可以活着。再等到第三次第四次，才知道，心碎是生命的必经，一如我们注定是时间永恒的人质。<br>　　<br>　　能让破碎的心恢复的东西，就是成长。只有看到自己的成长，我们才会承认心碎是有意义的，也才会因这些成长，奋力站起来，勇于接受下一次心碎。<br>　　<br>　　对我来说，亚特兰蒂斯永恒地存在于心里。就像那个少年，永远不会忘记神秘的老人，在他的生命里真实存在过，那并不是一个虚构的人物，那是他的亚特兰蒂斯之心的明证。我是那个选择继续相信的人，不后悔爱过、痛过的人，我接受这一切的存在，也对曾经那个又傻又土的自己坦然笑纳。<br>　　<br>　　只有接受，才会在平凡中领略到不平凡的存在，并且予以珍惜。<br>　　<br>　　只有接受，你才会发现，每一个少年都是一样的。只是后来，才慢慢变得不一样，有些人的心已经死去，有些人的梦已经成真。</p>
+<p>转载自《中国青年报》2014年12月23日 星期二。</p>
 <a class="btn-beautify button--animated block right outline larger" href="http://zqb.cyol.com/html/2014-12/23/nw.D110000zgqnb_20141223_3-11.htm" 
   title="每个少年都有幻想也有悲伤"><i class="far fa-hand-point-right fa-fw"></i><span>每个少年都有幻想也有悲伤</span></a>
 
-
-
-
-
-<p>　　我不知道，是否每个人在孩童时代身处困境的时候，都会幻想出现一个人来改变这一切。<br>　　<br>　　我小的时候，讨厌父亲的不苟言笑，时常憧憬着换一个爸爸。比如我的舅舅，我固执地认为他有趣、幽默、能理解我的苦恼，期盼着他能把我带走。可是，我心里又很清楚：这是一件不可能的事情。<br>　　<br>　　所以，关于成长，其实是一个与命运交锋的过程。初次交锋，你学到：没有人可以改变自己的出生，只能接受。这个过程，充满着悲伤。这种悲伤，常常会被大人忽略，直到“那个神秘人”的出现。<br>　　<br>　　所以，看到电影《亚特兰蒂斯之心》，我总觉得它讲述的是每个少年脑子里都曾幻想出现过的一个故事——<br>　　<br>　　11岁的悲伤少年，隔壁突然搬来一位神秘老人。他似乎知道天下的一切秘密。他热衷与少年交谈，从来不把他当成一个孩子。他告诉他，不要小看阅读的力量，“千百年来，伟人带领我们走出黑暗”。他对少年说：“我们都是时间的俘虏，永恒的人质。”他甚至告诉少年：你会吻那个女孩，你一定会。多么可爱的女孩。在那个吻中，好好感受自己。<br>　　<br>　　最后，老人消失了。多年后，少年回到那个城市，分不清曾经的那段奇遇到底是真的还是假的。但他知道，也许老人并没有什么神秘的能量，只是半生的经历让他对人世太过洞察。</p>
-<p>　　每个少年都有幻想，因为他们都有悲伤。那悲伤来自大人总是不屑与他们交谈，其实他们什么都明白。他们看得到悲伤，他们懂得什么是爱。<br>　　<br>　　每个少年都有悲伤。区别在于，有人把悲伤培养成一种阿Q精神，有人把悲伤转化成叛逆和愤怒，有人把自己埋在悲伤里再也走不出来。幸运的话，要到很久之后，才有人渐渐开始懂得，如果遇到悲伤，放轻松，它会慢慢走开。<br>　　<br>　　这个少年，是我们当中的幸运儿。神秘老人消失了。他们再也不曾见过。望着老人的背影，他觉得年少时光也一并离他远去了。<br>　　<br>　　“知道吗？在你年轻的时候，有许多这样美好的瞬间，你觉得自己生活在一个神奇的地方，以为亚特兰蒂斯一定存在。然后我们就长大了，于是我们的心碎了。”<br>　　<br>　　亚特兰蒂斯，据传是由波塞冬的子孙掌管的史前古国，大陆文明的巅峰之国，却在一场灾难之后，举国沉入水底。<br>　　<br>　　我们的童年，就如陷落的亚特兰蒂斯，曾经幻想过无数神奇的故事，可是，最后都没有发生。我们变成了平凡的普通人，没有传奇，没有自由，没有主宰；相反的是，接受平淡，接受束缚，接受命运。<br>　　<br>　　唯一的好处是，我们都曾经以为心碎了，就再也不会好了。后来等到第二次心碎，才知道，原来还可以活着。再等到第三次第四次，才知道，心碎是生命的必经，一如我们注定是时间永恒的人质。<br>　　<br>　　能让破碎的心恢复的东西，就是成长。只有看到自己的成长，我们才会承认心碎是有意义的，也才会因这些成长，奋力站起来，勇于接受下一次心碎。<br>　　<br>　　对我来说，亚特兰蒂斯永恒地存在于心里。就像那个少年，永远不会忘记神秘的老人，在他的生命里真实存在过，那并不是一个虚构的人物，那是他的亚特兰蒂斯之心的明证。我是那个选择继续相信的人，不后悔爱过、痛过的人，我接受这一切的存在，也对曾经那个又傻又土的自己坦然笑纳。<br>　　<br>　　只有接受，才会在平凡中领略到不平凡的存在，并且予以珍惜。<br>　　<br>　　只有接受，你才会发现，每一个少年都是一样的。只是后来，才慢慢变得不一样，有些人的心已经死去，有些人的梦已经成真。</p>
 ]]></content>
       <categories>
         <category>随笔</category>
