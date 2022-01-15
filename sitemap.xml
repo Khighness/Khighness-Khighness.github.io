@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.parak.top/posts/140645a5/</loc>
+    
+    <lastmod>2022-01-15</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.parak.top/posts/54880/</loc>
     
     <lastmod>2022-01-15</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://www.parak.top/posts/15536/</loc>
     
     <lastmod>2022-01-14</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.parak.top/posts/140645a5/</loc>
-    
-    <lastmod>2022-01-13</lastmod>
     
   </url>
   
@@ -536,14 +536,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Chartjs/</loc>
+    <loc>https://www.parak.top/tags/BloomFilter/</loc>
     <lastmod>2022-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/BloomFilter/</loc>
+    <loc>https://www.parak.top/tags/Chartjs/</loc>
     <lastmod>2022-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -741,14 +741,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/Frontend/</loc>
+    <loc>https://www.parak.top/categories/BloomFilter/</loc>
     <lastmod>2022-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/BloomFilter/</loc>
+    <loc>https://www.parak.top/categories/Frontend/</loc>
     <lastmod>2022-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
