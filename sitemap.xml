@@ -536,14 +536,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Chartjs/</loc>
+    <loc>https://www.parak.top/tags/BloomFilter/</loc>
     <lastmod>2022-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/BloomFilter/</loc>
+    <loc>https://www.parak.top/tags/Chartjs/</loc>
     <lastmod>2022-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -704,6 +704,13 @@
   </url>
   
   <url>
+    <loc>https://www.parak.top/tags/MQ/</loc>
+    <lastmod>2022-01-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.parak.top/tags/Netty/</loc>
     <lastmod>2022-01-15</lastmod>
     <changefreq>daily</changefreq>
@@ -712,13 +719,6 @@
   
   <url>
     <loc>https://www.parak.top/tags/Cache/</loc>
-    <lastmod>2022-01-15</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.parak.top/tags/MQ/</loc>
     <lastmod>2022-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -741,14 +741,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/Frontend/</loc>
+    <loc>https://www.parak.top/categories/BloomFilter/</loc>
     <lastmod>2022-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/BloomFilter/</loc>
+    <loc>https://www.parak.top/categories/Frontend/</loc>
     <lastmod>2022-01-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
