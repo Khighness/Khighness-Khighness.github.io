@@ -61,7 +61,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2022-01-16 11:55:04'
+  postUpdate: '2022-01-16 12:06:49'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/j
       true && mermaid.init()
     })
   }
-}</script></div><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.17.0/js/md5.min.js"></script><script>window.addEventListener('load', () => {
+}</script></div><script>window.addEventListener('load', () => {
   const changeContent = (content) => {
     if (content === '') return content
 
@@ -197,11 +197,37 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/j
     return content
   }
 
-  const getIcon = (icon, mail) => {
-    if (icon) return icon
-    let defaultIcon = '?d=monsterid'
-    let iconUrl = `https://gravatar.loli.net/avatar/${md5(mail.toLowerCase()) + defaultIcon}`
-    return iconUrl
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'hexo-2grv2lyu1131c342',
+        region: '',
+        pageSize: 1,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runTwikoo)
+    }
   }
 
   const generateHtml = array => {
@@ -215,7 +241,7 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/j
           const name = 'data-lazy-src'
           result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
         }
-
+        
         result += `<div class='content'>
         <a class='comment' href='${array[i].url}'>${array[i].content}</a>
         <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${btf.diffDate(array[i].date, true)}</time></div>
@@ -231,41 +257,9 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/j
     window.pjax && window.pjax.refresh($dom)
   }
 
-  const getComment = () => {
-    const serverURL = 'https://Py2eOHzS.api.lncldglobal.com'
-
-    var settings = {
-      "method": "GET",
-      "headers": {
-        "X-LC-Id": 'Py2eOHzSdrnxKPzKrOJaHJOq-9Nh9j0Va',
-        "X-LC-Key": '9eQhwuCgyshpYKn4rtEhqt4R',
-        "Content-Type": "application/json"
-      },
-    }
-
-    fetch(`${serverURL}/1.1/classes/Comment?limit=1&order=-createdAt`,settings)
-      .then(response => response.json())
-      .then(data => {
-        const valineArray = data.results.map(function (e) {
-          return {
-            'avatar': getIcon(e.QQAvatar, e.mail),
-            'content': changeContent(e.comment),
-            'nick': e.nick,
-            'url': e.url + '#' + e.objectId,
-            'date': e.updatedAt,
-          }
-        })
-        saveToLocal.set('valine-newest-comments', JSON.stringify(valineArray), 10/(60*24))
-        generateHtml(valineArray)
-      }).catch(e => {
-        const $dom = document.querySelector('#card-newest-comments .aside-list')
-        $dom.innerHTML= "无法获取评论，请确认相关配置是否正确"
-      }) 
-  }
-
   const newestCommentInit = () => {
     if (document.querySelector('#card-newest-comments .aside-list')) {
-      const data = saveToLocal.get('valine-newest-comments')
+      const data = saveToLocal.get('twikoo-newest-comments')
       if (data) {
         generateHtml(JSON.parse(data))
       } else {
