@@ -711,14 +711,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/MQ/</loc>
+    <loc>https://www.parak.top/tags/Cache/</loc>
     <lastmod>2022-01-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Cache/</loc>
+    <loc>https://www.parak.top/tags/MQ/</loc>
     <lastmod>2022-01-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -769,14 +769,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/JVM/</loc>
+    <loc>https://www.parak.top/categories/JUC/</loc>
     <lastmod>2022-01-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/JUC/</loc>
+    <loc>https://www.parak.top/categories/JVM/</loc>
     <lastmod>2022-01-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
