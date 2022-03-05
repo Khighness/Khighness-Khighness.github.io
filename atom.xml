@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Khighness</title>
+  
+  
+  <link href="https://www.parak.top/atom.xml" rel="self"/>
+  
+  <link href="https://www.parak.top/"/>
+  <updated>2022-03-05T11:18:53.722Z</updated>
+  <id>https://www.parak.top/</id>
+  
+  <author>
+    <name>Khighness</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>开始</title>
+    <link href="https://www.parak.top/posts/36421/"/>
+    <id>https://www.parak.top/posts/36421/</id>
+    <published>2022-03-04T16:00:00.000Z</published>
+    <updated>2022-03-05T11:18:53.722Z</updated>
+    
+    
+    <summary type="html">我不知道名字怎么取，到底是结束还是开始。</summary>
+    
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BloomFilter</title>
+    <link href="https://www.parak.top/posts/13354/"/>
+    <id>https://www.parak.top/posts/13354/</id>
+    <published>2022-01-11T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.830Z</updated>
+    
+    
+    <summary type="html">学习布隆过滤器，计算最小误差。</summary>
+    
+    
+    
+    <category term="BloomFilter" scheme="https://www.parak.top/categories/BloomFilter/"/>
+    
+    
+    <category term="BloomFilter" scheme="https://www.parak.top/tags/BloomFilter/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>疫念</title>
+    <link href="https://www.parak.top/posts/12327/"/>
+    <id>https://www.parak.top/posts/12327/</id>
+    <published>2022-01-09T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.792Z</updated>
+    
+    
+    <summary type="html">无数行业被疫情重创，选择躺平也无可厚非。&lt;br /&gt;当世纷繁，以己正道；不必自忧，驭风而行。</summary>
+    
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>双蛋问题</title>
+    <link href="https://www.parak.top/posts/53991/"/>
+    <id>https://www.parak.top/posts/53991/</id>
+    <published>2021-12-02T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.082Z</updated>
+    
+    
+    <summary type="html">百层高的大楼，两个鸡蛋，求找到鸡蛋不碎的临街楼层的扔鸡蛋的最少次数。李永乐老师讲的确实是通俗易懂。</summary>
+    
+    
+    
+    <category term="Algorithm" scheme="https://www.parak.top/categories/Algorithm/"/>
+    
+    
+    <category term="DP" scheme="https://www.parak.top/tags/DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>秋招</title>
+    <link href="https://www.parak.top/posts/18127/"/>
+    <id>https://www.parak.top/posts/18127/</id>
+    <published>2021-10-28T16:00:00.000Z</published>
+    <updated>2022-01-15T07:08:21.795Z</updated>
+    
+    
+    <summary type="html">8月初边实习边投递提前批，请假笔试和面试，实在过于麻烦。  9月初回家，全力准备算法和八股，记录炒菜少年的秋招结果。</summary>
+    
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RAFT-NOTE</title>
+    <link href="https://www.parak.top/posts/13171/"/>
+    <id>https://www.parak.top/posts/13171/</id>
+    <published>2021-10-09T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.397Z</updated>
+    
+    
+    <summary type="html">《云原生分布式存储基石 etcd深入解析》读书笔记，深入解读了Raft论文，并列举了集群的各种异常情况，最后附上Raft的性能优化。</summary>
+    
+    
+    
+    <category term="Paper" scheme="https://www.parak.top/categories/Paper/"/>
+    
+    
+    <category term="Distributed" scheme="https://www.parak.top/tags/Distributed/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring-事务原理</title>
+    <link href="https://www.parak.top/posts/15536/"/>
+    <id>https://www.parak.top/posts/15536/</id>
+    <published>2021-08-19T16:00:00.000Z</published>
+    <updated>2022-01-14T01:32:49.258Z</updated>
+    
+    
+    <summary type="html">Spring事务通过自动配置+AOP拦截器实现，在拦截器中获取事务的注解和事务管理器，invoke调用目标方法，出现异常则通过事务管理器进行回滚。</summary>
+    
+    
+    
+    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring-aop原理</title>
+    <link href="https://www.parak.top/posts/54880/"/>
+    <id>https://www.parak.top/posts/54880/</id>
+    <published>2021-08-18T16:00:00.000Z</published>
+    <updated>2022-01-15T09:41:00.615Z</updated>
+    
+    
+    <summary type="html">对于Spring的源码确实不能一路往下debug，不然人容易迷失，需要了解一些常见接口的作用，也要大胆猜测作者的思路。</summary>
+    
+    
+    
+    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring-循环依赖</title>
+    <link href="https://www.parak.top/posts/408/"/>
+    <id>https://www.parak.top/posts/408/</id>
+    <published>2021-08-18T04:00:00.000Z</published>
+    <updated>2022-01-22T16:18:19.005Z</updated>
+    
+    
+    <summary type="html">源码分析Spring如何解决循环依赖，还有一些Q&amp;A。</summary>
+    
+    
+    
+    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring-bean的生命周期</title>
+    <link href="https://www.parak.top/posts/55590/"/>
+    <id>https://www.parak.top/posts/55590/</id>
+    <published>2021-08-16T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.721Z</updated>
+    
+    
+    <summary type="html">没看源码，直接验证，大概就是：实例化、接口回调、初始化和销毁。</summary>
+    
+    
+    
+    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring-组件注册</title>
+    <link href="https://www.parak.top/posts/39013/"/>
+    <id>https://www.parak.top/posts/39013/</id>
+    <published>2021-08-15T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.601Z</updated>
+    
+    
+    <summary type="html">学会使用使用@Import、ImportSelector和ImportBeanDefinitionRegistor等方式批量注册组件，掌握有助于定制化IOC容器开发。</summary>
+    
+    
+    
+    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
+    
+    
+    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>越初</title>
+    <link href="https://www.parak.top/posts/59926/"/>
+    <id>https://www.parak.top/posts/59926/</id>
+    <published>2021-07-06T13:36:25.505Z</published>
+    <updated>2022-01-13T04:01:56.168Z</updated>
+    
+    
+    <summary type="html">第一次一个人去陌生的城市，第一次实习，第一次租房，想要真正意义上的独立。</summary>
+    
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArrayBlockingQueue</title>
+    <link href="https://www.parak.top/posts/62562/"/>
+    <id>https://www.parak.top/posts/62562/</id>
+    <published>2021-06-20T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.372Z</updated>
+    
+    
+    <summary type="html">有界并阻塞，数组存储，ReentrantLock保证线程安全，资源不足时，offer和poll返回false，put和take会进入条件队列等待，size结果准确。</summary>
+    
+    
+    
+    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
+    
+    
+    <category term="源码" scheme="https://www.parak.top/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LinkedBlockingQueue</title>
+    <link href="https://www.parak.top/posts/33015/"/>
+    <id>https://www.parak.top/posts/33015/</id>
+    <published>2021-06-19T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.758Z</updated>
+    
+    
+    <summary type="html">有界并阻塞队列，底层采用单向队列保存数据，内部使用两个ReentrantLock实现线程安全，分别用于用于执行poll等消费性性操作和offer等生产性操作，size方法的结果是准确的。</summary>
+    
+    
+    
+    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
+    
+    
+    <category term="源码" scheme="https://www.parak.top/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ConcurrentLinkedQueue</title>
+    <link href="https://www.parak.top/posts/29870/"/>
+    <id>https://www.parak.top/posts/29870/</id>
+    <published>2021-06-18T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.841Z</updated>
+    
+    
+    <summary type="html">无界非阻塞，单向链表处处，volatile+CAS无锁操作保证线程安全，在并发情况下size结果可能不准确。</summary>
+    
+    
+    
+    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
+    
+    
+    <category term="源码" scheme="https://www.parak.top/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HashMap</title>
+    <link href="https://www.parak.top/posts/48482/"/>
+    <id>https://www.parak.top/posts/48482/</id>
+    <published>2021-06-17T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.588Z</updated>
+    
+    
+    <summary type="html">🔍分析了JDK1.8 HashMap的源码，图示并发情况下的JDK1.7和JDK1.8 HashMap的问题，另外有负载因子的一些个人猜想和证明。</summary>
+    
+    
+    
+    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
+    
+    
+    <category term="源码" scheme="https://www.parak.top/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CopyOnWriteArrayList</title>
+    <link href="https://www.parak.top/posts/48481/"/>
+    <id>https://www.parak.top/posts/48481/</id>
+    <published>2021-06-16T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.934Z</updated>
+    
+    
+    <summary type="html">写时复制思想，修改在ReentrantLock的保护下操作副本，完成时使用副本替换原始数组。读取的时候只能读旧数组，所以体现的是弱一致性。</summary>
+    
+    
+    
+    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
+    
+    
+    <category term="源码" scheme="https://www.parak.top/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArrayList &amp; LinkedList</title>
+    <link href="https://www.parak.top/posts/55122/"/>
+    <id>https://www.parak.top/posts/55122/</id>
+    <published>2021-06-15T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.566Z</updated>
+    
+    
+    <summary type="html">🔍 基于JDK1.8的ArrayList和LinkedList的源码解析。</summary>
+    
+    
+    
+    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
+    
+    
+    <category term="源码" scheme="https://www.parak.top/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello, World</title>
+    <link href="https://www.parak.top/posts/19577/"/>
+    <id>https://www.parak.top/posts/19577/</id>
+    <published>2021-06-12T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.553Z</updated>
+    
+    
+    <summary type="html">去年冬天跟室友看了新海诚的《天气之子》，让我对新海诚导演和日漫电影留下挺不错的印象。今年夏天，这部HelloWorld，电影院直接冲。</summary>
+    
+    
+    
+    <category term="影评" scheme="https://www.parak.top/categories/%E5%BD%B1%E8%AF%84/"/>
+    
+    
+    <category term="影评" scheme="https://www.parak.top/tags/%E5%BD%B1%E8%AF%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>热恋</title>
+    <link href="https://www.parak.top/posts/26035/"/>
+    <id>https://www.parak.top/posts/26035/</id>
+    <published>2021-06-10T16:00:00.000Z</published>
+    <updated>2022-01-13T04:01:56.200Z</updated>
+    
+    
+    <summary type="html">一个好女朋友的标准，舒适、正能量、反馈与包容。</summary>
+    
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+</feed>
