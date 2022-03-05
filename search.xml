@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>开始</title>
+    <url>/posts/36421/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>2022年2月7日，在老家的最后一天，赶上了华中地区十年来最盛大的雪景。恰逢表姐婚礼，长江大桥积雪很厚。堆了雪人，也跟发小道别。</p>
+<img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/undefined/snow.jpg" class="" title="snow">
+
+<br />
+
+<p>2022年2月8日，再次来到深圳，这许是我大学生涯的最后一段实习了，我不知道它会持续多久，因为学院的某些无语政策不知何时会召唤我回去。来的时候我想着或许可以我在中高风险地区的理由搪塞一下，但是幻想照进现实，我却又这般痛苦。</p>
+<br />
+
+<p>无论承不承认，我貌似越来越接受自己就是个妈宝男的事实。上高中的第二个星期，我发信息跟我说“妈，我好想家”，第二天我妈她就来了。而这入职的第二天，上午经常不经意间就哭了，吃饭时眼泪流下来，只能假装擦鼻涕时去擦眼睛。</p>
+<br />
+
+<p>后面逐渐与左右的同事熟悉起来，朋友确实可以减轻思念之苦。前两周自学一些东西，完成我的entry-task，跟在家时确实不一样，总感觉有一种力量在push我。但是这感觉跟上一次实习也不一样。上次实习就坐在我mentor旁边，他每天carry我吃饭，吃完晚饭聊聊人生，我请假还要替我擦PP。而这次，我的工位离我的小组属于是处江湖之远了。</p>
+<img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/undefined/k0.jpg" class="" title="k0">
+
+<br />
+
+<p>来了两周，剪了头发：</p>
+<img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/undefined/k1.jpg" class="" title="k1">
+
+<br />
+
+<p>现在我是次密接了，隔离：</p>
+<img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/undefined/k2.jpg" class="" title="k2">
+
+<br />
+
+<p>就这样，留点脑细胞继续写论文了。</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>BloomFilter</title>
     <url>/posts/13354/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>布隆过滤器（Bloom Filter）是布隆在1970年提出的，它实际上是由一个很长的bit数组和一系列hash函数组成，布隆过滤器可以用于检索一个元素是否在一个集合中。它的优点是空间效率和查询效率都远远超出一般的算法，缺点是存在误差和删除困难。</p>
@@ -11553,11 +11591,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart6399" style="height: 120px"></canvas>
+    <canvas id="chart9992" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart6399').getContext('2d');
+    var ctx = document.getElementById('chart9992').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -11593,11 +11631,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart9404" style="height: 100px"></canvas>
+    <canvas id="chart8263" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart9404').getContext('2d');
+    var ctx = document.getElementById('chart8263').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -11621,11 +11659,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart5761" style="height: 100px"></canvas>
+    <canvas id="chart905" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart5761').getContext('2d');
+    var ctx = document.getElementById('chart905').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -15261,10 +15299,10 @@ H --&gt; I</div>
     <title>叶惠美</title>
     <url>/posts/f8cdfd0a/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-sOvxhccf" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-AiMUDxmx" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-sOvxhccf");
+				  options.element = document.getElementById("aplayer-AiMUDxmx");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);
