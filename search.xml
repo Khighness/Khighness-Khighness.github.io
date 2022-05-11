@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>日寄</title>
+    <url>/posts/29485/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>我的生活过得昼夜颠倒模糊不清，要说什么难以逾越的困难倒也没有，上级的话语和需求的压力就是让我难受。</p>
+<p>我被这种粘稠的痛苦纠缠得脱不开身，沦为一个负能量黑洞，要很久才积攒得起一点热情让眼睛看起来不那么暗淡无光。</p>
+<p>或许，人的一生可能根本没有分明的四季，一直在光影斑驳的林子下走走停停。</p>
+<br />
+
+<p>我对人的思念大致上分为两种：</p>
+<p>一种是逃离生活的追杀，觉得自己状态不错的闲暇，才有底气联系某人的思念，</p>
+<p>另一种是即便深陷泥沼，只要想起某人，就觉得好像一切都没那么糟糕的思念。</p>
+<p>很难说哪种是正面，反正在对方看来都是失联。</p>
+<br />
+
+<p>我意识到人类主要痛苦的来源之一就是担忧不存在的事，并把这种行为称为有远见。</p>
+<p>所忧之事成为事实，就是顺理成章的危机感。</p>
+<p>或许互联网仲裁我的那一天来的够快，正好老家的农田和猪圈也等着我打理。</p>
+<p>追逐太阳，化为灰烬。</p>
+<p>追逐晚风，黄粱一梦。</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>开始</title>
     <url>/posts/36421/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>2022年2月7日，在老家的最后一天，赶上了华中地区十年来最盛大的雪景。恰逢表姐婚礼，长江大桥积雪很厚。堆了雪人，也跟发小道别。</p>
@@ -11591,11 +11618,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart6059" style="height: 120px"></canvas>
+    <canvas id="chart3181" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart6059').getContext('2d');
+    var ctx = document.getElementById('chart3181').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -11631,11 +11658,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart8922" style="height: 100px"></canvas>
+    <canvas id="chart4187" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart8922').getContext('2d');
+    var ctx = document.getElementById('chart4187').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -11659,11 +11686,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart925" style="height: 100px"></canvas>
+    <canvas id="chart4040" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart925').getContext('2d');
+    var ctx = document.getElementById('chart4040').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -15299,10 +15326,10 @@ H --&gt; I</div>
     <title>叶惠美</title>
     <url>/posts/f8cdfd0a/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-pKfsiIFo" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-jstUlOEZ" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-pKfsiIFo");
+				  options.element = document.getElementById("aplayer-jstUlOEZ");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

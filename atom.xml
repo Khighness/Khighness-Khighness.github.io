@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2022-03-05T11:18:53.722Z</updated>
+  <updated>2022-05-11T15:35:55.467Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>日寄</title>
+    <link href="https://www.parak.top/posts/29485/"/>
+    <id>https://www.parak.top/posts/29485/</id>
+    <published>2022-05-10T16:00:00.000Z</published>
+    <updated>2022-05-11T15:35:55.467Z</updated>
+    
+    
+    <summary type="html">我意识到人类主要痛苦的来源之一就是担忧不存在的事，并把这种行为称为有远见。</summary>
+    
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>开始</title>
@@ -374,25 +393,6 @@
     
     
     <category term="影评" scheme="https://www.parak.top/tags/%E5%BD%B1%E8%AF%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>热恋</title>
-    <link href="https://www.parak.top/posts/26035/"/>
-    <id>https://www.parak.top/posts/26035/</id>
-    <published>2021-06-10T16:00:00.000Z</published>
-    <updated>2022-01-13T04:01:56.200Z</updated>
-    
-    
-    <summary type="html">一个好女朋友的标准，舒适、正能量、反馈与包容。</summary>
-    
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
