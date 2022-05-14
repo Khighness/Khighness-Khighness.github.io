@@ -46,18 +46,8 @@
 
 <br />
 
-<p>来了两周，剪了头发：</p>
-<img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/36421/k1.jpg" class="" title="k1">
-
-<br />
-
-<p>现在我是次密接了，隔离：</p>
-<img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/36421/k2.jpg" class="" title="k2">
-
-<br />
-
 <p>就这样，留点脑细胞继续写论文了。</p>
-]]></content>
+<img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/36421/k1.jpg" class="" title="k1">]]></content>
       <categories>
         <category>随笔</category>
       </categories>
@@ -5006,29 +4996,55 @@
 <p><a class="btn-beautify button--animated " href="http://cr.openjdk.java.net/~pliden/slides" target="_blank" rel="noopener" title="所有文献"><i class="far fa-hand-point-right fa-fw"></i> 所有文献</a></p>
 <p><a class="btn-beautify button--animated " href="http://cr.openjdk.java.net/~pliden/slides/ZGC-OracleDevLive-2020.pdf" target="_blank" rel="noopener" title="开发者博客"><i class="far fa-hand-point-right fa-fw"></i> 2020年PDF</a></p>
 <blockquote>
-<p>🔍 ZGC的黑技巧：染色指针+多重映射</p>
+<p>🪙GC周期</p>
 </blockquote>
-<p><a href="https://www.baeldung.com/jvm-compressed-oops">压缩指针</a>：最初JVM是32位的，随着64位系统的兴起，JVM也迎来了转换。但是64位引用是32位引用的两倍，导致了空间浪费。通过<code>-XX:+UseCompressedOops</code>可以开启指针压缩，改变正常指针的随机地址分配特性<strong>，</strong>强制堆地址从零开始分配。通过对齐和偏移量，可以将64位指针压缩成32位。</p>
-<p><a href="https://www.jianshu.com/p/b6356e0ec63c">虚拟地址</a>：一个进程能够看到的地址空间叫做虚拟地址空间，对应着计算机的物理地址空间。多个虚拟地址可以对应一个物理地址。碎片化的物理内存可以映射成完整连续的虚拟内存，一个应用可以申请比物理内存更大的内存，从而使得多个进程互不干扰。</p>
-<p>对于一个64bit的指针地址来说，对象地址只能寻址44bit，剩下的20位都是没有用的。</p>
-<p><strong>染色指针</strong>：在对堆进行GC的时候，对象会有各种状态：是否扫描，是否拷贝等等，传统GC都是把这些存在额外的内存空间中，ZGC直接将这些存在剩余的4位指针中，color bits（染色指针），不同的颜色代表对象不同的状态。</p>
-<img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/11567/image-20210601134700690.png" class="" title="image-20210601134700690"><br />
 
-<p><strong>多重映射</strong>：将一个物理地址映射到多个虚拟地址。</p>
-<img src= "https://khighness-blog.oss-cn-shanghai.aliyuncs.com/common/loading.gif" data-lazy-src="/posts/11567/image-20210601134730306.png" class="" title="image-20210601134730306"><br />
 
-<p>这样做带来了一些问题：（1）不能使用OOPS（压缩指针），导致应用占用内存显著增大；（2）系统错误显示内存占用，占用了实际内存的3倍，可能导致Linux内核的OutOfMemory Killer。</p>
-<blockquote>
-<p>🔰 读屏障Load Barrier</p>
-</blockquote>
-<p>由于染色指针的存在，在程序运行时访问对象的时候，可以轻易知道对象在内存的存储状态，若请求读的内存被染色了，则会触发读屏障，读屏障会更新指针再返回结果，此过程有一定的耗费，从而达到与用户线程并发的效果。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Object o &#x3D; obj.field;</span><br><span class="line">&lt;load_barrier&gt;</span><br><span class="line">    </span><br><span class="line">mov 0x10(%rax), $rbx</span><br><span class="line">test %rbx, 0x20(%r15)</span><br><span class="line">jne slow_path</span><br></pre></td></tr></table></figure>
-
+<p>ZGC的GC周期可以分为6个小阶段：</p>
+<ol>
+<li>暂停-标记开始阶段：第一次暂停，标记根对象集合指向的对象；</li>
+<li>并发标记/重映射阶段：遍历对象图结构，标记对象；</li>
+<li>暂停-标记结束阶段：第二次暂停，同步点，弱根对象清理；</li>
+<li>并发准备重定位阶段：引用处理，弱对象清理等；</li>
+<li>暂停-重定位开始阶段：第三次暂停，根对象指向重定向集合；</li>
+<li>并发重定位阶段：重定向集合中的对象重定向。</li>
+</ol>
+<p>这6个阶段在绝大部分时间都是并发执行的，因此对应用运行的GC停顿影响很小。</p>
+<p>ZGC采用了并发的设计模式，主要难度如下：</p>
 <ul>
-<li>检查是否使用正确的颜色</li>
-<li>如果颜色错误 =&gt; slow path</li>
+<li>需要把一个对象拷贝到另一个地址，这时另外一个线程可能会读取或者修改原来的这个老对象；</li>
+<li>即使拷贝成功，在堆中依然会有很多引用指向老的地址，那么就需要将这些饮用更新为新地址。</li>
 </ul>
-<p class="div-border blue">与标记对象的传统算法相比，ZGC在指针上做标记，在访问指针时加入Load Barrier（读屏障），比如当对象正被GC移动，指针上的颜色就会不对，这个屏障就会先把指针更新为有效地址再返回，也就是，永远只有单个对象读取时有概率被减速，而不存在为了保持应用与GC一致而粗暴整体的Stop The World。</p>
+<p>为了解决这些问题，ZGC使用了一些黑技巧。</p>
+<blockquote>
+<p>🔍ZGC的黑技巧</p>
+</blockquote>
+<p><strong>（1）染色指针（Colored Pointer）</strong></p>
+<p>ZGC使用染色指针来标记所处的GC阶段。</p>
+<p>ZGC限制于64位的系统，64位里只有48位用于寻址，这里没有使用16位，可以用来存一些元信息。</p>
+
+
+<p>ZGC使用44-47位作为颜色标记位（48～63固定为0，暂时没用）：</p>
+<ul>
+<li>Finalizable：用于析构函数处理；</li>
+<li>Remapped：表示该引用已完成重定向；</li>
+<li>Marked0和Marked1：表示指针已被标记。</li>
+</ul>
+<p>从这些元信息上就可以知道对象目前的状态，判断是不是可以执行清理压缩之类的操作。</p>
+<p><strong>（2）多重映射 （Multi-Mapping ）</strong></p>
+<p>虚拟地址：一个进程能够看到的地址空间叫做虚拟地址空间，对应着计算机的物理地址空间。多个虚拟地址可以对应一个物理地址。碎片化的物理内存可以映射成完整连续的虚拟内存，一个应用可以申请比物理内存更大的内存，从而使得多个进程互不干扰。</p>
+<p>ZGC自己设计了一套内存和地址的多重映射关系。为了能高效、灵活地管理内存，实现了两级内存管理：虚拟内存和物理内存，并且实现了物理内存和虚拟内存的映射关系。</p>
+<p>当应用程序创建对象时，首先在堆空间申请一个虚拟地址，ZGC同时会为该对象在Marked0、Marked1和Remapped三个视图空间分别申请一个虚拟地址，且这三个虚拟地址对应同一个物理地址，应用程序占用的内存为实际占用内存的1/3。</p>
+<p>这样做带来了一些问题：</p>
+<ol>
+<li>使用ZGC无法通过<code>-XX:+UseCompressedOops</code>开启指针压缩（64-&gt;32），导致应用占用内存显著增大；</li>
+<li>系统错误显示内存占用，占用了实际内存的3倍，可能导致Linux内核的OutOfMemory Killer。</li>
+</ol>
+<p><strong>（3）读屏障（Load Barrier）</strong></p>
+<p>GC线程和应用线程是并发执行的，所以需要避免一种场景：应用线程访问对象obj的时候，obj正在被GC线程移动或者执行其他操作。加上读屏障之后，应用线程会去探测对象obj是否被GC线程操作，然后等待操作完成再读区对象，确保数据的准确性。</p>
+<p>由于染色指针的存在，在程序运行时访问对象的时候，可以轻易知道对象在内存的存储状态，若请求读的内存被染色了，则会触发读屏障，读屏障会先把指针更新为有效抵制再返回，此过程有一定的耗费，从而达到与用户线程并发的效果。</p>
+<p>具体如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String n = person.name; <span class="comment">// 从堆中加载一个对象的饮用，需要加屏障</span></span><br><span class="line">String p = n;           <span class="comment">// 没有屏障，不是从堆中加载</span></span><br><span class="line">n.isEmpty();            <span class="comment">// 没有屏障，不是从堆中加载</span></span><br><span class="line"><span class="keyword">int</span> age = person.age;   <span class="comment">// 没有屏障，不是对象的饮用</span></span><br></pre></td></tr></table></figure>
 
 
 
@@ -11618,11 +11634,11 @@ H --&gt; I</div>
 <p>示例：<a href="https://shen-yu.gitee.io/2020/chartjs">沈宇大佬博客</a></p>
 <p>文档：<a href="https://chartjs.bootcss.com/">中文官方文档</a></p>
 <h3 id="每月明细"><a href="#每月明细" class="headerlink" title="每月明细"></a>每月明细</h3><div style="width: 80%;margin: 0 auto">
-    <canvas id="chart6854" style="height: 120px"></canvas>
+    <canvas id="chart814" style="height: 120px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart6854').getContext('2d');
+    var ctx = document.getElementById('chart814').getContext('2d');
     var options = {
     type: 'line',
     data: {
@@ -11658,11 +11674,11 @@ H --&gt; I</div>
 
 
 <h3 id="年度统计"><a href="#年度统计" class="headerlink" title="年度统计"></a>年度统计</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart1986" style="height: 100px"></canvas>
+    <canvas id="chart7814" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart1986').getContext('2d');
+    var ctx = document.getElementById('chart7814').getContext('2d');
     var options = {
     type: 'polarArea',
     data: {
@@ -11686,11 +11702,11 @@ H --&gt; I</div>
 
 
 <h3 id="能力雷达"><a href="#能力雷达" class="headerlink" title="能力雷达"></a>能力雷达</h3><div style="width: 100%;margin: 0 auto">
-    <canvas id="chart7079" style="height: 100px"></canvas>
+    <canvas id="chart8010" style="height: 100px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart7079').getContext('2d');
+    var ctx = document.getElementById('chart8010').getContext('2d');
     var options = {
     type: 'radar',
     data: {
@@ -15326,10 +15342,10 @@ H --&gt; I</div>
     <title>叶惠美</title>
     <url>/posts/f8cdfd0a/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>
-        <div id="aplayer-nftPWOsi" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
+        <div id="aplayer-VkDetPid" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;"></div>
 			  <script>
 				  var options = {"narrow":false,"autoplay":false,"showlrc":1,"mode":"oredr","mutex":true,"theme":"#e6d0b2","preload":"metadata","listmaxheight":"513px","music":[{"title":"以父之名","author":"周杰伦","url":"/posts/f8cdfd0a/以父之名.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"以父之名.txt"},{"title":"懦夫","author":"周杰伦","url":"/posts/f8cdfd0a/懦夫.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"懦夫.txt"},{"title":"晴天","author":"周杰伦","url":"/posts/f8cdfd0a/晴天.flac","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"晴天.txt"},{"title":"三年二班","author":"周杰伦","url":"/posts/f8cdfd0a/三年二班.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"三年二班.txt"},{"title":"东风破","author":"周杰伦","url":"/posts/f8cdfd0a/东风破.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"东风破.txt"},{"title":"你听得到","author":"周杰伦","url":"/posts/f8cdfd0a/你听得到.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"你听得到.txt"},{"title":"同一种调调","author":"周杰伦","url":"/posts/f8cdfd0a/同一种调调.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"同一种调调.txt"},{"title":"她的睫毛","author":"周杰伦","url":"/posts/f8cdfd0a/她的睫毛.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"她的睫毛.txt"},{"title":"爱情悬崖","author":"周杰伦","url":"/posts/f8cdfd0a/爱情悬崖.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"爱情悬崖.txt"},{"title":"梯田","author":"周杰伦","url":"/posts/f8cdfd0a/梯田.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"梯田.txt"},{"title":"双刀","author":"周杰伦","url":"/posts/f8cdfd0a/双刀.ogg","pic":"/posts/f8cdfd0a/YHM.jpg","lrc":"双刀.txt"}]};
-				  options.element = document.getElementById("aplayer-nftPWOsi");
+				  options.element = document.getElementById("aplayer-VkDetPid");
 				  var ap = new APlayer(options);
 			    window.aplayers || (window.aplayers = []);
 				  window.aplayers.push(ap);

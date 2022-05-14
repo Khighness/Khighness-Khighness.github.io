@@ -302,15 +302,15 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/j
   const init = () => {
     twikoo.init(Object.assign({
       el: '#twikoo-wrap',
-      envId: 'hexo-2grv2lyu1131c342',
-      region: ''
+      envId: 'hexo-butterfly-3ge9zkd3a1349c1d',
+      region: 'ap-guangzhou'
     }, null))
   }
 
   const getCount = () => {
     twikoo.getCommentsCount({
-      envId: 'hexo-2grv2lyu1131c342',
-      region: '',
+      envId: 'hexo-butterfly-3ge9zkd3a1349c1d',
+      region: 'ap-guangzhou',
       urls: [window.location.pathname],
       includeReply: false
     }).then(function (res) {
@@ -358,8 +358,8 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/j
   const getComment = () => {
     const runTwikoo = () => {
       twikoo.getRecentComments({
-        envId: 'hexo-2grv2lyu1131c342',
-        region: '',
+        envId: 'hexo-butterfly-3ge9zkd3a1349c1d',
+        region: 'ap-guangzhou',
         pageSize: 2,
         includeReply: true
       }).then(function (res) {
