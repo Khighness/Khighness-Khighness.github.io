@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2022-05-11T15:44:19.184Z</updated>
+  <updated>2022-06-17T23:11:43.633Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -15,6 +15,158 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kubernetes-API</title>
+    <link href="https://www.parak.top/posts/55155/"/>
+    <id>https://www.parak.top/posts/55155/</id>
+    <published>2022-06-07T16:00:00.000Z</published>
+    <updated>2022-06-17T23:11:43.633Z</updated>
+    
+    
+    <summary type="html">学习Kubernetes的声明式API和Kubernetes编程范式，以Istio项目为例剖析声明式API的重要意义。深入探究API对象的奥秘，并编写Network自定义控制器。</summary>
+    
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/categories/Kubernetes/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes-Job</title>
+    <link href="https://www.parak.top/posts/64083/"/>
+    <id>https://www.parak.top/posts/64083/</id>
+    <published>2022-06-06T16:00:00.000Z</published>
+    <updated>2022-06-17T23:13:00.215Z</updated>
+    
+    
+    <summary type="html">学习Kubernetes离线业务编排对象Job，重点是completions和parallelism字段的含义，以及Job Controller的执行原理，并通过实践学习Job对象三种常见的使用方法。</summary>
+    
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/categories/Kubernetes/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes-DaemonSet</title>
+    <link href="https://www.parak.top/posts/24948/"/>
+    <id>https://www.parak.top/posts/24948/</id>
+    <published>2022-06-05T16:00:00.000Z</published>
+    <updated>2022-06-17T23:07:19.635Z</updated>
+    
+    
+    <summary type="html">学习Kubernetes守护进程编排对象DaemonSet，相比于Deployment，DaemonSet 只管理Pod对象，然后通过nodeAffinity和Toleration这两个调度器的小功能，保证了每个节点上有且只有一个Pod。与此同时，DaemonSet使用ControllerRevision，来保存和管理自己对应的版本。</summary>
+    
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/categories/Kubernetes/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes-StatefulSet</title>
+    <link href="https://www.parak.top/posts/4208/"/>
+    <id>https://www.parak.top/posts/4208/</id>
+    <published>2022-06-04T16:00:00.000Z</published>
+    <updated>2022-06-17T23:09:44.434Z</updated>
+    
+    
+    <summary type="html">学习Kubernetes的有状态应用StatefulSet，状态分为拓扑状态和存储状态。</summary>
+    
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/categories/Kubernetes/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes-ReplicaSet</title>
+    <link href="https://www.parak.top/posts/63660/"/>
+    <id>https://www.parak.top/posts/63660/</id>
+    <published>2022-06-03T16:00:00.000Z</published>
+    <updated>2022-06-17T23:12:36.113Z</updated>
+    
+    
+    <summary type="html">学习Kubernetes的控制器模型的核心控制循环（Controll Loop）和Kubernetes水平扩展的资源对象ReplicaSet。</summary>
+    
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/categories/Kubernetes/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes-Pod</title>
+    <link href="https://www.parak.top/posts/16371/"/>
+    <id>https://www.parak.top/posts/16371/</id>
+    <published>2022-06-02T16:00:00.000Z</published>
+    <updated>2022-06-17T23:07:54.025Z</updated>
+    
+    
+    <summary type="html">学习Kubernetes的最小编排单位Pod，凡是调度、网络、存储，以及安全相关的属性，基本上是Pod级别的。</summary>
+    
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/categories/Kubernetes/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes-Cluster</title>
+    <link href="https://www.parak.top/posts/44589/"/>
+    <id>https://www.parak.top/posts/44589/</id>
+    <published>2022-06-01T16:00:00.000Z</published>
+    <updated>2022-06-17T23:11:54.160Z</updated>
+    
+    
+    <summary type="html">基于Centos7使用kubeadm搭建一个三节点Kubernetes集群。</summary>
+    
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/categories/Kubernetes/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes-Meet</title>
+    <link href="https://www.parak.top/posts/23705/"/>
+    <id>https://www.parak.top/posts/23705/</id>
+    <published>2022-05-31T16:00:00.000Z</published>
+    <updated>2022-06-17T22:41:50.650Z</updated>
+    
+    
+    <summary type="html">Kubernetes是云原生领域容器编排系统的领导者，主要功能：基于容器的应用部署、维护和滚动升级，负载均衡和服务发现，跨机器和跨地区的集群调度，自动伸缩······</summary>
+    
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/categories/Kubernetes/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
+    
+  </entry>
   
   <entry>
     <title>日寄</title>
@@ -135,7 +287,7 @@
     <link href="https://www.parak.top/posts/13171/"/>
     <id>https://www.parak.top/posts/13171/</id>
     <published>2021-10-09T16:00:00.000Z</published>
-    <updated>2022-01-13T04:01:56.397Z</updated>
+    <updated>2022-06-16T08:34:30.424Z</updated>
     
     
     <summary type="html">《云原生分布式存储基石 etcd深入解析》读书笔记，深入解读了Raft论文，并列举了集群的各种异常情况，最后附上Raft的性能优化。</summary>
@@ -241,158 +393,6 @@
     
     
     <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>越初</title>
-    <link href="https://www.parak.top/posts/59926/"/>
-    <id>https://www.parak.top/posts/59926/</id>
-    <published>2021-07-06T13:36:25.505Z</published>
-    <updated>2022-01-13T04:01:56.168Z</updated>
-    
-    
-    <summary type="html">第一次一个人去陌生的城市，第一次实习，第一次租房，想要真正意义上的独立。</summary>
-    
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ArrayBlockingQueue</title>
-    <link href="https://www.parak.top/posts/62562/"/>
-    <id>https://www.parak.top/posts/62562/</id>
-    <published>2021-06-20T16:00:00.000Z</published>
-    <updated>2022-01-13T04:01:56.372Z</updated>
-    
-    
-    <summary type="html">有界并阻塞，数组存储，ReentrantLock保证线程安全，资源不足时，offer和poll返回false，put和take会进入条件队列等待，size结果准确。</summary>
-    
-    
-    
-    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
-    
-    
-    <category term="源码" scheme="https://www.parak.top/tags/%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LinkedBlockingQueue</title>
-    <link href="https://www.parak.top/posts/33015/"/>
-    <id>https://www.parak.top/posts/33015/</id>
-    <published>2021-06-19T16:00:00.000Z</published>
-    <updated>2022-01-13T04:01:56.758Z</updated>
-    
-    
-    <summary type="html">有界并阻塞队列，底层采用单向队列保存数据，内部使用两个ReentrantLock实现线程安全，分别用于用于执行poll等消费性性操作和offer等生产性操作，size方法的结果是准确的。</summary>
-    
-    
-    
-    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
-    
-    
-    <category term="源码" scheme="https://www.parak.top/tags/%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ConcurrentLinkedQueue</title>
-    <link href="https://www.parak.top/posts/29870/"/>
-    <id>https://www.parak.top/posts/29870/</id>
-    <published>2021-06-18T16:00:00.000Z</published>
-    <updated>2022-01-13T04:01:56.841Z</updated>
-    
-    
-    <summary type="html">无界非阻塞，单向链表处处，volatile+CAS无锁操作保证线程安全，在并发情况下size结果可能不准确。</summary>
-    
-    
-    
-    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
-    
-    
-    <category term="源码" scheme="https://www.parak.top/tags/%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HashMap</title>
-    <link href="https://www.parak.top/posts/48482/"/>
-    <id>https://www.parak.top/posts/48482/</id>
-    <published>2021-06-17T16:00:00.000Z</published>
-    <updated>2022-01-13T04:01:56.588Z</updated>
-    
-    
-    <summary type="html">🔍分析了JDK1.8 HashMap的源码，图示并发情况下的JDK1.7和JDK1.8 HashMap的问题，另外有负载因子的一些个人猜想和证明。</summary>
-    
-    
-    
-    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
-    
-    
-    <category term="源码" scheme="https://www.parak.top/tags/%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CopyOnWriteArrayList</title>
-    <link href="https://www.parak.top/posts/48481/"/>
-    <id>https://www.parak.top/posts/48481/</id>
-    <published>2021-06-16T16:00:00.000Z</published>
-    <updated>2022-01-13T04:01:56.934Z</updated>
-    
-    
-    <summary type="html">写时复制思想，修改在ReentrantLock的保护下操作副本，完成时使用副本替换原始数组。读取的时候只能读旧数组，所以体现的是弱一致性。</summary>
-    
-    
-    
-    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
-    
-    
-    <category term="源码" scheme="https://www.parak.top/tags/%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ArrayList &amp; LinkedList</title>
-    <link href="https://www.parak.top/posts/55122/"/>
-    <id>https://www.parak.top/posts/55122/</id>
-    <published>2021-06-15T16:00:00.000Z</published>
-    <updated>2022-01-13T04:01:56.566Z</updated>
-    
-    
-    <summary type="html">🔍 基于JDK1.8的ArrayList和LinkedList的源码解析。</summary>
-    
-    
-    
-    <category term="Java" scheme="https://www.parak.top/categories/Java/"/>
-    
-    
-    <category term="源码" scheme="https://www.parak.top/tags/%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello, World</title>
-    <link href="https://www.parak.top/posts/19577/"/>
-    <id>https://www.parak.top/posts/19577/</id>
-    <published>2021-06-12T16:00:00.000Z</published>
-    <updated>2022-01-13T04:01:56.553Z</updated>
-    
-    
-    <summary type="html">去年冬天跟室友看了新海诚的《天气之子》，让我对新海诚导演和日漫电影留下挺不错的印象。今年夏天，这部HelloWorld，电影院直接冲。</summary>
-    
-    
-    
-    <category term="影评" scheme="https://www.parak.top/categories/%E5%BD%B1%E8%AF%84/"/>
-    
-    
-    <category term="影评" scheme="https://www.parak.top/tags/%E5%BD%B1%E8%AF%84/"/>
     
   </entry>
   
