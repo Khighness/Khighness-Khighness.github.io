@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2022-06-17T23:11:43.633Z</updated>
+  <updated>2022-06-24T04:25:55.353Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.parak.top/posts/55155/"/>
     <id>https://www.parak.top/posts/55155/</id>
     <published>2022-06-07T16:00:00.000Z</published>
-    <updated>2022-06-17T23:11:43.633Z</updated>
+    <updated>2022-06-24T04:25:55.353Z</updated>
     
     
     <summary type="html">学习Kubernetes的声明式API和Kubernetes编程范式，以Istio项目为例剖析声明式API的重要意义。深入探究API对象的奥秘，并编写Network自定义控制器。</summary>
@@ -40,10 +40,10 @@
     <link href="https://www.parak.top/posts/64083/"/>
     <id>https://www.parak.top/posts/64083/</id>
     <published>2022-06-06T16:00:00.000Z</published>
-    <updated>2022-06-18T07:16:44.822Z</updated>
+    <updated>2022-07-06T15:14:36.892Z</updated>
     
     
-    <summary type="html">学习Kubernetes离线业务编排对象Job，重点是completions和parallelism字段的含义，以及Job Controller的执行原理，并通过实践学习Job对象三种常见的使用方法。</summary>
+    <summary type="html">学习Kubernetes离线业务编排对象Job和Job Controller的执行原理，并通过实践学习Job对象三种常见的使用方法。</summary>
     
     
     
@@ -59,10 +59,10 @@
     <link href="https://www.parak.top/posts/24948/"/>
     <id>https://www.parak.top/posts/24948/</id>
     <published>2022-06-05T16:00:00.000Z</published>
-    <updated>2022-06-17T23:07:19.635Z</updated>
+    <updated>2022-07-06T15:14:36.916Z</updated>
     
     
-    <summary type="html">学习Kubernetes守护进程编排对象DaemonSet，相比于Deployment，DaemonSet 只管理Pod对象，然后通过nodeAffinity和Toleration这两个调度器的小功能，保证了每个节点上有且只有一个Pod。与此同时，DaemonSet使用ControllerRevision，来保存和管理自己对应的版本。</summary>
+    <summary type="html">学习Kubernetes守护进程编排对象DaemonSet，DaemonSet 只管理Pod对象，通过nodeAffinity和Toleration这两个调度器的小功能，保证了每个节点上有且只有一个Pod。</summary>
     
     
     
@@ -154,10 +154,10 @@
     <link href="https://www.parak.top/posts/23705/"/>
     <id>https://www.parak.top/posts/23705/</id>
     <published>2022-05-31T16:00:00.000Z</published>
-    <updated>2022-06-17T22:41:50.650Z</updated>
+    <updated>2022-07-06T15:14:36.909Z</updated>
     
     
-    <summary type="html">Kubernetes是云原生领域容器编排系统的领导者，主要功能：基于容器的应用部署、维护和滚动升级，负载均衡和服务发现，跨机器和跨地区的集群调度，自动伸缩······</summary>
+    <summary type="html">Kubernetes是云原生领域容器编排系统的领导者，主要功能：应用部署、维护和滚动升级，负载均衡和服务发现，跨机器和跨地区的集群调度，自动伸缩······</summary>
     
     
     
