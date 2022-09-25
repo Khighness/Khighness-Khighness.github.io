@@ -592,14 +592,14 @@
 
   
   <url>
-    <loc>https://www.parak.top/tags/BinarySearch/</loc>
+    <loc>https://www.parak.top/tags/%E6%BA%90%E7%A0%81/</loc>
     <lastmod>2022-09-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/%E6%BA%90%E7%A0%81/</loc>
+    <loc>https://www.parak.top/tags/BinarySearch/</loc>
     <lastmod>2022-09-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -620,14 +620,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Golang/</loc>
+    <loc>https://www.parak.top/tags/Game/</loc>
     <lastmod>2022-09-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Game/</loc>
+    <loc>https://www.parak.top/tags/Golang/</loc>
     <lastmod>2022-09-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -676,6 +676,13 @@
   </url>
   
   <url>
+    <loc>https://www.parak.top/tags/DP/</loc>
+    <lastmod>2022-09-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.parak.top/tags/%E5%8F%B6%E6%83%A0%E7%BE%8E/</loc>
     <lastmod>2022-09-25</lastmod>
     <changefreq>daily</changefreq>
@@ -691,13 +698,6 @@
   
   <url>
     <loc>https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/</loc>
-    <lastmod>2022-09-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.parak.top/tags/DP/</loc>
     <lastmod>2022-09-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -781,14 +781,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/MQ/</loc>
+    <loc>https://www.parak.top/tags/Netty/</loc>
     <lastmod>2022-09-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Netty/</loc>
+    <loc>https://www.parak.top/tags/MQ/</loc>
     <lastmod>2022-09-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -804,14 +804,14 @@
 
   
   <url>
-    <loc>https://www.parak.top/categories/Algorithm/</loc>
+    <loc>https://www.parak.top/categories/Java/</loc>
     <lastmod>2022-09-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/Java/</loc>
+    <loc>https://www.parak.top/categories/Algorithm/</loc>
     <lastmod>2022-09-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
