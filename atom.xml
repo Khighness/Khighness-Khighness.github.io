@@ -78,10 +78,10 @@
     <link href="https://www.parak.top/posts/64129/"/>
     <id>https://www.parak.top/posts/64129/</id>
     <published>2022-09-26T16:00:00.000Z</published>
-    <updated>2022-09-27T08:40:45.640Z</updated>
+    <updated>2022-09-27T13:12:13.560Z</updated>
     
     
-    <summary type="html">由于NTP协议存在误差，所以不能通过机器上的本地时间来确定顺序。Lamport逻辑时钟是解决这个问题的方法之一，这个方法是Lamport老爷子在1978年的论文 _Time, Clocks, and the Ordering of Events in a Distributed System_ 提出的。</summary>
+    <summary type="html">由于NTP协议存在误差，所以不能通过机器上的本地时间来确定顺序，Lamport老爷子在1978年提出的Lamport逻辑时钟是解决这个问题的方法之一。</summary>
     
     
     
