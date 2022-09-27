@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2022-09-27T08:40:17.959Z</updated>
+  <updated>2022-09-27T13:15:58.845Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.parak.top/posts/5498/"/>
     <id>https://www.parak.top/posts/5498/</id>
     <published>2022-09-29T16:00:00.000Z</published>
-    <updated>2022-09-27T08:40:17.959Z</updated>
+    <updated>2022-09-27T13:15:58.845Z</updated>
     
     
     <summary type="html">物理时钟在于直观，但无法精确；逻辑时钟可以确定事件的因果关系，但需要节点通信。2014年诞生的混合逻辑时钟（HLC）继承了二者的优势血脉。</summary>
@@ -74,11 +74,11 @@
   </entry>
   
   <entry>
-    <title>Time-2-Lamport Clock</title>
+    <title>Time-2-LamportClock</title>
     <link href="https://www.parak.top/posts/64129/"/>
     <id>https://www.parak.top/posts/64129/</id>
     <published>2022-09-26T16:00:00.000Z</published>
-    <updated>2022-09-27T13:12:13.560Z</updated>
+    <updated>2022-09-27T13:20:01.013Z</updated>
     
     
     <summary type="html">由于NTP协议存在误差，所以不能通过机器上的本地时间来确定顺序，Lamport老爷子在1978年提出的Lamport逻辑时钟是解决这个问题的方法之一。</summary>
