@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2022-06-24T04:25:55.353Z</updated>
+  <updated>2022-09-27T08:40:17.959Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -15,6 +15,101 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Time-5-混合逻辑时钟</title>
+    <link href="https://www.parak.top/posts/5498/"/>
+    <id>https://www.parak.top/posts/5498/</id>
+    <published>2022-09-29T16:00:00.000Z</published>
+    <updated>2022-09-27T08:40:17.959Z</updated>
+    
+    
+    <summary type="html">物理时钟在于直观，但无法精确；逻辑时钟可以确定事件的因果关系，但需要节点通信。2014年诞生的混合逻辑时钟（HLC）继承了二者的优势血脉。</summary>
+    
+    
+    
+    <category term="Time" scheme="https://www.parak.top/categories/Time/"/>
+    
+    
+    <category term="Time" scheme="https://www.parak.top/tags/Time/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Time-4-TrueTime</title>
+    <link href="https://www.parak.top/posts/4622/"/>
+    <id>https://www.parak.top/posts/4622/</id>
+    <published>2022-09-28T16:00:00.000Z</published>
+    <updated>2022-09-27T08:40:17.939Z</updated>
+    
+    
+    <summary type="html">NTP协议无法避免复杂的广域网导致的误差，Google于2012年提出的TrueTime同时在硬件和算法上提升了物理时钟的可靠性。</summary>
+    
+    
+    
+    <category term="Time" scheme="https://www.parak.top/categories/Time/"/>
+    
+    
+    <category term="Time" scheme="https://www.parak.top/tags/Time/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Time-3-向量时钟</title>
+    <link href="https://www.parak.top/posts/46081/"/>
+    <id>https://www.parak.top/posts/46081/</id>
+    <published>2022-09-27T16:00:00.000Z</published>
+    <updated>2022-09-27T08:40:17.972Z</updated>
+    
+    
+    <summary type="html">Lamport逻辑时钟存在的问题是不能描述事件的因果关系，十年之后由Colin Fidge和Friedemann Mattern提出的向量时钟算法解决了这个问题。</summary>
+    
+    
+    
+    <category term="Time" scheme="https://www.parak.top/categories/Time/"/>
+    
+    
+    <category term="Time" scheme="https://www.parak.top/tags/Time/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Time-2-Lamport Clock</title>
+    <link href="https://www.parak.top/posts/64129/"/>
+    <id>https://www.parak.top/posts/64129/</id>
+    <published>2022-09-26T16:00:00.000Z</published>
+    <updated>2022-09-27T08:40:45.640Z</updated>
+    
+    
+    <summary type="html">由于NTP协议存在误差，所以不能通过机器上的本地时间来确定顺序。Lamport逻辑时钟是解决这个问题的方法之一，这个方法是Lamport老爷子在1978年的论文 _Time, Clocks, and the Ordering of Events in a Distributed System_ 提出的。</summary>
+    
+    
+    
+    <category term="Time" scheme="https://www.parak.top/categories/Time/"/>
+    
+    
+    <category term="Time" scheme="https://www.parak.top/tags/Time/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Time-1-NTP协议</title>
+    <link href="https://www.parak.top/posts/42549/"/>
+    <id>https://www.parak.top/posts/42549/</id>
+    <published>2022-09-25T16:00:00.000Z</published>
+    <updated>2022-09-27T08:40:45.629Z</updated>
+    
+    
+    <summary type="html">揭秘计算机时钟背后的原理，了解初代计算机系统物理时钟同步协议——NTP。</summary>
+    
+    
+    
+    <category term="Time" scheme="https://www.parak.top/categories/Time/"/>
+    
+    
+    <category term="Time" scheme="https://www.parak.top/tags/Time/"/>
+    
+  </entry>
   
   <entry>
     <title>Kubernetes-API</title>
@@ -298,101 +393,6 @@
     
     
     <category term="Distributed" scheme="https://www.parak.top/tags/Distributed/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring-事务原理</title>
-    <link href="https://www.parak.top/posts/15536/"/>
-    <id>https://www.parak.top/posts/15536/</id>
-    <published>2021-08-19T16:00:00.000Z</published>
-    <updated>2022-01-14T01:32:49.258Z</updated>
-    
-    
-    <summary type="html">Spring事务通过自动配置+AOP拦截器实现，在拦截器中获取事务的注解和事务管理器，invoke调用目标方法，出现异常则通过事务管理器进行回滚。</summary>
-    
-    
-    
-    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring-aop原理</title>
-    <link href="https://www.parak.top/posts/54880/"/>
-    <id>https://www.parak.top/posts/54880/</id>
-    <published>2021-08-18T16:00:00.000Z</published>
-    <updated>2022-01-15T09:41:00.615Z</updated>
-    
-    
-    <summary type="html">对于Spring的源码确实不能一路往下debug，不然人容易迷失，需要了解一些常见接口的作用，也要大胆猜测作者的思路。</summary>
-    
-    
-    
-    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring-循环依赖</title>
-    <link href="https://www.parak.top/posts/408/"/>
-    <id>https://www.parak.top/posts/408/</id>
-    <published>2021-08-18T04:00:00.000Z</published>
-    <updated>2022-01-22T16:18:19.005Z</updated>
-    
-    
-    <summary type="html">源码分析Spring如何解决循环依赖，还有一些Q&amp;A。</summary>
-    
-    
-    
-    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring-bean的生命周期</title>
-    <link href="https://www.parak.top/posts/55590/"/>
-    <id>https://www.parak.top/posts/55590/</id>
-    <published>2021-08-16T16:00:00.000Z</published>
-    <updated>2022-01-13T04:01:56.721Z</updated>
-    
-    
-    <summary type="html">没看源码，直接验证，大概就是：实例化、接口回调、初始化和销毁。</summary>
-    
-    
-    
-    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring-组件注册</title>
-    <link href="https://www.parak.top/posts/39013/"/>
-    <id>https://www.parak.top/posts/39013/</id>
-    <published>2021-08-15T16:00:00.000Z</published>
-    <updated>2022-01-13T04:01:56.601Z</updated>
-    
-    
-    <summary type="html">学会使用使用@Import、ImportSelector和ImportBeanDefinitionRegistor等方式批量注册组件，掌握有助于定制化IOC容器开发。</summary>
-    
-    
-    
-    <category term="Spring" scheme="https://www.parak.top/categories/Spring/"/>
-    
-    
-    <category term="Java" scheme="https://www.parak.top/tags/Java/"/>
     
   </entry>
   
