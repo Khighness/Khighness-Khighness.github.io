@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2022-10-11T03:14:36.813Z</updated>
+  <updated>2022-10-11T03:18:43.529Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="https://www.parak.top/posts/0/"/>
+    <id>https://www.parak.top/posts/0/</id>
+    <published>2022-10-11T03:18:43.529Z</published>
+    <updated>2022-10-11T03:18:43.529Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>etcd-1-raftexample</title>
     <link href="https://www.parak.top/posts/38499/"/>
     <id>https://www.parak.top/posts/38499/</id>
     <published>2022-10-10T16:00:00.000Z</published>
-    <updated>2022-10-11T03:14:36.813Z</updated>
+    <updated>2022-10-11T03:15:13.837Z</updated>
     
     
     <summary type="html">在阅读etcd的raft源码之前，首先应该学会使用etcd的raft模块。官方基于该模块已经提供了etcd/contrib/raftexample，它实现了一个基于http的分布式存储服务。</summary>
@@ -374,25 +395,6 @@
     
     
     <category term="DP" scheme="https://www.parak.top/tags/DP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>秋招</title>
-    <link href="https://www.parak.top/posts/18127/"/>
-    <id>https://www.parak.top/posts/18127/</id>
-    <published>2021-10-28T16:00:00.000Z</published>
-    <updated>2022-01-15T07:08:21.795Z</updated>
-    
-    
-    <summary type="html">8月初边实习边投递提前批，请假笔试和面试，实在过于麻烦。  9月初回家，全力准备算法和八股，记录炒菜少年的秋招结果。</summary>
-    
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
