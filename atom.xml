@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2022-10-09T03:22:20.766Z</updated>
+  <updated>2022-10-11T03:14:36.813Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>etcd-1-raftexample</title>
+    <link href="https://www.parak.top/posts/38499/"/>
+    <id>https://www.parak.top/posts/38499/</id>
+    <published>2022-10-10T16:00:00.000Z</published>
+    <updated>2022-10-11T03:14:36.813Z</updated>
+    
+    
+    <summary type="html">在阅读etcd的raft源码之前，首先应该学会使用etcd的raft模块。官方基于该模块已经提供了etcd/contrib/raftexample，它实现了一个基于http的分布式存储服务。</summary>
+    
+    
+    
+    <category term="Distributed" scheme="https://www.parak.top/categories/Distributed/"/>
+    
+    
+    <category term="etcd" scheme="https://www.parak.top/tags/etcd/"/>
+    
+  </entry>
   
   <entry>
     <title>Time-5-混合逻辑时钟</title>
@@ -374,25 +393,6 @@
     
     
     <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RAFT-NOTE</title>
-    <link href="https://www.parak.top/posts/13171/"/>
-    <id>https://www.parak.top/posts/13171/</id>
-    <published>2021-10-09T16:00:00.000Z</published>
-    <updated>2022-10-08T11:40:05.830Z</updated>
-    
-    
-    <summary type="html">《云原生分布式存储基石 etcd深入解析》读书笔记，深入解读了Raft论文，并列举了集群的各种异常情况，最后附上Raft的性能优化。</summary>
-    
-    
-    
-    <category term="Paper" scheme="https://www.parak.top/categories/Paper/"/>
-    
-    
-    <category term="Distributed" scheme="https://www.parak.top/tags/Distributed/"/>
     
   </entry>
   
