@@ -135,7 +135,7 @@
     <link href="https://www.parak.top/posts/55155/"/>
     <id>https://www.parak.top/posts/55155/</id>
     <published>2022-06-07T16:00:00.000Z</published>
-    <updated>2022-06-24T04:25:55.353Z</updated>
+    <updated>2022-10-26T14:38:02.840Z</updated>
     
     
     <summary type="html">学习Kubernetes的声明式API和Kubernetes编程范式，以Istio项目为例剖析声明式API的重要意义。深入探究API对象的奥秘，并编写Network自定义控制器。</summary>
@@ -192,7 +192,7 @@
     <link href="https://www.parak.top/posts/4208/"/>
     <id>https://www.parak.top/posts/4208/</id>
     <published>2022-06-04T16:00:00.000Z</published>
-    <updated>2022-10-20T04:23:00.724Z</updated>
+    <updated>2022-10-20T04:28:56.194Z</updated>
     
     
     <summary type="html">学习Kubernetes的有状态应用StatefulSet，状态分为拓扑状态和存储状态。</summary>
