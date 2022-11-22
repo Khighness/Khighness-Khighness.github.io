@@ -641,7 +641,7 @@
 
   
   <url>
-    <loc>https://www.parak.top/tags/%E6%BA%90%E7%A0%81/</loc>
+    <loc>https://www.parak.top/tags/BinarySearch/</loc>
     <lastmod>2022-11-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -655,14 +655,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Chartjs/</loc>
+    <loc>https://www.parak.top/tags/%E6%BA%90%E7%A0%81/</loc>
     <lastmod>2022-11-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/BinarySearch/</loc>
+    <loc>https://www.parak.top/tags/Chartjs/</loc>
     <lastmod>2022-11-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -844,14 +844,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Netty/</loc>
+    <loc>https://www.parak.top/tags/MQ/</loc>
     <lastmod>2022-11-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/MQ/</loc>
+    <loc>https://www.parak.top/tags/Netty/</loc>
     <lastmod>2022-11-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -867,7 +867,7 @@
 
   
   <url>
-    <loc>https://www.parak.top/categories/Java/</loc>
+    <loc>https://www.parak.top/categories/Algorithm/</loc>
     <lastmod>2022-11-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -881,14 +881,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/Frontend/</loc>
+    <loc>https://www.parak.top/categories/Java/</loc>
     <lastmod>2022-11-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/Algorithm/</loc>
+    <loc>https://www.parak.top/categories/Frontend/</loc>
     <lastmod>2022-11-22</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
