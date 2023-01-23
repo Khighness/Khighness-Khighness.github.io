@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2023-01-01T13:26:44.435Z</updated>
+  <updated>2023-01-23T14:51:06.907Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://www.parak.top/posts/0/"/>
+    <id>https://www.parak.top/posts/0/</id>
+    <published>2023-01-23T14:46:36.753Z</published>
+    <updated>2023-01-23T14:51:06.907Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>手语</title>
@@ -374,25 +395,6 @@
     
     
     <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>双蛋问题</title>
-    <link href="https://www.parak.top/posts/53991/"/>
-    <id>https://www.parak.top/posts/53991/</id>
-    <published>2021-12-02T16:00:00.000Z</published>
-    <updated>2022-01-13T04:01:56.082Z</updated>
-    
-    
-    <summary type="html">百层高的大楼，两个鸡蛋，求找到鸡蛋不碎的临街楼层的扔鸡蛋的最少次数。李永乐老师讲的确实是通俗易懂。</summary>
-    
-    
-    
-    <category term="Algorithm" scheme="https://www.parak.top/categories/Algorithm/"/>
-    
-    
-    <category term="DP" scheme="https://www.parak.top/tags/DP/"/>
     
   </entry>
   
