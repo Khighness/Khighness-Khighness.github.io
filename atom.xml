@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2023-01-29T16:49:34.660Z</updated>
+  <updated>2023-03-03T15:19:30.186Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>偶然</title>
+    <link href="https://www.parak.top/posts/57950/"/>
+    <id>https://www.parak.top/posts/57950/</id>
+    <published>2023-03-02T16:00:00.000Z</published>
+    <updated>2023-03-03T15:19:30.186Z</updated>
+    
+    
+    <summary type="html">但想了很久都没想到有什么要紧的，明明什么都没有却好像什么都没丢。</summary>
+    
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>GFS-NOTE</title>
@@ -374,25 +393,6 @@
     
     
     <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>BloomFilter</title>
-    <link href="https://www.parak.top/posts/13354/"/>
-    <id>https://www.parak.top/posts/13354/</id>
-    <published>2022-01-11T16:00:00.000Z</published>
-    <updated>2022-03-13T05:03:03.227Z</updated>
-    
-    
-    <summary type="html">学习布隆过滤器，计算最小误差。</summary>
-    
-    
-    
-    <category term="BloomFilter" scheme="https://www.parak.top/categories/BloomFilter/"/>
-    
-    
-    <category term="BloomFilter" scheme="https://www.parak.top/tags/BloomFilter/"/>
     
   </entry>
   
