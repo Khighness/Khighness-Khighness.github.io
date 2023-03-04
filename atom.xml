@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2023-03-04T12:43:32.166Z</updated>
+  <updated>2023-03-04T15:18:42.973Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.parak.top/posts/43737/"/>
     <id>https://www.parak.top/posts/43737/</id>
     <published>2023-03-05T16:00:00.000Z</published>
-    <updated>2023-03-04T12:43:32.166Z</updated>
+    <updated>2023-03-04T15:18:42.973Z</updated>
     
     
     <summary type="html">深入剖析etcd/raft中与raft选举相关的优化：Pre-Vote, Check Quorum, Leader Lease，然后分析选举的代码实现。</summary>
