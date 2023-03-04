@@ -42,14 +42,14 @@
     <link href="https://www.parak.top/posts/38499/"/>
     <id>https://www.parak.top/posts/38499/</id>
     <published>2023-03-04T16:00:00.000Z</published>
-    <updated>2023-03-04T12:32:21.589Z</updated>
+    <updated>2023-03-04T16:58:19.931Z</updated>
     
     
     <summary type="html">从顶层视角看看etcd/raft的总体设计，分为三个模块：Raft状态机、存储模块和传输模块。对etcd/raft的整体把控，有利于理解实现细节。</summary>
     
     
     
-    <category term="Distributed" scheme="https://www.parak.top/categories/Distributed/"/>
+    <category term="etcd" scheme="https://www.parak.top/categories/etcd/"/>
     
     
     <category term="etcd" scheme="https://www.parak.top/tags/etcd/"/>
@@ -63,14 +63,14 @@
     <link href="https://www.parak.top/posts/38500/"/>
     <id>https://www.parak.top/posts/38500/</id>
     <published>2023-03-03T16:00:00.000Z</published>
-    <updated>2023-03-04T12:09:48.780Z</updated>
+    <updated>2023-03-04T16:58:19.888Z</updated>
     
     
     <summary type="html">在阅读etcd的raft源码之前，首先应该学会使用etcd的raft模块。官方提供的raftexample实现了一个基于http的分布式存储服务。</summary>
     
     
     
-    <category term="Distributed-System" scheme="https://www.parak.top/categories/Distributed-System/"/>
+    <category term="etcd" scheme="https://www.parak.top/categories/etcd/"/>
     
     
     <category term="etcd" scheme="https://www.parak.top/tags/etcd/"/>
