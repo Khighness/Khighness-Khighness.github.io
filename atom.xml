@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2023-03-04T15:18:42.973Z</updated>
+  <updated>2023-03-04T17:12:22.770Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -15,27 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>etcd-3-raft选举</title>
-    <link href="https://www.parak.top/posts/43737/"/>
-    <id>https://www.parak.top/posts/43737/</id>
-    <published>2023-03-05T16:00:00.000Z</published>
-    <updated>2023-03-04T15:18:42.973Z</updated>
-    
-    
-    <summary type="html">深入剖析etcd/raft中与raft选举相关的优化：Pre-Vote, Check Quorum, Leader Lease，然后分析选举的代码实现。</summary>
-    
-    
-    
-    <category term="etcd" scheme="https://www.parak.top/categories/etcd/"/>
-    
-    
-    <category term="etcd" scheme="https://www.parak.top/tags/etcd/"/>
-    
-    <category term="Distributed-System" scheme="https://www.parak.top/tags/Distributed-System/"/>
-    
-  </entry>
   
   <entry>
     <title>etcd-2-raft总体设计</title>
@@ -396,6 +375,25 @@
     
     
     <summary type="html">基于Centos7使用kubeadm搭建一个三节点Kubernetes集群。</summary>
+    
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/categories/Kubernetes/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes-Meet</title>
+    <link href="https://www.parak.top/posts/23705/"/>
+    <id>https://www.parak.top/posts/23705/</id>
+    <published>2022-05-31T16:00:00.000Z</published>
+    <updated>2022-07-06T15:14:36.909Z</updated>
+    
+    
+    <summary type="html">Kubernetes是云原生领域容器编排系统的领导者，主要功能：应用部署、维护和滚动升级，负载均衡和服务发现，跨机器和跨地区的集群调度，自动伸缩······</summary>
     
     
     
