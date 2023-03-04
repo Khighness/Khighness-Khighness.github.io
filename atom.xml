@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2023-03-03T16:04:51.889Z</updated>
+  <updated>2023-03-04T12:03:01.802Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -15,6 +15,63 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>etcd-1-raftexample</title>
+    <link href="https://www.parak.top/posts/38499/"/>
+    <id>https://www.parak.top/posts/38499/</id>
+    <published>2023-03-04T16:00:00.000Z</published>
+    <updated>2023-03-04T12:03:01.802Z</updated>
+    
+    
+    <summary type="html">从顶层视角看看etcd/raft的总体设计，对etcd/raft有整体把控，有利于理解实现细节。</summary>
+    
+    
+    
+    <category term="Distributed" scheme="https://www.parak.top/categories/Distributed/"/>
+    
+    
+    <category term="etcd" scheme="https://www.parak.top/tags/etcd/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>etcd-1-raftexample</title>
+    <link href="https://www.parak.top/posts/38501/"/>
+    <id>https://www.parak.top/posts/38501/</id>
+    <published>2023-03-04T16:00:00.000Z</published>
+    <updated>2023-03-04T12:03:01.811Z</updated>
+    
+    
+    <summary type="html">从顶层视角看看etcd/raft的总体设计，对etcd/raft有整体把控，有利于理解实现细节。</summary>
+    
+    
+    
+    <category term="Distributed" scheme="https://www.parak.top/categories/Distributed/"/>
+    
+    
+    <category term="etcd" scheme="https://www.parak.top/tags/etcd/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>etcd-1-raftexample</title>
+    <link href="https://www.parak.top/posts/38500/"/>
+    <id>https://www.parak.top/posts/38500/</id>
+    <published>2023-03-03T16:00:00.000Z</published>
+    <updated>2023-03-04T11:41:35.183Z</updated>
+    
+    
+    <summary type="html">在阅读etcd的raft源码之前，首先应该学会使用etcd的raft模块。官方提供的raftexample实现了一个基于http的分布式存储服务。</summary>
+    
+    
+    
+    <category term="Distributed" scheme="https://www.parak.top/categories/Distributed/"/>
+    
+    
+    <category term="etcd" scheme="https://www.parak.top/tags/etcd/"/>
+    
+  </entry>
   
   <entry>
     <title>偶然</title>
@@ -93,21 +150,21 @@
   </entry>
   
   <entry>
-    <title>etcd-1-raftexample</title>
-    <link href="https://www.parak.top/posts/38499/"/>
-    <id>https://www.parak.top/posts/38499/</id>
+    <title>go-三色标记算法</title>
+    <link href="https://www.parak.top/posts/25521/"/>
+    <id>https://www.parak.top/posts/25521/</id>
     <published>2022-10-10T16:00:00.000Z</published>
-    <updated>2022-11-17T12:20:34.200Z</updated>
+    <updated>2023-03-04T11:41:35.192Z</updated>
     
     
-    <summary type="html">在阅读etcd的raft源码之前，首先应该学会使用etcd的raft模块。官方提供的raftexample实现了一个基于http的分布式存储服务。</summary>
+    <summary type="html">三色标记算法是一种基于增量思想的GC算法。每次，垃圾收集线程只收集一小片区域的内存空间，接着切换到应用程序线程交替执行。依次反复，直到垃圾完成。</summary>
     
     
     
-    <category term="Distributed" scheme="https://www.parak.top/categories/Distributed/"/>
+    <category term="Golang" scheme="https://www.parak.top/categories/Golang/"/>
     
     
-    <category term="etcd" scheme="https://www.parak.top/tags/etcd/"/>
+    <category term="Golang" scheme="https://www.parak.top/tags/Golang/"/>
     
   </entry>
   
@@ -336,63 +393,6 @@
     
     
     <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kubernetes-Meet</title>
-    <link href="https://www.parak.top/posts/23705/"/>
-    <id>https://www.parak.top/posts/23705/</id>
-    <published>2022-05-31T16:00:00.000Z</published>
-    <updated>2022-07-06T15:14:36.909Z</updated>
-    
-    
-    <summary type="html">Kubernetes是云原生领域容器编排系统的领导者，主要功能：应用部署、维护和滚动升级，负载均衡和服务发现，跨机器和跨地区的集群调度，自动伸缩······</summary>
-    
-    
-    
-    <category term="Kubernetes" scheme="https://www.parak.top/categories/Kubernetes/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>日寄</title>
-    <link href="https://www.parak.top/posts/29485/"/>
-    <id>https://www.parak.top/posts/29485/</id>
-    <published>2022-05-10T16:00:00.000Z</published>
-    <updated>2022-06-20T02:10:25.581Z</updated>
-    
-    
-    <summary type="html">我意识到人类主要痛苦的来源之一就是担忧不存在的事，并把这种行为称为有远见。</summary>
-    
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>开始</title>
-    <link href="https://www.parak.top/posts/36421/"/>
-    <id>https://www.parak.top/posts/36421/</id>
-    <published>2022-03-04T16:00:00.000Z</published>
-    <updated>2022-05-14T07:19:17.333Z</updated>
-    
-    
-    <summary type="html">我不知道名字怎么取，到底是结束还是开始。</summary>
-    
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
