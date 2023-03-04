@@ -164,10 +164,10 @@
     <link href="https://www.parak.top/posts/25521/"/>
     <id>https://www.parak.top/posts/25521/</id>
     <published>2022-10-10T16:00:00.000Z</published>
-    <updated>2023-03-04T12:04:09.457Z</updated>
+    <updated>2023-03-04T12:35:31.037Z</updated>
     
     
-    <summary type="html">三色标记算法是一种基于增量思想的GC算法。每次，垃圾收集线程只收集一小片区域的内存空间，接着切换到应用程序线程交替执行。依次反复，直到垃圾完成。</summary>
+    <summary type="html">三色标记算法是一种基于增量思想的GC算法。GC线程和应用线程交替执行，每次只收集一片区域的垃圾，直到垃圾完成。</summary>
     
     
     
