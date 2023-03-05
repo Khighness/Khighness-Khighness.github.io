@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.parak.top/posts/43737/</loc>
+    
+    <lastmod>2023-03-05</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.parak.top/posts/38499/</loc>
     
     <lastmod>2023-03-04</lastmod>
@@ -683,14 +690,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/BinarySearch/</loc>
+    <loc>https://www.parak.top/tags/Chartjs/</loc>
     <lastmod>2023-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Chartjs/</loc>
+    <loc>https://www.parak.top/tags/BinarySearch/</loc>
     <lastmod>2023-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -732,14 +739,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/Java8/</loc>
+    <loc>https://www.parak.top/tags/JWT/</loc>
     <lastmod>2023-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/tags/JWT/</loc>
+    <loc>https://www.parak.top/tags/Java8/</loc>
     <lastmod>2023-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -944,14 +951,14 @@
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/Algorithm/</loc>
+    <loc>https://www.parak.top/categories/Frontend/</loc>
     <lastmod>2023-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.parak.top/categories/Frontend/</loc>
+    <loc>https://www.parak.top/categories/Algorithm/</loc>
     <lastmod>2023-03-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
