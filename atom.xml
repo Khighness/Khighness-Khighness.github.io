@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2023-07-17T17:16:17.832Z</updated>
+  <updated>2023-07-17T17:17:03.781Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -15,27 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://www.parak.top/posts/0/"/>
-    <id>https://www.parak.top/posts/0/</id>
-    <published>2023-07-17T17:10:37.633Z</published>
-    <updated>2023-07-17T17:16:17.832Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>关于她的Recent</title>
@@ -398,6 +377,25 @@
     
     
     <summary type="html">学习Kubernetes的控制器模型的核心控制循环（Controll Loop）和Kubernetes水平扩展的资源对象ReplicaSet。</summary>
+    
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/categories/Kubernetes/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes-Pod</title>
+    <link href="https://www.parak.top/posts/16371/"/>
+    <id>https://www.parak.top/posts/16371/</id>
+    <published>2022-06-02T16:00:00.000Z</published>
+    <updated>2022-06-17T23:07:54.025Z</updated>
+    
+    
+    <summary type="html">学习Kubernetes的最小编排单位Pod，凡是调度、网络、存储，以及安全相关的属性，基本上是Pod级别的。</summary>
     
     
     
