@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2023-07-17T17:17:03.781Z</updated>
+  <updated>2023-07-30T16:05:11.803Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -15,25 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>关于她的Recent</title>
-    <link href="https://www.parak.top/posts/62557/"/>
-    <id>https://www.parak.top/posts/62557/</id>
-    <published>2023-03-30T16:00:00.000Z</published>
-    <updated>2023-07-17T17:17:03.781Z</updated>
-    
-    
-    <summary type="html">With her, more possibilities.</summary>
-    
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
   
   <entry>
     <title>etcd-3-raft选举</title>
@@ -396,6 +377,25 @@
     
     
     <summary type="html">学习Kubernetes的最小编排单位Pod，凡是调度、网络、存储，以及安全相关的属性，基本上是Pod级别的。</summary>
+    
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/categories/Kubernetes/"/>
+    
+    
+    <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kubernetes-Cluster</title>
+    <link href="https://www.parak.top/posts/44589/"/>
+    <id>https://www.parak.top/posts/44589/</id>
+    <published>2022-06-01T16:00:00.000Z</published>
+    <updated>2022-06-17T23:11:54.160Z</updated>
+    
+    
+    <summary type="html">基于Centos7使用kubeadm搭建一个三节点Kubernetes集群。</summary>
     
     
     
