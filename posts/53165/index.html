@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/j
   }
 
   if (typeof Valine === 'function') initValine() 
-  else getScript('/js/Valine.min.js').then(initValine)
+  else getScript('https://unpkg.com/valine/dist/Valine.min.js').then(initValine)
 }
 
 if ('Valine' === 'Valine' || !true) {
