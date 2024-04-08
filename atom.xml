@@ -6,7 +6,7 @@
   <link href="https://www.parak.top/atom.xml" rel="self"/>
   
   <link href="https://www.parak.top/"/>
-  <updated>2024-03-09T16:12:11.636Z</updated>
+  <updated>2024-04-08T18:48:51.126Z</updated>
   <id>https://www.parak.top/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>2023总结</title>
+    <link href="https://www.parak.top/posts/27845/"/>
+    <id>https://www.parak.top/posts/27845/</id>
+    <published>2024-04-08T16:00:00.000Z</published>
+    <updated>2024-04-08T18:48:51.126Z</updated>
+    
+    
+    <summary type="html">在疫情期间封闭的欢乐港湾的摩天轮旁，在文和友步行街的各色小吃烟火里，在前海公园席地而坐的草坪上，在盐田海滨栈道的落日余晖下，面对她，我皆按捺冲动，深藏情愫。</summary>
+    
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+    <category term="随笔" scheme="https://www.parak.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ANTLR学习笔记</title>
     <link href="https://www.parak.top/posts/49052/"/>
     <id>https://www.parak.top/posts/49052/</id>
     <published>2024-03-09T16:00:00.000Z</published>
-    <updated>2024-03-09T16:12:11.636Z</updated>
+    <updated>2024-04-08T18:22:18.145Z</updated>
     
     
     <summary type="html">ANTLR 是功能强大的解析器生成器，用于读取，处理，执行或翻译结构化文本或二进制文件。 它被广泛用于构建语言，工具和框架。</summary>
@@ -381,25 +400,6 @@
     
     
     <summary type="html">学习Kubernetes的控制器模型的核心控制循环（Controll Loop）和Kubernetes水平扩展的资源对象ReplicaSet。</summary>
-    
-    
-    
-    <category term="Kubernetes" scheme="https://www.parak.top/categories/Kubernetes/"/>
-    
-    
-    <category term="Kubernetes" scheme="https://www.parak.top/tags/Kubernetes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kubernetes-Pod</title>
-    <link href="https://www.parak.top/posts/16371/"/>
-    <id>https://www.parak.top/posts/16371/</id>
-    <published>2022-06-02T16:00:00.000Z</published>
-    <updated>2022-06-17T23:07:54.025Z</updated>
-    
-    
-    <summary type="html">学习Kubernetes的最小编排单位Pod，凡是调度、网络、存储，以及安全相关的属性，基本上是Pod级别的。</summary>
     
     
     
